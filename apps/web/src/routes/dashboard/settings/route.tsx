@@ -24,14 +24,7 @@ const SETTINGS_PAGES: Page[] = [
 	{ to: "/dashboard/settings/ai", icon: "sparkle", label: () => t`AI & developer` },
 ];
 
-// The project's own links: where to read up, see the code, help translate, report a problem or donate.
-const getProjectLinks = () => [
-	{ href: "https://docs.rxresu.me", label: t`Docs` },
-	{ href: "https://github.com/reactive-resume/reactive-resume", label: t`Source` },
-	{ href: "https://crowdin.com/project/reactive-resume", label: t`Translate` },
-	{ href: "https://github.com/reactive-resume/reactive-resume/issues", label: t`Report a bug` },
-	{ href: "https://opencollective.com/reactive-resume/donate", label: t`Donate` },
-];
+const getProjectLinks = () => [] as { href: string; label: string }[];
 
 export const Route = createFileRoute("/dashboard/settings")({
 	head: () => ({ meta: [{ title: getPageTitle(t`Settings`) }] }),
@@ -62,7 +55,7 @@ function RouteComponent() {
 					))}
 				</div>
 				<p className="mt-auto px-2.5 text-xs leading-[18px] text-ink-3 max-lg:hidden">
-					<Trans>Reactive Resume {__APP_VERSION__} · MIT</Trans>
+					<Trans>Resume Builder {__APP_VERSION__} · MIT</Trans>
 					<br />
 					{getProjectLinks().map((link, index) => (
 						<Fragment key={link.href}>

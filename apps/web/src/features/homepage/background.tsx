@@ -1,56 +1,33 @@
-import type { CSSProperties } from "react";
-
-/** A seeded Park–Miller generator, so the motes land in the same places on the server and in the browser. */
-function seeded(seed: number) {
-	let state = seed;
-	return () => {
-		state = (state * 16807) % 2147483647;
-		return state / 2147483647;
-	};
-}
-
-const random = seeded(11);
-const motes = Array.from({ length: 18 }, () => ({
-	left: `${4 + random() * 50}%`,
-	top: `${8 + random() * 74}%`,
-	"--size": `${1.5 + random() * 2.4}px`,
-	"--mote-duration": `${(16 + random() * 18).toFixed(1)}s`,
-	"--mote-delay": `${(-random() * 34).toFixed(1)}s`,
-	"--dx": `${20 + random() * 70}px`,
-	"--dy": `${-(70 + random() * 150)}px`,
-}));
-
 /**
- * The desk the page sits on. In light mode, warm window light breathes, the blurred shadow of the window's mullions
- * drifts and dust floats up through it. In dark mode, a neutral lamp follows the cursor. All of it is still under
- * reduced motion. A still paper grain lies over the whole page in both modes.
+ * Executive Navy & Slate backdrop:
+ * A subtle geometric grid and ambient executive cobalt mesh glow that creates depth
+ * without visual distraction for job seekers and recruiters.
  */
 export function LandingBackground() {
 	return (
-		<>
+		<div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+			{/* Top ambient executive blue glow */}
+			<div className="absolute -top-32 left-1/2 h-[500px] w-[1000px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,oklch(0.52_0.19_255/0.14),transparent_70%)] blur-[90px] dark:bg-[radial-gradient(ellipse_at_center,oklch(0.66_0.17_250/0.18),transparent_70%)]" />
+
+			{/* Secondary subtle side ambient glow */}
+			<div className="absolute top-[35%] -left-48 size-[500px] rounded-full bg-[radial-gradient(circle_at_center,oklch(0.52_0.19_255/0.06),transparent_70%)] blur-[100px] dark:bg-[radial-gradient(circle_at_center,oklch(0.66_0.17_250/0.08),transparent_70%)]" />
+
+			{/* Precision technical grid with smooth edge fade */}
+			<div
+				className="absolute inset-0 opacity-40 dark:opacity-25"
+				style={{
+					backgroundImage: `linear-gradient(to right, var(--line) 1px, transparent 1px), linear-gradient(to bottom, var(--line) 1px, transparent 1px)`,
+					backgroundSize: "48px 48px",
+					maskImage: "radial-gradient(ellipse 90% 80% at 50% 20%, black 40%, transparent 95%)",
+					WebkitMaskImage: "radial-gradient(ellipse 90% 80% at 50% 20%, black 40%, transparent 95%)",
+				}}
+			/>
+
+			{/* Interactive cursor spotlight in dark mode */}
 			<div
 				data-lamp
-				aria-hidden="true"
-				className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(circle_620px_at_var(--lx,72%)_var(--ly,24%),oklch(0.92_0_0/.06),transparent_70%)] opacity-0 transition-opacity duration-[.8s] dark:opacity-100"
+				className="absolute inset-0 bg-[radial-gradient(circle_500px_at_var(--lx,70%)_var(--ly,25%),oklch(0.66_0.17_250/0.07),transparent_70%)] opacity-0 transition-opacity duration-700 dark:opacity-100"
 			/>
-			<div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-				<div className="transition-opacity duration-[.8s] dark:opacity-0">
-					<div className="motion-safe:animate-breathe absolute -inset-[20%] bg-[radial-gradient(38%_34%_at_24%_20%,oklch(0.995_0.04_85/.8),transparent_72%)]" />
-					<div className="window-shadow motion-safe:animate-drift absolute -top-[30%] -left-[12%] h-[140%] w-[78%]" />
-				</div>
-				{motes.map((style) => (
-					<span
-						key={style.left}
-						className="motion-safe:animate-mote absolute size-(--size) rounded-full bg-[oklch(0.5_0.04_80/.35)] opacity-0 dark:bg-[oklch(0.9_0.06_80/.45)]"
-						style={style as CSSProperties}
-					/>
-				))}
-			</div>
-			{/* Above the header (z-70) and the theme cord (z-72), below the skip link (z-100); it never takes a click. */}
-			<div
-				aria-hidden="true"
-				className="paper-grain pointer-events-none fixed inset-0 z-80 opacity-[.07] dark:opacity-[.05] dark:invert"
-			/>
-		</>
+		</div>
 	);
 }

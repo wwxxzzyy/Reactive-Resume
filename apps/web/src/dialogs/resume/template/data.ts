@@ -1,130 +1,134 @@
-import type { MessageDescriptor } from "@lingui/core";
-import type { Template } from "@reactive-resume/schema/templates";
-import { msg } from "@lingui/core/macro";
+import type { PrimaryTemplate, Template } from "@reactive-resume/schema/templates";
 
 export type TemplateMetadata = {
 	name: string;
-	description: MessageDescriptor;
+	description: string;
 	imageUrl: string;
 	tags: string[];
 };
 
-export const templates = {
-	azurill: {
-		name: "Azurill",
-		description: msg`Two-column with a bold colored sidebar and skill bars; great for creative or tech roles where visual flair is welcome.`,
-		imageUrl: "/templates/jpg/azurill.jpg",
-		tags: ["Two-column", "Creative", "Tech", "Visual flair"],
+export const primaryTemplateData: Record<PrimaryTemplate, TemplateMetadata> = {
+	harvard: {
+		name: "Harvard Classic",
+		description:
+			"Timeless Ivy League standard. Centered letterhead, crisp thin divider lines, compact serif typography, and maximum content density. Engineered for 100% ATS readability.",
+		imageUrl: "/templates/jpg/harvard.jpg",
+		tags: ["Single-column", "ATS friendly", "Executive", "Ivy League", "Finance", "Law", "Corporate"],
 	},
-	bronzor: {
-		name: "Bronzor",
-		description: msg`One column with labeled section rows and subtle dividers. A compact layout for experience, education and supporting details.`,
-		imageUrl: "/templates/jpg/bronzor.jpg",
-		tags: ["Single-column", "Clean", "Professional", "Corporate", "Finance", "Consulting"],
+	silicon: {
+		name: "Silicon Tech Lead",
+		description:
+			"Modern software engineering and developer layout. Compact left-aligned header, technical skill chips, prominent GitHub/portfolio links, and metric-focused impact bullets.",
+		imageUrl: "/templates/jpg/silicon.jpg",
+		tags: ["Single-column", "ATS friendly", "Tech", "Software Engineer", "DevOps", "Data Science"],
 	},
-	chikorita: {
-		name: "Chikorita",
-		description: msg`Two-column with a soft header accent and circular profile photo; ideal for marketing, HR, or client-facing roles.`,
-		imageUrl: "/templates/jpg/chikorita.jpg",
-		tags: ["Two-column", "Soft accent", "Marketing", "HR", "Client-facing"],
+	mckinsey: {
+		name: "McKinsey Consultant",
+		description:
+			"Management and strategy consulting benchmark. Uppercase ruled section headings, structured bullet points emphasizing quantified business ROI, margin growth, and cross-functional leadership.",
+		imageUrl: "/templates/jpg/mckinsey.jpg",
+		tags: ["Single-column", "ATS friendly", "Consulting", "Strategy", "Operations", "Management"],
 	},
-	ditgar: {
-		name: "Ditgar",
-		description: msg`Two-column with a dark teal sidebar and skills grid; modern feel for developers, data scientists, or technical PMs.`,
-		imageUrl: "/templates/jpg/ditgar.jpg",
-		tags: ["Two-column", "Modern", "Developer", "Data science", "Technical PM", "Dark sidebar"],
+	stanford: {
+		name: "Stanford Executive",
+		description:
+			"Executive leadership and C-Suite format. Polished letterhead with executive summary callout, 3-column core competencies matrix, and reverse-chronological achievements.",
+		imageUrl: "/templates/jpg/stanford.jpg",
+		tags: ["Single-column", "ATS friendly", "Executive", "Director", "VP", "Leadership", "C-Suite"],
 	},
-	ditto: {
-		name: "Ditto",
-		description: msg`Two columns beneath a colored header band. Keep experience in the main column and supporting details in the sidebar.`,
-		imageUrl: "/templates/jpg/ditto.jpg",
-		tags: ["Two-column", "Minimal", "Text-dense", "Traditional"],
+	"wall-street": {
+		name: "Wall Street Finance",
+		description:
+			"Investment banking and private equity layout. Ultra-compact line height, traditional serif typography, and structured transaction and deal highlights.",
+		imageUrl: "/templates/jpg/wall-street.jpg",
+		tags: ["Single-column", "ATS friendly", "Finance", "Investment Banking", "Private Equity", "Accounting"],
 	},
-	gengar: {
-		name: "Gengar",
-		description: msg`Two-column with accent colors and clean typography; balanced choice for business analysts or operations roles.`,
-		imageUrl: "/templates/jpg/gengar.jpg",
-		tags: ["Two-column", "Accent colors", "Clean typography", "Business analyst", "Operations"],
+	"jake-ats": {
+		name: "Jake's ATS Standard",
+		description:
+			"The gold-standard single-column layout popularized by top tech recruiters and r/resumes. Zero parser ambiguity, clean ruled headers, bold role titles, and right-aligned dates.",
+		imageUrl: "/templates/jpg/jake-ats.jpg",
+		tags: ["Single-column", "100% ATS Safe", "Tech Favorite", "High Conversion", "Corporate", "Recruiter Approved"],
 	},
-	glalie: {
-		name: "Glalie",
-		description: msg`Two-column, minimal with light gray sidebar and subtle icons; professional and understated for legal, finance, or executive roles.`,
-		imageUrl: "/templates/jpg/glalie.jpg",
-		tags: ["Two-column", "Minimal", "Professional", "Legal", "Finance", "Executive", "Understated"],
+	"linear-mono": {
+		name: "Linear Modern Tech",
+		description:
+			"Ultra-sleek tech layout inspired by modern product design tools. Crisp left-aligned header, subtle hairline section dividers, and high-density technical hierarchy.",
+		imageUrl: "/templates/jpg/linear-mono.jpg",
+		tags: ["Single-column", "ATS friendly", "Modern", "Developer", "SaaS", "Clean Grid"],
 	},
-	kakuna: {
-		name: "Kakuna",
-		description: msg`Single-column with a magenta left border accent; compact and efficient for entry-level or internship applications.`,
-		imageUrl: "/templates/jpg/kakuna.jpg",
-		tags: ["Single-column", "ATS friendly", "Compact", "Efficient", "Entry level", "Internship", "Magenta accent"],
+	"modern-split": {
+		name: "Modern Split",
+		description:
+			"Two-column format with a tinted sidebar for contact details, skills, certifications, and education, leaving the main canvas open for deep experience bullets.",
+		imageUrl: "/templates/jpg/modern-split.jpg",
+		tags: ["Two-column", "Modern", "Skills Sidebar", "Tech", "Product"],
 	},
-	lapras: {
-		name: "Lapras",
-		description: msg`Single-column; polished and serious for senior or enterprise-level positions.`,
-		imageUrl: "/templates/jpg/lapras.jpg",
-		tags: ["Single-column", "ATS friendly", "Polished", "Senior", "Enterprise"],
+	"tokyo-compact": {
+		name: "Tokyo Compact",
+		description:
+			"High-density single-page format with ruled headings and compact spacing, designed to fit extensive career history onto a single page cleanly.",
+		imageUrl: "/templates/jpg/tokyo-compact.jpg",
+		tags: ["Single-column", "ATS friendly", "Compact", "High Density", "One-Page"],
 	},
-	leafish: {
-		name: "Leafish",
-		description: msg`Two-column with a muted color sidebar; earthy and calm, suits sustainability, healthcare, or nonprofit sectors.`,
-		imageUrl: "/templates/jpg/leafish.jpg",
-		tags: ["Two-column", "Muted sidebar", "Earthy", "Calm", "Sustainability", "Healthcare", "Nonprofit"],
+	"corporate-split": {
+		name: "Corporate Split",
+		description:
+			"Executive two-column layout with a light gray right sidebar for credentials and competencies, balanced by an expansive work history column.",
+		imageUrl: "/templates/jpg/corporate-split.jpg",
+		tags: ["Two-column", "Corporate", "Right Sidebar", "Management", "Operations"],
 	},
-	meowth: {
-		name: "Meowth",
-		description: msg`Single-column with uppercase section headings over a rule and the photo beside the name; compact and ATS-friendly, well-suited for Asian resume conventions (CN/JP/KR).`,
-		imageUrl: "/templates/jpg/meowth.jpg",
-		tags: ["Single-column", "ATS friendly", "Ruled headings", "Compact", "Asian style", "CN/JP/KR"],
+	"cambridge-cv": {
+		name: "Cambridge Academic CV",
+		description:
+			"Comprehensive academic and research CV layout. Structured for peer-reviewed publications, grants, conference presentations, teaching appointments, and fellowships.",
+		imageUrl: "/templates/jpg/cambridge-cv.jpg",
+		tags: ["Single-column", "ATS friendly", "Academic", "Research", "PhD", "Publications", "Healthcare"],
 	},
-	onyx: {
-		name: "Onyx",
-		description: msg`One column with a photo beside the header and clear section headings. A simple top-to-bottom layout for your experience.`,
-		imageUrl: "/templates/jpg/onyx.jpg",
-		tags: ["Single-column", "ATS friendly", "Versatile", "Professional", "Technical"],
+	"creative-studio": {
+		name: "Creative Studio",
+		description:
+			"Distinctive typography pairing with subtle accent colors, portfolio links, and creative toolkit showcases. Tailored for UX/UI designers, art directors, and brand strategists.",
+		imageUrl: "/templates/jpg/creative-studio.jpg",
+		tags: ["Two-column", "Creative", "Design", "UX/UI", "Marketing", "Portfolio"],
 	},
-	persian: {
-		name: "Persian",
-		description: msg`Single-column Wall Street style with a centered header and ruled section headings.`,
-		imageUrl: "/templates/jpg/persian.jpg",
-		tags: ["Single-column", "ATS friendly", "Finance", "Consulting", "Traditional"],
-	},
-	pikachu: {
-		name: "Pikachu",
-		description: msg`Two-column with a left margin color; simple and approachable for creative, editorial, or junior roles.`,
-		imageUrl: "/templates/jpg/pikachu.jpg",
-		tags: ["Two-column", "Simple", "Creative", "Editorial", "Junior", "Accent colors"],
-	},
-	porygon: {
-		name: "Porygon",
-		description: msg`Single-column ruled form inspired by the Japanese rirekisho: a bordered header of field cells and every section as a table with a solid title bar; dense and fast to scan for engineering, operations, or applications in Japan.`,
-		imageUrl: "/templates/jpg/porygon.jpg",
-		tags: [
-			"Single-column",
-			"ATS friendly",
-			"Ruled grid",
-			"Dense",
-			"Structured",
-			"Engineering",
-			"Operations",
-			"Asian style",
-		],
-	},
-	rhyhorn: {
-		name: "Rhyhorn",
-		description: msg`Single-column with a minimal top header and lots of whitespace; clean and modern for designers or content creators.`,
-		imageUrl: "/templates/jpg/rhyhorn.jpg",
-		tags: ["Single-column", "ATS friendly", "Minimal", "Clean", "Modern", "Designer", "Content creator", "Whitespace"],
-	},
-	scizor: {
-		name: "Scizor",
-		description: msg`Single-column with uppercase section headings and a primary-color top rule on every page; polished for executive, consulting, or startup resumes.`,
-		imageUrl: "/templates/jpg/scizor.jpg",
-		tags: ["Single-column", "ATS friendly", "Uppercase headings", "Executive", "Consulting", "Startup"],
-	},
-	smeargle: {
-		name: "Smeargle",
-		description: msg`Single-column set like a magazine feature: a large display name under an uppercase kicker and the summary as a larger standfirst; refined for writers, designers, and communications roles.`,
-		imageUrl: "/templates/jpg/smeargle.jpg",
-		tags: ["Single-column", "ATS friendly", "Editorial", "Magazine", "Serif", "Writer", "Designer", "Communications"],
-	},
-} as const satisfies Record<Template, TemplateMetadata>;
+};
+
+export const templates: Record<Template, TemplateMetadata> = {
+	...primaryTemplateData,
+
+	// Legacy aliases mapping to modern primary templates
+	articuno: primaryTemplateData.harvard,
+	azurill: primaryTemplateData["modern-split"],
+	bronzor: primaryTemplateData["linear-mono"],
+	chikorita: primaryTemplateData["corporate-split"],
+	ditgar: primaryTemplateData["modern-split"],
+	ditto: primaryTemplateData["modern-split"],
+	eevee: primaryTemplateData.silicon,
+	gengar: primaryTemplateData.mckinsey,
+	glalie: primaryTemplateData.harvard,
+	kakuna: primaryTemplateData["jake-ats"],
+	lapras: primaryTemplateData.stanford,
+	leafish: primaryTemplateData["corporate-split"],
+	meowth: primaryTemplateData["tokyo-compact"],
+	onyx: primaryTemplateData.silicon,
+	persian: primaryTemplateData["wall-street"],
+	pikachu: primaryTemplateData["creative-studio"],
+	porygon: primaryTemplateData["linear-mono"],
+	rhyhorn: primaryTemplateData["jake-ats"],
+	scizor: primaryTemplateData.mckinsey,
+	smeargle: primaryTemplateData.harvard,
+	snorlax: primaryTemplateData["cambridge-cv"],
+
+	"mit-engineer": primaryTemplateData.silicon,
+	nordic: primaryTemplateData["linear-mono"],
+	"tech-split": primaryTemplateData["modern-split"],
+	"swiss-grid": primaryTemplateData["linear-mono"],
+	"minimal-split": primaryTemplateData["modern-split"],
+	"product-manager": primaryTemplateData["linear-mono"],
+	"clinical-health": primaryTemplateData["corporate-split"],
+	"editorial-serif": primaryTemplateData["cambridge-cv"],
+	"entry-launch": primaryTemplateData["jake-ats"],
+	"legal-understated": primaryTemplateData.harvard,
+	"business-analyst": primaryTemplateData.mckinsey,
+};

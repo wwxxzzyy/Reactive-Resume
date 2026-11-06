@@ -7,15 +7,15 @@ const RESUME_ID_ARGUMENT = [{ name: "id", description: "Resume ID.", required: t
 /** Shared server identity for both the live MCP server and the static server card. */
 export function buildMcpServerInfo(version: string) {
 	return {
-		name: "reactive-resume",
+		name: "dippergo",
 		version,
-		title: "Reactive Resume",
-		websiteUrl: "https://rxresu.me",
+		title: "DipperGo Resume Builder",
+		websiteUrl: "https://dippergo.com",
 		description:
-			"Reactive Resume is a free and open-source resume builder. Use this MCP server to interact with your resume using an LLM of your choice.",
+			"DipperGo Resume Builder. Use this MCP server to interact with your resume using an LLM of your choice.",
 		icons: [
-			{ src: "https://rxresu.me/icon/light.svg", mimeType: "image/svg+xml", theme: "light" as const },
-			{ src: "https://rxresu.me/icon/dark.svg", mimeType: "image/svg+xml", theme: "dark" as const },
+			{ src: "https://dippergo.com/icon/light.svg", mimeType: "image/svg+xml", theme: "light" as const },
+			{ src: "https://dippergo.com/icon/dark.svg", mimeType: "image/svg+xml", theme: "dark" as const },
 		],
 	};
 }

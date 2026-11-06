@@ -139,7 +139,7 @@ export type TemplateSemanticManifest = {
 	canonicalBindings?: readonly TemplateSemanticCanonicalBinding[];
 };
 
-const TEMPLATE_SEMANTIC_MANIFESTS = {
+const BASE_MANIFESTS = {
 	azurill: azurillSemanticManifest,
 	bronzor: bronzorSemanticManifest,
 	chikorita: chikoritaSemanticManifest,
@@ -158,7 +158,57 @@ const TEMPLATE_SEMANTIC_MANIFESTS = {
 	rhyhorn: rhyhornSemanticManifest,
 	scizor: scizorSemanticManifest,
 	smeargle: smeargleSemanticManifest,
-} as const satisfies Readonly<Record<Template, TemplateSemanticManifest>>;
+};
+
+const TEMPLATE_SEMANTIC_MANIFESTS: Record<Template, TemplateSemanticManifest> = {
+	// Curated 12 Elite Templates
+	harvard: BASE_MANIFESTS.persian,
+	silicon: BASE_MANIFESTS.onyx,
+	mckinsey: BASE_MANIFESTS.scizor,
+	stanford: BASE_MANIFESTS.lapras,
+	"wall-street": BASE_MANIFESTS.persian,
+	"jake-ats": BASE_MANIFESTS.kakuna,
+	"linear-mono": BASE_MANIFESTS.bronzor,
+	"modern-split": BASE_MANIFESTS.azurill,
+	"tokyo-compact": BASE_MANIFESTS.meowth,
+	"corporate-split": BASE_MANIFESTS.chikorita,
+	"cambridge-cv": BASE_MANIFESTS.smeargle,
+	"creative-studio": BASE_MANIFESTS.pikachu,
+
+	// Legacy aliases
+	articuno: BASE_MANIFESTS.persian,
+	azurill: BASE_MANIFESTS.azurill,
+	bronzor: BASE_MANIFESTS.bronzor,
+	chikorita: BASE_MANIFESTS.chikorita,
+	ditgar: BASE_MANIFESTS.ditgar,
+	ditto: BASE_MANIFESTS.ditto,
+	eevee: BASE_MANIFESTS.onyx,
+	gengar: BASE_MANIFESTS.gengar,
+	glalie: BASE_MANIFESTS.glalie,
+	kakuna: BASE_MANIFESTS.kakuna,
+	lapras: BASE_MANIFESTS.lapras,
+	leafish: BASE_MANIFESTS.leafish,
+	meowth: BASE_MANIFESTS.meowth,
+	onyx: BASE_MANIFESTS.onyx,
+	persian: BASE_MANIFESTS.persian,
+	pikachu: BASE_MANIFESTS.pikachu,
+	porygon: BASE_MANIFESTS.porygon,
+	rhyhorn: BASE_MANIFESTS.rhyhorn,
+	scizor: BASE_MANIFESTS.scizor,
+	smeargle: BASE_MANIFESTS.smeargle,
+	snorlax: BASE_MANIFESTS.smeargle,
+	"mit-engineer": BASE_MANIFESTS.onyx,
+	nordic: BASE_MANIFESTS.rhyhorn,
+	"tech-split": BASE_MANIFESTS.ditgar,
+	"swiss-grid": BASE_MANIFESTS.bronzor,
+	"minimal-split": BASE_MANIFESTS.ditto,
+	"product-manager": BASE_MANIFESTS.porygon,
+	"clinical-health": BASE_MANIFESTS.leafish,
+	"editorial-serif": BASE_MANIFESTS.smeargle,
+	"entry-launch": BASE_MANIFESTS.kakuna,
+	"legal-understated": BASE_MANIFESTS.glalie,
+	"business-analyst": BASE_MANIFESTS.gengar,
+};
 
 // Every template's entries can be drawn on one line, so the parts of that header belong to all of them.
 const MANIFESTS = Object.fromEntries(

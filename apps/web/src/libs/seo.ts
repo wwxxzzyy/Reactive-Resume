@@ -6,7 +6,7 @@ import { t } from "@lingui/core/macro";
  * what changes as the visitor navigates: the title, the description and, where needed, `noindex`.
  */
 
-const appName = "Reactive Resume";
+const appName = "DipperGo";
 
 export const createNoindexFollowMeta = () => ({ name: "robots", content: "noindex, follow" });
 
@@ -24,8 +24,9 @@ export const serializeJsonLd = (data: Record<string, unknown>) =>
 
 /** The homepage's title and description in the active locale. The prerendered page and the route share them. */
 export const getHomepageMeta = () => ({
-	title: `${t`Free resume builder with PDF & Word downloads`} | ${appName}`,
-	description: t`Free, open-source resume builder. Create, update, and share your resume, with PDF and Word downloads, no ads and no paywall.`,
+	title: `Free ATS-Friendly Resume Builder with PDF & Word Exports | ${appName}`,
+	description:
+		"Create professional, recruiter-approved resumes that beat ATS screeners. 18+ free templates, job application tracker, and instant vector PDF & DOCX downloads. No paywall, 100% free.",
 });
 
 /** The ATS checker's title and description in the active locale. The prerendered page and the route share them. */

@@ -22,7 +22,6 @@ import { useKeyboardVisible } from "@/ui/keyboard";
 const appTabIcons: Record<string, IconName> = {
 	documents: "file-text",
 	applications: "briefcase",
-	career: "compass",
 	settings: "gear-six",
 };
 
@@ -274,15 +273,18 @@ export function Bar({ children, activeIndex }: BarProps) {
 export function PhoneTabBar(props: BottomTabBarProps) {
 	const { t } = useLingui();
 	const onPress = useTabPress(props);
+	const visibleRoutes = props.state.routes.filter((route) => route.name !== "career");
+	const activeRouteKey = props.state.routes[props.state.index]?.key;
+	const activeIndex = visibleRoutes.findIndex((r) => r.key === activeRouteKey);
 
 	return (
-		<Bar activeIndex={props.state.index}>
-			{props.state.routes.map((route, index) => (
+		<Bar activeIndex={activeIndex >= 0 ? activeIndex : undefined}>
+			{visibleRoutes.map((route, index) => (
 				<BarItem
 					key={route.key}
 					label={route.name === "create" ? t`New` : tabLabel(props, route)}
 					icon={appTabIcons[route.name]}
-					focused={index === props.state.index}
+					focused={index === activeIndex}
 					badge={tabBadge(props, route)}
 					badgeTone={quietBadges.has(route.name) ? "quiet" : "accent"}
 					onPress={() => onPress(route)}
@@ -403,12 +405,12 @@ export function AppSidebar(props: BottomTabBarProps) {
 		>
 			<Text
 				variant="heading"
-				accessibilityLabel="Reactive Resume"
+				accessibilityLabel="Resume Builder"
 				align={compact ? "center" : undefined}
 				numberOfLines={1}
 				style={{ paddingHorizontal: compact ? 0 : space.s3, paddingBottom: space.s3 }}
 			>
-				{compact ? "Rx" : "Reactive Resume"}
+				{compact ? "Rx" : "Resume Builder"}
 			</Text>
 			{compact ? (
 				<View style={{ alignItems: "center" }}>

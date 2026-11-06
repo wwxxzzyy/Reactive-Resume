@@ -91,7 +91,7 @@ it("updates title and focus on path navigation, retaining field focus for search
 	await waitFor(() => expect(screen.getByRole("heading", { name: "One" })).toHaveFocus());
 	await router.navigate({ to: "/two" });
 	await waitFor(() => expect(screen.getByRole("heading", { name: "Two" })).toHaveFocus());
-	expect(document.title).toBe("Two | Reactive Resume");
+	expect(document.title).toBe("Two | Resume Builder");
 	const field = screen.getByRole("textbox", { name: "Search" });
 	field.focus();
 	await router.navigate({ to: "/two", search: { q: "retained" } });

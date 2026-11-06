@@ -156,8 +156,9 @@
 .landing {
 	--gutter: clamp(18px, 3vw, 44px);
 	--paper-shadow:
-		0 1px 2px oklch(0.2 0.01 95 / 0.12), 0 40px 80px -30px oklch(0.2 0.01 95 / 0.5), 0 0 0 1px oklch(0.2 0.01 95 / 0.04);
-	--graphite: oklch(0.38 0.01 95 / 0.3);
+		0 1px 3px oklch(0.15 0.02 255 / 0.1), 0 24px 60px -20px oklch(0.15 0.02 255 / 0.25),
+		0 0 0 1px oklch(0.15 0.02 255 / 0.06);
+	--graphite: oklch(0.42 0.02 255 / 0.3);
 	/* Horizontal motion that points somewhere (slides, flights) is multiplied by this so it mirrors in RTL. */
 	--dir: 1;
 	/* How dark Share's sky is while it's on screen; the engine writes it. */
@@ -165,10 +166,10 @@
 }
 
 .dark .landing {
-	/* Paper under a dark room's light: a warm grey, not a glaring white. */
-	--paper: oklch(0.93 0.008 90);
-	--paper-shadow: 0 1px 2px oklch(0 0 0 / 0.45), 0 30px 60px -28px oklch(0 0 0 / 0.65);
-	--graphite: oklch(0.9 0.01 95 / 0.18);
+	/* Paper on executive dark slate desk */
+	--paper: #ffffff;
+	--paper-shadow: 0 1px 3px oklch(0 0 0 / 0.5), 0 30px 60px -20px oklch(0 0 0 / 0.7), 0 0 0 1px oklch(1 0 0 / 0.08);
+	--graphite: oklch(0.9 0.01 255 / 0.2);
 }
 
 [dir="rtl"] .landing {

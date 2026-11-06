@@ -368,11 +368,11 @@ export function ScheduleSheet({ schedule, onScheduleChange, onDelete }: Schedule
 									<p className="text-xs text-ink-3">
 										{webAccess?.provider ? (
 											<Trans>
-												Found posting links are read by Reactive Resume and, when needed, {webAccess.provider} and the
+												Found posting links are read by Resume Builder and, when needed, {webAccess.provider} and the
 												sites being read. The reader may charge.
 											</Trans>
 										) : (
-											<Trans>Found posting links are read by Reactive Resume and the sites being read.</Trans>
+											<Trans>Found posting links are read by Resume Builder and the sites being read.</Trans>
 										)}
 									</p>
 								</>

@@ -26,7 +26,7 @@ export function AuthHeader({ subtitle }: AuthHeaderProps) {
 				}}
 			/>
 			<Text variant="display" align="center" accessibilityRole="header">
-				{t`Reactive Resume`}
+				{t`Resume Builder`}
 			</Text>
 			{subtitle ? (
 				<Text color="ink2" align="center">

@@ -1,37 +1,34 @@
-import { plural, t } from "@lingui/core/macro";
-import { useLingui } from "@lingui/react";
-import { useQuery } from "@tanstack/react-query";
+import { t } from "@lingui/core/macro";
+import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@reactive-resume/ui/components/icon";
 import { cn } from "@reactive-resume/utils/style";
-import { goToScene, prefersReducedMotion, SCENE, useLanding } from "./scroll";
+import { useLanding } from "./scroll";
 import { LanguageDoorway } from "./sections";
 import { CtaLink } from "./ui";
 import { useTheme } from "@/features/theme/provider";
-import { orpc } from "@/libs/orpc/client";
+import { authClient } from "@/libs/auth/client";
 
-const githubUrl = "https://github.com/reactive-resume/reactive-resume";
-
-const getStoryScenes = () => [
-	{ scene: SCENE.write, label: t`Write` },
-	{ scene: SCENE.design, label: t`Design` },
-	{ scene: SCENE.check, label: t`Check` },
-	{ scene: SCENE.tailor, label: t`Tailor` },
-	{ scene: SCENE.share, label: t`Share` },
-	{ scene: SCENE.prepare, label: t`Prepare` },
-	{ scene: SCENE.remember, label: t`Remember` },
+const getNavItems = () => [
+	{ to: "#templates", label: "Resume Templates", badge: "12 ATS" },
+	{ to: "/ats-checker", label: "ATS Resume Checker", badge: "Free Scan", highlight: true },
+	{ to: "#features", label: "Features" },
+	{ to: "#capabilities", label: "Export (PDF/DOCX)" },
+	{ to: "#reviews", label: "Reviews" },
 ];
 
 export function LandingHeader() {
 	const scrolled = useLanding((state) => state.scrolled);
 	const night = useLanding((state) => state.night);
-	const activeScene = useLanding((state) => state.activeScene);
+	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+	const { data: session } = authClient.useSession();
+	const isAuthenticated = Boolean(session?.user);
 
 	return (
 		<header
 			className={cn(
-				// The ink fades to light with Share's sky (--nt), so it never jumps against a half-dark background.
-				"night-ink fixed inset-x-0 top-0 z-70 flex h-16 items-center gap-7 ps-(--gutter) pe-[calc(var(--gutter)+30px)] whitespace-nowrap",
+				"night-ink fixed inset-x-0 top-0 z-70 flex h-16 items-center gap-3 ps-(--gutter) pe-[calc(var(--gutter)+30px)] whitespace-nowrap transition-colors duration-300 sm:gap-6",
+				scrolled && "border-b border-line/60 bg-bg/85 backdrop-blur-md",
 			)}
 		>
 			<div
@@ -42,110 +39,199 @@ export function LandingHeader() {
 				)}
 			/>
 
-			<a href="#top" className="flex items-center gap-2.5 rounded-md">
+			{/* Brand mark with informative title & subtitle */}
+			<a
+				href="#top"
+				className="flex items-center gap-3 rounded-md transition-opacity hover:opacity-85"
+				aria-label="DipperGo Resume Builder"
+			>
 				<img
 					src="/icon/light.svg"
 					alt=""
-					width={30}
-					height={30}
-					className={cn("size-[30px] dark:hidden", night && "hidden")}
+					width={32}
+					height={32}
+					className={cn("size-[32px] dark:hidden", night && "hidden")}
 				/>
 				<img
 					src="/icon/dark.svg"
 					alt=""
-					width={30}
-					height={30}
-					className={cn("hidden size-[30px] dark:block", night && "block")}
+					width={32}
+					height={32}
+					className={cn("hidden size-[32px] dark:block", night && "block")}
 				/>
-				{/* The wordmark stays in the DOM for screen readers and crawlers; the logomark is what shows. */}
-				<span className="sr-only">Reactive Resume</span>
+				<div className="flex flex-col text-start">
+					<div className="flex items-center gap-2">
+						<span className="font-anybody text-lg leading-none font-bold tracking-tight text-ink">DipperGo</span>
+						<span className="font-martian rounded border border-accent/25 bg-accent/15 px-1.5 py-0.5 text-[9.5px] leading-none font-bold tracking-wider text-accent-text uppercase">
+							Resume Builder
+						</span>
+					</div>
+					<span className="font-martian mt-0.5 hidden text-[10px] font-medium tracking-tight text-ink-3 sm:block">
+						Free ATS Resumes &amp; Application Tracker
+					</span>
+				</div>
 			</a>
 
-			<nav aria-label={t`Story`} className="mx-auto hidden items-center gap-0.5 min-[1240px]:flex">
-				{getStoryScenes().map(({ scene, label }) => {
-					const active = activeScene === scene;
-					return (
-						<button
-							key={scene}
-							type="button"
-							aria-current={active ? "step" : undefined}
-							onClick={() => goToScene(scene, 0.04)}
-							className={cn(
-								"font-martian flex h-[34px] items-center gap-[7px] rounded-sm px-[11px] text-xs leading-none font-medium font-stretch-[87.5%] transition-opacity duration-300",
-								!active && "opacity-65 hover:opacity-100",
+			<nav aria-label="Navigation" className="mx-auto hidden items-center gap-1 min-[900px]:flex">
+				{getNavItems().map(({ to, label, badge, highlight }) => {
+					const content = (
+						<>
+							<span>{label}</span>
+							{badge && (
+								<span
+									className={cn(
+										"font-martian rounded px-1.5 py-0.5 text-[10px] font-semibold",
+										highlight
+											? "border border-accent/25 bg-accent/15 font-bold text-accent-text"
+											: "border border-line bg-surface text-ink-3",
+									)}
+								>
+									{badge}
+								</span>
 							)}
+						</>
+					);
+
+					if (to.startsWith("/")) {
+						return (
+							<Link
+								key={to}
+								to={to}
+								className="flex h-[34px] items-center gap-1.5 rounded-sm px-3 font-ui text-xs font-medium text-ink-2 transition-colors hover:bg-hover hover:text-ink"
+							>
+								{content}
+							</Link>
+						);
+					}
+					return (
+						<a
+							key={to}
+							href={to}
+							className="flex h-[34px] items-center gap-1.5 rounded-sm px-3 font-ui text-xs font-medium text-ink-2 transition-colors hover:bg-hover hover:text-ink"
 						>
-							<span
-								aria-hidden="true"
-								className={cn("size-1.5 rounded-sm transition-colors duration-300", active && "bg-accent")}
-							/>
-							{label}
-						</button>
+							{content}
+						</a>
 					);
 				})}
 			</nav>
 
-			<div className="ms-auto flex items-center gap-2">
+			<div className="ms-auto flex items-center gap-2 sm:gap-3">
+				{isAuthenticated ? (
+					<Link
+						to="/dashboard"
+						className="inline-flex h-[36px] items-center gap-1.5 rounded-sm bg-accent px-3.5 font-ui text-xs font-semibold text-on-accent shadow-xs transition-all hover:bg-accent-hover"
+					>
+						<span>Dashboard</span>
+						<Icon name="arrow-right" size={14} />
+					</Link>
+				) : (
+					<>
+						<Link
+							to="/auth/login"
+							className="inline-flex h-[36px] items-center justify-center rounded-sm border border-line-2 bg-raised px-3 font-ui text-xs font-semibold text-ink shadow-xs transition-colors hover:border-ink/20 hover:bg-hover sm:px-4"
+						>
+							Sign in
+						</Link>
+						<CtaLink size="header" />
+					</>
+				)}
+
 				<LanguageDoorway
-					className="font-martian h-[34px] gap-[7px] rounded-sm px-[11px] text-xs leading-none font-medium font-stretch-[87.5%] opacity-65 transition-opacity duration-300 hover:opacity-100"
+					className="font-martian h-[34px] gap-[7px] rounded-sm px-2 text-xs leading-none font-medium font-stretch-[87.5%] opacity-65 transition-opacity duration-300 hover:opacity-100 sm:px-[11px]"
 					nameClassName="max-[639px]:sr-only"
 				/>
-				<GithubLink />
-				<CtaLink size="header" />
+
+				<button
+					type="button"
+					aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+					aria-expanded={mobileMenuOpen}
+					onClick={() => setMobileMenuOpen((open) => !open)}
+					className="flex size-[36px] items-center justify-center rounded-sm border border-line-2 bg-raised text-ink transition-colors hover:bg-hover min-[900px]:hidden"
+				>
+					<Icon name={mobileMenuOpen ? "x" : "list-dashes"} size={18} />
+				</button>
 			</div>
+
+			{/* Mobile menu dropdown */}
+			{mobileMenuOpen && (
+				<div className="absolute inset-x-0 top-16 animate-in border-b border-line bg-surface/98 p-5 shadow-2xl backdrop-blur-xl duration-200 fade-in slide-in-from-top-2 min-[900px]:hidden">
+					<div className="flex flex-col gap-4">
+						<div className="flex items-center gap-2 border-b border-line pb-3">
+							<span className="font-martian text-xs font-bold tracking-wider text-accent-text uppercase">
+								DipperGo · Free ATS Resume Builder
+							</span>
+						</div>
+
+						<nav className="flex flex-col gap-1 border-b border-line pb-3">
+							{getNavItems().map(({ to, label, badge }) => {
+								const inner = (
+									<div className="flex w-full items-center justify-between">
+										<span>{label}</span>
+										{badge && (
+											<span className="font-martian rounded border border-line bg-raised px-2 py-0.5 text-[10px] text-ink-3">
+												{badge}
+											</span>
+										)}
+									</div>
+								);
+								if (to.startsWith("/")) {
+									return (
+										<Link
+											key={to}
+											to={to}
+											onClick={() => setMobileMenuOpen(false)}
+											className="flex h-10 items-center rounded-md px-3 font-ui text-sm font-medium text-ink transition-colors hover:bg-hover"
+										>
+											{inner}
+										</Link>
+									);
+								}
+								return (
+									<a
+										key={to}
+										href={to}
+										onClick={() => setMobileMenuOpen(false)}
+										className="flex h-10 items-center rounded-md px-3 font-ui text-sm font-medium text-ink transition-colors hover:bg-hover"
+									>
+										{inner}
+									</a>
+								);
+							})}
+						</nav>
+						<div className="flex flex-col gap-2.5">
+							{isAuthenticated ? (
+								<Link
+									to="/dashboard"
+									onClick={() => setMobileMenuOpen(false)}
+									className="flex h-11 items-center justify-center gap-2 rounded-sm bg-accent font-ui font-semibold text-on-accent"
+								>
+									<span>Go to Dashboard</span>
+									<Icon name="arrow-right" size={16} />
+								</Link>
+							) : (
+								<>
+									<Link
+										to="/auth/register"
+										onClick={() => setMobileMenuOpen(false)}
+										className="flex h-11 items-center justify-center gap-2 rounded-sm bg-accent font-ui font-semibold text-on-accent"
+									>
+										<span>Build Resume Free</span>
+										<Icon name="arrow-right" size={16} />
+									</Link>
+									<Link
+										to="/auth/login"
+										onClick={() => setMobileMenuOpen(false)}
+										className="flex h-11 items-center justify-center rounded-sm border border-line-2 bg-raised font-ui font-semibold text-ink"
+									>
+										Sign in
+									</Link>
+								</>
+							)}
+						</div>
+					</div>
+				</div>
+			)}
 		</header>
-	);
-}
-
-/** The repository's live star count, counted up from zero once it arrives. */
-function GithubLink() {
-	const { i18n } = useLingui();
-	const { data: stars } = useQuery(orpc.statistics.github.getStarCount.queryOptions());
-	const countRef = useRef<HTMLSpanElement>(null);
-
-	useEffect(() => {
-		const element = countRef.current;
-		if (!element || stars == null) return;
-		const compact = new Intl.NumberFormat(i18n.locale, { notation: "compact", maximumFractionDigits: 1 });
-
-		if (prefersReducedMotion()) {
-			element.textContent = compact.format(stars);
-			return;
-		}
-
-		let frame = 0;
-		const start = performance.now();
-		const step = (now: number) => {
-			const progress = Math.min(1, (now - start) / 1600);
-			element.textContent = compact.format(Math.round(stars * (1 - (1 - progress) ** 3)));
-			if (progress < 1) frame = requestAnimationFrame(step);
-		};
-		frame = requestAnimationFrame(step);
-		return () => cancelAnimationFrame(frame);
-	}, [stars, i18n.locale]);
-
-	const label =
-		stars == null
-			? t`Star Reactive Resume on GitHub`
-			: plural(stars, {
-					one: "Star Reactive Resume on GitHub, # star",
-					other: "Star Reactive Resume on GitHub, # stars",
-				});
-
-	return (
-		<a
-			href={githubUrl}
-			aria-label={label}
-			className="font-martian hidden h-[38px] items-center gap-2 rounded-md px-2.5 text-[12px] leading-none font-medium font-stretch-[87.5%] tabular-nums transition-colors hover:bg-hover lg:flex"
-		>
-			<svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
-				<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
-			</svg>
-			<span className="flex items-center gap-1">
-				<Icon name="star" filled size={15} className="text-[oklch(0.72_0.14_80)]" />
-				<span ref={countRef} className="min-w-[4ch]" />
-			</span>
-		</a>
 	);
 }
 

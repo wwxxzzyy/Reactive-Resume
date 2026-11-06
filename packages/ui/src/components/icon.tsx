@@ -370,6 +370,7 @@ type IconProps = Omit<React.ComponentProps<"span">, "children"> & {
  */
 function Icon({ name, filled = false, size = 20, className, style, ...props }: IconProps) {
 	const Glyph = icons[name];
+	if (!Glyph) return null;
 
 	return (
 		<span

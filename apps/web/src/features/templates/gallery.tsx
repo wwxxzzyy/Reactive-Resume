@@ -1,7 +1,7 @@
 import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import { Link } from "@tanstack/react-router";
-import { templateLayouts, templateSchema } from "@reactive-resume/schema/templates";
+import { primaryTemplates, templateLayouts } from "@reactive-resume/schema/templates";
 import { cn } from "@reactive-resume/utils/style";
 import { templates } from "@/dialogs/resume/template/data";
 import { LandingBackground } from "@/features/homepage/background";
@@ -12,7 +12,7 @@ const linkClass = "text-accent-text underline underline-offset-4 transition-colo
 /** The template gallery, on the homepage's desk: its grain and window light, paper shadows, type and French curve. */
 export function TemplateGallery() {
 	const { i18n } = useLingui();
-	const count = i18n.number(templateSchema.options.length);
+	const count = i18n.number(primaryTemplates.length);
 
 	return (
 		<div className="landing relative isolate overflow-x-clip bg-bg font-ui text-ink">
@@ -64,7 +64,7 @@ export function TemplateGallery() {
 					</div>
 
 					<div className="mt-16 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-						{templateSchema.options.map((id, index) => {
+						{primaryTemplates.map((id, index) => {
 							const template = templates[id];
 							const name = template.name;
 							const layout = templateLayouts[id];
@@ -94,7 +94,7 @@ export function TemplateGallery() {
 										{layout.columns === 1 ? t`One column` : t`Two columns`}
 									</p>
 									<p className="mt-3 font-display text-[17px] leading-[1.45] text-pretty text-ink-2">
-										{i18n._(template.description)}
+										{typeof template.description === "string" ? template.description : i18n._(template.description)}
 									</p>
 									<a
 										href={`/templates/pdf/${id}.pdf`}

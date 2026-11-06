@@ -3,7 +3,7 @@ import { i18n } from "@lingui/core";
 import { t } from "@lingui/core/macro";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
-import { templateSchema } from "@reactive-resume/schema/templates";
+import { primaryTemplates } from "@reactive-resume/schema/templates";
 import { SegmentedControl, SegmentedControlItem } from "@reactive-resume/ui/components/segmented-control";
 import { cn } from "@reactive-resume/utils/style";
 import { goToScene, SCENE, useLanding } from "./scroll";
@@ -20,7 +20,7 @@ const TEMPLATE_AT = [0.05, 0.2, 0.36, 0.52, 0.7];
  */
 const STACK_CELL = 8;
 const sheetCells = (() => {
-	const names = [...templateSchema.options];
+	const names = [...primaryTemplates];
 	return Array.from({ length: 18 }, (_, index) => ({
 		index,
 		template: index === STACK_CELL ? null : (names.shift() ?? null),
@@ -49,7 +49,7 @@ export function Design() {
 	const zoomed = useLanding((state) => state.designZoomed);
 	const active = useLanding((state) => state.activeScene === SCENE.design);
 	const design = t`Design`;
-	const templateCount = i18n.number(templateSchema.options.length);
+	const templateCount = i18n.number(primaryTemplates.length);
 	const templateNames = sheetTemplates.map((template) => i18n._(template.name));
 	const railRef = useRef<HTMLDivElement>(null);
 

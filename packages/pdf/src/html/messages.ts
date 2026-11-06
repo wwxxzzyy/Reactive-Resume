@@ -5,7 +5,7 @@ const ENGLISH = {
 	downloadPdf: "Download PDF",
 	share: "Share",
 	linkCopied: "Link copied",
-	credit: "Made with Reactive Resume, free and open source",
+	credit: "Made with Resume Builder, free and open source",
 	passwordTitle: "This resume is password-protected",
 	passwordHint: "Enter the password the resume owner shared with you.",
 	password: "Password",
@@ -13,7 +13,7 @@ const ENGLISH = {
 	wrongPassword: "That password isn't correct. Check it with the resume owner and try again.",
 	unavailableTitle: "This resume isn't shared right now.",
 	unavailableHint: "If someone sent you this link, ask them for a new one.",
-	home: "Go to Reactive Resume",
+	home: "Go to Resume Builder",
 };
 
 export type WebPageMessages = typeof ENGLISH;

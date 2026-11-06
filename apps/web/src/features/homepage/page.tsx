@@ -1,26 +1,20 @@
 import { t } from "@lingui/core/macro";
 import { useRef } from "react";
+import { ApplicantFeatures } from "./applicant-features";
 import { LandingBackground } from "./background";
-import { Check } from "./check";
-import { Design } from "./design";
-import { Faq } from "./faq";
+import { ClosingCta } from "./closing-cta";
+import { CompanyLogos } from "./company-logos";
+import { ComparisonSection } from "./comparison";
 import { LandingFooter } from "./footer";
 import { LandingHeader, ThemeCord } from "./header";
 import { Hero } from "./hero";
-import { Prepare } from "./prepare";
-import { Remember } from "./remember";
 import { useScrollScenes } from "./scroll";
-import { Closing, Languages, Numbers, Support } from "./sections";
-import { Share } from "./share";
-import { Tailor } from "./tailor";
-import { Write } from "./write";
+import { TemplatesShowcase } from "./templates-showcase";
+import { TestimonialsSection } from "./testimonials";
 
 /**
- * The public landing page: one scroll-driven story, "Everything you've done, on one page." A single resume page is
- * assembled, written, restyled, checked, tailored and sent as the visitor scrolls. The reply that comes back turns
- * into interview day in the application's folder, and the story behind it is told once and reused. Then community
- * proof, languages, support, common questions, a closing call to action and the footer. The server prerenders it
- * (prerender.tsx), so every word is in the first response.
+ * The public landing page: designed to convert applicants with recruiter-approved templates,
+ * proof points, ATS optimization, side-by-side comparison, social proof, and transparent pricing (100% free).
  */
 export function Homepage() {
 	const root = useRef<HTMLDivElement>(null);
@@ -39,18 +33,12 @@ export function Homepage() {
 			<ThemeCord />
 			<main id="main">
 				<Hero />
-				<Write />
-				<Design />
-				<Check />
-				<Tailor />
-				<Share />
-				<Prepare />
-				<Remember />
-				<Numbers />
-				<Languages />
-				<Support />
-				<Faq />
-				<Closing />
+				<CompanyLogos />
+				<TemplatesShowcase />
+				<ApplicantFeatures />
+				<ComparisonSection />
+				<TestimonialsSection />
+				<ClosingCta />
 			</main>
 			<LandingFooter />
 		</div>

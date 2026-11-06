@@ -26,8 +26,8 @@ function useQuestions(): Question[] {
 	return [
 		{
 			id: "free",
-			question: t`Is Reactive Resume really free?`,
-			answer: t`Yes. Every feature is free: all ${templates} templates, PDF and Word downloads, the ATS checker, cover letters and the job tracker. There are no ads, no tracking and no paid tier. Donations pay for hosting and development.`,
+			question: "Is DipperGo really free?",
+			answer: `Yes. Every feature is 100% free: all ${templates} templates, PDF and Word downloads, the ATS checker, cover letters, and the job application tracker. There are no ads, no subscriptions, and no paywalls.`,
 		},
 		{
 			id: "ats",
@@ -43,12 +43,12 @@ function useQuestions(): Question[] {
 		{
 			id: "import",
 			question: t`Can I import a resume I already have?`,
-			answer: t`Yes. Import a PDF, a LinkedIn data export, a JSON Resume file or a Reactive Resume export, then pick up where it left off. With an AI provider set up, Word documents work too.`,
+			answer: t`Yes. Import a PDF, a LinkedIn data export, a JSON Resume file or a Resume Builder export, then pick up where it left off. With an AI provider set up, Word documents work too.`,
 		},
 		{
 			id: "export",
 			question: t`What formats can I download?`,
-			answer: t`PDF, Word (DOCX), Markdown and JSON. The JSON export imports back into any Reactive Resume, including one you host yourself, so your data is never locked in.`,
+			answer: t`PDF, Word (DOCX), Markdown and JSON. The JSON export imports back into any Resume Builder, including one you host yourself, so your data is never locked in.`,
 		},
 		{
 			id: "ai",
@@ -61,10 +61,11 @@ function useQuestions(): Question[] {
 			answer: t`Yes. Every job you track gets its own workspace: check your fit against the posting, draft answers from stories you wrote once, get a short plan before the interview, practice out loud with feedback and debrief afterwards. When offers arrive, compare them side by side. The coaching uses your own AI key; the comparison doesn’t need one.`,
 		},
 		{
-			id: "self-host",
-			question: t`Can I host it myself?`,
-			answer: t`Yes. Reactive Resume is open source under the MIT License and ships as a Docker image, so it runs on your own server with your own database and storage.`,
-			link: { label: t`Read the self-hosting guide`, href: "https://docs.rxresu.me/self-hosting/docker" },
+			id: "customize",
+			question: "Can I customize the resume templates?",
+			answer:
+				"Yes. You can customize fonts, colors, spacing, page margins, and section ordering in real-time, then export pixel-perfect PDFs or editable Word DOCX files with zero watermark.",
+			link: { label: "Explore Templates", href: "#templates" },
 		},
 		{
 			id: "languages",

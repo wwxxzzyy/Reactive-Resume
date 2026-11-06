@@ -21,6 +21,6 @@ export function useNewAction() {
 			else router.push(routes.newJob());
 			return;
 		}
-		router.push(routes.new(pathname.startsWith("/career") ? "career" : "documents"));
+		router.push(routes.new("documents"));
 	}, [pathname, router]);
 }

@@ -19,13 +19,12 @@ import { cn } from "@reactive-resume/utils/style";
 import { MobileTabIndicator } from "@/components/layout/mobile-tab-indicator";
 import { useDialogStore } from "@/dialogs/store";
 import { GuestBanner } from "@/features/auth/components/guest-banner";
-import { useCommandPaletteStore } from "@/features/command-palette/store";
 import { isEditableElementFocused } from "@/features/resume/builder/draft";
 import { UserDropdownMenu } from "@/features/user/dropdown-menu";
 import { orpc } from "@/libs/orpc/client";
 
 type NavItem = {
-	to: "/dashboard" | "/dashboard/applications" | "/dashboard/career" | "/dashboard/trash" | "/dashboard/settings";
+	to: "/dashboard" | "/dashboard/applications" | "/dashboard/trash" | "/dashboard/settings";
 	icon: IconName;
 	label: string;
 	count?: number;
@@ -35,7 +34,6 @@ function useNavItems() {
 	const matchRoute = useMatchRoute();
 	const { data: counts } = useQuery(orpc.documents.counts.queryOptions());
 	const { data: applicationStats } = useQuery(orpc.applications.stats.queryOptions({}));
-	const { data: notifications } = useQuery(orpc.career.notifications.queryOptions({ input: {} }));
 
 	const items: NavItem[] = [
 		{
@@ -57,9 +55,6 @@ function useNavItems() {
 				: {}),
 		},
 	];
-	const unread = notifications?.filter((notification) => !notification.readAt).length ?? 0;
-	// Career counts what's waiting for the user (unread notifications), so nothing shows at zero.
-	items.push({ to: "/dashboard/career", icon: "compass", label: t`Career`, ...(unread ? { count: unread } : {}) });
 	const settings: NavItem = { to: "/dashboard/settings", icon: "gear-six", label: t`Settings` };
 	// Trash shows while it holds something, and stays while it's open, even once its last document is restored.
 	const inTrash = Boolean(matchRoute({ to: "/dashboard/trash" }));
@@ -94,11 +89,9 @@ function useNewAction() {
 
 	const context: NewDocumentContext = matchRoute({ to: "/dashboard/applications", fuzzy: true })
 		? "applications"
-		: matchRoute({ to: "/dashboard/career", fuzzy: true })
-			? "career"
-			: new URLSearchParams(location.searchStr).get("type") === "letter"
-				? "letters"
-				: "documents";
+		: new URLSearchParams(location.searchStr).get("type") === "letter"
+			? "letters"
+			: "documents";
 
 	return useCallback(() => {
 		// The application page owns Save job; its one-shot ?create link opens that dialog.
@@ -120,7 +113,7 @@ function useNewAction() {
 
 /** N stays a page shortcut: never while typing, and never over a dialog, sheet, menu or the palette. */
 function modalOrPaletteOpen() {
-	if (useDialogStore.getState().open || useCommandPaletteStore.getState().open) return true;
+	if (useDialogStore.getState().open) return true;
 	return Boolean(
 		document.querySelector(
 			'[data-slot="dialog-content"], [data-slot="sheet-content"], [data-slot="alert-dialog-content"], [data-slot="popover-content"], [data-slot="dropdown-menu-content"], [data-slot="context-menu-content"]',
@@ -179,7 +172,6 @@ export function AppShell({ children }: AppShellProps) {
 function Sidebar() {
 	const { items, settings, trash } = useNavItems();
 	const isCurrent = useIsCurrent();
-	const openPalette = useCommandPaletteStore((state) => state.setOpen);
 	const openNew = useNewAction();
 
 	return (
@@ -189,22 +181,8 @@ function Sidebar() {
 		>
 			<Link to="/" className="flex h-9 items-center gap-2.5 px-1.5">
 				<BrandIcon variant="icon" alt="" className="size-6 shrink-0" />
-				<span className="text-sm font-semibold">Reactive Resume</span>
+				<span className="text-sm font-semibold">Resume Builder</span>
 			</Link>
-
-			<button
-				type="button"
-				aria-label={t`Search or run a command…`}
-				aria-keyshortcuts="Meta+K"
-				onClick={() => openPalette(true)}
-				className="flex h-[34px] items-center gap-2 rounded-lg border border-line bg-bg px-2.5 text-sm text-ink-3 transition-colors duration-quick hover:text-ink-2"
-			>
-				<Icon name="magnifying-glass" size={18} />
-				<span className="flex-1 text-start">
-					<Trans>Search or run a command…</Trans>
-				</span>
-				<Kbd>⌘K</Kbd>
-			</button>
 
 			<nav aria-label={t`App`} className="grid gap-0.5">
 				{items.map((item) => (
@@ -269,7 +247,6 @@ function NavLink({ item, current }: { item: NavItem; current: boolean }) {
 function Rail() {
 	const { items, settings, trash } = useNavItems();
 	const isCurrent = useIsCurrent();
-	const openPalette = useCommandPaletteStore((state) => state.setOpen);
 	const openNew = useNewAction();
 
 	return (
@@ -277,17 +254,9 @@ function Rail() {
 			aria-label={t`App navigation`}
 			className="sticky top-0 flex h-svh flex-col items-center gap-2 border-e border-line bg-surface py-3 [view-transition-name:app-nav]"
 		>
-			<Link to="/" aria-label="Reactive Resume" className="mb-1 grid size-8 place-items-center rounded-md">
+			<Link to="/" aria-label="Resume Builder" className="mb-1 grid size-8 place-items-center rounded-md">
 				<BrandIcon variant="icon" alt="" className="size-6" />
 			</Link>
-			<RailTip label={t`Search`} icon="magnifying-glass">
-				<button
-					type="button"
-					aria-label={t`Search or run a command…`}
-					onClick={() => openPalette(true)}
-					className="grid size-10 place-items-center rounded-lg text-ink-2 transition-[background-color,scale] duration-quick ease-enter hover:bg-hover active:scale-[0.97]"
-				/>
-			</RailTip>
 			<nav aria-label={t`App`} className="grid gap-1">
 				{[...items, settings].map((item) => (
 					<RailTip key={item.to} label={item.label} icon={item.icon} filled={isCurrent(item.to)}>
@@ -353,14 +322,13 @@ function RailTip({
 	);
 }
 
-/** Phones: Documents · Applications · New · Career · Settings, with New as an accent pill in the middle. */
+/** Phones: Documents · Applications · New · Settings, with New as an accent pill in the middle. */
 function MobileTabs() {
 	const isCurrent = useIsCurrent();
 	const openNew = useNewAction();
 	const tabs: Pick<NavItem, "to" | "icon" | "label">[] = [
 		{ to: "/dashboard", icon: "file-text", label: t`Documents` },
 		{ to: "/dashboard/applications", icon: "briefcase", label: t`Applications` },
-		{ to: "/dashboard/career", icon: "compass", label: t`Career` },
 		{ to: "/dashboard/settings", icon: "gear-six", label: t`Settings` },
 	];
 
@@ -385,7 +353,7 @@ function MobileTabs() {
 	return (
 		<nav
 			aria-label={t`App`}
-			className="sticky bottom-0 z-30 grid grid-cols-5 border-t border-line bg-surface pb-[env(safe-area-inset-bottom)] [view-transition-name:app-nav]"
+			className="sticky bottom-0 z-30 grid grid-cols-4 border-t border-line bg-surface pb-[env(safe-area-inset-bottom)] [view-transition-name:app-nav]"
 		>
 			{tabs.slice(0, 2).map(link)}
 			<button

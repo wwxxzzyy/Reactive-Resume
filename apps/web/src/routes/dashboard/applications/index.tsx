@@ -27,8 +27,10 @@ import { ApplicationFormSheet } from "@/features/applications/components/applica
 import { ApplicationBoard } from "@/features/applications/components/board";
 import { ApplicationCalendar } from "@/features/applications/components/calendar-view";
 import { ExportApplicationsSheet } from "@/features/applications/components/export-applications-sheet";
+import { FindJobsView } from "@/features/applications/components/find-jobs-view";
 import { ImportApplicationsSheet } from "@/features/applications/components/import-applications-sheet";
 import { ApplicationInsights, InsightsSkeleton } from "@/features/applications/components/insights-view";
+import { JobBoardsDialog } from "@/features/applications/components/job-boards-dialog";
 import { ApplicationList } from "@/features/applications/components/list-view";
 import { ManageLanesSheet } from "@/features/applications/components/manage-lanes-sheet";
 import { getNextStep, needsFollowUp } from "@/features/applications/next-step";
@@ -44,7 +46,7 @@ import { toastError } from "@/libs/error-message";
 import { ENTER_CLASS } from "@/libs/motion";
 import { getPageTitle } from "@/libs/seo";
 
-const VIEWS = ["list", "board", "insights", "calendar"] as const;
+const VIEWS = ["list", "board", "jobs", "insights", "calendar"] as const;
 type View = (typeof VIEWS)[number];
 
 const searchSchema = z.object({
@@ -93,6 +95,7 @@ function RouteComponent() {
 	const [importing, setImporting] = useState(false);
 	const [exporting, setExporting] = useState(false);
 	const [exportLoading, setExportLoading] = useState(false);
+	const [jobBoardsOpen, setJobBoardsOpen] = useState(false);
 	const [managingLanes, setManagingLanes] = useState(false);
 	const lanes = useApplicationLanes();
 	const [editing, setEditing] = useState<Application | null>(null);
@@ -249,6 +252,10 @@ function RouteComponent() {
 								<Icon name="sliders-horizontal" />
 							</Button>
 						)}
+						<Button variant="secondary" onClick={() => setJobBoardsOpen(true)}>
+							<Icon name="arrow-square-out" />
+							Job boards
+						</Button>
 						<Button onClick={() => setAdding(true)}>
 							<Icon name="plus" />
 							<Trans>Save job</Trans>
@@ -256,7 +263,7 @@ function RouteComponent() {
 					</>
 				}
 			>
-				{!(isError && !applications) && !empty && (
+				{!(isError && !applications) && (
 					<>
 						<Tabs
 							value={shown}
@@ -268,42 +275,48 @@ function RouteComponent() {
 							<TabsList aria-label={t`View`}>
 								<TabsTrigger value="list">
 									<Icon name="rows" size={18} />
-									<Trans>List</Trans>
+									List
 								</TabsTrigger>
 								{!phone && (
 									<TabsTrigger value="board">
 										<Icon name="kanban" size={18} />
-										<Trans>Board</Trans>
+										Board
 									</TabsTrigger>
 								)}
+								<TabsTrigger value="jobs">
+									<Icon name="briefcase" size={18} />
+									Find Jobs
+								</TabsTrigger>
 								<TabsTrigger value="insights">
 									<Icon name="chart-line-up" size={18} />
-									<Trans>Insights</Trans>
+									Insights
 								</TabsTrigger>
 								<TabsTrigger value="calendar">
 									<Icon name="calendar-dots" size={18} />
-									<Trans>Calendar</Trans>
+									Calendar
 								</TabsTrigger>
 							</TabsList>
 						</Tabs>
 
-						<div className="relative max-w-72 min-w-40 flex-1">
-							<Icon
-								name="magnifying-glass"
-								size={18}
-								className="pointer-events-none absolute start-2.5 top-1/2 -translate-y-1/2 text-ink-3"
-							/>
-							<Input
-								type="search"
-								aria-label={t`Search applications`}
-								placeholder={t`Search role, company or contact`}
-								value={query}
-								className="ps-8"
-								onChange={(event) => setQuery(event.target.value)}
-							/>
-						</div>
+						{shown !== "jobs" && (
+							<div className="relative max-w-72 min-w-40 flex-1">
+								<Icon
+									name="magnifying-glass"
+									size={18}
+									className="pointer-events-none absolute start-2.5 top-1/2 -translate-y-1/2 text-ink-3"
+								/>
+								<Input
+									type="search"
+									aria-label={t`Search applications`}
+									placeholder={t`Search role, company or contact`}
+									value={query}
+									className="ps-8"
+									onChange={(event) => setQuery(event.target.value)}
+								/>
+							</div>
+						)}
 
-						{shown !== "insights" && (
+						{shown !== "insights" && shown !== "jobs" && (
 							<Button
 								variant="secondary"
 								aria-pressed={closed}
@@ -369,26 +382,7 @@ function RouteComponent() {
 				</div>
 			)}
 
-			{isError && !applications ? null : empty ? (
-				<EmptyState
-					title={<Trans>Track your first job</Trans>}
-					description={
-						<Trans>Paste a job link. We'll save the posting so Check, the assistant and your letter can use it.</Trans>
-					}
-					action={
-						<Button onClick={() => setAdding(true)}>
-							<Icon name="plus" />
-							<Trans>Save job</Trans>
-						</Button>
-					}
-					secondary={
-						<Button variant="secondary" onClick={() => setImporting(true)}>
-							<Trans>Import from CSV</Trans>
-						</Button>
-					}
-					className="transition-[opacity,translate] duration-emphasized ease-enter starting:translate-y-2 starting:opacity-0"
-				/>
-			) : (
+			{isError && !applications ? null : (
 				<>
 					{isPending ? (
 						<ViewSkeleton view={shown} />
@@ -411,19 +405,48 @@ function RouteComponent() {
 										shown === "list" && "transition-opacity duration-standard ease-enter starting:opacity-0",
 							)}
 						>
-							{shown === "list" && (
-								<ApplicationList
-									applications={filtered}
-									showClosed={closed}
-									selectedId={selectedId}
-									onOpen={openApplication}
-								/>
-							)}
+							{shown === "list" &&
+								(empty ? (
+									<EmptyState
+										title="Track your first job"
+										description="Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
+										action={
+											<div className="flex flex-wrap items-center gap-2">
+												<Button onClick={() => setAdding(true)}>
+													<Icon name="plus" />
+													Save job
+												</Button>
+												<Button variant="secondary" onClick={() => setSearch({ view: "jobs" })}>
+													<Icon name="briefcase" />
+													Find jobs
+												</Button>
+												<Button variant="secondary" onClick={() => setJobBoardsOpen(true)}>
+													<Icon name="arrow-square-out" />
+													Submit to job boards
+												</Button>
+											</div>
+										}
+										secondary={
+											<Button variant="secondary" onClick={() => setImporting(true)}>
+												Import from CSV
+											</Button>
+										}
+										className="transition-[opacity,translate] duration-emphasized ease-enter starting:translate-y-2 starting:opacity-0"
+									/>
+								) : (
+									<ApplicationList
+										applications={filtered}
+										showClosed={closed}
+										selectedId={selectedId}
+										onOpen={openApplication}
+									/>
+								))}
 							{shown === "board" && (
 								<div className="h-[calc(100svh-230px)] min-h-96">
 									<ApplicationBoard applications={filtered} showClosed={closed} onOpen={openApplication} />
 								</div>
 							)}
+							{shown === "jobs" && <FindJobsView applications={applications ?? []} />}
 							{shown === "insights" && (
 								<ApplicationInsights applications={applications ?? []} onSaveJob={() => setAdding(true)} />
 							)}
@@ -470,6 +493,7 @@ function RouteComponent() {
 					setEditing(application);
 				}}
 			/>
+			<JobBoardsDialog open={jobBoardsOpen} onOpenChange={setJobBoardsOpen} />
 		</div>
 	);
 }
@@ -569,6 +593,14 @@ function FollowUpNudge({ applications, onOpen, onShowAll }: FollowUpNudgeProps) 
 /** Each view's shape while applications load, so the first rows land where the placeholders were. */
 function ViewSkeleton({ view }: { view: View }) {
 	if (view === "insights") return <InsightsSkeleton />;
+	if (view === "jobs")
+		return (
+			<div className="grid gap-3 pt-4 sm:grid-cols-2">
+				{Array.from({ length: 4 }, (_, index) => (
+					<Skeleton key={index} className="h-44 rounded-xl" />
+				))}
+			</div>
+		);
 	if (view === "list")
 		return (
 			<div className="grid gap-2 pt-10">

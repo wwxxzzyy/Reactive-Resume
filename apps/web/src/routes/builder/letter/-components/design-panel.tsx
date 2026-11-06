@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { produce } from "immer";
 import { useEffect, useMemo } from "react";
-import { templateSchema } from "@reactive-resume/schema/templates";
+import { primaryTemplates } from "@reactive-resume/schema/templates";
 import { buttonVariants } from "@reactive-resume/ui/components/button";
 import { Icon } from "@reactive-resume/ui/components/icon";
 import { SwitchRow } from "@reactive-resume/ui/components/switch";
@@ -135,7 +135,7 @@ export function LetterDesignPanel() {
 						<legend className="sr-only">
 							<Trans>Template</Trans>
 						</legend>
-						{templateSchema.options.map((id) => {
+						{primaryTemplates.map((id) => {
 							const selected = id === current;
 							return (
 								<button

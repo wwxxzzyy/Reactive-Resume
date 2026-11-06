@@ -231,6 +231,20 @@ Feedback comes from fellow community members. Remove contact details and other p
       <br /><sub><b>Smeargle</b></sub>
     </td>
   </tr>
+  <tr>
+    <td align="center">
+      <img src="apps/web/public/templates/jpg/articuno.jpg" alt="Articuno" width="150" />
+      <br /><sub><b>Articuno</b></sub>
+    </td>
+    <td align="center">
+      <img src="apps/web/public/templates/jpg/eevee.jpg" alt="Eevee" width="150" />
+      <br /><sub><b>Eevee</b></sub>
+    </td>
+    <td align="center">
+      <img src="apps/web/public/templates/jpg/snorlax.jpg" alt="Snorlax" width="150" />
+      <br /><sub><b>Snorlax</b></sub>
+    </td>
+  </tr>
 </table>
 
 ## Quick Start

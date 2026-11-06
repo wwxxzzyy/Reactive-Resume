@@ -83,7 +83,7 @@ export default function TabsLayout() {
 											},
 										}}
 									/>
-									<Tabs.Screen name="career" options={{ title: t`Career` }} />
+									<Tabs.Screen name="career" options={{ title: t`Career`, href: null }} />
 									<Tabs.Screen name="settings" options={{ title: t`Settings` }} />
 								</Tabs>
 							</SafeAreaProvider>

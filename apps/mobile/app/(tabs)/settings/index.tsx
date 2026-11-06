@@ -1,8 +1,8 @@
-import { Trans, useLingui } from "@lingui/react/macro";
+import { useLingui } from "@lingui/react/macro";
 import Constants from "expo-constants";
 import { useRouter } from "expo-router";
 import { openBrowserAsync } from "expo-web-browser";
-import { Platform, View } from "react-native";
+import { View } from "react-native";
 import { SettingsGroup, SettingsPage } from "@/features/settings/layout";
 import { useProfile } from "@/features/settings/queries";
 import { SignOutRow } from "@/features/settings/sign-out";
@@ -51,57 +51,24 @@ export default function SettingsScreen() {
 			</SettingsGroup>
 			<SettingsGroup title={t`Support`}>
 				<ListRow
-					title={t`Help & docs`}
-					leading="question"
+					title={t`Contact support`}
+					leading="envelope"
 					external
-					onPress={() => openLink("https://docs.rxresu.me")}
+					onPress={() => openLink("mailto:support@dippergo.com")}
 				/>
-				<ListRow
-					title={t`Report an issue`}
-					leading="bug"
-					external
-					onPress={() => openLink("https://github.com/reactive-resume/reactive-resume/issues/new/choose")}
-				/>
-				<ListRow
-					title={t`Join the Discord`}
-					subtitle={t`Resume feedback, product help, and community ideas.`}
-					leading="discord-logo"
-					external
-					onPress={() => openLink("https://discord.gg/9kAqrGcwn5")}
-				/>
-				<ListRow
-					title={t`Source code on GitHub`}
-					leading="github-logo"
-					external
-					onPress={() => openLink("https://github.com/reactive-resume/reactive-resume")}
-				/>
-				{Platform.OS !== "ios" ? (
-					<ListRow
-						title={t`Donate on Open Collective`}
-						leading="hand-heart"
-						external
-						onPress={() => openLink("https://opencollective.com/reactive-resume/donate")}
-					/>
-				) : null}
 			</SettingsGroup>
 			<SettingsGroup title={t`Legal`}>
 				<ListRow
 					title={t`Privacy policy`}
 					leading="shield-check"
 					external
-					onPress={() => openLink("https://docs.rxresu.me/legal/privacy-policy")}
+					onPress={() => openLink("https://dippergo.com/privacy")}
 				/>
 				<ListRow
 					title={t`Terms of service`}
 					leading="scroll"
 					external
-					onPress={() => openLink("https://docs.rxresu.me/legal/terms-of-service")}
-				/>
-				<ListRow
-					title={t`MIT License`}
-					leading="scales"
-					external
-					onPress={() => openLink("https://github.com/reactive-resume/reactive-resume/blob/main/LICENSE")}
+					onPress={() => openLink("https://dippergo.com/terms")}
 				/>
 				<ListRow
 					title={t`Open-source licenses`}
@@ -115,21 +82,7 @@ export default function SettingsScreen() {
 			</SettingsGroup>
 			<View style={{ alignItems: "center", gap: space.s1 }}>
 				<Text variant="caption" color="ink3" align="center">
-					Reactive Resume
-				</Text>
-				<Text variant="caption" color="ink3" align="center">
-					<Trans>
-						by{" "}
-						<Text
-							variant="caption"
-							color="accentText"
-							accessibilityRole="link"
-							onPress={() => openLink("https://amruthpillai.com")}
-							style={{ textDecorationLine: "underline" }}
-						>
-							Amruth Pillai
-						</Text>
-					</Trans>
+					DipperGo
 				</Text>
 				<Text variant="caption" color="ink3" align="center">
 					v{Constants.expoConfig?.version ?? "—"}

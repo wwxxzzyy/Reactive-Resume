@@ -4,7 +4,7 @@ import type { DateFormat } from "@reactive-resume/schema/resume/dates";
 import type { Template } from "@reactive-resume/schema/templates";
 import type { WritableDraft } from "immer";
 import { defaultResumeData } from "@reactive-resume/schema/resume/default";
-import { templateLayouts, templateSchema } from "@reactive-resume/schema/templates";
+import { primaryTemplates, templateLayouts } from "@reactive-resume/schema/templates";
 import { contrastOnWhite } from "@reactive-resume/utils/color";
 
 type Metadata = ResumeData["metadata"];
@@ -207,9 +207,24 @@ export function resetDesign(metadata: WritableDraft<Metadata>) {
 
 export type TemplateFilter = "all" | "one" | "two" | "ats";
 
-export const TEMPLATES: readonly Template[] = templateSchema.options;
+export const TEMPLATES: readonly Template[] = primaryTemplates;
 
-export const templateName = (id: Template) => id.charAt(0).toUpperCase() + id.slice(1);
+const TEMPLATE_NAMES: Partial<Record<Template, string>> = {
+	harvard: "Harvard Classic",
+	silicon: "Silicon Tech",
+	mckinsey: "McKinsey",
+	stanford: "Stanford Exec",
+	"wall-street": "Wall Street",
+	"jake-ats": "Jake's ATS",
+	"linear-mono": "Linear Mono",
+	"modern-split": "Modern Split",
+	"tokyo-compact": "Tokyo Compact",
+	"corporate-split": "Corporate Split",
+	"cambridge-cv": "Cambridge CV",
+	"creative-studio": "Creative Studio",
+};
+
+export const templateName = (id: Template) => TEMPLATE_NAMES[id] ?? id.charAt(0).toUpperCase() + id.slice(1);
 
 export function matchesFilter(id: Template, filter: TemplateFilter) {
 	const layout = templateLayouts[id];

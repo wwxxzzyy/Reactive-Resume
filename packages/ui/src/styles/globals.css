@@ -22,47 +22,47 @@
 :root {
 	color-scheme: light;
 
-	--bg: oklch(0.975 0.005 95); /* #F8F7F3 app desk */
-	--surface: oklch(0.995 0.002 95); /* #FEFDFC panels, cards */
+	--bg: oklch(0.985 0.005 255); /* #F8FAFC crisp executive slate desk */
+	--surface: oklch(1 0 0); /* #FFFFFF clean pure white panels, cards */
 	--raised: oklch(1 0 0); /* #FFFFFF menus, dialogs, inputs */
-	--sunken: oklch(0.952 0.006 95); /* #F0EFEB wells, tracks, page canvas */
-	--line: oklch(0.9 0.006 95); /* #DFDEDA dividers */
-	--line-2: oklch(0.82 0.008 95); /* #C5C4BE decorative rules */
-	--control-border: #888680;
-	--ink: oklch(0.22 0.01 95); /* #1C1B15 primary text */
-	--ink-2: oklch(0.42 0.01 95); /* #4F4D47 secondary text */
-	--ink-3: oklch(0.53 0.01 95); /* #6D6C65 meta, placeholder (minimum for text) */
-	--accent: oklch(0.5 0.1 150); /* #337344 primary action, selection, focus */
-	--accent-hover: oklch(0.44 0.1 150); /* #206133 */
-	--on-accent: oklch(0.99 0.01 150); /* #F7FEF8 */
-	--accent-soft: oklch(0.94 0.035 150); /* #DCF2DF selected background, proposals */
-	--accent-text: oklch(0.42 0.1 150); /* #195C2E */
-	--danger: oklch(0.53 0.17 27); /* #BA3630 */
-	--danger-soft: oklch(0.95 0.03 27); /* #FFE7E4 */
-	--danger-text: oklch(0.48 0.17 27); /* #A92321 */
-	--warn: oklch(0.72 0.14 80); /* #D29922 check issues, stale edits */
-	--warn-soft: oklch(0.95 0.045 85); /* #FCEDCD */
-	--warn-text: oklch(0.48 0.1 70); /* #81520A */
-	--info-soft: oklch(0.95 0.03 250); /* #E0F1FF neutral guidance, assistant question */
-	--info-text: oklch(0.46 0.11 250); /* #1D5B92 */
-	--hover: oklch(0.22 0.01 95 / 0.05);
-	--press: oklch(0.22 0.01 95 / 0.09);
-	--scrim: oklch(0.2 0.01 95 / 0.32);
-	--scrim-sheet: oklch(0.2 0.01 95 / 0.18);
+	--sunken: oklch(0.96 0.007 255); /* #F1F5F9 wells, tracks, page canvas */
+	--line: oklch(0.91 0.008 255); /* #E2E8F0 clean slate dividers */
+	--line-2: oklch(0.85 0.01 255); /* #CBD5E1 decorative rules */
+	--control-border: #94a3b8;
+	--ink: oklch(0.2 0.02 255); /* #0F172A deep slate primary text */
+	--ink-2: oklch(0.42 0.02 255); /* #475569 secondary text */
+	--ink-3: oklch(0.58 0.02 255); /* #64748B meta, placeholder (minimum for text) */
+	--accent: oklch(0.52 0.19 255); /* #2563EB executive cobalt blue */
+	--accent-hover: oklch(0.46 0.19 255); /* #1D4ED8 */
+	--on-accent: oklch(0.99 0.005 255); /* #FFFFFF */
+	--accent-soft: oklch(0.95 0.035 255); /* #EFF6FF selected background, chips */
+	--accent-text: oklch(0.45 0.18 255); /* #1E40AF high contrast */
+	--danger: oklch(0.55 0.2 27); /* #DC2626 */
+	--danger-soft: oklch(0.96 0.03 27); /* #FEF2F2 */
+	--danger-text: oklch(0.48 0.18 27); /* #B91C1C */
+	--warn: oklch(0.72 0.15 75); /* #D97706 check issues, stale edits */
+	--warn-soft: oklch(0.96 0.04 80); /* #FFFBEB */
+	--warn-text: oklch(0.48 0.12 70); /* #92400E */
+	--info-soft: oklch(0.95 0.035 255); /* #EFF6FF neutral guidance, assistant question */
+	--info-text: oklch(0.45 0.18 255); /* #1E40AF */
+	--hover: oklch(0.2 0.02 255 / 0.05);
+	--press: oklch(0.2 0.02 255 / 0.09);
+	--scrim: oklch(0.15 0.02 255 / 0.35);
+	--scrim-sheet: oklch(0.15 0.02 255 / 0.2);
 	--paper: #ffffff;
 
-	--shadow-1: 0 1px 2px oklch(0.2 0.01 95 / 0.07);
-	--shadow-2: 0 1px 2px oklch(0.2 0.01 95 / 0.06), 0 10px 28px -8px oklch(0.2 0.01 95 / 0.18);
-	--shadow-3: 0 2px 6px oklch(0.2 0.01 95 / 0.08), 0 28px 64px -16px oklch(0.2 0.01 95 / 0.3);
-	--shadow-page: 0 1px 2px oklch(0.2 0.01 95 / 0.08), 0 12px 36px -12px oklch(0.2 0.01 95 / 0.25);
+	--shadow-1: 0 1px 2px oklch(0.15 0.02 255 / 0.06);
+	--shadow-2: 0 1px 3px oklch(0.15 0.02 255 / 0.06), 0 10px 24px -6px oklch(0.15 0.02 255 / 0.12);
+	--shadow-3: 0 4px 8px oklch(0.15 0.02 255 / 0.06), 0 24px 48px -12px oklch(0.15 0.02 255 / 0.18);
+	--shadow-page: 0 1px 3px oklch(0.15 0.02 255 / 0.06), 0 12px 36px -10px oklch(0.15 0.02 255 / 0.16);
 
 	/* Application stages: shared lightness and chroma; only ever shown next to the stage name. */
-	--stage-saved: oklch(0.64 0.02 95); /* #908C7F */
-	--stage-applied: oklch(0.64 0.11 250); /* #5590CC */
-	--stage-screening: oklch(0.64 0.11 200); /* #00A0A6 */
-	--stage-interview: oklch(0.64 0.11 80); /* #AF8433 */
-	--stage-offer: oklch(0.64 0.11 150); /* #579F68 */
-	--stage-closed: oklch(0.64 0.11 27); /* #C67067 */
+	--stage-saved: oklch(0.64 0.02 255); /* #908C7F */
+	--stage-applied: oklch(0.64 0.13 255); /* #5590CC */
+	--stage-screening: oklch(0.64 0.12 210); /* #00A0A6 */
+	--stage-interview: oklch(0.64 0.12 75); /* #AF8433 */
+	--stage-offer: oklch(0.64 0.13 150); /* #579F68 */
+	--stage-closed: oklch(0.64 0.13 27); /* #C67067 */
 
 	/* Motion: quick for hover and toggles, standard for menus and expand, emphasized for sheets and toasts. */
 	--d1: 120ms;
@@ -82,38 +82,38 @@
 .dark {
 	color-scheme: dark;
 
-	--bg: oklch(0.17 0.006 95); /* #100F0C */
-	--surface: oklch(0.2 0.006 95); /* #171613 */
-	--raised: oklch(0.235 0.007 95); /* #1F1E1A */
-	--sunken: oklch(0.145 0.006 95); /* #0B0A08 */
-	--line: oklch(0.29 0.007 95); /* #2C2B27 */
-	--line-2: oklch(0.4 0.008 95); /* #494843 */
-	--control-border: #73726c;
-	--ink: oklch(0.95 0.005 95); /* #EFEEEB */
-	--ink-2: oklch(0.79 0.008 95); /* #BCBAB5 */
-	--ink-3: oklch(0.67 0.008 95); /* #979590 */
-	--accent: oklch(0.74 0.12 150); /* #6FC082 */
-	--accent-hover: oklch(0.8 0.12 150); /* #83D494 */
-	--on-accent: oklch(0.18 0.03 150); /* #07150A */
-	--accent-soft: oklch(0.3 0.05 150); /* #1A3520 */
-	--accent-text: oklch(0.82 0.11 150); /* #8FD89E */
-	--danger: oklch(0.62 0.17 27); /* #D9544B */
-	--danger-soft: oklch(0.3 0.06 27); /* #47211D */
-	--danger-text: oklch(0.8 0.11 27); /* #FDA297 */
-	--warn: oklch(0.8 0.13 85); /* #E4B750 */
-	--warn-soft: oklch(0.31 0.05 80); /* #3E2D10 */
-	--warn-text: oklch(0.86 0.1 85); /* #EFCC83 */
-	--info-soft: oklch(0.3 0.05 250); /* #192F46 */
-	--info-text: oklch(0.82 0.08 250); /* #9DC9F7 */
+	--bg: oklch(0.14 0.012 255); /* #0B0F17 deep midnight slate */
+	--surface: oklch(0.18 0.012 255); /* #111827 executive dark slate */
+	--raised: oklch(0.22 0.014 255); /* #1E293B elevated surfaces */
+	--sunken: oklch(0.11 0.01 255); /* #070A0F recessed canvas */
+	--line: oklch(0.27 0.015 255); /* #283548 refined slate border */
+	--line-2: oklch(0.35 0.018 255); /* #3B4B61 prominent divider */
+	--control-border: #475569;
+	--ink: oklch(0.97 0.005 255); /* #F8FAFC high-contrast primary text */
+	--ink-2: oklch(0.8 0.01 255); /* #CBD5E1 secondary text */
+	--ink-3: oklch(0.65 0.015 255); /* #94A3B8 meta text */
+	--accent: oklch(0.66 0.17 250); /* #3B82F6 vibrant executive blue */
+	--accent-hover: oklch(0.72 0.17 250); /* #60A5FA */
+	--on-accent: oklch(0.12 0.03 250); /* #040D1E */
+	--accent-soft: oklch(0.26 0.06 250); /* #172554 executive navy card tint */
+	--accent-text: oklch(0.78 0.12 250); /* #93C5FD clear readable blue */
+	--danger: oklch(0.64 0.18 27); /* #EF4444 */
+	--danger-soft: oklch(0.28 0.06 27); /* #450A0A */
+	--danger-text: oklch(0.82 0.11 27); /* #FCA5A5 */
+	--warn: oklch(0.8 0.14 75); /* #F59E0B */
+	--warn-soft: oklch(0.29 0.05 75); /* #451A03 */
+	--warn-text: oklch(0.88 0.1 75); /* #FCD34D */
+	--info-soft: oklch(0.26 0.06 250); /* #172554 */
+	--info-text: oklch(0.78 0.12 250); /* #93C5FD */
 	--hover: oklch(1 0 0 / 0.06);
 	--press: oklch(1 0 0 / 0.1);
-	--scrim: oklch(0 0 0 / 0.5);
-	--scrim-sheet: oklch(0 0 0 / 0.5);
+	--scrim: oklch(0 0 0 / 0.6);
+	--scrim-sheet: oklch(0 0 0 / 0.6);
 
 	--shadow-1: 0 1px 2px oklch(0 0 0 / 0.4);
-	--shadow-2: 0 1px 2px oklch(0 0 0 / 0.4), 0 12px 32px -8px oklch(0 0 0 / 0.55);
-	--shadow-3: 0 2px 6px oklch(0 0 0 / 0.4), 0 28px 64px -12px oklch(0 0 0 / 0.7);
-	--shadow-page: 0 1px 2px oklch(0 0 0 / 0.4), 0 12px 36px -12px oklch(0 0 0 / 0.6);
+	--shadow-2: 0 1px 3px oklch(0 0 0 / 0.4), 0 12px 30px -8px oklch(0 0 0 / 0.6);
+	--shadow-3: 0 4px 8px oklch(0 0 0 / 0.4), 0 28px 60px -12px oklch(0 0 0 / 0.75);
+	--shadow-page: 0 1px 3px oklch(0 0 0 / 0.4), 0 12px 36px -10px oklch(0 0 0 / 0.65);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -125,22 +125,21 @@
 }
 
 @theme {
-	/* Instrument Serif has one weight (400 and italic): never set it semibold or bold. */
-	--font-display: "Instrument Serif", Georgia, serif;
-	--font-ui: "Figtree Variable", system-ui, sans-serif;
+	--font-display: "Figtree Variable", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--font-ui: "Figtree Variable", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 	--font-sans: var(--font-ui);
 	--font-mono: "Geist Mono Variable", ui-monospace, monospace;
 
-	/* Corners are 2–4px everywhere: 2 chips, tags and small marks · 3 controls · 4 cards, menus, dialogs, sheets. */
-	--radius: 4px;
-	--radius-xs: 2px;
-	--radius-sm: 2px;
-	--radius-md: 3px;
-	--radius-lg: 4px;
-	--radius-xl: 4px;
-	--radius-2xl: 4px;
-	--radius-3xl: 4px;
-	--radius-4xl: 4px;
+	/* Modern professional executive corners */
+	--radius: 6px;
+	--radius-xs: 3px;
+	--radius-sm: 4px;
+	--radius-md: 6px;
+	--radius-lg: 8px;
+	--radius-xl: 12px;
+	--radius-2xl: 16px;
+	--radius-3xl: 20px;
+	--radius-4xl: 24px;
 
 	--aspect-page: 210 / 297;
 }

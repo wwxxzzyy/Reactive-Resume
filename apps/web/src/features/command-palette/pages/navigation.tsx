@@ -104,16 +104,6 @@ export function NavigationCommandGroup() {
 
 				<CommandItem
 					disabled={!session}
-					keywords={[t`Career`, t`Coach`, t`Knowledge`, t`Offers`, t`Today`]}
-					value="navigation.career"
-					onSelect={() => onNavigate("/dashboard/career")}
-				>
-					<Icon name="compass" size={16} />
-					<Trans>Career</Trans>
-				</CommandItem>
-
-				<CommandItem
-					disabled={!session}
 					keywords={[t`Save job`, t`New application`, t`Add application`, t`Job`]}
 					value="navigation.applications.new"
 					onSelect={async () => {

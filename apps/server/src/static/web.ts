@@ -135,8 +135,9 @@ function preloadLinks(html: string) {
  * any resume-derived markup goes in, so text that slipped past escaping could never allow itself.
  */
 function htmlResponse(html: string, headers: Record<string, string>, template = html) {
+	const baseUrl = env.APP_URL.replace(/\/+$/, "");
 	const verification = new URL(CONTEXT7_ASK_URL).searchParams.get("siteKey") ?? "";
-	const note = `<blockquote data-context7-ask="true" aria-hidden="true" class="sr-only"><h2>Search</h2><p>Page index: https://rxresu.me/llms.txt.</p><p>${escapeHtml(CONTEXT7_ASK_DESCRIPTION)}</p></blockquote>`;
+	const note = `<blockquote data-context7-ask="true" aria-hidden="true" class="sr-only"><h2>Search</h2><p>Page index: ${baseUrl}/llms.txt.</p><p>${escapeHtml(CONTEXT7_ASK_DESCRIPTION)}</p></blockquote>`;
 	const body = html
 		.replace("</head>", () => `<meta name="context7-site-verification" content="${verification}"></head>`)
 		.replace(/<body\b[^>]*>/i, (tag) => `${tag}${note}`);
@@ -152,38 +153,30 @@ function htmlResponse(html: string, headers: Record<string, string>, template = 
 	});
 }
 
-const githubUrl = "https://github.com/reactive-resume/reactive-resume";
 // The English copy, for a build without prerendered pages; a prerendered page carries its own locale's title and
 // description, and the social cards reuse them.
-const ROOT_TITLE = "Free resume builder with PDF &amp; Word downloads | Reactive Resume";
+const ROOT_TITLE = "Free ATS-Friendly Resume Builder with PDF & Word Exports | DipperGo";
 const ROOT_DESCRIPTION =
-	"Free, open-source resume builder. Create, update, and share your resume, with PDF and Word downloads, no ads and no paywall.";
-const ATS_CHECKER_TITLE = "Free ATS resume checker | Reactive Resume";
+	"Create professional, recruiter-approved resumes that beat ATS screeners. 18+ free templates, job application tracker, and instant vector PDF & DOCX downloads. 100% free.";
+const ATS_CHECKER_TITLE = "Free ATS resume checker | DipperGo";
 const ATS_CHECKER_DESCRIPTION =
 	"Check whether software can read your resume PDF. Runs entirely in your browser, so your file is never uploaded.";
-const TEMPLATES_TITLE = "Free resume templates with PDF examples | Reactive Resume";
+const TEMPLATES_TITLE = "Free resume templates with PDF examples | DipperGo";
 const TEMPLATES_DESCRIPTION =
 	"Browse free resume templates, compare one-column and two-column layouts, and download sample PDFs. Customize your resume and export to PDF or Word.";
 
 type StructuredData = Record<string, unknown>;
 
-/** Who makes Reactive Resume, referenced by id from every page's structured data. */
+/** Who makes DipperGo, referenced by id from every page's structured data. */
 function organization(origin: string): StructuredData {
 	return {
 		"@type": "Organization",
 		"@id": `${origin}/#organization`,
-		name: "Reactive Resume",
+		name: "DipperGo",
 		url: `${origin}/`,
-		contactPoint: { "@type": "ContactPoint", contactType: "support", email: "amruth@rxresu.me" },
+		contactPoint: { "@type": "ContactPoint", contactType: "support", email: "support@dippergo.com" },
 		logo: { "@type": "ImageObject", url: `${origin}/pwa-512x512.png`, width: 512, height: 512 },
-		sameAs: [
-			githubUrl,
-			"https://www.linkedin.com/company/reactive-resume",
-			"https://opencollective.com/reactive-resume",
-			"https://www.reddit.com/r/reactiveresume",
-			"https://discord.gg/aSyA5ZSxpb",
-			"https://crowdin.com/project/reactive-resume",
-		],
+		sameAs: [],
 	};
 }
 
@@ -196,20 +189,19 @@ function homepageStructuredData(origin: string): StructuredData {
 			{
 				"@type": "WebSite",
 				"@id": `${origin}/#website`,
-				name: "Reactive Resume",
+				name: "DipperGo",
 				url: rootUrl,
 				publisher: { "@id": `${origin}/#organization` },
 			},
 			{
 				"@type": ["SoftwareApplication", "WebApplication"],
-				name: "Reactive Resume",
+				name: "DipperGo Resume Builder",
 				url: rootUrl,
 				description: ROOT_DESCRIPTION,
 				applicationCategory: "BusinessApplication",
 				operatingSystem: "Web",
 				isAccessibleForFree: true,
 				offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-				license: `${githubUrl}/blob/main/LICENSE`,
 				publisher: { "@id": `${origin}/#organization` },
 				featureList: [
 					"Resume editor with a live page preview",
@@ -220,7 +212,7 @@ function homepageStructuredData(origin: string): StructuredData {
 					"Public or password-protected sharing links",
 					"Cover letters and a job application tracker",
 					"Optional AI assistant with your own API key",
-					"Self-hosting with Docker",
+					"Instant vector PDF & Word export",
 				],
 			},
 		],
@@ -241,7 +233,7 @@ function atsCheckerStructuredData(origin: string): StructuredData {
 				operatingSystem: "Web",
 				isAccessibleForFree: true,
 				offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-				isPartOf: { "@type": "WebSite", "@id": `${origin}/#website`, name: "Reactive Resume", url: `${origin}/` },
+				isPartOf: { "@type": "WebSite", "@id": `${origin}/#website`, name: "Resume Builder", url: `${origin}/` },
 				provider: { "@id": `${origin}/#organization` },
 			},
 		],

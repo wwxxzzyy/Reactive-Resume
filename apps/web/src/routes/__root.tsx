@@ -14,10 +14,10 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import { HotkeysProvider } from "@tanstack/react-hotkeys";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
-import { createRootRouteWithContext, HeadContent, Outlet, redirect, useRouterState } from "@tanstack/react-router";
+import { createRootRouteWithContext, HeadContent, Outlet, redirect } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { LazyMotion, MotionConfig } from "motion/react";
-import { lazy, Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import { Toaster } from "@reactive-resume/ui/components/toast";
 import { TooltipProvider } from "@reactive-resume/ui/components/tooltip";
 import { isAppSectionPath } from "@reactive-resume/utils/app-paths";
@@ -25,7 +25,6 @@ import { isRTL } from "@reactive-resume/utils/locale";
 import { BreakpointIndicator } from "@/components/layout/breakpoint-indicator";
 import { NavigationFocus } from "@/components/layout/navigation-focus";
 import { DialogManager } from "@/dialogs/manager";
-import { CommandPalette } from "@/features/command-palette";
 import { useDocumentWebMcpTools } from "@/features/documents/webmcp";
 import { ThemeProvider } from "@/features/theme/provider";
 import { ConfirmDialogProvider } from "@/hooks/use-confirm";
@@ -46,11 +45,6 @@ const iconContextValue: IconProps = { size: 16, weight: "regular" };
 // Requested now, while the route loads, so animations are ready by the first render without blocking it.
 const motionFeatures = import("@/libs/motion-features").then((module) => module.default);
 const loadMotionFeatures = () => motionFeatures;
-
-// Shows after five minutes at the earliest, so it loads after everything else.
-const DonationToast = lazy(() =>
-	import("@/components/ui/donation-toast").then((module) => ({ default: module.DonationToast })),
-);
 
 export const Route = createRootRouteWithContext<RouterContext>()({
 	component: RootComponent,
@@ -78,9 +72,6 @@ function RootComponent() {
 	// WebMCP: browser agents can list and open the signed-in user's documents from any page.
 	useDocumentWebMcpTools(session !== null);
 
-	// Suppress the app-wide donation toast inside the builder so it doesn't cover the right-sidebar controls.
-	const isBuilder = useRouterState({ select: (s) => s.location.pathname.startsWith("/builder") });
-
 	// The theme class is owned by ThemeProvider, which also follows the system appearance.
 	useEffect(() => {
 		document.documentElement.lang = locale;
@@ -104,13 +95,7 @@ function RootComponent() {
 													<NavigationFocus />
 													<Outlet />
 
-													{!isBuilder && (
-														<Suspense>
-															<DonationToast />
-														</Suspense>
-													)}
 													<DialogManager />
-													<CommandPalette />
 													<LocalizedToaster />
 
 													{import.meta.env.DEV && <BreakpointIndicator />}

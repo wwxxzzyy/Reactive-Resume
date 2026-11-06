@@ -91,7 +91,7 @@ export function socialMetaTags(tags: {
 }) {
 	return [
 		`<meta property="og:type" content="${tags.type}">`,
-		`<meta property="og:site_name" content="Reactive Resume">`,
+		`<meta property="og:site_name" content="Resume Builder">`,
 		`<meta property="og:title" content="${tags.title}">`,
 		`<meta property="og:description" content="${tags.description}">`,
 		`<meta property="og:url" content="${tags.url}">`,
@@ -145,7 +145,7 @@ export function renderWebPageDocument({
 	const body = [
 		`<main id="main-content" class="rr rr-desk">${page.html}`,
 		creditUrl
-			? `<a class="rr-credit" href="${escapeHtml(creditUrl)}" aria-label="${escapeHtml(messages.credit)}" title="${escapeHtml(messages.credit)}">${LOGO}<span aria-hidden="true">Reactive Resume</span></a>`
+			? `<a class="rr-credit" href="${escapeHtml(creditUrl)}" aria-label="${escapeHtml(messages.credit)}" title="${escapeHtml(messages.credit)}">${LOGO}<span aria-hidden="true">Resume Builder</span></a>`
 			: "",
 		"</main>",
 		`<div class="rr-actions">${download}<button type="button" data-share>${escapeHtml(messages.share)}</button></div>`,

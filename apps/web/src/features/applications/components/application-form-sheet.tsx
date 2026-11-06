@@ -461,7 +461,7 @@ export function ApplicationFormSheet({ open, onOpenChange, application: requeste
 									className="w-full"
 									value={form.resumeId || null}
 									options={resumeOptions}
-									placeholder={t`Link a Reactive Resume (recommended)`}
+									placeholder={t`Link a Resume Builder resume (recommended)`}
 									showClear
 									emptyMessage={t`No resumes yet.`}
 									onValueChange={(value) => set("resumeId", value ?? "")}
@@ -472,7 +472,7 @@ export function ApplicationFormSheet({ open, onOpenChange, application: requeste
 									onChange={(value) => set("resumeFile", value)}
 								/>
 								<p className="text-[11px] text-ink-3">
-									<Trans>Link a Reactive Resume to use AI match scoring and tailoring.</Trans>
+									<Trans>Link a Resume Builder resume to use AI match scoring and tailoring.</Trans>
 								</p>
 							</div>
 						)}
