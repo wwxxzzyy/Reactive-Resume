@@ -53,7 +53,7 @@ export const defaultResumeData: ResumeData = {
 	},
 	customSections: [],
 	metadata: {
-		template: "onyx",
+		template: "harvard",
 		layout: {
 			sidebarWidth: 35,
 			pages: [

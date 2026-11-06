@@ -762,7 +762,7 @@ export type StyleRuleTarget = z.infer<typeof styleRuleTargetSchema>;
 
 export const metadataSchema = z.object({
 	template: templateSchema
-		.catch("onyx")
+		.catch("harvard")
 		.describe("The template to use for the resume. Determines the overall design and appearance of the resume."),
 	layout: layoutSchema.describe(
 		"The layout of the resume. Determines the structure and arrangement of the sections on the resume.",

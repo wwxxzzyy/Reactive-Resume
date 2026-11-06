@@ -7,7 +7,7 @@ import { t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
 import { useInView } from "motion/react";
 import { useEffect, useId, useRef, useState } from "react";
-import { primaryTemplates, templateLayouts } from "@reactive-resume/schema/templates";
+import { normalizeTemplate, primaryTemplates, templateLayouts } from "@reactive-resume/schema/templates";
 import { Icon } from "@reactive-resume/ui/components/icon";
 import { SegmentedControl, SegmentedControlItem } from "@reactive-resume/ui/components/segmented-control";
 import { Slider } from "@reactive-resume/ui/components/slider";
@@ -75,7 +75,7 @@ export function TemplateGroup({ layout = "grid" }: TemplateGroupProps) {
 	useEffect(() => () => useEditorStore.setState({ previewTemplate: null }), []);
 	if (!data) return null;
 
-	const current = data.metadata.template;
+	const current = normalizeTemplate(data.metadata.template);
 	const shown = TEMPLATE_IDS.filter((id) => matchesFilter(id, filter));
 	const filters: { id: Filter; label: string }[] = [
 		{ id: "all", label: t`All` },

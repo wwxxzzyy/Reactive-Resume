@@ -48,7 +48,7 @@ export function Hero() {
 						href="#templates"
 						className="inline-flex h-[54px] items-center gap-2 rounded-sm border border-line-2 bg-raised px-6 font-ui text-base font-semibold text-ink shadow-sm transition-all hover:border-ink/20 hover:bg-hover"
 					>
-						<span>Explore 21+ Templates</span>
+						<span>Explore 12 ATS Templates</span>
 						<Icon name="arrow-down" size={18} />
 					</a>
 					<Link

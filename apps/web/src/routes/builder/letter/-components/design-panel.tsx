@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { produce } from "immer";
 import { useEffect, useMemo } from "react";
-import { primaryTemplates } from "@reactive-resume/schema/templates";
+import { normalizeTemplate, primaryTemplates } from "@reactive-resume/schema/templates";
 import { buttonVariants } from "@reactive-resume/ui/components/button";
 import { Icon } from "@reactive-resume/ui/components/icon";
 import { SwitchRow } from "@reactive-resume/ui/components/switch";
@@ -66,7 +66,7 @@ export function LetterDesignPanel() {
 	if (!letter) return null;
 
 	const resume = resumes?.find((item) => item.id === letter.sourceResumeId);
-	const current = letter.style.metadata.template;
+	const current = normalizeTemplate(letter.style.metadata.template);
 	const disabled = letter.isLocked;
 
 	const setLinked = (designLinked: boolean) =>

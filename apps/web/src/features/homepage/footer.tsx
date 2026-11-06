@@ -24,7 +24,7 @@ const getColumns = (): { id: string; title: string; links: FooterLink[] }[] => [
 		id: "product",
 		title: "Product & Tools",
 		links: [
-			{ label: "Resume Templates", to: "/resume-templates", badge: "21 ATS" },
+			{ label: "Resume Templates", to: "/resume-templates", badge: "12 ATS" },
 			{ label: "ATS Resume Scanner", to: "/ats-checker", badge: "Free Scan", highlight: true },
 			{ label: "Job Tracker Kanban", to: "/auth/register" },
 			{ label: "Platform Features", href: "#features" },
