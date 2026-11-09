@@ -1,7 +1,10 @@
 import z from "zod";
 import { aiProviderSchema } from "@reactive-resume/ai/types";
+import { env } from "@reactive-resume/env/server";
 import { adminProcedure, publicProcedure } from "../../context";
 import { adminActionRateLimit } from "../../middleware/rate-limit";
+import { CREDIT_PACKS } from "../credits/packs";
+import { stripeService } from "../credits/stripe";
 import { serverAiService } from "./server-ai";
 import { adminService } from "./service";
 
@@ -360,4 +363,46 @@ export const adminRouter = {
 			}),
 		)
 		.handler(() => serverAiService.deleteConfig()),
+
+	getPaymentOverview: adminProcedure
+		.route({
+			method: "GET",
+			path: "/admin/payment/overview",
+			tags: ["Platform Administration"],
+			summary: "Get Stripe payment gateway status and credit packs summary",
+		})
+		.input(z.object({}).optional())
+		.output(
+			z.object({
+				provider: z.literal("stripe"),
+				isConfigured: z.boolean(),
+				hasWebhookSecret: z.boolean(),
+				webhookUrl: z.string(),
+				packs: z.array(
+					z.object({
+						id: z.string(),
+						name: z.string(),
+						credits: z.number(),
+						price: z.number(),
+						priceDisplay: z.string(),
+					}),
+				),
+			}),
+		)
+		.handler(() => {
+			const appUrl = (env.APP_URL || "https://dippergo.com").replace(/\/+$/, "");
+			return {
+				provider: "stripe" as const,
+				isConfigured: stripeService.isConfigured(),
+				hasWebhookSecret: Boolean(env.STRIPE_WEBHOOK_SECRET),
+				webhookUrl: `${appUrl}/api/payment/stripe-webhook`,
+				packs: CREDIT_PACKS.map((p) => ({
+					id: p.id,
+					name: p.name,
+					credits: p.credits,
+					price: p.price,
+					priceDisplay: p.priceDisplay,
+				})),
+			};
+		}),
 };

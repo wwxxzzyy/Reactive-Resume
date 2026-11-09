@@ -2,6 +2,7 @@ import z from "zod";
 import { adminProcedure, protectedProcedure } from "../../context";
 import { CREDIT_COSTS, CREDIT_PACKS } from "./packs";
 import { creditsService } from "./service";
+import { stripeService } from "./stripe";
 
 export const creditsRouter = {
 	getBalance: protectedProcedure
@@ -30,6 +31,7 @@ export const creditsRouter = {
 		.input(z.object({}).optional())
 		.output(
 			z.object({
+				stripeEnabled: z.boolean(),
 				packs: z.array(
 					z.object({
 						id: z.enum(["starter", "hunter", "executive"]),
@@ -49,9 +51,32 @@ export const creditsRouter = {
 			}),
 		)
 		.handler(() => ({
+			stripeEnabled: stripeService.isConfigured(),
 			packs: CREDIT_PACKS,
 			costs: CREDIT_COSTS,
 		})),
+
+	createCheckoutSession: protectedProcedure
+		.route({
+			method: "POST",
+			path: "/credits/checkout",
+			tags: ["Credits"],
+			summary: "Create a Stripe Hosted Checkout Session for buying an AI credit pack",
+		})
+		.input(
+			z.object({
+				packId: z.enum(["starter", "hunter", "executive"]),
+			}),
+		)
+		.output(
+			z.object({
+				url: z.string(),
+				sessionId: z.string().optional(),
+			}),
+		)
+		.handler(({ context, input }) =>
+			stripeService.createCheckoutSession(context.user.id, context.user.email, input.packId),
+		),
 
 	getTransactions: protectedProcedure
 		.route({

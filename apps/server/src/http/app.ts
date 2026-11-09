@@ -40,6 +40,7 @@ import { handleCustomDomain, handleTraefikProvider } from "./custom-domain";
 import { handleHealth } from "./health";
 import { handlePublicResumePdf } from "./public-resume-pdf";
 import { handleResumePdfDownload } from "./resume-pdf";
+import { handleStripeWebhook } from "./stripe-webhook";
 
 type ServerEnvironment = { Bindings: HttpBindings | Http2Bindings };
 
@@ -151,6 +152,7 @@ export function createApp(options: AppOptions = {}) {
 	// Hono's `/x/*` also matches `/x`, so each wildcard below covers its base path too.
 	app.use("/api/rpc/*", limitBody(160 * 1024 * 1024));
 	app.use("/api/auth/*", limitBody(1024 * 1024));
+	app.use("/api/payment/*", limitBody(1024 * 1024));
 	app.use("/api/storage/stage", limitBody(64 * 1024));
 
 	app.post("/api/storage/stage", (c) => prepareStagedBody(c.req.raw));
@@ -159,6 +161,8 @@ export function createApp(options: AppOptions = {}) {
 	app.get("/api/auth/oauth", (c) => handleOAuth(c.req.raw));
 	app.all("/api/auth/*", (c) => handleAuth(c.req.raw, client(c)));
 	app.get("/api/health", () => handleHealth());
+	app.post("/api/payment/webhook", (c) => handleStripeWebhook(c));
+	app.post("/api/payment/stripe-webhook", (c) => handleStripeWebhook(c));
 	app.get("/api/internal/traefik", (c) => handleTraefikProvider(c.req.raw));
 	app.on(["GET", "POST"], "/api/career/run", (c) => handleCareerJobs(c.req.raw));
 	app.get("/api/resumes/:username/:slug/pdf", (c) =>

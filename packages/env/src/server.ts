@@ -207,6 +207,11 @@ export const env = createEnv({
 		AI_API_KEY: z.string().trim().min(1).optional(),
 		AI_BASE_URL: z.url({ protocol: /^https?$/ }).optional(),
 
+		// Stripe Payments (AI Credits Checkout)
+		STRIPE_SECRET_KEY: z.string().trim().min(1).optional(),
+		STRIPE_WEBHOOK_SECRET: z.string().trim().min(1).optional(),
+		STRIPE_PUBLISHABLE_KEY: z.string().trim().min(1).optional(),
+
 		// Feature Flags
 		FLAG_DISABLE_SIGNUPS: z.stringbool().default(false),
 		FLAG_DISABLE_EMAIL_AUTH: z.stringbool().default(false),

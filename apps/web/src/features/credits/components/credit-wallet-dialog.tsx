@@ -39,7 +39,27 @@ export function CreditWalletDialog({ open, onOpenChange }: Props) {
 		enabled: open && activeTab === "history",
 	});
 
-	// Purchase Mutation
+	const isStripeEnabled = Boolean(packsData?.stripeEnabled);
+
+	// Stripe Checkout Session Mutation
+	const checkoutMutation = useMutation(
+		orpc.credits.createCheckoutSession.mutationOptions({
+			onSuccess: (res) => {
+				if (res.url) {
+					window.location.assign(res.url);
+				}
+			},
+			onError: (err) => {
+				toast.add({
+					type: "error",
+					title: "Checkout Error",
+					description: err.message,
+				});
+			},
+		}),
+	);
+
+	// Fallback direct purchase mutation for dev or when Stripe is unconfigured
 	const purchaseMutation = useMutation(
 		orpc.credits.purchasePack.mutationOptions({
 			onSuccess: (res) => {
@@ -60,6 +80,17 @@ export function CreditWalletDialog({ open, onOpenChange }: Props) {
 			},
 		}),
 	);
+
+	const isProcessing = checkoutMutation.isPending || purchaseMutation.isPending;
+	const activePackId = checkoutMutation.variables?.packId ?? purchaseMutation.variables?.packId;
+
+	const handleBuyPack = (packId: "starter" | "hunter" | "executive") => {
+		if (isStripeEnabled) {
+			checkoutMutation.mutate({ packId });
+		} else {
+			purchaseMutation.mutate({ packId });
+		}
+	};
 
 	const balance = balanceData?.credits ?? 3;
 
@@ -189,18 +220,18 @@ export function CreditWalletDialog({ open, onOpenChange }: Props) {
 												variant={pack.popular ? "primary" : "secondary"}
 												size="sm"
 												className="w-full text-xs font-semibold"
-												disabled={purchaseMutation.isPending}
-												onClick={() => purchaseMutation.mutate({ packId: pack.id })}
+												disabled={isProcessing}
+												onClick={() => handleBuyPack(pack.id)}
 											>
-												{purchaseMutation.isPending && purchaseMutation.variables?.packId === pack.id ? (
+												{isProcessing && activePackId === pack.id ? (
 													<>
 														<Icon name="circle-notch" className="size-3.5 animate-spin" />
-														Processing...
+														{isStripeEnabled ? "Redirecting to Stripe..." : "Processing..."}
 													</>
 												) : (
 													<>
 														<Icon name="lightning" size={14} className="fill-current" />
-														Top Up {pack.priceDisplay}
+														{isStripeEnabled ? `Pay ${pack.priceDisplay}` : `Top Up ${pack.priceDisplay}`}
 													</>
 												)}
 											</Button>
@@ -209,6 +240,14 @@ export function CreditWalletDialog({ open, onOpenChange }: Props) {
 								);
 							})}
 						</div>
+
+						{/* Secure Payment Callout */}
+						{isStripeEnabled && (
+							<div className="flex items-center justify-center gap-1.5 py-1 text-[11px] text-ink-3">
+								<Icon name="shield-check" size={14} className="text-emerald-500" />
+								<span>Official Stripe Checkout · 256-bit SSL encrypted · Cards, Apple Pay, Google Pay</span>
+							</div>
+						)}
 
 						{/* Credit Cost Guide Card */}
 						<div className="rounded-xl border border-line/70 bg-sunken/30 p-4">

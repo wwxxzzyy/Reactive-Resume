@@ -1,5 +1,5 @@
 import { ORPCError } from "@orpc/server";
-import { count, desc, eq } from "drizzle-orm";
+import { count, desc, eq, sql } from "drizzle-orm";
 import { db } from "@reactive-resume/db/client";
 import { aiCreditTransaction, user } from "@reactive-resume/db/schema";
 import { CREDIT_PACKS, type CreditPackId } from "./packs";
@@ -116,6 +116,80 @@ export const creditsService = {
 			creditsAdded: pack.credits,
 			newBalance,
 			pack,
+		};
+	},
+
+	/**
+	 * Process a successful Stripe payment and credit user's wallet idempotently.
+	 */
+	async handleStripeCheckoutCompleted(session: {
+		id: string;
+		client_reference_id?: string | null;
+		payment_intent?: string | null;
+		amount_total?: number | null;
+		currency?: string | null;
+		metadata?: Record<string, string> | null;
+	}) {
+		const userId = session.metadata?.userId || session.client_reference_id;
+		const packId = session.metadata?.packId as CreditPackId | undefined;
+
+		if (!userId || !packId) {
+			return { success: false, reason: "Missing userId or packId in metadata." };
+		}
+
+		const pack = CREDIT_PACKS.find((p) => p.id === packId);
+		if (!pack) {
+			return { success: false, reason: "Invalid packId in session metadata." };
+		}
+
+		// Idempotency check: verify this Stripe session hasn't already been fulfilled
+		const [existingTx] = await db
+			.select({ id: aiCreditTransaction.id })
+			.from(aiCreditTransaction)
+			.where(sql`${aiCreditTransaction.metadata}->>'stripeSessionId' = ${session.id}`)
+			.limit(1);
+
+		if (existingTx) {
+			return { success: true, alreadyProcessed: true };
+		}
+
+		const [targetUser] = await db
+			.select({ id: user.id, aiCredits: user.aiCredits })
+			.from(user)
+			.where(eq(user.id, userId))
+			.limit(1);
+
+		if (!targetUser) {
+			return { success: false, reason: "Target user not found." };
+		}
+
+		const currentBalance = targetUser.aiCredits ?? 3;
+		const newBalance = currentBalance + pack.credits;
+
+		await db.update(user).set({ aiCredits: newBalance }).where(eq(user.id, userId));
+
+		await db.insert(aiCreditTransaction).values({
+			userId,
+			amount: pack.credits,
+			type: "stripe_checkout",
+			description: `${pack.name} (+${pack.credits} Credits via Stripe)`,
+			packId: pack.id,
+			balanceAfter: newBalance,
+			metadata: {
+				stripeSessionId: session.id,
+				stripePaymentIntent: session.payment_intent ?? null,
+				amountPaidCents: session.amount_total ?? Math.round(pack.price * 100),
+				currency: session.currency ?? "usd",
+				completedAt: new Date().toISOString(),
+			},
+		});
+
+		return {
+			success: true,
+			userId,
+			packId,
+			creditsAdded: pack.credits,
+			newBalance,
 		};
 	},
 

@@ -1,7 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import { Badge } from "@reactive-resume/ui/components/badge";
 import { Icon } from "@reactive-resume/ui/components/icon";
+import { toast } from "@reactive-resume/ui/components/toast";
 import { cn } from "@reactive-resume/utils/style";
 import { CreditWalletDialog } from "./credit-wallet-dialog";
 import { orpc } from "@/libs/orpc/client";
@@ -13,7 +14,36 @@ type Props = {
 
 export function CreditWalletTrigger({ className, compact }: Props) {
 	const [open, setOpen] = useState(false);
+	const queryClient = useQueryClient();
 	const { data: balanceData } = useQuery(orpc.credits.getBalance.queryOptions());
+
+	useEffect(() => {
+		const searchParams = new URLSearchParams(window.location.search);
+		const payment = searchParams.get("payment");
+		if (payment === "success") {
+			toast.add({
+				type: "success",
+				title: "Payment Received!",
+				description: "Thank you for your purchase. Your AI credits have been added to your wallet.",
+			});
+			void queryClient.invalidateQueries({ queryKey: orpc.credits.getBalance.key() });
+			void queryClient.invalidateQueries({ queryKey: orpc.credits.getTransactions.key() });
+			searchParams.delete("payment");
+			searchParams.delete("pack");
+			searchParams.delete("session_id");
+			const newQuery = searchParams.toString();
+			window.history.replaceState(null, "", window.location.pathname + (newQuery ? `?${newQuery}` : ""));
+		} else if (payment === "cancelled") {
+			toast.add({
+				type: "info",
+				title: "Checkout Cancelled",
+				description: "No charges were made. You can top up whenever you're ready.",
+			});
+			searchParams.delete("payment");
+			const newQuery = searchParams.toString();
+			window.history.replaceState(null, "", window.location.pathname + (newQuery ? `?${newQuery}` : ""));
+		}
+	}, [queryClient]);
 
 	const balance = balanceData?.credits ?? 3;
 

@@ -19,6 +19,7 @@ import { Input } from "@reactive-resume/ui/components/input";
 import { toast } from "@reactive-resume/ui/components/toast";
 import { getInitials } from "@reactive-resume/utils/string";
 import { cn } from "@reactive-resume/utils/style";
+import { PaymentOverview } from "./-components/payment-overview";
 import { ServerAiOverview } from "./-components/server-ai-overview";
 import { TrafficOverview } from "./-components/traffic-overview";
 import { authClient } from "@/libs/auth/client";
@@ -238,7 +239,7 @@ function AdminDashboard({
 	const navigate = useNavigate();
 
 	// Active Section Tab
-	const [activeSection, setActiveSection] = useState<"accounts" | "traffic" | "server-ai">("accounts");
+	const [activeSection, setActiveSection] = useState<"accounts" | "traffic" | "server-ai" | "payments">("accounts");
 
 	// Search & Filter State
 	const [searchQuery, setSearchQuery] = useState("");
@@ -506,6 +507,20 @@ function AdminDashboard({
 							<Icon name="lightning" className="size-4 text-amber-500" />
 							<span>Server-Wide AI &amp; LLM</span>
 						</button>
+
+						<button
+							type="button"
+							onClick={() => setActiveSection("payments")}
+							className={cn(
+								"flex h-9 items-center gap-2 rounded-lg border px-4 text-xs font-semibold transition-colors",
+								activeSection === "payments"
+									? "border-accent/40 bg-accent/10 text-accent-text"
+									: "border-line bg-surface text-ink-2 hover:border-line-2 hover:text-ink",
+							)}
+						>
+							<Icon name="crown" className="size-4 text-purple-500" />
+							<span>Payments &amp; Stripe</span>
+						</button>
 					</div>
 
 					<div className="flex items-center gap-2">
@@ -520,6 +535,8 @@ function AdminDashboard({
 					<TrafficOverview traffic={trafficData} isLoading={isTrafficLoading} onRefresh={() => void refetchTraffic()} />
 				) : activeSection === "server-ai" ? (
 					<ServerAiOverview onRefreshAll={handleRefresh} />
+				) : activeSection === "payments" ? (
+					<PaymentOverview onRefresh={handleRefresh} />
 				) : (
 					<>
 						{/* KPI Metrics Cards */}
