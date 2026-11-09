@@ -24,6 +24,11 @@ export function LandingHeader() {
 	const { data: session } = authClient.useSession();
 	const isAuthenticated = Boolean(session?.user);
 
+	const handleSignOut = async () => {
+		await authClient.signOut();
+		window.location.assign("/auth/login");
+	};
+
 	return (
 		<header
 			className={cn(
@@ -117,13 +122,23 @@ export function LandingHeader() {
 
 			<div className="ms-auto flex items-center gap-2 sm:gap-3">
 				{isAuthenticated ? (
-					<Link
-						to="/dashboard"
-						className="inline-flex h-[36px] items-center gap-1.5 rounded-sm bg-accent px-3.5 font-ui text-xs font-semibold text-on-accent shadow-xs transition-all hover:bg-accent-hover"
-					>
-						<span>Dashboard</span>
-						<Icon name="arrow-right" size={14} />
-					</Link>
+					<div className="flex items-center gap-1.5 sm:gap-2">
+						<Link
+							to="/dashboard"
+							className="inline-flex h-[36px] items-center gap-1.5 rounded-sm bg-accent px-3 font-ui text-xs font-semibold text-on-accent shadow-xs transition-all hover:bg-accent-hover sm:px-3.5"
+						>
+							<span>Dashboard</span>
+							<Icon name="arrow-right" size={14} />
+						</Link>
+						<button
+							type="button"
+							onClick={handleSignOut}
+							className="inline-flex h-[36px] items-center gap-1.5 rounded-sm border border-line-2 bg-raised px-2.5 font-ui text-xs font-semibold text-ink shadow-xs transition-colors hover:border-ink/20 hover:bg-hover sm:px-3"
+						>
+							<Icon name="sign-out" size={14} />
+							<span className="hidden sm:inline">Sign out</span>
+						</button>
+					</div>
 				) : (
 					<>
 						<Link
@@ -200,14 +215,28 @@ export function LandingHeader() {
 						</nav>
 						<div className="flex flex-col gap-2.5">
 							{isAuthenticated ? (
-								<Link
-									to="/dashboard"
-									onClick={() => setMobileMenuOpen(false)}
-									className="flex h-11 items-center justify-center gap-2 rounded-sm bg-accent font-ui font-semibold text-on-accent"
-								>
-									<span>Go to Dashboard</span>
-									<Icon name="arrow-right" size={16} />
-								</Link>
+								<>
+									<Link
+										to="/dashboard"
+										onClick={() => setMobileMenuOpen(false)}
+										className="flex h-11 items-center justify-center gap-2 rounded-sm bg-accent font-ui font-semibold text-on-accent"
+									>
+										<span>Go to Dashboard</span>
+										<Icon name="arrow-right" size={16} />
+									</Link>
+									<button
+										type="button"
+										onClick={async () => {
+											setMobileMenuOpen(false);
+											await authClient.signOut();
+											window.location.assign("/auth/login");
+										}}
+										className="flex h-11 items-center justify-center gap-2 rounded-sm border border-line-2 bg-raised font-ui font-semibold text-ink"
+									>
+										<Icon name="sign-out" size={16} />
+										<span>Sign out</span>
+									</button>
+								</>
 							) : (
 								<>
 									<Link

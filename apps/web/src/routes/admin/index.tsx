@@ -107,7 +107,7 @@ function AdminLoginPortal({ session }: { session: ReturnType<typeof authClient.u
 
 	const handleSignOutCurrent = async () => {
 		await authClient.signOut();
-		void navigate({ to: "/admin" });
+		void navigate({ to: "/auth/login" });
 	};
 
 	return (
@@ -125,16 +125,16 @@ function AdminLoginPortal({ session }: { session: ReturnType<typeof authClient.u
 					<p className="mt-1 text-xs text-ink-3">Restricted platform administration console</p>
 				</div>
 
-				{/* Notice if signed in as non-admin */}
-				{session?.user && session.user.username !== "shawn" && (
-					<div className="rounded-lg border border-warn/30 bg-warn/10 p-3 text-xs text-warn-text">
-						<div className="font-semibold">Unauthorized Account</div>
-						<p className="mt-0.5">
-							Signed in as <strong>@{session.user.username}</strong> ({session.user.email}). Administrator privileges
-							required.
-						</p>
-						<Button variant="secondary" size="sm" className="mt-2 w-full text-xs" onClick={handleSignOutCurrent}>
-							Sign out of @{session.user.username}
+				{/* Notice if signed in */}
+				{session?.user && (
+					<div className="flex items-center justify-between rounded-xl border border-line bg-surface p-3.5 text-xs shadow-2xs">
+						<div className="min-w-0 pr-2">
+							<div className="truncate font-semibold text-ink">Signed in as @{session.user.username}</div>
+							<div className="truncate text-[11px] text-ink-3">{session.user.email}</div>
+						</div>
+						<Button variant="secondary" size="sm" onClick={handleSignOutCurrent} className="shrink-0 gap-1.5 text-xs">
+							<Icon name="sign-out" className="size-3.5" />
+							<span>Sign out</span>
 						</Button>
 					</div>
 				)}
@@ -217,10 +217,19 @@ function AdminLoginPortal({ session }: { session: ReturnType<typeof authClient.u
 					</form>
 				</div>
 
-				<div className="text-center">
-					<Link to="/dashboard" className="text-xs text-ink-3 hover:text-ink hover:underline">
+				<div className="flex items-center justify-center gap-4 text-xs text-ink-3">
+					<Link to="/dashboard" className="hover:text-ink hover:underline">
 						← Return to App Dashboard
 					</Link>
+					<span>•</span>
+					<button
+						type="button"
+						onClick={handleSignOutCurrent}
+						className="inline-flex items-center gap-1 font-medium hover:text-ink hover:underline"
+					>
+						<Icon name="sign-out" className="size-3" />
+						<span>Sign out</span>
+					</button>
 				</div>
 			</div>
 		</div>
@@ -402,7 +411,7 @@ function AdminDashboard({
 
 	const handleSignOut = async () => {
 		await authClient.signOut();
-		void navigate({ to: "/admin" });
+		void navigate({ to: "/auth/login" });
 	};
 
 	const handleRefresh = () => {

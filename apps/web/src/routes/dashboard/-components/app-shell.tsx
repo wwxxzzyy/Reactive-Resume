@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
 import { useHotkey } from "@tanstack/react-hotkeys";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useMatchRoute, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useCallback } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@reactive-resume/ui/components/avatar";
@@ -22,6 +22,8 @@ import { GuestBanner } from "@/features/auth/components/guest-banner";
 import { CreditWalletTrigger } from "@/features/credits";
 import { isEditableElementFocused } from "@/features/resume/builder/draft";
 import { UserDropdownMenu } from "@/features/user/dropdown-menu";
+import { clearAccountData } from "@/libs/auth/clear-account-data";
+import { authClient } from "@/libs/auth/client";
 import { orpc } from "@/libs/orpc/client";
 
 type NavItem = {
@@ -170,10 +172,22 @@ export function AppShell({ children }: AppShellProps) {
 	);
 }
 
+function useDirectSignOut() {
+	const queryClient = useQueryClient();
+	const navigate = useNavigate();
+
+	return useCallback(async () => {
+		await authClient.signOut();
+		clearAccountData(queryClient);
+		void navigate({ to: "/auth/login" });
+	}, [queryClient, navigate]);
+}
+
 function Sidebar() {
 	const { items, settings, trash } = useNavItems();
 	const isCurrent = useIsCurrent();
 	const openNew = useNewAction();
+	const signOut = useDirectSignOut();
 
 	return (
 		<aside
@@ -204,25 +218,45 @@ function Sidebar() {
 					</span>
 					<Kbd className="bg-on-accent/15 text-on-accent">N</Kbd>
 				</Button>
-				<UserDropdownMenu>
-					{({ session }) => (
-						<button
-							type="button"
-							className="flex h-11 items-center gap-2.5 rounded-lg px-1.5 text-start transition-colors duration-quick hover:bg-hover"
-						>
-							<Avatar className="size-7">
-								<AvatarImage src={session.user.image ?? undefined} />
-								<AvatarFallback className="text-[11px]">{getInitials(session.user.name)}</AvatarFallback>
-							</Avatar>
-							<span className="grid min-w-0">
-								<span className="truncate text-sm font-medium">{session.user.name}</span>
-								<span className="text-xs text-ink-3">
-									<Trans>Account</Trans>
-								</span>
-							</span>
-						</button>
-					)}
-				</UserDropdownMenu>
+				<div className="flex items-center gap-1">
+					<div className="min-w-0 flex-1">
+						<UserDropdownMenu>
+							{({ session }) => (
+								<button
+									type="button"
+									className="flex h-11 w-full items-center gap-2.5 rounded-lg px-1.5 text-start transition-colors duration-quick hover:bg-hover"
+								>
+									<Avatar className="size-7 shrink-0">
+										<AvatarImage src={session.user.image ?? undefined} />
+										<AvatarFallback className="text-[11px]">{getInitials(session.user.name)}</AvatarFallback>
+									</Avatar>
+									<span className="grid min-w-0">
+										<span className="truncate text-sm font-medium">{session.user.name}</span>
+										<span className="text-xs text-ink-3">
+											<Trans>Account</Trans>
+										</span>
+									</span>
+								</button>
+							)}
+						</UserDropdownMenu>
+					</div>
+					<Tooltip>
+						<TooltipTrigger
+							render={
+								<Button
+									variant="ghost"
+									size="icon"
+									aria-label={t`Sign out`}
+									onClick={signOut}
+									className="size-9 shrink-0 text-ink-3 hover:bg-danger/10 hover:text-danger"
+								>
+									<Icon name="sign-out" className="size-4" />
+								</Button>
+							}
+						/>
+						<TooltipContent side="top">{t`Sign out`}</TooltipContent>
+					</Tooltip>
+				</div>
 			</div>
 		</aside>
 	);
@@ -250,6 +284,7 @@ function Rail() {
 	const { items, settings, trash } = useNavItems();
 	const isCurrent = useIsCurrent();
 	const openNew = useNewAction();
+	const signOut = useDirectSignOut();
 
 	return (
 		<aside
@@ -298,6 +333,15 @@ function Rail() {
 						</button>
 					)}
 				</UserDropdownMenu>
+				<RailTip label={t`Sign out`} icon="sign-out">
+					<Button
+						variant="ghost"
+						size="icon"
+						aria-label={t`Sign out`}
+						onClick={signOut}
+						className="size-8 text-ink-3 hover:bg-danger/10 hover:text-danger"
+					/>
+				</RailTip>
 			</div>
 		</aside>
 	);
