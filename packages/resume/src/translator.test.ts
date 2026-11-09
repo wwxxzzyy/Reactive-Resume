@@ -31,7 +31,7 @@ const mockResume: ResumeData = {
 describe("translateResumeSections", () => {
 	it("exposes supported languages and translations", () => {
 		expect(SUPPORTED_TRANSLATION_LANGUAGES.length).toBeGreaterThan(0);
-		expect(SECTION_TRANSLATIONS.es).toBeDefined();
+		expect(SECTION_TRANSLATIONS.experience.es).toBe("Experiencia Laboral");
 	});
 
 	it("translates section titles to Spanish and updates page locale", () => {
