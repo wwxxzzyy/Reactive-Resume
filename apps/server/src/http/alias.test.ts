@@ -30,4 +30,10 @@ describe("the app's alias domain", () => {
 			"https://rxresu.me//evil.example/login?next=1",
 		);
 	});
+
+	it("redirects www counterpart to canonical app domain for app sections", () => {
+		const response = handleAlias(new Request("https://www.rxresu.me/auth/register"));
+		expect(response?.status).toBe(301);
+		expect(response?.headers.get("Location")).toBe("https://rxresu.me/auth/register");
+	});
 });

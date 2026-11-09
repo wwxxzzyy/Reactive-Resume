@@ -150,7 +150,7 @@ export function isCustomOAuthProviderEnabled() {
 	return Boolean(env.OAUTH_CLIENT_ID) && Boolean(env.OAUTH_CLIENT_SECRET) && (hasDiscovery || hasManual);
 }
 
-const TRUSTED_ORIGINS = getTrustedOrigins(env.APP_URL);
+const TRUSTED_ORIGINS = getTrustedOrigins(env.APP_URL, [env.APP_ALIAS_URL]);
 const accountUser = new AsyncLocalStorage<User>();
 const oauthProviderRateLimit = isRateLimitEnabled
 	? rateLimitConfig.betterAuth.oauthProvider

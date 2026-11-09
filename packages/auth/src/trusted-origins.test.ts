@@ -27,4 +27,26 @@ describe("getTrustedOrigins", () => {
 		expect(origins).toContain("http://localhost:5173");
 		expect(origins).toContain("http://127.0.0.1:5173");
 	});
+
+	it("automatically includes www counterpart for apex domains", () => {
+		process.env.NODE_ENV = "production";
+		const origins = getTrustedOrigins("https://dippergo.com");
+		expect(origins).toContain("https://dippergo.com");
+		expect(origins).toContain("https://www.dippergo.com");
+	});
+
+	it("automatically includes apex counterpart for www domains", () => {
+		process.env.NODE_ENV = "production";
+		const origins = getTrustedOrigins("https://www.dippergo.com");
+		expect(origins).toContain("https://www.dippergo.com");
+		expect(origins).toContain("https://dippergo.com");
+	});
+
+	it("includes additional URLs when provided", () => {
+		process.env.NODE_ENV = "production";
+		const origins = getTrustedOrigins("https://dippergo.com", ["https://app.dippergo.com"]);
+		expect(origins).toContain("https://dippergo.com");
+		expect(origins).toContain("https://www.dippergo.com");
+		expect(origins).toContain("https://app.dippergo.com");
+	});
 });

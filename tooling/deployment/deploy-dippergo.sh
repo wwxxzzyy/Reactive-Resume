@@ -151,6 +151,7 @@ if [ ! -f .env ]; then
   cat <<ENV_EOF > .env
 # Application URLs
 APP_URL=${APP_URL}
+APP_ALIAS_URL=https://www.dippergo.com
 
 # Database
 DATABASE_URL=postgresql://postgres:postgres@postgres:5432/postgres
@@ -183,7 +184,12 @@ else
   else
     echo 'APP_URL=${APP_URL}' >> .env
   fi
-  echo '✓ Preserved existing production .env'
+  if grep -q '^APP_ALIAS_URL=' .env; then
+    sed -i 's|^APP_ALIAS_URL=.*|APP_ALIAS_URL=https://www.dippergo.com|' .env
+  else
+    echo 'APP_ALIAS_URL=https://www.dippergo.com' >> .env
+  fi
+  echo '✓ Updated existing production .env'
 fi
 
 # Ensure compose.override.yml maps port 80 (for Cloudflare) and port 3000 (direct)
@@ -203,18 +209,29 @@ if [ "${SYNC_ONLY}" = true ]; then
   exit 0
 fi
 
-# Check if image exists on target
-IMAGE_EXISTS=$(run_ssh "docker images -q reactive_resume-reactive_resume:latest 2>/dev/null || true")
+# Check image hashes
+REMOTE_IMAGE_ID=$(run_ssh "docker images -q --no-trunc reactive_resume-reactive_resume:latest 2>/dev/null || true")
+LOCAL_IMAGE_ID=""
+LAN_AVAILABLE=false
+if command -v sshpass >/dev/null 2>&1 && sshpass -p "${BUILD_PASS}" ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=5 "${BUILD_USER}@${BUILD_HOST}" "true" 2>/dev/null; then
+  LAN_AVAILABLE=true
+  LOCAL_IMAGE_ID=$(sshpass -p "${BUILD_PASS}" ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "${BUILD_USER}@${BUILD_HOST}" "docker images -q --no-trunc reactive_resume-reactive_resume:latest 2>/dev/null || true")
+fi
 
 if [ "${BUILD_REMOTE}" = true ]; then
   echo ""
   echo "=== Building Docker image directly on remote VPS (${HOST}) ==="
   run_ssh "cd '${REMOTE_DIR}' && docker compose build reactive_resume"
-elif [ -z "${IMAGE_EXISTS}" ]; then
+elif [ -n "${LOCAL_IMAGE_ID}" ] && [ "${LOCAL_IMAGE_ID}" != "${REMOTE_IMAGE_ID}" ]; then
   echo ""
-  echo "=== Image not found on remote. Transferring pre-built image from ${BUILD_HOST}... ==="
-  if command -v sshpass >/dev/null 2>&1 && sshpass -p "${BUILD_PASS}" ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=5 "${BUILD_USER}@${BUILD_HOST}" "true" 2>/dev/null; then
-    echo "Piping pre-built image from ${BUILD_USER}@${BUILD_HOST} to ${USER}@${HOST}..."
+  echo "=== Image updated on build server (${LOCAL_IMAGE_ID:0:19}...). Streaming to ${HOST}... ==="
+  sshpass -p "${BUILD_PASS}" ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "${BUILD_USER}@${BUILD_HOST}" "docker save reactive_resume-reactive_resume:latest | gzip -1" | \
+    run_ssh "gzip -d | docker load"
+  echo "✓ Pre-built image loaded on remote"
+elif [ -z "${REMOTE_IMAGE_ID}" ]; then
+  echo ""
+  echo "=== Image not found on remote. Transferring from ${BUILD_HOST}... ==="
+  if [ "${LAN_AVAILABLE}" = true ]; then
     sshpass -p "${BUILD_PASS}" ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "${BUILD_USER}@${BUILD_HOST}" "docker save reactive_resume-reactive_resume:latest | gzip -1" | \
       run_ssh "gzip -d | docker load"
     echo "✓ Pre-built image loaded on remote"
@@ -223,12 +240,12 @@ elif [ -z "${IMAGE_EXISTS}" ]; then
     run_ssh "cd '${REMOTE_DIR}' && docker compose build reactive_resume"
   fi
 else
-  echo "✓ Using existing loaded image reactive_resume-reactive_resume:latest"
+  echo "✓ Remote image is already up-to-date (${REMOTE_IMAGE_ID:0:19}...)"
 fi
 
 echo ""
 echo "=== [6/6] Starting application stack on ${HOST} ==="
-run_ssh "cd '${REMOTE_DIR}' && docker compose up -d --remove-orphans reactive_resume"
+run_ssh "cd '${REMOTE_DIR}' && docker compose up -d --force-recreate --remove-orphans reactive_resume"
 
 echo ""
 echo "=== Verifying health at http://${HOST}:${PORT}/api/health ==="

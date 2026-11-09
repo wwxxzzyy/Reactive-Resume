@@ -8,7 +8,7 @@ import { resolveAuthenticationFromRequestHeaders } from "../../context";
 import { createRateLimiter } from "../../redis";
 import { blobOptions, blobPath } from "./blob";
 
-const TRUSTED_ORIGINS = getTrustedOrigins(env.APP_URL);
+const TRUSTED_ORIGINS = getTrustedOrigins(env.APP_URL, [env.APP_ALIAS_URL]);
 const HEADER = "x-resume-staged-body";
 const TTL_SECONDS = 600;
 // Covers the 100 MiB thread attachment allowance, including base64 and RPC framing.

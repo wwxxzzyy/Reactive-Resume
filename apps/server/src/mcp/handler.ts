@@ -8,7 +8,7 @@ import { env } from "@reactive-resume/env/server";
 import { AuthError, authenticateRequest } from "./auth";
 import { createMcpServer } from "./server";
 
-const TRUSTED_ORIGINS = getTrustedOrigins(env.APP_URL);
+const TRUSTED_ORIGINS = getTrustedOrigins(env.APP_URL, [env.APP_ALIAS_URL]);
 const responseHeaders = {
 	"Cache-Control": "no-store",
 	"X-Content-Type-Options": "nosniff",

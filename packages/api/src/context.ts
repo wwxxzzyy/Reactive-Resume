@@ -27,9 +27,7 @@ interface ORPCContext {
 	rpcItemAccountId?: string;
 }
 
-const TRUSTED_ORIGINS = getTrustedOrigins(env.APP_URL);
-// Public pages on the alias call the same API, including when incidental cookies are present.
-if (env.APP_ALIAS_URL) TRUSTED_ORIGINS.push(new URL(env.APP_ALIAS_URL).origin);
+const TRUSTED_ORIGINS = getTrustedOrigins(env.APP_URL, [env.APP_ALIAS_URL]);
 const fullPermissions: readonly RequestPermission[] = ["read", "write", "delete"];
 
 async function findActiveUser(id: string): Promise<User | null> {
