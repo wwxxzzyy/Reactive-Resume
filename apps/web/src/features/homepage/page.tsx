@@ -11,7 +11,6 @@ import { LandingHeader, ThemeCord } from "./header";
 import { Hero } from "./hero";
 import { useScrollScenes } from "./scroll";
 import { TemplatesShowcase } from "./templates-showcase";
-import { TestimonialsSection } from "./testimonials";
 
 /**
  * The public landing page: designed to convert applicants with recruiter-approved templates,
@@ -39,7 +38,6 @@ export function Homepage() {
 				<ApplicantFeatures />
 				<ComparisonSection />
 				<AiPricingSection />
-				<TestimonialsSection />
 				<ClosingCta />
 			</main>
 			<LandingFooter />

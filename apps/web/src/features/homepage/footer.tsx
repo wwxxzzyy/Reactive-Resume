@@ -50,7 +50,6 @@ const getColumns = (): { id: string; title: string; links: FooterLink[] }[] => [
 			{ label: "Vector PDF Export", href: "#capabilities" },
 			{ label: "Microsoft Word DOCX", href: "#capabilities" },
 			{ label: "Semantic ATS Headings", href: "#capabilities" },
-			{ label: "Applicant Success Stories", href: "#reviews" },
 			{ label: "Pre-submission Audit", to: "/ats-checker" },
 		],
 	},

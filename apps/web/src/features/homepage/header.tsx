@@ -15,7 +15,6 @@ const getNavItems = () => [
 	{ to: "#ai-credits", label: "AI Packs & Pricing", badge: "No Sub", highlight: true },
 	{ to: "#features", label: "Features" },
 	{ to: "#capabilities", label: "Capabilities" },
-	{ to: "#reviews", label: "Reviews" },
 ];
 
 export function LandingHeader() {
