@@ -203,10 +203,17 @@ export function LandingFooter() {
 
 				{/* Bottom Bar */}
 				<div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-line/60 pt-8 font-ui text-xs text-ink-3 sm:flex-row">
-					<p className="text-center sm:text-start">
-						© {CURRENT_YEAR} DipperGo. All rights reserved.{" "}
-						<span className="hidden sm:inline">Built for modern job seekers and career switchers.</span>
-					</p>
+					<div className="flex flex-col items-center gap-1 sm:items-start">
+						<p className="text-center sm:text-start">
+							© {CURRENT_YEAR} DipperGo. All rights reserved.{" "}
+							<span className="hidden sm:inline">Built for modern job seekers and career switchers.</span>
+						</p>
+						<div className="flex items-center gap-1.5 text-[11px] text-ink-3">
+							<Icon name="shield-check" size={12} className="text-emerald-500" />
+							<span>Payment secured through</span>
+							<span className="font-bold tracking-tight text-[#635BFF] dark:text-[#8b84ff]">stripe</span>
+						</div>
+					</div>
 
 					<div className="flex flex-wrap items-center gap-4 sm:gap-6">
 						<LanguageDoorway className={cn("gap-1.5", linkClass)} />

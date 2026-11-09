@@ -104,7 +104,13 @@ export function CreditWalletDialog({ open, onOpenChange }: Props) {
 								<Icon name="lightning" size={20} className="fill-amber-500" />
 							</div>
 							<div>
-								<DialogTitle className="text-lg font-bold text-ink">DipperGo AI Wallet</DialogTitle>
+								<div className="flex items-center gap-2">
+									<DialogTitle className="text-lg font-bold text-ink">DipperGo AI Wallet</DialogTitle>
+									<span className="inline-flex items-center gap-1 rounded-full border border-[#635BFF]/30 bg-[#635BFF]/10 px-2 py-0.5 text-[10px] font-semibold text-[#635BFF] dark:text-[#8b84ff]">
+										<Icon name="shield-check" size={11} />
+										<span>Payment through Stripe</span>
+									</span>
+								</div>
 								<DialogDescription className="text-xs text-ink-3">
 									Pay-as-you-go AI credits for resume tailoring, ATS scans, and cover letters.
 								</DialogDescription>
@@ -231,10 +237,14 @@ export function CreditWalletDialog({ open, onOpenChange }: Props) {
 												) : (
 													<>
 														<Icon name="lightning" size={14} className="fill-current" />
-														{isStripeEnabled ? `Pay ${pack.priceDisplay}` : `Top Up ${pack.priceDisplay}`}
+														{isStripeEnabled ? `Pay ${pack.priceDisplay} with Stripe` : `Top Up ${pack.priceDisplay}`}
 													</>
 												)}
 											</Button>
+											<div className="mt-1.5 flex items-center justify-center gap-1 text-[10.5px] text-ink-3">
+												<Icon name="shield-check" size={12} className="text-emerald-500" />
+												<span>Payment through Stripe</span>
+											</div>
 										</div>
 									</div>
 								);
@@ -242,12 +252,27 @@ export function CreditWalletDialog({ open, onOpenChange }: Props) {
 						</div>
 
 						{/* Secure Payment Callout */}
-						{isStripeEnabled && (
-							<div className="flex items-center justify-center gap-1.5 py-1 text-[11px] text-ink-3">
-								<Icon name="shield-check" size={14} className="text-emerald-500" />
-								<span>Official Stripe Checkout · 256-bit SSL encrypted · Cards, Apple Pay, Google Pay</span>
+						<div className="flex flex-col items-center justify-between gap-3 rounded-xl border border-line bg-surface p-3.5 shadow-2xs sm:flex-row">
+							<div className="flex items-center gap-2.5">
+								<div className="grid size-8 shrink-0 place-items-center rounded-lg bg-[#635BFF]/10 text-[#635BFF] dark:text-[#8b84ff]">
+									<Icon name="shield-check" size={18} />
+								</div>
+								<div>
+									<div className="flex items-center gap-2">
+										<span className="text-xs font-bold text-ink">Payment through Stripe</span>
+										<span className="font-martian rounded border border-[#635BFF]/30 bg-[#635BFF]/10 px-1.5 py-0.5 text-[9px] font-bold text-[#635BFF] uppercase dark:text-[#8b84ff]">
+											Official Checkout
+										</span>
+									</div>
+									<p className="text-[11px] text-ink-3">
+										Cards, Apple Pay, Google Pay · 256-bit SSL encryption · Zero card info stored on our servers
+									</p>
+								</div>
 							</div>
-						)}
+							<span className="font-display text-base font-bold tracking-tight text-[#635BFF] dark:text-[#8b84ff]">
+								stripe
+							</span>
+						</div>
 
 						{/* Credit Cost Guide Card */}
 						<div className="rounded-xl border border-line/70 bg-sunken/30 p-4">

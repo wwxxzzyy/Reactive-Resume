@@ -109,9 +109,15 @@ export function AiPricingSection() {
 			className="relative mx-auto max-w-[1440px] border-t border-line px-(--gutter) py-24"
 		>
 			<div className="flex flex-col items-center text-center">
-				<div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3.5 py-1 text-xs font-semibold text-amber-700 backdrop-blur-xs dark:text-amber-300">
-					<Icon name="lightning" size={14} className="fill-amber-500 text-amber-500" />
-					<span>Zero Monthly Subscriptions · Pay As You Go</span>
+				<div className="flex flex-wrap items-center justify-center gap-2">
+					<div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-3.5 py-1 text-xs font-semibold text-amber-700 backdrop-blur-xs dark:text-amber-300">
+						<Icon name="lightning" size={14} className="fill-amber-500 text-amber-500" />
+						<span>Zero Monthly Subscriptions · Pay As You Go</span>
+					</div>
+					<div className="inline-flex items-center gap-1.5 rounded-full border border-[#635BFF]/30 bg-[#635BFF]/10 px-3 py-1 text-xs font-semibold text-[#635BFF] backdrop-blur-xs dark:text-[#8b84ff]">
+						<Icon name="shield-check" size={14} />
+						<span>Payment through Stripe</span>
+					</div>
 				</div>
 
 				<h2
@@ -212,9 +218,43 @@ export function AiPricingSection() {
 									{pack.buttonText}
 								</Button>
 							</Link>
+							{pack.id !== "free" && (
+								<div className="mt-2 flex items-center justify-center gap-1 text-[11px] text-ink-3">
+									<Icon name="shield-check" size={12} className="text-emerald-500" />
+									<span>Payment through Stripe</span>
+								</div>
+							)}
 						</div>
 					</div>
 				))}
+			</div>
+
+			{/* Stripe Trust Banner */}
+			<div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-line bg-surface p-4 shadow-2xs sm:p-5">
+				<div className="flex flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-start">
+					<div className="flex items-center gap-3.5">
+						<div className="grid size-10 shrink-0 place-items-center rounded-xl bg-[#635BFF]/10 text-[#635BFF] dark:text-[#8b84ff]">
+							<Icon name="shield-check" size={22} />
+						</div>
+						<div>
+							<div className="flex flex-wrap items-center justify-center gap-2 sm:justify-start">
+								<h4 className="text-sm font-bold text-ink">Payment through Stripe</h4>
+								<span className="font-martian rounded border border-[#635BFF]/30 bg-[#635BFF]/10 px-1.5 py-0.5 text-[9.5px] font-bold text-[#635BFF] uppercase dark:text-[#8b84ff]">
+									Official Checkout
+								</span>
+							</div>
+							<p className="mt-0.5 text-xs text-ink-2">
+								Bank-grade 256-bit encryption · Credit Card, Apple Pay &amp; Google Pay supported · No card data stored
+								on our servers
+							</p>
+						</div>
+					</div>
+					<div className="flex shrink-0 items-center gap-1.5 self-center sm:self-auto">
+						<span className="font-display text-xl font-bold tracking-tight text-[#635BFF] dark:text-[#8b84ff]">
+							stripe
+						</span>
+					</div>
+				</div>
 			</div>
 
 			{/* Transparent Cost Guide & BYOK Banner */}
