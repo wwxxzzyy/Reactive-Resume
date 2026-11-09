@@ -57,7 +57,7 @@ function AdminRouteComponent() {
    ============================================================================== */
 function AdminLoginPortal({ session }: { session: ReturnType<typeof authClient.useSession>["data"] }) {
 	const navigate = useNavigate();
-	const [username, setUsername] = useState("shawn");
+	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const [loading, setLoading] = useState(false);
@@ -86,7 +86,7 @@ function AdminLoginPortal({ session }: { session: ReturnType<typeof authClient.u
 
 			if (freshUser?.username !== "shawn" || freshUser?.role !== "admin") {
 				await authClient.signOut();
-				setError("Access Denied: Only designated administrator account 'shawn' is authorized.");
+				setError("Access Denied: Administrator privileges required.");
 				setLoading(false);
 				return;
 			}
@@ -94,7 +94,7 @@ function AdminLoginPortal({ session }: { session: ReturnType<typeof authClient.u
 			toast.add({
 				type: "success",
 				title: "Administrator Authenticated",
-				description: "Welcome back, Shawn. Platform administration session active.",
+				description: "Welcome back. Platform administration session active.",
 			});
 			void navigate({ to: "/admin" });
 		} catch (err) {
@@ -129,8 +129,8 @@ function AdminLoginPortal({ session }: { session: ReturnType<typeof authClient.u
 					<div className="rounded-lg border border-warn/30 bg-warn/10 p-3 text-xs text-warn-text">
 						<div className="font-semibold">Unauthorized Account</div>
 						<p className="mt-0.5">
-							Signed in as <strong>@{session.user.username}</strong> ({session.user.email}). Only account{" "}
-							<strong>shawn</strong> is permitted.
+							Signed in as <strong>@{session.user.username}</strong> ({session.user.email}). Administrator privileges
+							required.
 						</p>
 						<Button variant="secondary" size="sm" className="mt-2 w-full text-xs" onClick={handleSignOutCurrent}>
 							Sign out of @{session.user.username}
@@ -168,7 +168,7 @@ function AdminLoginPortal({ session }: { session: ReturnType<typeof authClient.u
 								onChange={(e) => setUsername(e.target.value)}
 								required
 								autoComplete="username"
-								placeholder="shawn"
+								placeholder="Username"
 								className="h-10 text-sm"
 							/>
 						</div>
@@ -185,7 +185,7 @@ function AdminLoginPortal({ session }: { session: ReturnType<typeof authClient.u
 									onChange={(e) => setPassword(e.target.value)}
 									required
 									autoComplete="current-password"
-									placeholder="!Password1"
+									placeholder="••••••••"
 									className="h-10 pe-10 text-sm"
 								/>
 								<button
