@@ -5,6 +5,7 @@ import { useCommandPaletteStore } from "../../store";
 import { BaseCommandGroup } from "../base";
 import { LanguageCommandPage } from "./language";
 import { ThemeCommandPage } from "./theme";
+import { selectableLocales } from "@/libs/locale";
 
 export function PreferencesCommandGroup() {
 	const pushPage = useCommandPaletteStore((state) => state.pushPage);
@@ -17,14 +18,16 @@ export function PreferencesCommandGroup() {
 					<Trans>Change theme to…</Trans>
 				</CommandItem>
 
-				<CommandItem onSelect={() => pushPage("language")}>
-					<Icon name="translate" size={16} />
-					<Trans>Change language to…</Trans>
-				</CommandItem>
+				{selectableLocales.length > 1 && (
+					<CommandItem onSelect={() => pushPage("language")}>
+						<Icon name="translate" size={16} />
+						<Trans>Change language to…</Trans>
+					</CommandItem>
+				)}
 			</BaseCommandGroup>
 
 			<ThemeCommandPage />
-			<LanguageCommandPage />
+			{selectableLocales.length > 1 && <LanguageCommandPage />}
 		</>
 	);
 }

@@ -1,4 +1,4 @@
-import { cleanup, render, screen, within } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 // @vitest-environment happy-dom
 // @vitest-environment-options {"url":"https://localhost:3000"}
 import { afterEach, expect, it, vi } from "vite-plus/test";
@@ -15,7 +15,7 @@ afterEach(() => {
 	window.history.replaceState(null, "", "/");
 });
 
-it("renders LanguageDoorway button with current language", async () => {
+it("does not render LanguageDoorway when single locale is configured", async () => {
 	await loadLocale("en-US");
 	render(
 		<I18nProvider i18n={i18n}>
@@ -23,7 +23,5 @@ it("renders LanguageDoorway button with current language", async () => {
 		</I18nProvider>,
 	);
 
-	const button = screen.getByRole("button", { name: "Change language" });
-	expect(button).toBeDefined();
-	expect(within(button).getByText("English")).toBeDefined();
+	expect(screen.queryByRole("button", { name: "Change language" })).toBeNull();
 });

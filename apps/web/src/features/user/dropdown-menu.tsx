@@ -96,21 +96,23 @@ export function UserDropdownMenu({ children }: Props) {
 					</DropdownMenuItem>
 					<DropdownMenuSeparator />
 					<DropdownMenuGroup>
-						<DropdownMenuSub>
-							<DropdownMenuSubTrigger>
-								<Icon name="translate" size={16} />
-								<Trans comment="Menu item that opens language selection submenu">Language</Trans>
-							</DropdownMenuSubTrigger>
-							<DropdownMenuSubContent className="max-h-[400px] overflow-y-auto">
-								<DropdownMenuRadioGroup value={i18n.locale} onValueChange={changeLocale}>
-									{selectableLocales.map((value) => (
-										<DropdownMenuRadioItem key={value} value={value}>
-											{i18n.t(localeMap[value])}
-										</DropdownMenuRadioItem>
-									))}
-								</DropdownMenuRadioGroup>
-							</DropdownMenuSubContent>
-						</DropdownMenuSub>
+						{selectableLocales.length > 1 && (
+							<DropdownMenuSub>
+								<DropdownMenuSubTrigger>
+									<Icon name="translate" size={16} />
+									<Trans comment="Menu item that opens language selection submenu">Language</Trans>
+								</DropdownMenuSubTrigger>
+								<DropdownMenuSubContent className="max-h-[400px] overflow-y-auto">
+									<DropdownMenuRadioGroup value={i18n.locale} onValueChange={changeLocale}>
+										{selectableLocales.map((value) => (
+											<DropdownMenuRadioItem key={value} value={value}>
+												{i18n.t(localeMap[value])}
+											</DropdownMenuRadioItem>
+										))}
+									</DropdownMenuRadioGroup>
+								</DropdownMenuSubContent>
+							</DropdownMenuSub>
+						)}
 
 						<DropdownMenuSub>
 							<DropdownMenuSubTrigger>

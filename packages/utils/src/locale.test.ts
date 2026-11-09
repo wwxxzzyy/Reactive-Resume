@@ -5,7 +5,7 @@ it("keeps the testing catalog valid without counting it as a supported translati
 	expect(isLocale("zu-ZA")).toBe(true);
 	expect(localeSchema.options).toContain("zu-ZA");
 	expect(supportedLocales).not.toContain("zu-ZA");
-	expect(supportedLocales).toContain("de-DE");
+	expect(supportedLocales).toContain("en-US");
 	expect(getLocaleAlternates("https://rxresu.me/")).toHaveLength(supportedLocales.length + 1);
 });
 
@@ -19,7 +19,7 @@ describe("locale URLs", () => {
 		const alternates = getLocaleAlternates("https://rxresu.me/");
 
 		expect(alternates).toContainEqual({ hreflang: "x-default", href: "https://rxresu.me/" });
-		expect(alternates).toContainEqual({ hreflang: "sr", href: "https://rxresu.me/?locale=sr-SP" });
+		expect(alternates).toContainEqual({ hreflang: "en-US", href: "https://rxresu.me/" });
 		expect(alternates.map((alternate) => alternate.hreflang)).not.toContain("zu-ZA");
 	});
 });

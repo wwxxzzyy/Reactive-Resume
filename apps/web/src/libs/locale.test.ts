@@ -15,49 +15,26 @@ afterEach(() => {
 	vi.restoreAllMocks();
 });
 
-describe("changeLocale", () => {
-	it.each([
-		["en-US", "de-DE", "?filter=modern&locale=de-DE&tag=one&tag=two"],
-		["de-DE", "en-US", "?filter=modern&tag=one&tag=two"],
-	])("replaces %s with %s and persists the choice", (initial, selected, search) => {
+describe("locale in English-only mode", () => {
+	it("always returns en-US and ignores changeLocale attempts", () => {
 		const state = { key: "current-page" };
-		window.history.replaceState(state, "", `/resume-templates?filter=modern&locale=${initial}&tag=one&tag=two#gallery`);
-		expect(getLocale()).toBe(initial);
+		window.history.replaceState(state, "", `/resume-templates?filter=modern&locale=de-DE&tag=one#gallery`);
+		expect(getLocale()).toBe("en-US");
 
-		changeLocale(selected);
+		changeLocale("de-DE");
 
-		expect(window.location.pathname).toBe("/resume-templates");
-		expect(window.location.search).toBe(search);
-		expect(window.location.hash).toBe("#gallery");
-		expect(window.history.state).toEqual(state);
-		expect(window.location.reload).toHaveBeenCalledOnce();
-		expect(Cookies.get("locale")).toBe(selected);
-		expect(getLocale()).toBe(selected);
-
-		window.history.pushState(null, "", "/dashboard");
-		expect(getLocale()).toBe(selected);
+		expect(getLocale()).toBe("en-US");
+		expect(window.location.reload).not.toHaveBeenCalled();
+		expect(Cookies.get("locale")).toBeUndefined();
 	});
 
-	it("reloads even when the selected locale has the same URL", () => {
-		window.history.replaceState(null, "", "/resume-templates#gallery");
-		Cookies.set("locale", "de-DE");
-
-		changeLocale("en-US");
-
-		expect(window.location.href).toBe("https://localhost:3000/resume-templates#gallery");
-		expect(window.location.reload).toHaveBeenCalledOnce();
+	it("returns en-US when cookie is set to another language", () => {
+		Cookies.set("locale", "zh-CN");
 		expect(getLocale()).toBe("en-US");
 	});
 
 	it.each([null, "", "invalid"])("ignores invalid selection %s", (value) => {
-		window.history.replaceState(null, "", "/resume-templates?locale=de-DE#gallery");
-		Cookies.set("locale", "de-DE");
-		const href = window.location.href;
-
 		changeLocale(value);
-
-		expect(window.location.href).toBe(href);
-		expect(Cookies.get("locale")).toBe("de-DE");
-		expect(window.location.reload).not.toHaveBeenCalled();
+		expect(getLocale()).toBe("en-US");
 	});
 });

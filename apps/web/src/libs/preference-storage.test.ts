@@ -11,18 +11,11 @@ describe("explicit browser preferences", () => {
 		window.history.replaceState(null, "", "/");
 	});
 
-	it("persists link language with an expiry, root path and SameSite", () => {
-		const writes = vi.spyOn(document, "cookie", "set");
+	it("retains en-US language in English-only mode", () => {
 		window.history.replaceState(null, "", "/?locale=de-DE");
-		expect(getLocale()).toBe("de-DE");
-		const cookie = document.cookie;
-		expect(cookie).toContain("locale=de-DE");
+		expect(getLocale()).toBe("en-US");
 		window.history.replaceState(null, "", "/dashboard");
-		expect(getLocale()).toBe("de-DE");
-		// Exercise js-cookie serialization and the real DOM cookie jar.
-		expect(writes.mock.calls.at(-1)?.[0]).toMatch(/expires=/i);
-		expect(writes.mock.calls.at(-1)?.[0]).toMatch(/path=\//i);
-		expect(writes.mock.calls.at(-1)?.[0]).toMatch(/SameSite=lax/i);
+		expect(getLocale()).toBe("en-US");
 	});
 
 	it("saves explicit theme through real cookies", () => {

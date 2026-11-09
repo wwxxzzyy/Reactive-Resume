@@ -9,55 +9,36 @@ afterEach(() => {
 	vi.clearAllMocks();
 });
 
-describe.each([false, true])("locale choices with development=%s", (development) => {
-	it("keeps the selected URL and cookie aligned after normalizing a test locale", async () => {
-		vi.stubEnv("DEV", development);
+describe("locale choices (English only mode)", () => {
+	it("retains en-US when trying to switch locale in English-only mode", async () => {
 		vi.resetModules();
-		const { changeLocale } = await import("./locale");
+		const { changeLocale, getLocale, selectableLocales } = await import("./locale");
 		const replaceState = vi.fn();
 		const reload = vi.fn();
 		const state = { key: "page" };
 		vi.stubGlobal("window", {
-			location: { href: "https://rxresu.me/?locale=zu-ZA&filter=one#section", reload },
+			location: { href: "https://rxresu.me/?locale=zu-ZA&filter=one#section", search: "", reload },
 			history: { state, replaceState },
 		});
 
-		changeLocale("zu-ZA");
+		expect(selectableLocales).toEqual(["en-US"]);
+		expect(getLocale()).toBe("en-US");
 
-		expect(cookies.set).toHaveBeenCalledWith("locale", development ? "zu-ZA" : "en-US", {
-			expires: 365,
-			path: "/",
-			sameSite: "lax",
-		});
-		expect(replaceState).toHaveBeenCalledWith(
-			state,
-			"",
-			development ? "https://rxresu.me/?locale=zu-ZA&filter=one#section" : "https://rxresu.me/?filter=one#section",
-		);
-		expect(reload).toHaveBeenCalledOnce();
+		changeLocale("zu-ZA");
+		expect(cookies.set).not.toHaveBeenCalled();
+		expect(reload).not.toHaveBeenCalled();
 	});
 
-	it("recovers stored and requested test locales in production, while preserving development testing", async () => {
-		vi.stubEnv("DEV", development);
+	it("always returns en-US regardless of stored cookie or query param", async () => {
 		vi.resetModules();
-		const { getLocale, getLocaleMessages, selectableLocales } = await import("./locale");
-		const { getLocaleOptions } = await import("@/features/locale/locale-options");
-		const { i18n } = await import("@lingui/core");
-		i18n.loadAndActivate(await getLocaleMessages("en-US"));
-		const expected = development ? "zu-ZA" : "en-US";
-		expect(selectableLocales.includes("zu-ZA")).toBe(development);
-		expect(getLocaleOptions().some(({ value }) => value === "zu-ZA")).toBe(development);
+		const { getLocale, getLocaleMessages } = await import("./locale");
 
 		vi.stubGlobal("window", { location: { search: "" } });
-		cookies.get.mockReturnValue("zu-ZA");
-		expect(getLocale()).toBe(expected);
-		expect((await getLocaleMessages(getLocale())).locale).toBe(expected);
+		cookies.get.mockReturnValue("de-DE");
+		expect(getLocale()).toBe("en-US");
+		expect((await getLocaleMessages(getLocale())).locale).toBe("en-US");
 
-		window.location.search = "?locale=zu-ZA";
-		expect(getLocale()).toBe(expected);
-		expect(cookies.set).toHaveBeenLastCalledWith("locale", expected, { expires: 365, path: "/", sameSite: "lax" });
-
-		window.location.search = "?locale=de-DE";
-		expect(getLocale()).toBe("de-DE");
+		window.location.search = "?locale=zh-CN";
+		expect(getLocale()).toBe("en-US");
 	});
 });

@@ -82,7 +82,11 @@ export function localizedUrl(pageUrl: string, locale?: Locale) {
 // Lingui's pseudo-locale (lingui.config.ts): accented, stretched English for testing layouts, not a translation.
 const pseudoLocale: Locale = "zu-ZA";
 
-export const supportedLocales: readonly Locale[] = localeSchema.options.filter((locale) => locale !== pseudoLocale);
+/** All translated locales in the repository. Keep here for quick re-enabling in the future. */
+export const allTranslatedLocales: readonly Locale[] = localeSchema.options.filter((locale) => locale !== pseudoLocale);
+
+/** Currently supported locales. Configured for English-only for now. */
+export const supportedLocales: readonly Locale[] = ["en-US"];
 
 /** hreflang alternates for a page: every real locale plus x-default. "sr-SP" isn't a valid region, so it's "sr". */
 export function getLocaleAlternates(pageUrl: string) {

@@ -3,7 +3,7 @@ import type { Locale } from "@reactive-resume/utils/locale";
 import { i18n } from "@lingui/core";
 import { msg } from "@lingui/core/macro";
 import Cookies from "js-cookie";
-import { defaultLocale, isLocale, localeSchema, localizedUrl, supportedLocales } from "@reactive-resume/utils/locale";
+import { defaultLocale, isLocale, localizedUrl, supportedLocales } from "@reactive-resume/utils/locale";
 
 const storageKey = "locale";
 const persistLocale = (locale: Locale) => Cookies.set(storageKey, locale, { expires: 365, path: "/", sameSite: "lax" });
@@ -75,7 +75,7 @@ export const localeMap = {
 	"zu-ZA": msg`Zulu`,
 } satisfies Record<Locale, MessageDescriptor>;
 
-export const selectableLocales = import.meta.env.DEV ? localeSchema.options : supportedLocales;
+export const selectableLocales = supportedLocales;
 
 export const resolveLocale = (locale: string): Locale => {
 	return isLocale(locale) && selectableLocales.includes(locale) ? locale : defaultLocale;
@@ -107,6 +107,8 @@ export function formatRelativeTime(value: Date | string, locale: string) {
 }
 
 export const getLocale = () => {
+	if (selectableLocales.length <= 1) return defaultLocale;
+
 	// A `?locale=` address (the homepage's hreflang alternates) picks the language and keeps it, like the switcher.
 	const requested = new URLSearchParams(window.location.search).get(storageKey);
 	if (isLocale(requested)) {
@@ -149,6 +151,7 @@ export const loadLocale = async (locale: string) => {
 };
 
 export const changeLocale = (value: string | null) => {
+	if (selectableLocales.length <= 1) return;
 	if (!value || !isLocale(value)) return;
 	const locale = resolveLocale(value);
 	persistLocale(locale);

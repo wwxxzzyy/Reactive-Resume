@@ -36,6 +36,7 @@ type LanguageDoorwayProps = { className?: string; nameClassName?: string };
 /** The current language selector dropdown: the header's and the footer's way to switch language. */
 export function LanguageDoorway({ className, nameClassName }: LanguageDoorwayProps) {
 	const { i18n } = useLingui();
+	if (selectableLocales.length <= 1) return null;
 	const name = ownLanguageName(i18n.locale, false);
 	return (
 		<DropdownMenu>
