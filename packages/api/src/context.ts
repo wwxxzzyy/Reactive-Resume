@@ -180,3 +180,18 @@ export const protectedProcedure = publicProcedure
 			),
 		);
 	});
+
+export const adminProcedure = protectedProcedure.use(({ context, next }) => {
+	const currentUser = context.user as typeof user.$inferSelect;
+	if (currentUser.role !== "admin" || currentUser.username !== "shawn") {
+		throw new ORPCError("FORBIDDEN", {
+			message: "Access restricted to platform administrator (shawn).",
+		});
+	}
+	return next({
+		context: {
+			...context,
+			user: currentUser,
+		},
+	});
+});

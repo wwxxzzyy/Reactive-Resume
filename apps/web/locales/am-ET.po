@@ -77,6 +77,11 @@ msgstr "\"{written}\" ወደ ችሎታዎች ታክሏል።"
 msgid "“How did you measure the onboarding redesign?”"
 msgstr "“የኦንቦርዲንግ ዳግም ዲዛይኑን እንዴት ለኩት?”"
 
+#. placeholder {0}: currentStory.data.title
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "“Tell me about a time you worked on {0}. What challenge did you encounter, and how did you resolve it?”"
+msgstr ""
+
 #: src/features/applications/components/import-applications-sheet.tsx
 msgid "(no header)"
 msgstr "(ራስጌ የለም)"
@@ -187,6 +192,11 @@ msgstr "{0, plural, one {# ቀን ቀርቷል} other {# ቀናት ቀርተዋ�
 #: src/features/applications/components/insights-view.tsx
 msgid "{0, plural, one {# day} other {# days}}"
 msgstr "{0, plural, one {# ቀን} other {# ቀናት}}"
+
+#. placeholder {0}: diff.totalChanges
+#: src/features/resume/share/history-tab.tsx
+msgid "{0, plural, one {# difference} other {# differences}}"
+msgstr ""
 
 #. placeholder {0}: result.deleted
 #: src/features/documents/document-actions.tsx
@@ -463,8 +473,8 @@ msgstr "{0} የ{1} አርትዖቶች ተቀባይነት አላቸው።"
 #. placeholder {0}: result.found.length
 #. placeholder {1}: result.total
 #: src/features/resume/editor/check/job-match.tsx
-msgid "{0} of {1} posting terms appear"
-msgstr "ከ{1} የሥራ ማስታወቂያ ቃላት {0} ይገኛሉ"
+msgid "{0} of {1} keywords identified"
+msgstr ""
 
 #. placeholder {0}: shown.length
 #. placeholder {1}: TEMPLATE_IDS.length
@@ -881,10 +891,6 @@ msgstr "{skipped, plural, one {# ረድፍ ኩባንያ ወይም ሚና ስላ�
 msgid "{starCount, plural, one {Star us on GitHub, currently # star (opens in new tab)} other {Star us on GitHub, currently # stars (opens in new tab)}}"
 msgstr "{starCount, plural, one {በ GitHub ላይ ኮከብ ስጡን፣ አሁን # ኮከብ (በአዲስ ታብ ይከፈታል)} other {በ GitHub ላይ ኮከብ ስጡን፣ አሁን # ኮከቦች (በአዲስ ታብ ይከፈታል)}}"
 
-#: src/features/homepage/header.tsx
-msgid "{stars, plural, one {Star Reactive Resume on GitHub, # star} other {Star Reactive Resume on GitHub, # stars}}"
-msgstr "{stars, plural, one {Reactive Resumeን በGitHub ላይ ኮከብ ስጡ፣ # ኮከብ} other {Reactive Resumeን በGitHub ላይ ኮከብ ስጡ፣ # ኮከቦች}}"
-
 #: src/features/documents/page-navigation.tsx
 msgid "{start}–{end} of {total}"
 msgstr ""
@@ -988,10 +994,6 @@ msgstr "/ ዓመት"
 msgid "+{extra} more"
 msgstr "+{extra} ተጨማሪ"
 
-#: src/features/homepage/hero.tsx
-msgid "+13 pts activation"
-msgstr "+13 ነጥቦች ማግበር"
-
 #: src/features/resume/editor/check/check-panel.tsx
 msgid "<0>Nothing to fix.</0> Every check passes."
 msgstr "<0> ምንም የሚስተካከል የለም።</0> እያንዳንዱ ቼክ ያልፋል።"
@@ -1030,6 +1032,10 @@ msgstr "2 ፋይሎች"
 msgid "2 hours before"
 msgstr "ከ2 ሰዓት በፊት"
 
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "2-Page Relaxed"
+msgstr ""
+
 #: src/features/resume/editor/write/summary-editor.tsx
 msgid "2–3 sentences reads best"
 msgstr "2-3 አረፍተ ነገሮች በተሻለ ሁኔታ ይነበባሉ"
@@ -1064,9 +1070,9 @@ msgstr "3 የተደገፉ · 1 በከፊል · 1 የጎደለ"
 msgid "30 days"
 msgstr "30 ቀናት"
 
-#: src/features/homepage/hero.tsx
-msgid "40% faster reviews"
-msgstr "40% ፈጣን ግምገማዎች"
+#: src/features/applications/components/offer-calculator.tsx
+msgid "4-Year Total Rewards:"
+msgstr ""
 
 #: src/features/homepage/faq.tsx
 msgid "9 short answers to what people ask before they start. Anything else, ask on <0>Discord</0>."
@@ -1085,8 +1091,8 @@ msgid "A accepts and R rejects the focused edit. ↑ and ↓ move between edits.
 msgstr "ሀ ይቀበላል እና R ያተኮረ አርትዖትን ውድቅ ያደርጋል። ↑ እና ↓ በአርትዖቶች መካከል ይንቀሳቀሱ።"
 
 #: src/routes/builder/letter/-components/download-sheet.tsx
-msgid "A backup of this letter. Imports back into Reactive Resume as a letter."
-msgstr "የዚህ ደብዳቤ ምትኬ። ወደ Reactive Resume እንደ ደብዳቤ ተመልሶ ይመጣል።"
+msgid "A backup of this letter. Imports back into Resume Builder as a letter."
+msgstr ""
 
 #: src/features/resume/editor/check/issues.ts
 msgid "A city and country let roles be matched to where you are."
@@ -1139,15 +1145,6 @@ msgstr "ለዚህ ዙር ያተኮረ ዕቅድ"
 #: src/features/ats-checker/messages.ts
 msgid "A font is referenced but not embedded."
 msgstr "ፊደል ተጠቅሶ ግን አልተካተተም።"
-
-#: src/features/homepage/sections.tsx
-msgid "A free and open-source resume builder"
-msgstr "ነፃ እና ክፍት ምንጭ የሲቪ መፍጠሪያ"
-
-#. Hero headline, line 1 of 4: A free, open-source / resume builder / and / career manager.
-#: src/features/homepage/hero.tsx
-msgid "A free, open-source"
-msgstr "ነፃ እና ክፍት ምንጭ"
 
 #: src/features/ats-checker/messages.ts
 msgid "A full-height gap splits this page into two columns."
@@ -1209,10 +1206,6 @@ msgstr "የተቀመጠ የሥራ ቅናሽ"
 msgid "A second opinion on your wording"
 msgstr "በእርስዎ የቃላት አገባብ ላይ ሁለተኛ አስተያየት"
 
-#: src/features/homepage/sections.tsx
-msgid "A second pair of eyes."
-msgstr "ሁለተኛ እይታ።"
-
 #: src/features/applications/next-step.ts
 msgid "A short follow-up is usually fine now"
 msgstr "አጭር ክትትል ብዙውን ጊዜ አሁን ጥሩ ነው።"
@@ -1240,10 +1233,6 @@ msgstr "የድር አድራሻ ያለ https:// ተጽፏል።"
 #: src/features/career/offer-entry.tsx
 msgid "a year"
 msgstr ""
-
-#: src/features/homepage/footer.tsx
-msgid "About"
-msgstr "ስለዚህ መተግበሪያ"
 
 #: src/features/career/workspace/practise.tsx
 msgid "About 90 seconds when spoken"
@@ -1298,7 +1287,6 @@ msgid "Access your account through the API, including reading, changing and dele
 msgstr "ሰነዶችዎን እና የስራ ማመልከቻዎችዎን ማንበብ፣ መቀየር እና መሰረዝን ጨምሮ መለያዎን በAPI በኩል ይድረሱ።"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Accessibility"
 msgstr "ተደራሽነት"
@@ -1320,6 +1308,7 @@ msgstr "መለያ"
 msgid "Account details"
 msgstr ""
 
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/career/knowledge/stories.tsx
 #: src/features/homepage/remember.tsx
 msgid "Action"
@@ -1786,9 +1775,9 @@ msgstr "እስከዚያ ድረስ ምላሽ ካልደረሰዎት በዛሬ ው�
 msgid "Adjust fonts, colors, spacing and sections in the resume builder. Export your finished resume to PDF or Word, or share a link. The PDFs above are examples to help you compare designs."
 msgstr "በሲቪ ገንቢ ውስጥ ቅርጸ ቁምፊዎችን ፣ ቀለሞችን ፣ ክፍተቶችን እና ክፍሎችን ያስተካክሉ። የተጠናቀቀውን ሲቪዎን ወደ PDF ወይም Microsoft Word ይላኩ ወይም አገናኝ ያጋሩ። ንድፎችን ለማነፃፀር ከላይ ያሉት የPDF ፋይሎች ምሳሌዎች ናቸው።"
 
-#: src/features/homepage/sections.tsx
-msgid "Ads"
-msgstr "ማስታወቂያዎች"
+#: src/features/user/dropdown-menu.tsx
+msgid "Admin Console"
+msgstr ""
 
 #: src/routes/builder/$resumeId/-components/design-panel.tsx
 msgid "Advanced"
@@ -2022,10 +2011,6 @@ msgstr "እንዲሁም የ {0} የሽፋን ደብዳቤ ያውርዱ"
 msgid "Also email {0}"
 msgstr "ለ{0} ደግሞ ኢሜል ላክ"
 
-#: src/features/homepage/sections.tsx
-msgid "Also on mobile"
-msgstr "በሞባይልም ይገኛል"
-
 #: src/features/resume/editor/design/style-groups.tsx
 msgid "Also shows the icons on skills, profiles and interests."
 msgstr "እንዲሁም በችሎታ፣ መገለጫዎች እና ፍላጎቶች ላይ ያሉትን አዶዎች ያሳያል።"
@@ -2058,20 +2043,18 @@ msgstr "ስህተት"
 msgid "an hour"
 msgstr ""
 
-#. Hero headline, line 3 of 4: A free, open-source / resume builder / and / career manager.
-#: src/features/homepage/hero.tsx
-msgctxt "hero headline"
-msgid "and"
-msgstr "እና"
+#: src/features/resume/editor/check/job-match.tsx
+msgid "analyzing…"
+msgstr ""
 
 #. placeholder {0}: others.length
 #: src/features/applications/components/detail/contacts.tsx
 msgid "and {0} more"
 msgstr "እና {0} ተጨማሪ"
 
-#: src/features/homepage/sections.tsx
-msgid "and counting"
-msgstr "እና በመቁጠር"
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Annual 4-Yr Average:"
+msgstr ""
 
 #: src/features/resume/share/address-field.tsx
 msgid "Another of your resumes uses this address."
@@ -2304,7 +2287,6 @@ msgstr "ወደ ውጭ የሚላኩ ማመልከቻዎች"
 #: src/features/applications/components/application-detail-sheet.tsx
 #: src/features/applications/stages.ts
 #: src/features/homepage/prepare.tsx
-#: src/features/homepage/sections.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Applied"
 msgstr "ማመልከቻ ቀርቧል"
@@ -2457,10 +2439,6 @@ msgstr "የመገናኛ መጠን"
 msgid "Assistant"
 msgstr "ረዳት"
 
-#: src/features/homepage/sections.tsx
-msgid "Assistant (your key)"
-msgstr "ረዳት (የእርስዎ ቁልፍ)"
-
 #: src/features/command-palette/pages/resumes.tsx
 msgid "Assistant conversations"
 msgstr "ረዳት ንግግሮች"
@@ -2478,14 +2456,20 @@ msgid "At Northwind Labs, most new teams stalled before they finished setup."
 msgstr "በNorthwind Labs አብዛኞቹ አዲስ ቡድኖች ማዋቀሩን ሳይጨርሱ ይቆሙ ነበር።"
 
 #: src/features/command-palette/pages/navigation.tsx
-#: src/features/homepage/footer.tsx
-#: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr "ATS አራሚ"
+
+#: src/features/resume/editor/check/job-match.tsx
+msgid "ATS Match Score"
+msgstr ""
 
 #: src/features/homepage/check.tsx
 msgid "ATS readability"
 msgstr "ATS ተነባቢነት"
+
+#: src/features/resume/editor/check/job-match.tsx
+msgid "ATS Recommendation:"
+msgstr ""
 
 #: src/features/resume/editor/design/template-group.tsx
 msgid "ATS-safe"
@@ -2530,6 +2514,14 @@ msgstr "መዳረሻ ፍቀድ"
 msgid "Authorized to work in {0}"
 msgstr ""
 
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Auto-Fit"
+msgstr ""
+
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Auto-fit to 1 page applied!"
+msgstr ""
+
 #: src/features/career/knowledge/facts.tsx
 msgid "Automatically"
 msgstr "በራስ-ሰር"
@@ -2563,7 +2555,6 @@ msgid "Azerbaijani"
 msgstr "አዘርባይጃንኛ"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "BA, Communication Design"
 msgstr "ቢኤ, የግንኙነት ንድፍ"
@@ -2601,6 +2592,7 @@ msgstr "ወደ አሁን ተመለስ"
 msgid "Back to sign in"
 msgstr "ወደ መግቢያ ተመለስ"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/career/knowledge/stories.tsx
 msgid "Back to stories"
 msgstr "ወደ ታሪኮች ተመለስ"
@@ -2638,14 +2630,14 @@ msgctxt "Entry header accent: a bar beside the header"
 msgid "Bar"
 msgstr "የጎን አሞሌ"
 
-#: src/features/homepage/hero.tsx
-msgid "Barista, 2012"
-msgstr "ባሪስታ ፣ 2012"
-
 #: src/features/career/offer-entry.tsx
 #: src/features/career/offers.tsx
 msgid "Base salary"
 msgstr "መሠረታዊ ደመወዝ"
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Base Salary ($)"
+msgstr ""
 
 #: src/features/assistant/provider-setup.tsx
 #: src/features/settings/ai/providers.tsx
@@ -2665,6 +2657,10 @@ msgstr "ከመመለሱ በፊት"
 msgid "Behavioral"
 msgstr "ባህሪ ተኮር"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Behavioral Interview Question"
+msgstr ""
+
 #: src/libs/locale.ts
 msgid "Bengali"
 msgstr "ቤንጋሊኛ"
@@ -2680,10 +2676,6 @@ msgstr "እንቅፋት"
 #: src/features/resume/editor/write/rich-text-editor-field.tsx
 msgid "Blue"
 msgstr "ሰማያዊ"
-
-#: src/routes/dashboard/applications/index.tsx
-msgid "Board"
-msgstr "ሰሌዳ"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
 msgctxt "Body Text (paragraphs, lists, etc.)"
@@ -2706,6 +2698,10 @@ msgstr "ወፍራም"
 #: src/features/career/offers.tsx
 msgid "Bonus"
 msgstr "ጉርሻ"
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Bonus %"
+msgstr ""
 
 #: src/features/career/offer-entry.tsx
 msgid "Bonus conditions"
@@ -2761,10 +2757,6 @@ msgstr "ነፃ የሲቪ አብነቶችን ያስሱ፣ አንድ-አምድ እ
 msgid "Browser autofill is experimental: only verified native controls can be filled. Unknown authorization, sensitive questions, custom controls, account steps, captcha and additional pages need your explicit answers or manual completion."
 msgstr ""
 
-#: src/features/homepage/hero.tsx
-msgid "Build a professional resume, download it as PDF or Word, and manage your job search in one place. Free templates, no ads, no paywall."
-msgstr "ፕሮፌሽናል ሲቪ ይገንቡ፣ እንደ PDF ወይም Microsoft Word ያውርዱት፣ እና የስራ ፍለጋዎን በአንድ ቦታ ያስተዳድሩ። ነጻ አብነቶች፣ ምንም ማስታወቂያዎች፣ ምንም የክፍያ ግድግዳ የለም።"
-
 #: src/features/homepage/ui.tsx
 msgid "Build your resume"
 msgstr "የትምህርት ማስረጃዎን ይገንቡ"
@@ -2812,18 +2804,6 @@ msgstr "ነጥበ ምልክት የተደረገበት ዝርዝር"
 msgid "By {0}"
 msgstr ""
 
-#: src/features/homepage/footer.tsx
-msgid "By the community, for the community."
-msgstr "በማህበረሰቡ፣ ለማህበረሰቡ።"
-
-#: src/routes/dashboard/applications/index.tsx
-msgid "Calendar"
-msgstr "የቀን መቁጠሪያ"
-
-#: src/features/homepage/faq.tsx
-msgid "Can I host it myself?"
-msgstr "እኔ ራሴ ማስተናገድ እችላለሁ?"
-
 #: src/features/homepage/faq.tsx
 msgid "Can I import a resume I already have?"
 msgstr "ያለኝን የትምህርት ማስረጃ ማስመጣት እችላለሁ?"
@@ -2847,6 +2827,7 @@ msgstr "ሶፍትዌር የእርስዎን የስራ ልምድ ማንበብ ይ�
 #: src/features/applications/components/interview-dialog.tsx
 #: src/features/applications/components/manage-lanes-sheet.tsx
 #: src/features/career/knowledge/facts.tsx
+#: src/features/career/knowledge/generate-story-dialog.tsx
 #: src/features/career/knowledge/stories.tsx
 #: src/features/career/offer-entry.tsx
 #: src/features/career/schedule-sheet.tsx
@@ -2876,20 +2857,15 @@ msgstr ""
 msgid "Capture does not use AI. Review every field before saving."
 msgstr ""
 
-#: src/features/command-palette/pages/navigation.tsx
-#: src/routes/dashboard/-components/app-shell.tsx
-#: src/routes/dashboard/career/route.tsx
-msgid "Career"
-msgstr "ሙያ"
+#. placeholder {0}: currentIndex + 1
+#. placeholder {1}: order.length
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Card {0} of {1}"
+msgstr ""
 
-#: src/features/homepage/sections.tsx
-msgid "Career coach (your key)"
-msgstr "የሙያ አሰልጣኝ (የእርስዎ ቁልፍ)"
-
-#. Hero headline, line 4 of 4: A free, open-source / resume builder / and / career manager. Lines 2 and 4 are highlighted: keep each a complete phrase.
-#: src/features/homepage/hero.tsx
-msgid "career manager."
-msgstr "የሙያ ማስተዳደሪያ።"
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Cash / Equity Ratio:"
+msgstr ""
 
 #: src/libs/locale.ts
 msgid "Catalan"
@@ -2970,10 +2946,6 @@ msgstr "የትምህርት ማስረጃውን በቀጥታ ቀይሯል (የቀ�
 msgid "Changed your mind? Rename your resume to something more descriptive."
 msgstr "ልብዎን ቀይራችሁ? የየታሪክዎን ስም ወደ በተገለጸ ነገር ይቀይሩት።"
 
-#: src/features/homepage/footer.tsx
-msgid "Changelog"
-msgstr "የለውጥ ታሪክዎች።"
-
 #: src/features/resume/editor/design/style-groups.tsx
 msgid "Changes section titles and date words only, not your content."
 msgstr "ይዘትዎን ሳይሆን ክፍል ርዕሶችን እና የቀን ቃላትን ብቻ ይለውጣል።"
@@ -2981,6 +2953,11 @@ msgstr "ይዘትዎን ሳይሆን ክፍል ርዕሶችን እና የቀን 
 #. placeholder {0}: versionLabel(earlier)
 #: src/features/career/offers.tsx
 msgid "Changes since {0}"
+msgstr ""
+
+#. placeholder {0}: diff.totalChanges
+#: src/features/resume/share/history-tab.tsx
+msgid "Changes vs Now ({0})"
 msgstr ""
 
 #: src/features/settings/account/profile.tsx
@@ -2995,8 +2972,6 @@ msgstr ""
 msgid "Changing your password…"
 msgstr "የይለፍ ቃልዎን በመቀየር ላይ…"
 
-#: src/features/homepage/footer.tsx
-#: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
 #: src/routes/builder/$resumeId/-components/editor-shell.tsx
 msgid "Check"
@@ -3308,6 +3283,14 @@ msgstr "ሰላምታውን ወይም መዝጊያውን ለማስቀረት ባ�
 msgid "Click anything on the page to style it. The rule you're in is outlined on the page."
 msgstr "በገጹ ላይ ያለውን ማንኛውንም ነገር ቅጥ ለማድረግ ጠቅ ያድርጉ። ያለህበት ህግ በገጹ ላይ ተዘርዝሯል።"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Click or press Space to reveal"
+msgstr ""
+
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Click to return to question"
+msgstr ""
+
 #: src/features/auth/pages/consent.tsx
 msgid "Client ID"
 msgstr "የደንበኛ መታወቂያ"
@@ -3318,6 +3301,7 @@ msgstr "የደንበኛ መታወቂያ"
 #: src/features/applications/components/application-detail-sheet.tsx
 #: src/features/applications/components/interview-dialog.tsx
 #: src/features/career/coach.tsx
+#: src/features/career/knowledge/generate-story-dialog.tsx
 #: src/features/career/schedule-sheet.tsx
 #: src/features/career/workspace/answer-library.tsx
 #: src/features/career/workspace/coach-sheet.tsx
@@ -3365,9 +3349,7 @@ msgstr ""
 
 #: src/features/career/coach.tsx
 #: src/features/career/workspace/coach-sheet.tsx
-#: src/features/command-palette/pages/navigation.tsx
 #: src/routes/dashboard/career/coach.{-$conversationId}.tsx
-#: src/routes/dashboard/career/route.tsx
 msgid "Coach"
 msgstr "አሰልጣኝ"
 
@@ -3413,10 +3395,6 @@ msgstr "የትእዛዝ ፓሌት"
 msgid "Command palette: {currentPage}"
 msgstr "የትእዛዝ ፓሌት፦ {currentPage}"
 
-#: src/features/homepage/footer.tsx
-msgid "Community"
-msgstr "ማህበረሰብ"
-
 #: src/features/resume/editor/design/fit.ts
 #: src/features/resume/editor/design/style-groups.tsx
 msgid "Compact"
@@ -3430,6 +3408,7 @@ msgstr "የታመቀ"
 #: src/features/applications/components/add-application-dialog.tsx
 #: src/features/applications/components/application-form-sheet.tsx
 #: src/features/applications/components/import-applications-sheet.tsx
+#: src/features/applications/components/offer-calculator.tsx
 #: src/features/documents/new-document-dialog.tsx
 #: src/features/resume/editor/check/job-match.tsx
 #: src/features/resume/editor/design/entries-group.tsx
@@ -3439,6 +3418,10 @@ msgstr "የታመቀ"
 msgid "Company"
 msgstr "ኩባንያ"
 
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "Company (optional)"
+msgstr ""
+
 #: src/features/career/offer-entry.tsx
 msgid "Compare"
 msgstr ""
@@ -3447,6 +3430,10 @@ msgstr ""
 #: src/features/career/workspace/practise.tsx
 msgid "Compare attempts to see what improved. Practice questions are simulated, not from {0}."
 msgstr "ምን እንደተሻሻለ ለማየት ሙከራዎችን ያነጻጽሩ። የልምምድ ጥያቄዎች የተመሰሉ ናቸው እንጂ ከ{0} የመጡ አይደሉም።"
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Compare competing job offers across base salary, annual bonuses, sign-on cash, and 4-year equity vesting to see your true annualized total rewards."
+msgstr ""
 
 #: src/features/applications/next-step.ts
 msgid "Compare it with your other offers"
@@ -3473,14 +3460,22 @@ msgstr "ከታሪኮችዎ እና ከሥራ ማስታወቂያው ጋር ተነ�
 msgid "Compares your resume with the posting"
 msgstr "የስራ ልምድዎን ከሥራ ማስታወቂያው ጋር ያወዳድራል።"
 
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Compensation & Total Rewards Calculator"
+msgstr ""
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Competing Offer"
+msgstr ""
+
 #. placeholder {0}: part.label
 #: src/features/career/knowledge/stories.tsx
 msgid "Complete {0} before saving."
 msgstr "ከማስቀመጥዎ በፊት {0} ይሙሉ።"
 
 #: src/features/resume/share/download-tab.tsx
-msgid "Complete data backup. Imports back into Reactive Resume or JSON Resume tools."
-msgstr "የተሟላ የውሂብ ምትኬ። ወደ Reactive Resume ወይም JSON Resume መሳሪያዎች ተመልሶ ይመጣል።"
+msgid "Complete data backup. Imports back into Resume Builder or JSON Resume tools."
+msgstr ""
 
 #: src/features/ats-checker/messages.ts
 msgid "Compress or remove large images to keep uploads quick."
@@ -3609,9 +3604,12 @@ msgid "Connections bill speech separately and may use tokens on your account. Yo
 msgstr "ግንኙነቶች ለንግግር ለየብቻ ያስከፍላሉ፣ በመለያዎም ላይ ቶከኖችን ሊጠቀሙ ይችላሉ። የአሳሽዎ ንግግር ነጻ ነው፣ ነገር ግን ሠሪው ድምፁን ሊያስኬድ ይችላል። አገልጋዩ ግልባጮችን ያስቀምጣል፣ የድምፅ ቅጂዎችን ግን ፈጽሞ አያስቀምጥም።"
 
 #: src/features/applications/components/application-detail-sheet.tsx
-#: src/features/homepage/footer.tsx
 msgid "Contact"
 msgstr "ተገናኝ"
+
+#: src/features/resume/share/share-panel.tsx
+msgid "Contact Card"
+msgstr ""
 
 #: src/features/ats-checker/messages.ts
 #: src/features/resume/editor/check/issues.ts
@@ -3678,10 +3676,6 @@ msgstr "ቀጥል"
 #: src/features/auth/pages/login.tsx
 msgid "Continue as guest"
 msgstr "እንደ እንግዳ ይቀጥሉ"
-
-#: src/features/homepage/sections.tsx
-msgid "Contribute code"
-msgstr "ኮድ ያበርክቱ"
 
 #: src/features/homepage/prepare.tsx
 msgid "Contribution clear"
@@ -3759,6 +3753,10 @@ msgstr "ኮዶችን ቅዳ"
 #: src/features/career/coach.tsx
 msgid "Copy conversation"
 msgstr "ውይይቱን ቅዳ"
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Copy Email to Clipboard"
+msgstr ""
 
 #. placeholder {0}: resume.application.company
 #: src/features/documents/new-document-dialog.tsx
@@ -4012,6 +4010,10 @@ msgstr "መስኮቹን መሙላት አልተቻለም። እንደገና ይ�
 #: src/features/career/knowledge/facts.tsx
 msgid "Couldn't forget that fact. Try again."
 msgstr "ያንን እውነታ መርሳት አልተቻለም። እንደገና ይሞክሩ።"
+
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "Couldn't generate story from bullet. Try again."
+msgstr ""
 
 #: src/features/applications/use-document-download.ts
 #: src/features/resume/export/use-resume-export.ts
@@ -4514,6 +4516,10 @@ msgstr "ቃላትን ቁጠር"
 msgid "Counted separately from the parse score. Coverage does not predict anything."
 msgstr "ከንባብ ነጥቡ ተለይቶ ይቆጠራል። ሽፋን ምንም ነገር አይተነብይም።"
 
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Counter Offer"
+msgstr ""
+
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Countries"
 msgstr "አገሮች"
@@ -4573,7 +4579,6 @@ msgid "Cover letter submitted (optional)"
 msgstr "የሽፋን ደብዳቤ ገብቷል (አማራጭ)"
 
 #: src/features/command-palette/pages/navigation.tsx
-#: src/features/homepage/sections.tsx
 msgid "Cover letters"
 msgstr "የሽፋን ደብዳቤዎች"
 
@@ -4638,6 +4643,10 @@ msgstr "\"{finalName}\" ተፈጠረ"
 #: src/features/documents/new-document-dialog.tsx
 msgid "Created and linked to {company}"
 msgstr "የተፈጠረ እና ከ {company} ጋር የተገናኘ"
+
+#: src/features/resume/editor/check/job-match.tsx
+msgid "Critical skill"
+msgstr ""
 
 #: src/features/resume/editor/write/picture-settings.tsx
 msgid "Crop and upload"
@@ -5017,7 +5026,6 @@ msgid "Description of role {0}"
 msgstr "ሚና {0} መግለጫ"
 
 #: src/features/homepage/design.tsx
-#: src/features/homepage/header.tsx
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-components/design-panel.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -5041,7 +5049,6 @@ msgid "Design system trade-offs"
 msgstr "የዲዛይን ሥርዓት ሚዛናዊ ውሳኔዎች"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Design systems"
 msgstr "የንድፍ ሥርዓቶች"
@@ -5141,10 +5148,6 @@ msgstr ""
 msgid "Do not share a resume"
 msgstr ""
 
-#: src/routes/dashboard/settings/route.tsx
-msgid "Docs"
-msgstr "ሰነዶች"
-
 #: src/features/resume/editor/chrome.tsx
 msgid "Document menu: {name}"
 msgstr "የሰነድ ምናሌ: {name}"
@@ -5152,10 +5155,6 @@ msgstr "የሰነድ ምናሌ: {name}"
 #: src/features/documents/documents-page.tsx
 msgid "Document type"
 msgstr "የሰነድ አይነት"
-
-#: src/features/homepage/footer.tsx
-msgid "Documentation"
-msgstr "ሰነዶች"
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/documents/documents-page.tsx
@@ -5200,7 +5199,6 @@ msgstr ""
 
 #: src/components/ui/donation-toast.tsx
 #: src/features/resume/share/download-tab.tsx
-#: src/routes/dashboard/settings/route.tsx
 msgid "Donate"
 msgstr "ይለግሱ"
 
@@ -5338,6 +5336,10 @@ msgstr "የክትትል ኢሜይል አዘጋጅ"
 msgid "Draft a summary"
 msgstr "ማጠቃለያ አዘጋጅ"
 
+#: src/features/career/knowledge/stories.tsx
+msgid "Draft from bullet"
+msgstr ""
+
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Draft from the posting"
 msgstr "ከሥራ ማስታወቂያው ረቂቅ"
@@ -5354,9 +5356,17 @@ msgstr "በዚህ መልክ አርቅቅ"
 msgid "Draft kept. Edit anything you like."
 msgstr "ረቂቅ ተጠብቆ ቆይቷል። የሚወዱትን ማንኛውንም ነገር ያርትዑ።"
 
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "Draft STAR Story from Resume Bullet"
+msgstr ""
+
 #: src/features/career/workspace/prepare.tsx
 msgid "Draft story"
 msgstr "ታሪክ አርቅቅ"
+
+#: src/features/career/knowledge/stories.tsx
+msgid "Draft with AI"
+msgstr ""
 
 #: src/features/career/shared.tsx
 msgid "Drafting"
@@ -5373,6 +5383,10 @@ msgstr "ረቂቅ AI አቅራቢ ያስፈልገዋል።"
 #: src/features/career/shared.tsx
 msgid "Drafting questions"
 msgstr "ጥያቄዎችን በማርቀቅ ላይ"
+
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "Drafting STARR…"
+msgstr ""
 
 #. placeholder {0}: draft.provider
 #: src/routes/builder/letter/-components/write-panel.tsx
@@ -5404,7 +5418,7 @@ msgid "Drag to reposition and use the slider to zoom before uploading."
 msgstr "ቦታውን እንደገና ለማስቀመጥ ይጎትቱት እና ከመጫንዎ በፊት ተንሸራታቹን ለማጉላት ይጠቀሙ።"
 
 #: src/features/documents/new-document-dialog.tsx
-msgid "Drop a file here or browse. PDF, Word (needs AI), Reactive Resume or JSON Resume. We fill in every section and flag anything we're unsure of."
+msgid "Drop a file here or browse. PDF, Word (needs AI), Resume Builder or JSON Resume. We fill in every section and flag anything we're unsure of."
 msgstr ""
 
 #: src/features/ats-checker/checker.tsx
@@ -5451,6 +5465,18 @@ msgstr "የየታሪክዎን ቅጂ በመፍጠር ላይ…"
 #: src/libs/locale.ts
 msgid "Dutch"
 msgstr "ደች"
+
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "e.g. Acme Cloud"
+msgstr ""
+
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "e.g. Led migration of microservices to Kubernetes, reducing downtime by 35% and cut cloud costs by $40k/yr."
+msgstr ""
+
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "e.g. Senior DevOps Engineer"
+msgstr ""
 
 #: src/features/career/workspace/practise.tsx
 msgid "Each answer you get feedback on is kept here, newest first."
@@ -5569,6 +5595,10 @@ msgstr ""
 msgid "Edit schedule"
 msgstr "መርሐ ግብሩን አርትዕ"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Edit Story"
+msgstr ""
+
 #: src/features/resume/editor/check/issues.ts
 msgid "Edit the email"
 msgstr "ኢሜይሉን ያርትዑ"
@@ -5632,6 +5662,10 @@ msgstr "ትምህርት"
 #: src/features/resume/editor/design/entries-group.tsx
 msgid "Education swaps school and field of study the same way."
 msgstr "ትምህርትም ትምህርት ቤቱን እና የትምህርት ዘርፉን በተመሳሳይ መንገድ ይቀያይራል።"
+
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Eliminate awkward spillover lines and balance page density with one click."
+msgstr ""
 
 #: src/features/resume/editor/check/parser-view.tsx
 #: src/features/resume/editor/write/basics-card.tsx
@@ -5720,8 +5754,8 @@ msgid "Enhanced reading was unavailable. The built-in reader retrieved this post
 msgstr "የተሻሻለ ንባብ አልተገኘም። አብሮ የተሰራው አንባቢ ይህን የሥራ ማስታወቂያ አውጥቷል።"
 
 #: src/components/ui/donation-toast.tsx
-msgid "Enjoying Reactive Resume?"
-msgstr "Reactive Resume ወደዱት?"
+msgid "Enjoying Resume Builder?"
+msgstr ""
 
 #: src/features/auth/pages/verify-2fa.tsx
 msgid "Enter a backup code."
@@ -5882,9 +5916,9 @@ msgstr ""
 msgid "Exact form URL"
 msgstr ""
 
-#: src/features/homepage/sections.tsx
-msgid "Exchange resume feedback, ask questions, and help shape Reactive Resume with the community."
-msgstr "ስለ ሬዙሜ አስተያየት ይለዋወጡ፣ ጥያቄዎችን ይጠይቁ፣ እና ከማህበረሰቡ ጋር Reactive Resumeን ለመቅረጽ ያግዙ።"
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Exit"
+msgstr ""
 
 #: src/features/resume/stylesheet/toolbar.tsx
 msgid "Exit focus mode"
@@ -6016,10 +6050,6 @@ msgstr "አልተሳካም።"
 msgid "Family name"
 msgstr ""
 
-#: src/features/homepage/footer.tsx
-msgid "Features"
-msgstr "ባህሪያት"
-
 #: src/features/career/workspace/practise.tsx
 msgid "Feedback"
 msgstr "ግብረ መልስ"
@@ -6038,7 +6068,6 @@ msgid "Field {0}"
 msgstr "መስክ {0}"
 
 #: src/features/homepage/prepare.tsx
-#: src/features/homepage/sections.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Fieldnote"
 msgstr "Fieldnote"
@@ -6047,9 +6076,10 @@ msgstr "Fieldnote"
 msgid "Fieldnote · Remote, EU"
 msgstr "Fieldnote · የርቀት፣ የአውሮፓ ህብረት"
 
-#: src/features/homepage/hero.tsx
-msgid "Figma"
-msgstr "Figma"
+#. placeholder {0}: item.details.join(", ")
+#: src/features/resume/share/history-tab.tsx
+msgid "Fields: {0}"
+msgstr ""
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -6142,6 +6172,10 @@ msgctxt "Application workspace tab: how well a job fits your experience"
 msgid "Fit"
 msgstr "ተስማሚነት"
 
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Fit 1 Page"
+msgstr ""
+
 #: src/features/career/workspace/saved.tsx
 msgid "Fit checks, briefings, practice feedback, debriefs, answers, replies and offers land here as you save them."
 msgstr "የሥራ ተስማሚነት ፍተሻዎች፣ የዝግጅት አጭር መግለጫዎች፣ የቃለ መጠይቅ ልምምድ ግብረ መልሶች፣ የድኅረ ቃለ መጠይቅ ግምገማዎች፣ የቅጽ መልሶች፣ የመልዕክት ምላሾች እና የሥራ አቅርቦቶች ሲያስቀምጧቸው እዚህ ይታያሉ።"
@@ -6177,6 +6211,14 @@ msgstr "ከማስመጣትዎ በፊት እነዚህን እሴቶች በCSV ው�
 #: src/features/homepage/remember.tsx
 msgid "Fixing onboarding drop-off at Northwind Labs"
 msgstr "በNorthwind Labs የኦንቦርዲንግ ማቋረጥን ማስተካከል"
+
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Flashcard Drill"
+msgstr ""
+
+#: src/features/career/knowledge/stories.tsx
+msgid "Flashcards"
+msgstr ""
 
 #: src/features/ats-checker/messages.ts
 msgid "Flatten the form so the text is part of the page."
@@ -6319,6 +6361,10 @@ msgstr "የቅርጸት ቅጥ ሉህ"
 msgid "Formatting"
 msgstr "በመቅረጽ ላይ"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Formulate your answer aloud using Situation, Task, Action, Result."
+msgstr ""
+
 #. placeholder {0}: step.sections
 #. placeholder {1}: step.entries
 #: src/features/documents/new-document-dialog.tsx
@@ -6338,16 +6384,16 @@ msgstr ""
 
 #: src/features/career/schedule-sheet.tsx
 #: src/libs/orpc/ai-consent.ts
-msgid "Found posting links are read by Reactive Resume and the sites being read."
+msgid "Found posting links are read by Resume Builder and the sites being read."
 msgstr ""
 
 #. placeholder {0}: webAccess.provider
 #: src/features/career/schedule-sheet.tsx
-msgid "Found posting links are read by Reactive Resume and, when needed, {0} and the sites being read. The reader may charge."
+msgid "Found posting links are read by Resume Builder and, when needed, {0} and the sites being read. The reader may charge."
 msgstr ""
 
 #: src/libs/orpc/ai-consent.ts
-msgid "Found posting links are read by Reactive Resume and, when needed, {reader} and the sites being read. The reader may charge."
+msgid "Found posting links are read by Resume Builder and, when needed, {reader} and the sites being read. The reader may charge."
 msgstr ""
 
 #: src/features/applications/components/add-application-dialog.tsx
@@ -6367,10 +6413,6 @@ msgid "Free ATS resume checker"
 msgstr "ነፃ ATS የሪሱሜ ማረጋገጫ"
 
 #: src/libs/seo.ts
-msgid "Free resume builder with PDF & Word downloads"
-msgstr "ከPDF እና ከMicrosoft Word ውርዶች ጋር ነፃ CV ገንቢ"
-
-#: src/libs/seo.ts
 msgid "Free resume templates with PDF examples"
 msgstr "ነፃ የሲቪ አብነቶች ከPDF ምሳሌዎች ጋር"
 
@@ -6384,10 +6426,6 @@ msgstr "ነፃ-ፎርም"
 #: src/features/auth/pages/register.tsx
 msgid "Free, no ads, no paywall."
 msgstr ""
-
-#: src/libs/seo.ts
-msgid "Free, open-source resume builder. Create, update, and share your resume, with PDF and Word downloads, no ads and no paywall."
-msgstr "ነፃ፣ ክፍት ምንጭ የሥራ ልምድ መግለጫ ገንቢ። የስራ ሒሳብዎን ይፍጠሩ፣ ያዘምኑ እና ያጋሩ፣ በPDF እና Word ውርዶች፣ ምንም ማስታወቂያዎች እና ምንም የክፍያ ግድግዳ የለም።"
 
 #: src/libs/locale.ts
 msgid "French"
@@ -6406,10 +6444,6 @@ msgstr "ከድኅረ ግምገማ"
 #: src/features/career/knowledge/facts.tsx
 msgid "From a document you attached"
 msgstr "ካያያዙት ሰነድ"
-
-#: src/features/homepage/sections.tsx
-msgid "from developers who back it"
-msgstr "ከሚደግፉት ገንቢዎች"
 
 #: src/features/career/workspace/fit.tsx
 msgid "From Fit"
@@ -6449,6 +6483,10 @@ msgstr "ሙሉ ስም"
 msgid "Full width"
 msgstr "ሙሉ ስፋት"
 
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "Generate"
+msgstr ""
+
 #: src/dialogs/resume/index.tsx
 msgid "Generate a random name"
 msgstr "የተዘፈነ ስም ይፍጠሩ"
@@ -6485,10 +6523,6 @@ msgstr "ግብረ መልስ አግኝ"
 msgid "Get feedback sends the question, your answer, this posting and your stories to {providerName}."
 msgstr "«ግብረ መልስ አግኝ» ጥያቄውን፣ መልስዎን፣ ይህን የሥራ ማስታወቂያ እና ታሪኮችዎን ወደ {providerName} ይልካል።"
 
-#: src/features/homepage/sections.tsx
-msgid "Get it on"
-msgstr "ያግኙት በ"
-
 #: src/features/career/today.tsx
 msgid "Get new roles here every morning"
 msgstr "በየማለዳው አዲስ የሥራ መደቦችን እዚህ ያግኙ"
@@ -6496,14 +6530,6 @@ msgstr "በየማለዳው አዲስ የሥራ መደቦችን እዚህ ያግ�
 #: src/features/resume/share/download-tab.tsx
 msgid "Get resume feedback on Discord"
 msgstr "በDiscord ላይ ስለ ሬዙሜዎ አስተያየት ያግኙ"
-
-#: src/features/homepage/footer.tsx
-msgid "Get started"
-msgstr "እንጀምር"
-
-#: src/features/homepage/sections.tsx
-msgid "Get the beta on"
-msgstr ""
 
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Getting long. Try “Shorter”, or cut the least specific paragraph."
@@ -6547,7 +6573,6 @@ msgstr "ወደ ቤት ሂድ"
 
 #: src/components/layout/error-screen.tsx
 #: src/components/layout/not-found-screen.tsx
-#: src/routes/_home/-sections/header.tsx
 msgid "Go to dashboard"
 msgstr "ወደ ዳሽቦርዱ ሂድ"
 
@@ -6556,16 +6581,16 @@ msgid "Go to form answers"
 msgstr ""
 
 #: src/features/resume/share/web-page-text.ts
-msgid "Go to Reactive Resume"
-msgstr "ወደ Reactive Resume ይሂዱ"
+msgid "Go to Resume Builder"
+msgstr ""
 
 #: src/features/command-palette/pages/navigation.tsx
 msgid "Go to…"
 msgstr "ወደ… ይሂዱ"
 
 #: src/features/resume/share/download-tab.tsx
-msgid "Good luck out there. Reactive Resume stays free because people chip in."
-msgstr "መልካም ዕድል እዚያ። ሰዎች ስለገቡ Reactive Resume ነፃ ሆኖ ይቆያል።"
+msgid "Good luck out there. Resume Builder stays free because people chip in."
+msgstr ""
 
 #. Authentication provider display name in account settings
 #. Brand name label for Google social sign-in button
@@ -6670,10 +6695,6 @@ msgstr "አንድን ስኬት ወደ ሁኔታ፣ ተግባር፣ እርምጃ�
 msgid "Help translate"
 msgstr "ለመተርጎም ያግዙ"
 
-#: src/features/homepage/sections.tsx
-msgid "Help translate it into yours."
-msgstr "ወደ የእርስዎ ቋንቋ ለመተርጎም ያግዙ።"
-
 #: src/features/homepage/prepare.tsx
 msgid "Hi Alex, great to confirm: you’ll meet our design team today at {time}, by video. Could you bring an example of your onboarding work?"
 msgstr "ሰላም Alex፣ ማረጋገጥ ደስ ይለናል፦ ዛሬ {time} ላይ የዲዛይን ቡድናችንን በቪዲዮ ያገኛሉ። የኦንቦርዲንግ ሥራዎን ምሳሌ ይዘው መምጣት ይችላሉ?"
@@ -6711,6 +6732,10 @@ msgstr "{title} ከገጹ ደብቅ"
 #: src/features/resume/share/share-panel.tsx
 msgid "Hide contact details"
 msgstr "የመገኛ ዝርዝሮችን ደብቅ"
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Hide Email"
+msgstr ""
 
 #: src/features/resume/editor/write/entry-card.tsx
 msgid "Hide from page"
@@ -6781,10 +6806,6 @@ msgstr "አግድም ማርጂን"
 #: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
 msgid "Horizontal spacing"
 msgstr "አግድም ክፍተት"
-
-#: src/features/homepage/sections.tsx
-msgid "Hosting and development are paid for by people like you. Optional tip:"
-msgstr "ማስተናገድ እና ልማት የሚከፈሉት እንደ እርስዎ ባሉ ሰዎች ነው። አማራጭ ጠቃሚ ምክር፡"
 
 #: src/features/settings/profile.tsx
 msgid "Hour"
@@ -6889,6 +6910,10 @@ msgstr "አዶ…"
 msgid "Icons in contact line"
 msgstr "በእውቂያ መስመር ውስጥ ያሉ አዶዎች"
 
+#: src/features/resume/share/history-tab.tsx
+msgid "Identical to draft"
+msgstr ""
+
 #: src/features/resume/share/share-panel.tsx
 msgid "If another resume holds Primary, turn it on for this one instead."
 msgstr ""
@@ -6946,7 +6971,6 @@ msgid "Import failed. Check the CSV and try again."
 msgstr "ማስመጣት አልተሳካም። CSV ን ያረጋግጡ እና እንደገና ይሞክሩ።"
 
 #: src/features/applications/components/import-applications-sheet.tsx
-#: src/routes/dashboard/applications/index.tsx
 msgid "Import from CSV"
 msgstr "ከCSV አስመጣ"
 
@@ -6975,8 +6999,8 @@ msgid "Import the one you have, or start blank."
 msgstr ""
 
 #: src/features/ats-checker/checker.tsx
-msgid "Import this file into a free Reactive Resume. Every issue is waiting for you in Check."
-msgstr "ይህን ፋይል ወደ ነጻ Reactive Resume አስመጣ። እያንዳንዱ እትም በቼክ ውስጥ እየጠበቀዎት ነው።"
+msgid "Import this file into a free Resume Builder. Every issue is waiting for you in Check."
+msgstr ""
 
 #: src/features/career/workspace/application-packet.tsx
 msgid "Import this file into the browser helper, review the destination and fill report. Unsupported forms use exact PDF downloads and copyable answers below. Native browser integration requires its own verified build."
@@ -7019,10 +7043,6 @@ msgstr "የተመረጠውን መስመር አሻሽል።"
 msgid "Improving…"
 msgstr "በማሻሻል ላይ…"
 
-#: src/features/homepage/sections.tsx
-msgid "In good company"
-msgstr "በጥሩ ኩባንያ ውስጥ"
-
 #: src/features/career/offer-entry.tsx
 #: src/features/career/offers.tsx
 msgid "In progress"
@@ -7056,9 +7076,9 @@ msgstr "የተገመተ"
 msgid "Inline"
 msgstr "መስመር ውስጥ"
 
-#: src/routes/dashboard/applications/index.tsx
-msgid "Insights"
-msgstr "ግንዛቤዎች"
+#: src/routes/builder/$resumeId/-components/translate-dialog.tsx
+msgid "Instantly localize all standard section headers (Experience, Education, Skills, Projects, etc.) and date formats into your chosen target language."
+msgstr ""
 
 #: src/features/command-palette/pages/navigation.tsx
 msgid "Integrations"
@@ -7079,7 +7099,6 @@ msgstr "በይነገጽ ብቻ። እያንዳንዱ የትምህርት ማስ�
 #: src/features/applications/stages.ts
 #: src/features/career/schedule-sheet.tsx
 #: src/features/homepage/prepare.tsx
-#: src/features/homepage/sections.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Interview"
 msgstr "ቃለ መጠይቅ"
@@ -7093,7 +7112,6 @@ msgid "Interview deleted"
 msgstr "ቃለ መጠይቁ ተሰርዟል"
 
 #: src/features/homepage/prepare.tsx
-#: src/features/homepage/sections.tsx
 msgid "Interview done"
 msgstr "ቃለ መጠይቁ ተጠናቋል"
 
@@ -7118,7 +7136,6 @@ msgid "Interview opening"
 msgstr "የቃለ መጠይቅ መክፈቻ"
 
 #: src/features/career/schedule-sheet.tsx
-#: src/features/homepage/sections.tsx
 msgid "Interview prep"
 msgstr "የቃለ መጠይቅ ዝግጅት"
 
@@ -7165,10 +7182,6 @@ msgstr "ቃለ መጠይቆች"
 #: src/features/career/offers.tsx
 msgid "Is equity part of the offer?"
 msgstr "የአክሲዮን ድርሻ የቅናሹ አካል ነው?"
-
-#: src/features/homepage/faq.tsx
-msgid "Is Reactive Resume really free?"
-msgstr "በእርግጥ Reactive Resume ነፃ ነው?"
 
 #: src/features/career/offers.tsx
 msgid "Is there a bonus, and what does it depend on?"
@@ -7336,10 +7349,6 @@ msgstr "የሥራ ፍለጋ ምርጫዎች"
 msgid "Job title"
 msgstr ""
 
-#: src/features/homepage/sections.tsx
-msgid "Job tracker"
-msgstr "የማመልከቻ መከታተያ"
-
 #: src/features/command-palette/pages/navigation.tsx
 msgid "Jobs"
 msgstr "ስራዎች"
@@ -7353,14 +7362,6 @@ msgstr "John Doe"
 #: src/features/auth/pages/register.tsx
 msgid "john.doe"
 msgstr "john.doe"
-
-#: src/features/homepage/footer.tsx
-msgid "Join Discord"
-msgstr "Discordን ይቀላቀሉ"
-
-#: src/features/homepage/sections.tsx
-msgid "Join the Discord community"
-msgstr "የDiscord ማህበረሰቡን ይቀላቀሉ"
 
 #: src/features/resume/import/read-file.ts
 msgid "JSON read"
@@ -7406,10 +7407,6 @@ msgstr "ማርትዕ ቀጥል"
 #: src/features/documents/trash-page.tsx
 msgid "Keep in Trash"
 msgstr "በቆሻሻ መጣያ ውስጥ ያስቀምጡ"
-
-#: src/features/homepage/sections.tsx
-msgid "Keep it <0>free.</0>"
-msgstr "<0>ነፃ እንዲቆይ</0> ያግዙ።"
 
 #: src/features/career/workspace/prepare.tsx
 msgid "Keep it honest"
@@ -7481,6 +7478,10 @@ msgstr "እንዳለ ተይዟል።"
 msgid "Kept yours"
 msgstr "የእርስዎ ተጠብቋል"
 
+#: src/features/resume/editor/check/job-match.tsx
+msgid "Key"
+msgstr ""
+
 #. placeholder {0}: keyEnding(provider.apiKeyPreview)
 #: src/features/settings/ai/providers.tsx
 msgid "Key ends in {0}"
@@ -7519,11 +7520,9 @@ msgstr "ክህመርኛ"
 msgid "Kind regards,"
 msgstr "ምልካም ምኞት፣"
 
-#: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/remember.tsx
 #: src/features/resume/editor/proposals/proposal-list.tsx
 #: src/routes/dashboard/career/knowledge/route.tsx
-#: src/routes/dashboard/career/route.tsx
 msgid "Knowledge"
 msgstr "እውቀት"
 
@@ -7636,7 +7635,6 @@ msgid "Lead across functions"
 msgstr "ከተለያዩ ክፍሎች ጋር መምራት"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 #: src/features/homepage/write.tsx
 msgid "Lead Product Designer"
@@ -7695,10 +7693,6 @@ msgstr "ግራ"
 #: src/features/resume/import/read-file.ts
 msgid "Legacy Word files aren't supported. Open the file in Word and save it as .docx first."
 msgstr "Legacy Word ፋይሎች አይደገፉም። ፋይሉን በWord ይክፈቱ እና መጀመሪያ እንደ .docx ያስቀምጡት።"
-
-#: src/features/homepage/footer.tsx
-msgid "Legal"
-msgstr "ሕጋዊ"
 
 #: src/routes/builder/$resumeId/-components/document-details.tsx
 #: src/routes/builder/letter/-components/write-panel.tsx
@@ -7797,10 +7791,6 @@ msgstr ""
 msgid "Library items for {company}, newest first."
 msgstr ""
 
-#: src/features/homepage/footer.tsx
-msgid "Licensed under <0>MIT</0>"
-msgstr "በ<0>MIT</0> ፈቃድ የተሰጠ"
-
 #: src/features/ats-checker/messages.ts
 msgid "Ligatures can drop letters out of words such as \"workflow\"."
 msgstr "ሊጋቸሮች እንደ \"workflow\" ካሉ ቃላት ውስጥ ፊደላትን ሊጥሉ ይችላሉ።"
@@ -7852,12 +7842,12 @@ msgid "Link {0} URL"
 msgstr ""
 
 #: src/features/applications/components/application-form-sheet.tsx
-msgid "Link a Reactive Resume (recommended)"
-msgstr "Reactive Resume ያገናኙ (ይመከራል)"
+msgid "Link a Resume Builder resume (recommended)"
+msgstr ""
 
 #: src/features/applications/components/application-form-sheet.tsx
-msgid "Link a Reactive Resume to use AI match scoring and tailoring."
-msgstr "በ AI የተደገፈ የተዛማጅነት ነጥብ እና ማበጃ ለመጠቀም የ Reactive Resume የስራ ልምድ ማስረጃ ያያይዙ።"
+msgid "Link a Resume Builder resume to use AI match scoring and tailoring."
+msgstr ""
 
 #: src/features/resume/editor/write/basics-card.tsx
 #: src/features/resume/editor/write/rich-text-editor-field.tsx
@@ -7952,17 +7942,12 @@ msgstr "አገናኞች"
 msgid "Links you've already shared keep working for 30 days, then stop. Share the new ones before then."
 msgstr ""
 
-#: src/features/homepage/hero.tsx
-msgid "Lisbon"
-msgstr "Lisbon"
-
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Lisbon, Portugal"
 msgstr "Lisbon, Portugal"
 
 #: src/features/documents/documents-page.tsx
-#: src/routes/dashboard/applications/index.tsx
 msgid "List"
 msgstr "ዝርዝር"
 
@@ -7986,10 +7971,6 @@ msgstr "ቀጥታ · ሲያርትዑ ይዘምናል።"
 #: src/features/resume/share/address-field.tsx
 msgid "Live at {0}"
 msgstr "በ{0} ቀጥታ ስርጭት"
-
-#: src/features/homepage/sections.tsx
-msgid "Live totals, refreshed every 6 hours."
-msgstr "የቀጥታ ድምር፣ በየ6 ሰዓቱ ይታደሳል።"
 
 #: src/features/applications/components/import-applications-sheet.tsx
 msgid "Load your stages before importing named stages. Your CSV data is kept."
@@ -8063,10 +8044,6 @@ msgstr "የተቀመጠውን ስሪት በመጫን ላይ…"
 msgid "Loading stylesheet editor…"
 msgstr "የቅጥ ሉህ አርታዒ በመጫን ላይ…"
 
-#: src/features/homepage/sections.tsx
-msgid "Loading the total"
-msgstr "ጠቅላላውን በመጫን ላይ"
-
 #: src/features/career/workspace/shell.tsx
 msgid "Loading workspace…"
 msgstr "የሥራ ቦታውን በመጫን ላይ…"
@@ -8139,8 +8116,8 @@ msgid "Lower the design sheet"
 msgstr "የንድፍ ሉህን ዝቅ አድርግ"
 
 #: src/features/resume/share/web-page-text.ts
-msgid "Made with Reactive Resume, free and open source"
-msgstr "በReactive Resume፣ ነፃ እና ክፍት ምንጭ የተሰራ"
+msgid "Made with Resume Builder, free and open source"
+msgstr ""
 
 #. Layout editor column label for the primary content area
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
@@ -8385,6 +8362,10 @@ msgstr "መልዕክቶች · ከኢሜልዎ የተለጠፈ"
 msgid "Messages · Reply to Sam at Fieldnote"
 msgstr "መልዕክቶች · በFieldnote ላለው Sam ምላሽ"
 
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Micro-Tighten"
+msgstr ""
+
 #: src/features/career/workspace/practise.tsx
 msgid "Microphone blocked. Allow it in your browser settings, or type your answer."
 msgstr "ማይክሮፎን ታግዷል። በአሳሽዎ ቅንብሮች ውስጥ ይፍቀዱት፣ ወይም መልስዎን ይተይቡ።"
@@ -8396,10 +8377,6 @@ msgstr "ዝቅተኛ መሠረታዊ ደመወዝ"
 #: src/features/homepage/prepare.tsx
 msgid "Missing evidence means your notes don’t show it yet, not that you lack it."
 msgstr "የጎደለ ማስረጃ ማለት ማስታወሻዎችዎ እስካሁን አያሳዩትም ማለት ነው እንጂ የለዎትም ማለት አይደለም።"
-
-#: src/features/homepage/footer.tsx
-msgid "MIT License"
-msgstr "የMIT ፈቃድ"
 
 #: src/features/career/workspace/debrief.tsx
 #: src/features/homepage/prepare.tsx
@@ -8700,6 +8677,14 @@ msgstr ""
 msgid "Needs you"
 msgstr "እርስዎን ይጠብቃል"
 
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Negotiation email script copied to clipboard!"
+msgstr ""
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Negotiation Script"
+msgstr ""
+
 #: src/libs/locale.ts
 msgid "Nepali"
 msgstr "ኔፓሊኛ"
@@ -8795,6 +8780,7 @@ msgstr "የአዲስ ደረጃ ቀለም"
 msgid "New teams at Northwind were stalling in setup; most never got through."
 msgstr "በNorthwind አዲስ ቡድኖች በማዋቀር ላይ ይቆሙ ነበር፤ አብዛኞቹ አልጨረሱም።"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/command-palette/pages/resumes.tsx
 #: src/features/documents/page-navigation.tsx
 msgid "Next"
@@ -9096,6 +9082,10 @@ msgstr "እስካሁን ምንም የምንጭ ውሂብ የለም።"
 msgid "No specific terms could be pulled out of that job description, so it may be mostly boilerplate. Paste the requirements section for a more useful comparison."
 msgstr "ከዚያ የስራ መግለጫ ውስጥ የተለዩ ቃላት ሊወጡ አልቻሉም፣ ስለዚህ በአብዛኛው መደበኛ ጽሁፍ ሊሆን ይችላል። ይበልጥ ጠቃሚ ንጽጽር ለማግኘት የመስፈርቶች ክፍልን ይለጥፉ።"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "No stories available for flashcard rehearsal."
+msgstr ""
+
 #: src/features/career/knowledge/stories.tsx
 msgid "No stories yet"
 msgstr "እስካሁን ታሪኮች የሉም"
@@ -9136,11 +9126,6 @@ msgstr "ምንም የስራ-ልምድ ክፍል አልተገኘም።"
 #: src/features/homepage/design.tsx
 msgid "No. {number} · {name}"
 msgstr "ቁጥር {number} · {name}"
-
-#. Receipt line amount for something Reactive Resume doesn't have, e.g. ads.
-#: src/features/homepage/sections.tsx
-msgid "none"
-msgstr "ምንም"
 
 #: src/features/career/today.tsx
 msgid "None"
@@ -9261,10 +9246,6 @@ msgstr "አልተቀመጠም — ይህ እውነታ ከዚህ በፊት ተረ
 #: src/features/settings/profile.tsx
 msgid "Not saved yet"
 msgstr ""
-
-#: src/features/resume/editor/check/job-match.tsx
-msgid "not scored"
-msgstr "ውጤት አላስገኘም።"
 
 #: src/features/ats-checker/report/report-view.tsx
 msgid "Not scored"
@@ -9424,10 +9405,17 @@ msgstr "ጠፍቷል። ቀጣሪዎች በGoogle ላይ እንዲያገኙዎ�
 #: src/features/career/offer-entry.tsx
 #: src/features/career/offers.tsx
 #: src/features/career/workspace/saved.tsx
-#: src/features/homepage/sections.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Offer"
 msgstr "የሥራ ቅናሽ"
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Offer A"
+msgstr ""
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Offer B"
+msgstr ""
 
 #: src/features/career/offer-entry.tsx
 msgid "Offer saved"
@@ -9442,9 +9430,7 @@ msgstr ""
 msgid "Offer type"
 msgstr "የሥራ አቅርቦት አይነት"
 
-#: src/features/command-palette/pages/navigation.tsx
 #: src/routes/dashboard/career/offers.tsx
-#: src/routes/dashboard/career/route.tsx
 msgid "Offers"
 msgstr "ቅናሾች"
 
@@ -9488,14 +9474,6 @@ msgstr "አንድ አምድ"
 #: src/features/templates/gallery.tsx
 msgid "One column or two?"
 msgstr "አንድ አምድ ወይስ ሁለት?"
-
-#: src/dialogs/resume/template/data.ts
-msgid "One column with a photo beside the header and clear section headings. A simple top-to-bottom layout for your experience."
-msgstr "ከራስጌው አጠገብ ፎቶ ያለው አንድ አምድ እና በደንብ የተገለጸ ክፍል አርእስቶች። ለስራ ልምድዎ ቀላል ከላይ እስከ ታች አቀማመጥ።"
-
-#: src/dialogs/resume/template/data.ts
-msgid "One column with labeled section rows and subtle dividers. A compact layout for experience, education and supporting details."
-msgstr "አንድ አምድ የተሰየመ ክፍል ረድፎች እና ስውር አካፋዮች። ለተሞክሮ፣ ለትምህርት እና ደጋፊ ዝርዝሮች የታመቀ አቀማመጥ።"
 
 #: src/features/homepage/check.tsx
 msgid "one format"
@@ -9639,8 +9617,8 @@ msgid "Open the exported file and confirm you can select and copy every part of 
 msgstr "የወጣውን ፋይል ይክፈቱ እና እያንዳንዱን ክፍል መምረጥና መቅዳት እንደሚችሉ ያረጋግጡ።"
 
 #: src/routes/auth/native-callback.tsx
-msgid "Open the Reactive Resume app"
-msgstr "የReactive Resume መተግበሪያን ይክፈቱ"
+msgid "Open the Resume Builder app"
+msgstr ""
 
 #: src/features/career/today.tsx
 msgid "Open the schedule"
@@ -9888,7 +9866,6 @@ msgid "paragraph {n}"
 msgstr "አንቀጽ {n}"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 msgid "Parcel & Co."
 msgstr "Parcel & Co."
 
@@ -9954,6 +9931,10 @@ msgstr "የይለፍ ቃል ተዘጋጅቷል"
 msgid "Past conversations"
 msgstr "ያለፉ ንግግሮች"
 
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "Paste a bullet point or accomplishment. AI will extract behavioral interview questions and format it into Situation, Task, Action, Result, and Reflection."
+msgstr ""
+
 #: src/features/documents/new-document-dialog.tsx
 msgid "Paste a job link or posting to track it in Applications."
 msgstr ""
@@ -9961,10 +9942,6 @@ msgstr ""
 #: src/features/applications/components/add-application-dialog.tsx
 msgid "Paste a job link or posting, then check the role and company."
 msgstr "የሥራ አገናኝ ወይም የሥራ ማስታወቂያ ይለጥፉ፣ ከዚያ ሚናውን እና ኩባንያውን ያረጋግጡ።"
-
-#: src/routes/dashboard/applications/index.tsx
-msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
-msgstr "የሥራ አገናኝ ይለጥፉ። ቼክ፣ ረዳቱ እና ደብዳቤዎ እንዲጠቀሙበት የሥራ ማስታወቂያውን እናስቀምጣለን።"
 
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a match score, a cover letter draft and a place to track the role."
@@ -10024,10 +10001,6 @@ msgstr "የተለጠፈ የሥራ ማስታወቂያ"
 msgid "Pasting fills the fields automatically."
 msgstr "መለጠፍ መስኮቹን በራስ-ሰር ይሞላል።"
 
-#: src/features/homepage/sections.tsx
-msgid "Pause the list of languages"
-msgstr "የቋንቋዎች ዝርዝርን ለአፍታ አቁም"
-
 #: src/features/career/today.tsx
 msgid "Paused · {line}"
 msgstr "ቆሟል · {line}"
@@ -10051,16 +10024,12 @@ msgid "PDF styles support a subset of CSS. Rotation, dashed and dotted borders, 
 msgstr "PDF ቅጦች የ CSS ንዑስ ስብስብን ይደግፋሉ። ማሽከርከር፣ የተሰረዙ እና ባለነጥብ ድንበሮች፣ እና አንዳንድ የአቀማመጥ ባህሪያት ችላ ይባላሉ።"
 
 #: src/features/homepage/faq.tsx
-msgid "PDF, Word (DOCX), Markdown and JSON. The JSON export imports back into any Reactive Resume, including one you host yourself, so your data is never locked in."
-msgstr "PDF፣ Word (DOCX)፣ Markdown እና JSON። የJSON ወደ ውጭ መላኪያ ወደ ማንኛውም Reactive Resume ያስመጣል፣ እርስዎ እራስዎ የሚያስተናግዱትን ጨምሮ፣ ስለዚህ የእርስዎ ውሂብ በጭራሽ አይቆለፍም።"
+msgid "PDF, Word (DOCX), Markdown and JSON. The JSON export imports back into any Resume Builder, including one you host yourself, so your data is never locked in."
+msgstr ""
 
 #: src/features/documents/documents-page.tsx
 msgid "PDF, Word or JSON. We'll build a resume from it."
 msgstr "PDF፣ Word ወይም JSON። ከእሱ የመማሪያ መጽሐፍ እንገነባለን።"
-
-#: src/features/homepage/sections.tsx
-msgid "People using it"
-msgstr "ሰዎች እየተጠቀሙበት ነው።"
 
 #: src/features/career/offer-entry.tsx
 msgid "Per hour"
@@ -10177,17 +10146,9 @@ msgstr "ዝግጅቴን አቅድ"
 msgid "Plan what to ask"
 msgstr "የሚጠየቀውን አቅድ"
 
-#: src/routes/dashboard/career/route.tsx
-msgid "Plan your search, keep your evidence in one place, and decide between offers."
-msgstr "ፍለጋዎን ያቅዱ፣ ማስረጃዎን በአንድ ቦታ ያስቀምጡ፣ በቅናሾች መካከልም ይወስኑ።"
-
 #: src/features/career/shared.tsx
 msgid "Planning your week"
 msgstr "ሳምንትዎን በማቀድ ላይ"
-
-#: src/features/homepage/sections.tsx
-msgid "Play the list of languages"
-msgstr "የቋንቋዎችን ዝርዝር አጫውት።"
 
 #: src/libs/locale.ts
 msgid "Polish"
@@ -10340,8 +10301,6 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr "ምርጫዎች"
 
-#: src/features/homepage/footer.tsx
-#: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Prepare"
 msgstr "ዝግጅት"
@@ -10409,6 +10368,7 @@ msgstr "የቅድመ እይታ መጠን"
 msgid "Previewing {0} · click to apply"
 msgstr "{0} ቅድመ እይታ · ለመተግበር ጠቅ ያድርጉ"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/command-palette/pages/resumes.tsx
 #: src/features/documents/page-navigation.tsx
 msgid "Previous"
@@ -10446,10 +10406,6 @@ msgstr "ከመላክዎ በፊት ቅጹን ወደ ጠፍጣፋ PDF ያትሙ �
 msgid "Privacy"
 msgstr "ግላዊነት"
 
-#: src/features/homepage/footer.tsx
-msgid "Privacy policy"
-msgstr "የግላዊነት ፖሊሲ"
-
 #: src/features/homepage/share.tsx
 msgid "Private"
 msgstr "የግል"
@@ -10457,10 +10413,6 @@ msgstr "የግል"
 #: src/routes/builder/$resumeId/-components/document-details.tsx
 msgid "Private. Only you can see it."
 msgstr "የግል። እርስዎ ብቻ ነው ማየት የሚችሉት።"
-
-#: src/features/homepage/footer.tsx
-msgid "Product"
-msgstr "ምርት"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -10524,10 +10476,6 @@ msgstr "የሂደት አሞሌ"
 msgid "Projects"
 msgstr "ፕሮጀክቶች"
 
-#: src/features/homepage/hero.tsx
-msgid "Promoted to lead, 2021"
-msgstr "ለመሪነት ከፍ ተደርገዋል፣ 2021"
-
 #: src/features/career/workspace/messages.tsx
 msgid "Proposed changes"
 msgstr "የቀረቡ ለውጦች"
@@ -10541,7 +10489,6 @@ msgid "Protect your resume with a password"
 msgstr "የስራ ልምድ ማስረጃዎን በይለፍ ቃል ይጠብቁ"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Prototyping"
 msgstr "ምሳሌ ሞዴል መሥራት"
@@ -10615,10 +10562,6 @@ msgstr "ሐምራዊ"
 msgid "Put a plain email address near the top of the first page. It is what most systems file you under."
 msgstr "ቀላል የኢሜል አድራሻ ወደ መጀመሪያው ገጽ የላይኛው ክፍል ያስቀምጡ። አብዛኞቹ ስርዓቶች ከዚህ ስር ነው የሚያስቀምጡዎት።"
 
-#: src/features/homepage/sections.tsx
-msgid "Put it all on <0>one page.</0>"
-msgstr "ሁሉንም በ<0>አንድ ገጽ ያስቀምጡ።</0>"
-
 #: src/features/resume/editor/write/rich-text-editor-field.tsx
 msgid "Put the caret in a line to improve it"
 msgstr "ለማሻሻል እንክብካቤውን በመስመር ላይ ያድርጉት"
@@ -10627,14 +10570,14 @@ msgstr "ለማሻሻል እንክብካቤውን በመስመር ላይ ያድ�
 msgid "QR code"
 msgstr "QR ኮድ"
 
-#: src/features/resume/share/share-panel.tsx
-msgid "QR code for {url}"
-msgstr "የQR ኮድ ለ{url}"
-
 #. Accessible title for QR code image shown during two-factor setup
 #: src/dialogs/auth/enable-two-factor.tsx
 msgid "QR code for two-step verification"
 msgstr "ለባለ ሁለት ደረጃ ማረጋገጫ QR ኮድ"
+
+#: src/features/resume/share/share-panel.tsx
+msgid "QR code SVG downloaded!"
+msgstr ""
 
 #: src/features/career/workspace/answer-library.tsx
 msgid "Question"
@@ -10709,18 +10652,6 @@ msgstr "ፊደሎች ተካትተው እንደገና ወደ ውጭ ይላኩ፣ 
 msgid "Re: Senior Product Designer"
 msgstr "Re: ከፍተኛ የምርት ዲዛይነር"
 
-#: src/routes/_home/-sections/header.tsx
-msgid "Reactive Resume - Go to homepage"
-msgstr "Reactive Resume - ወደ መነሻ ገጽ ሂድ"
-
-#: src/routes/dashboard/settings/route.tsx
-msgid "Reactive Resume {__APP_VERSION__} · MIT"
-msgstr "Reactive Resume {__APP_VERSION__} · MIT"
-
-#: src/features/homepage/sections.tsx
-msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
-msgstr "Reactive Resume በMIT ፈቃድ ስር ክፍት ምንጭ ነው። Amruth Pillai እና የአስተዋጽዖ አበርካቾች ማኅበረሰብ ያስቀጥሉታል፣ ልገሳዎችም ለማስተናገጃ እና ለልማት ይከፍላሉ። የሚከፈልበት ደረጃ የለም።"
-
 #. placeholder {0}: reader.label
 #: src/features/career/workspace/practise.tsx
 msgid "Read aloud by {0}, which may use tokens on that account."
@@ -10779,10 +10710,6 @@ msgstr "ገጹን ያንብቡ"
 #: src/features/assistant/conversation.tsx
 msgid "Read the resume"
 msgstr "የስራ ልምድ ማስረጃውን አንብቧል"
-
-#: src/features/homepage/faq.tsx
-msgid "Read the self-hosting guide"
-msgstr "ራስን ማስተናገድ መመሪያ ያንብቡ"
 
 #: src/features/applications/components/add-application-dialog.tsx
 #: src/features/documents/new-document-dialog.tsx
@@ -11018,6 +10945,7 @@ msgstr "ሪፈራል"
 msgid "Referred by…, things to emphasize, etc."
 msgstr "በ…የተጠቀሰ፣ አጽንዖት ሊሰጣቸው የሚገቡ ነገሮች፣ ወዘተ።"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/career/knowledge/stories.tsx
 #: src/features/homepage/remember.tsx
 msgid "Reflection"
@@ -11063,6 +10991,10 @@ msgstr "ውድቅ ተደርጓል"
 msgid "Relationship"
 msgstr ""
 
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Relaxed two-page layout applied!"
+msgstr ""
+
 #: src/components/layout/error-screen.tsx
 #: src/features/resume/editor/save-status.tsx
 #: src/routes/builder/letter/-components/letter-bar.tsx
@@ -11087,8 +11019,6 @@ msgid "Relocation"
 msgstr ""
 
 #: src/features/career/shared.tsx
-#: src/features/homepage/footer.tsx
-#: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
 msgid "Remember"
 msgstr "አስታውስ"
@@ -11325,12 +11255,6 @@ msgstr "ምላሹ ተቀድቷል"
 msgid "Reply to the offer"
 msgstr ""
 
-#: src/features/homepage/footer.tsx
-#: src/features/homepage/sections.tsx
-#: src/routes/dashboard/settings/route.tsx
-msgid "Report a bug"
-msgstr "ስህተት ያሳውቁ"
-
 #: src/features/settings/profile.tsx
 msgid "Requested amount"
 msgstr ""
@@ -11377,10 +11301,6 @@ msgstr "የይለፍ ቃልዎን ዳግም ያስጀምሩ"
 #: src/features/auth/pages/reset-password.tsx
 msgid "Resetting your password..."
 msgstr "የይለፍ ቃልዎን በመዳግም ላይ…"
-
-#: src/features/homepage/footer.tsx
-msgid "Resources"
-msgstr "ሀብቶች"
 
 #: src/features/career/offer-entry.tsx
 #: src/features/career/offers.tsx
@@ -11436,6 +11356,7 @@ msgstr "ስሪቱን ከ{0} ወደነበረበት ተመልሷል። የቀድ�
 msgid "Restricted to its employer or application."
 msgstr ""
 
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/career/knowledge/stories.tsx
 #: src/features/homepage/remember.tsx
 msgid "Result"
@@ -11478,14 +11399,13 @@ msgstr "ሪሱሜ + ደብዳቤ"
 msgid "Resume attached"
 msgstr "የሥራ ማስረጃ ተያይዟል"
 
-#. Hero headline, line 2 of 4: A free, open-source / resume builder / and / career manager. Lines 2 and 4 are highlighted: keep each a complete phrase.
-#: src/features/homepage/hero.tsx
-msgid "resume builder"
-msgstr "የግለ ታሪክ መፍጠሪያ"
+#: src/routes/dashboard/settings/route.tsx
+msgid "Resume Builder {__APP_VERSION__} · MIT"
+msgstr ""
 
-#: src/features/homepage/sections.tsx
-msgid "Resume builder"
-msgstr "የሲቪ መፍጠሪያ"
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "Resume bullet or accomplishment"
+msgstr ""
 
 #: src/features/resume/editor/check/writing-tab.tsx
 msgid "Resume changed since this review. Review these suggestions as out of date or run again."
@@ -11514,6 +11434,10 @@ msgstr ""
 msgid "Resume page"
 msgstr "የመመዝገቢያ ገጽ"
 
+#: src/routes/builder/$resumeId/-components/translate-dialog.tsx
+msgid "Resume section headers translated to {name}!"
+msgstr ""
+
 #: src/features/applications/components/add-application-dialog.tsx
 #: src/features/applications/components/application-detail-sheet.tsx
 msgid "Resume submitted (optional)"
@@ -11536,10 +11460,6 @@ msgstr "የስራ ልምድ ማስረጃዎች"
 #: src/features/settings/preferences.tsx
 msgid "Resumes always render on white paper, whatever the theme."
 msgstr "ርእሶች ሁልጊዜ በነጭ ወረቀት ይሰጣሉ፣ ጭብጥ ምንም ይሁን።"
-
-#: src/features/homepage/sections.tsx
-msgid "Resumes created"
-msgstr "የትምህርት ማስረጃዎች ተፈጥረዋል።"
 
 #. placeholder {0}: application.postingSource.retrievedAt
 #. placeholder {1}: application.postingSource.method
@@ -11597,6 +11517,10 @@ msgstr "ወደ መተግበሪያው ተመለስ"
 
 #: src/features/career/workspace/answer-library.tsx
 msgid "Reuse scope"
+msgstr ""
+
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Reveal STAR"
 msgstr ""
 
 #: src/features/career/today.tsx
@@ -11726,6 +11650,7 @@ msgid "Role"
 msgstr "የሥራ መደብ"
 
 #: src/features/applications/components/detail/contacts.tsx
+#: src/features/career/knowledge/generate-story-dialog.tsx
 msgid "Role (optional)"
 msgstr "ሚና (አማራጭ)"
 
@@ -11997,7 +11922,6 @@ msgstr "ተቀምጧል"
 #: src/features/applications/components/add-application-dialog.tsx
 #: src/features/applications/stages.ts
 #: src/features/career/knowledge/preferences.tsx
-#: src/features/homepage/sections.tsx
 #: src/features/homepage/tailor.tsx
 #: src/features/resume/editor/save-status.tsx
 #: src/routes/builder/letter/-components/letter-bar.tsx
@@ -12101,6 +12025,14 @@ msgstr "ጮክ ብለው ይናገሩት"
 msgid "Scan the QR code with your authenticator app, or copy the secret and paste it into the app."
 msgstr "QR ኮዱን በማረጋገጫ መተግበሪያዎ ይቃኙ፣ ወይም ሚስጥሩን ቀድተው ወደ መተግበሪያው ይለጥፉ።"
 
+#: src/features/resume/share/share-panel.tsx
+msgid "Scans to phone contacts"
+msgstr ""
+
+#: src/features/resume/share/share-panel.tsx
+msgid "Scans to web resume"
+msgstr ""
+
 #: src/features/applications/components/interview-dialog.tsx
 msgid "Schedule an interview"
 msgstr "ቃለ መጠይቅ ያውጡ"
@@ -12148,7 +12080,6 @@ msgstr "ማጣራት"
 
 #: src/features/applications/components/add-application-dialog.tsx
 #: src/features/documents/documents-page.tsx
-#: src/routes/dashboard/-components/app-shell.tsx
 msgid "Search"
 msgstr "ፈልግ"
 
@@ -12210,10 +12141,6 @@ msgstr "ከስራ ማመልከቻዎች እና ረዳቱ ይፈልጉ እና አ
 #: src/features/applications/components/add-application-dialog.tsx
 msgid "Search job postings"
 msgstr "የስራ ማስታወቂያዎችን ይፈልጉ"
-
-#: src/routes/dashboard/-components/app-shell.tsx
-msgid "Search or run a command…"
-msgstr "ፈልግ ወይም ትእዛዝ አስኪድ…"
 
 #: src/routes/dashboard/applications/index.tsx
 msgid "Search role, company or contact"
@@ -12359,10 +12286,6 @@ msgstr ""
 #: src/features/career/role-suggestions.tsx
 msgid "Selected resume:"
 msgstr ""
-
-#: src/features/homepage/footer.tsx
-msgid "Self-hosting"
-msgstr "እራስን ማስተናገድ"
 
 #: src/features/resume/stylesheet/editor.tsx
 msgid "Semantic CSS stylesheet"
@@ -12548,8 +12471,6 @@ msgstr "የጥላ ቀለም"
 msgid "Shadow width"
 msgstr "የጥላ ወፍራምነት"
 
-#: src/features/homepage/footer.tsx
-#: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
 #: src/features/resume/share/web-page-text.ts
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -12600,10 +12521,6 @@ msgstr "የWCAG 2.1 AA መስፈርቶችን የሚያሟሉ <0>ለሁሉም ተ
 msgid "Shipped checkout flows that meet WCAG 2.1 AA."
 msgstr "WCAG 2.1 AAን የሚያሟሉ የክፍያ ሂደቶችን ለቀቅሁ።"
 
-#: src/features/homepage/hero.tsx
-msgid "Shipped checkout for iOS"
-msgstr "ለiOS ቼክ መውጫ ተልኳል።"
-
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Short and direct. Fine if the posting asks for brevity."
 msgstr "አጭር እና ቀጥተኛ። የሥራ ማስታወቂያው አጭርነትን ከጠየቀ ጥሩ ነው።"
@@ -12630,8 +12547,8 @@ msgid "Show"
 msgstr "አሳይ"
 
 #: src/features/resume/share/share-panel.tsx
-msgid "Show “Made with Reactive Resume”"
-msgstr "“በReactive Resume የተሰራ” አሳይ"
+msgid "Show “Made with Resume Builder”"
+msgstr ""
 
 #. placeholder {0}: Math.min(remaining, COLUMN_PAGE_SIZE)
 #. placeholder {0}: visible.length - shown.length
@@ -12721,6 +12638,10 @@ msgstr "የይለፍ ቃል አሳይ"
 msgid "Show photo"
 msgstr "ፎቶ አሳይ"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Show Question"
+msgstr ""
+
 #: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
 msgid "Show section icons"
 msgstr "የክፍል አዶዎችን አሳይ"
@@ -12740,6 +12661,18 @@ msgstr "በእርስዎ የሰዓት ሰቅ ይታያል።"
 #: src/features/documents/document-actions.tsx
 msgid "Shows the tags they all share. Tags you add go on every document; tags you remove come off every one. Locked documents are left as they are."
 msgstr "ሁሉም የሚጋሯቸውን መለያዎች ያሳያል። የሚያክሏቸው መለያዎች በእያንዳንዱ ሰነድ ላይ ይታከላሉ፤ የሚያስወግዷቸው መለያዎች ከእያንዳንዱ ይወገዳሉ። የተቆለፉ ሰነዶች እንዳሉ ይቀራሉ።"
+
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Shuffle"
+msgstr ""
+
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Shuffle cards"
+msgstr ""
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Side-by-Side Comparison"
+msgstr ""
 
 #. Layout editor column label for the secondary sidebar area
 #: src/features/homepage/sheet.tsx
@@ -12769,7 +12702,6 @@ msgstr "የጎን አሞሌዎች ብዙውን ጊዜ በመጨረሻ ይነበ�
 #: src/features/auth/components/guest-banner.tsx
 #: src/features/auth/pages/consent.tsx
 #: src/features/auth/pages/login.tsx
-#: src/features/homepage/footer.tsx
 #: src/routes/auth/login.tsx
 msgid "Sign in"
 msgstr "ግባ"
@@ -12818,6 +12750,10 @@ msgstr "መግባት አልተጠናቀቀም"
 msgid "Sign-off"
 msgstr "መዝጊያ"
 
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Sign-On ($)"
+msgstr ""
+
 #: src/features/auth/pages/consent.tsx
 msgid "Signed in as {email}"
 msgstr "እንደ {email} ገብቷል"
@@ -12839,38 +12775,7 @@ msgstr "በመመዝገብ ላይ…"
 msgid "since last view"
 msgstr "ካለፈው እይታ ጀምሮ"
 
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column ruled form inspired by the Japanese rirekisho: a bordered header of field cells and every section as a table with a solid title bar; dense and fast to scan for engineering, operations, or applications in Japan."
-msgstr "በጃፓን ሪሪኪሾ የሥራ ልምድ መግለጫ ባለ አንድ-ዓምድ ቅጽ፡ ከድንበር ሜዳዎች የተሰራ ራስጌ፣ እና እያንዳንዱ ክፍል ከጠንካራ የማዕረግ አሞሌ ጋር እንደ ጠረጴዛ ሆኖ ቀርቧል። የታመቀ እና ለመቃኘት ቀላል፣ ለኢንጂነሪንግ ስራዎች፣ ኦፕሬሽን ስራዎች፣ ወይም በጃፓን ውስጥ ለስራ ማመልከቻዎች ተስማሚ።"
-
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column set like a magazine feature: a large display name under an uppercase kicker and the summary as a larger standfirst; refined for writers, designers, and communications roles."
-msgstr "እንደ መጽሔት ዋና ጽሑፍ የተዘጋጀ ባለአንድ አምድ፦ በአቢይ ሆሄያት ከተጻፈ አጭር የላይ መስመር ስር ትልቅ ስም፣ እና ማጠቃለያው እንደ ትልቅ የመግቢያ አንቀጽ፤ ለጸሐፊዎች፣ ለዲዛይነሮች እና ለኮሙኒኬሽን ሚናዎች የተጣራ።"
-
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column Wall Street style with a centered header and ruled section headings."
-msgstr "መሃል ላይ የተደረገ ራስጌ እና በመስመር የተለዩ የክፍል ርዕሶች ያሉት ባለአንድ ዓምድ የዎል ስትሪት ዘይቤ።"
-
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column with a magenta left border accent; compact and efficient for entry-level or internship applications."
-msgstr "አንድ-አምድ፣ በግራ በኩል የማጀንታ ድንበር ያለው፤ ለጀማሪ ደረጃ ወይም ለልምምድ ሥራ ማመልከቻዎች የታመቀ እና ውጤታማ።"
-
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column with a minimal top header and lots of whitespace; clean and modern for designers or content creators."
-msgstr "አንድ-አምድ የሆነ፣ ቀላል የላይኛ ራስጌ እና ብዙ ባዶ ቦታ ያለው፤ ለዲዛይነሮች ወይም የይዘት ፈጣሪዎች ዘመናዊ እና ንፁህ።"
-
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column with uppercase section headings and a primary-color top rule on every page; polished for executive, consulting, or startup resumes."
-msgstr "በእያንዳንዱ ገጽ ላይ አቢይ ሆሄ ያለው የክፍል ርዕሶች እና ዋና ቀለም ያለው የላይኛው ደንብ ያለው ነጠላ-አምድ፤ ለአስፈፃሚ፣ ለምክር ወይም ለጀማሪ የስራ ልምድ የተወለወለ።"
-
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column with uppercase section headings over a rule and the photo beside the name; compact and ATS-friendly, well-suited for Asian resume conventions (CN/JP/KR)."
-msgstr "አንድ ዓምድ፣ በመስመር በላይ በትልልቅ ፊደላት የተጻፉ የክፍል ርዕሶች እና ከስሙ አጠገብ ያለ ፎቶ፤ የታመቀ እና ለATS ተስማሚ፣ ለእስያ የሥራ ማመልከቻ ልማዶች (CN/JP/KR) የሚስማማ።"
-
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column; polished and serious for senior or enterprise-level positions."
-msgstr "አንድ-አምድ የሆነ፣ የታማኝ እና ኃላፊነት ያለው ለከፍተኛ ወይም ለድርጅታዊ ደረጃ ሚናዎች የሚስማማ።"
-
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/career/knowledge/stories.tsx
 #: src/features/homepage/remember.tsx
 msgid "Situation"
@@ -12887,10 +12792,6 @@ msgstr "«ሁኔታ»፣ «ተግባር» እና «እርምጃ» ግዴታ ና�
 #: src/features/career/knowledge/stories.tsx
 msgid "Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank."
 msgstr "ሁኔታ፣ ተግባር፣ እርምጃ፣ ውጤት፣ ትምህርት። እያንዳንዱን ታሪክ መደገፍ ከሚችሉት እውነታዎች ጋር ያገናኙ፤ ያልታወቁ ውጤቶችን ባዶ ይተዉ።"
-
-#: src/features/homepage/hero.tsx
-msgid "Six product teams"
-msgstr "ስድስት የምርት ቡድኖች"
 
 #: src/features/resume/editor/write/picture-settings.tsx
 msgid "Size"
@@ -12944,6 +12845,10 @@ msgstr "ስሎቬንያኛ"
 #: src/features/applications/components/insights-view.tsx
 msgid "Small numbers, but worth noticing."
 msgstr "ትንሽ ቁጥሮች, ግን ትኩረት ሊሰጠው የሚገባ."
+
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Smart Page Squeezer"
+msgstr ""
 
 #: src/features/homepage/remember.tsx
 msgid "So I talked to 14 customers, found the three places people dropped off, and we prototyped a shorter setup."
@@ -13009,13 +12914,8 @@ msgstr "በቀን ደርድር"
 #: src/features/applications/components/application-form-sheet.tsx
 #: src/features/applications/components/import-applications-sheet.tsx
 #: src/features/career/knowledge/facts.tsx
-#: src/routes/dashboard/settings/route.tsx
 msgid "Source"
 msgstr "ምንጭ"
-
-#: src/features/homepage/footer.tsx
-msgid "Source code"
-msgstr "ምንጭ ኮድ"
 
 #: src/features/career/workspace/answer-library.tsx
 msgid "Source employer"
@@ -13039,6 +12939,10 @@ msgstr ""
 msgid "Sources"
 msgstr "ምንጮች"
 
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Spacing micro-tightened."
+msgstr ""
+
 #: src/libs/locale.ts
 msgid "Spanish"
 msgstr "ስፓኒሽ"
@@ -13048,17 +12952,9 @@ msgstr "ስፓኒሽ"
 msgid "Spanish (B2)"
 msgstr "ስፓኒሽ (ቢ2)"
 
-#: src/features/homepage/hero.tsx
-msgid "Spanish, B2"
-msgstr "ስፓኒሽ፣ B2"
-
 #: src/features/career/workspace/practise.tsx
 msgid "Speak"
 msgstr "ተናገር"
-
-#: src/features/homepage/sections.tsx
-msgid "Speaks your language"
-msgstr "ቋንቋህን ይናገራል"
 
 #: src/features/ats-checker/messages.ts
 msgid "Spell the month, as in \"Mar 2022\"."
@@ -13131,17 +13027,17 @@ msgstr "ደረጃዎች"
 msgid "Standard section headings"
 msgstr "መደበኛ ክፍል ርዕሶች"
 
-#: src/features/homepage/header.tsx
-msgid "Star Reactive Resume on GitHub"
-msgstr "ኮከብ Reactive Resume በ GitHub ላይ"
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "STAR Breakdown"
+msgstr ""
+
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "STAR story drafted from bullet point!"
+msgstr ""
 
 #: src/components/input/github-stars-button.tsx
 msgid "Star us on GitHub (opens in new tab)"
 msgstr "በ GitHub ላይ ኮከብ ስጡን (በአዲስ ታብ ይከፈታል)"
-
-#: src/features/homepage/sections.tsx
-msgid "Stars on GitHub"
-msgstr "በGitHub ላይ ያሉ ኮከቦች"
 
 #: src/features/resume/editor/write/dates-field.tsx
 msgid "Start"
@@ -13175,10 +13071,6 @@ msgstr "ከ ጀምር"
 #: src/features/documents/new-document-dialog.tsx
 msgid "Start from one you have and link the application."
 msgstr "ካለህ ይጀምሩ እና የስራ ማመልከቻውን ያገናኙ።"
-
-#: src/features/homepage/sections.tsx
-msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
-msgstr "ከባዶ ይጀምሩ ወይም ያለዎትን ያስመጡ። ጥቂት ደቂቃዎች ይወስዳል፣ በማንኛውም ጊዜም ተመልሰው መምጣት ይችላሉ።"
 
 #: src/features/resume/editor/write/section-row.tsx
 msgid "Start on a new page"
@@ -13304,10 +13196,6 @@ msgstr "ታሪኮች"
 msgid "Stories to bring"
 msgstr "የሚያመጧቸው ታሪኮች"
 
-#: src/features/homepage/header.tsx
-msgid "Story"
-msgstr "ታሪክ"
-
 #: src/features/homepage/remember.tsx
 msgid "Story · 5 of 5 parts"
 msgstr "ታሪክ · ከ5 ክፍሎች 5"
@@ -13315,6 +13203,10 @@ msgstr "ታሪክ · ከ5 ክፍሎች 5"
 #: src/features/career/knowledge/stories.tsx
 msgid "Story deleted"
 msgstr "ታሪኩ ተሰርዟል"
+
+#: src/features/career/knowledge/stories.tsx
+msgid "Story Details"
+msgstr ""
 
 #: src/features/career/knowledge/stories.tsx
 msgid "Story not found"
@@ -13362,10 +13254,6 @@ msgstr "የተያያዘው የሽፋን ደብዳቤ፡ {0} ገብቷል።"
 msgid "Submitted attached resume: {0}"
 msgstr "ተያይዟል የትምህርት ማስረጃ፡ {0}"
 
-#: src/features/homepage/footer.tsx
-msgid "Subreddit"
-msgstr "ሰብሬዲት"
-
 #: src/features/career/workspace/prepare.tsx
 msgid "Success at 90 days · next step"
 msgstr "ስኬት በ90 ቀናት · ቀጣይ እርምጃ"
@@ -13399,10 +13287,6 @@ msgstr "የክፍት ማመልከቻዎችዎ ማጠቃለያዎች"
 msgid "Summary"
 msgstr "ማጠቃለያ"
 
-#: src/features/homepage/sections.tsx
-msgid "Support"
-msgstr "ድጋፍ"
-
 #: src/features/career/shared.tsx
 #: src/features/career/workspace/debrief.tsx
 #: src/features/homepage/prepare.tsx
@@ -13411,6 +13295,10 @@ msgstr "የተደገፈ"
 
 #: src/features/career/workspace/answer-library.tsx
 msgid "Supporting Knowledge facts and stories"
+msgstr ""
+
+#: src/features/resume/share/share-panel.tsx
+msgid "SVG"
 msgstr ""
 
 #: src/features/career/offers.tsx
@@ -13445,7 +13333,6 @@ msgstr "ያጥፉት"
 msgid "Switch model"
 msgstr "ሞዴል ቀይር"
 
-#: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 msgid "Switch to dark mode"
 msgstr "ወደ ጨለማ ሁነታ ቀይር"
@@ -13454,7 +13341,6 @@ msgstr "ወደ ጨለማ ሁነታ ቀይር"
 msgid "Switch to dark theme"
 msgstr "ወደ ጨለማ ገጽታ ቀይር"
 
-#: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 msgid "Switch to light mode"
 msgstr "ወደ ብርሃን ሁነታ ቀይር"
@@ -13527,7 +13413,6 @@ msgstr "መለያዎች፣ በኮማ የተለዩ"
 msgid "Tags…"
 msgstr "መለያዎች…"
 
-#: src/features/homepage/header.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Tailor"
 msgstr "ከሥራ መግለጫው ጋር መላመድ"
@@ -13550,6 +13435,10 @@ msgstr ""
 msgid "Tailor to the {0} posting"
 msgstr "ከ{0} የሥራ ማስታወቂያ ጋር አስማማ"
 
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Tailored Negotiation Script"
+msgstr ""
+
 #: src/features/applications/components/insights-view.tsx
 msgid "Tailored vs. base resume"
 msgstr "የተጣጣመ vs. ቤዝ ሪሱሜ"
@@ -13566,6 +13455,7 @@ msgstr "ታሚልኛ"
 msgid "Target roles"
 msgstr "ዒላማ የሥራ መደቦች"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/career/knowledge/stories.tsx
 #: src/features/homepage/remember.tsx
 msgid "Task"
@@ -13617,13 +13507,8 @@ msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr "አብነት፣ አይነት እና ቀለሞች ሪሱሙን ይከተላሉ፣ ስለዚህ ጥንዶቹ ሁልጊዜ ይዛመዳሉ።"
 
 #: src/features/homepage/design.tsx
-#: src/features/homepage/footer.tsx
 msgid "Templates"
 msgstr "አብነቶች"
-
-#: src/features/homepage/sections.tsx
-msgid "Templates × {templates}"
-msgstr "አብነቶች × {templates}"
 
 #: src/features/ats-checker/checker.tsx
 msgid "Terms from the posting"
@@ -13726,10 +13611,6 @@ msgstr "ስርዓቱ እንደገና ሲያሰራው በ{minimum} pt ስር ያ�
 #: src/libs/locale.ts
 msgid "Thai"
 msgstr "ታይኛ"
-
-#: src/features/homepage/sections.tsx
-msgid "Thank you for keeping it free."
-msgstr "በነጻ ስላቆዩት እናመሰግናለን።"
 
 #: src/features/homepage/remember.tsx
 msgid "Thanks, Sam. Here’s one: at Northwind Labs I led the onboarding redesign, from 14 customer interviews to a shorter setup."
@@ -14265,8 +14146,8 @@ msgid "This file isn't a readable image. Choose a PNG, JPEG, WebP or GIF photo."
 msgstr ""
 
 #: src/features/documents/new-document-dialog.tsx
-msgid "This file type can't be imported. Use a PDF, Word, Reactive Resume or JSON Resume file, or a LinkedIn export (.zip)."
-msgstr "ይህ የፋይል አይነት ሊመጣ አይችልም። PDF፣ Word፣ Reactive Resume ወይም JSON Resume ፋይል፣ ወይም LinkedIn ኤክስፖርት (.zip) ተጠቀም።"
+msgid "This file type can't be imported. Use a PDF, Word, Resume Builder or JSON Resume file, or a LinkedIn export (.zip)."
+msgstr ""
 
 #: src/features/ats-checker/messages.ts
 msgid "This file uses a lot of different fonts."
@@ -14518,15 +14399,17 @@ msgstr "ለ"
 msgid "To {recipient}"
 msgstr ""
 
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "to flip"
+msgstr ""
+
 #: src/libs/dnd.ts
 msgid "To pick it up, press Space or Enter. Use the arrow keys to move it, Space or Enter to drop it, or Escape to cancel."
 msgstr "ለማንሳት Space ወይም Enter ይጫኑ። ለማንቀሳቀስ የቀስት ቁልፎችን፣ ለማስቀመጥ Space ወይም Enter፣ ለመሰረዝ ደግሞ Escape ይጠቀሙ።"
 
 #: src/features/applications/components/calendar-view.tsx
-#: src/features/command-palette/pages/navigation.tsx
 #: src/features/resume/share/share-panel.tsx
 #: src/routes/dashboard/career/index.tsx
-#: src/routes/dashboard/career/route.tsx
 msgid "Today"
 msgstr "ዛሬ"
 
@@ -14550,9 +14433,9 @@ msgstr "በነጭ ላይ ላሉ ርእሶች በጣም ቀላል። በቀላሉ
 msgid "Too many requests. Try again later."
 msgstr "በጣም ብዙ ጥያቄዎች። ቆይተው እንደገና ይሞክሩ።"
 
-#: src/features/homepage/sections.tsx
-msgid "Total"
-msgstr "ጠቅላላ"
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Total 4-Yr Equity ($)"
+msgstr ""
 
 #: src/features/applications/components/application-form-sheet.tsx
 msgid "Track a job you're applying to and link the resume you sent."
@@ -14565,14 +14448,6 @@ msgstr "በማመልከቻዎች ውስጥ ተከታተል"
 #: src/features/career/today.tsx
 msgid "Track selected"
 msgstr ""
-
-#: src/routes/dashboard/applications/index.tsx
-msgid "Track your first job"
-msgstr "የመጀመሪያ ስራዎን ይከታተሉ"
-
-#: src/features/homepage/sections.tsx
-msgid "Tracking"
-msgstr "መከታተል"
 
 #: src/features/career/workspace/practise.tsx
 msgid "Transcribe answers with"
@@ -14590,21 +14465,13 @@ msgstr "በ{model} ወደ ጽሑፍ በመገልበጥ ላይ…"
 msgid "Transcript copied"
 msgstr "ግልባጭ ተቀድቷል።"
 
-#: src/routes/dashboard/settings/route.tsx
-msgid "Translate"
-msgstr "ተርጉም።"
+#: src/routes/builder/$resumeId/-components/translate-dialog.tsx
+msgid "Translate Resume Sections"
+msgstr ""
 
-#: src/features/homepage/sections.tsx
-msgid "Translate the app"
-msgstr "መተግበሪያውን ይተርጉሙ"
-
-#: src/features/homepage/sections.tsx
-msgid "Translated into {languageCount} languages."
-msgstr "ወደ {languageCount} ቋንቋዎች ተተርጉሟል።"
-
-#: src/features/homepage/footer.tsx
-msgid "Translations"
-msgstr "ትርጉሞች"
+#: src/routes/builder/$resumeId/-components/document-menu.tsx
+msgid "Translate Sections…"
+msgstr ""
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/documents/documents-page.tsx
@@ -14726,10 +14593,6 @@ msgstr "ባለ ሁለት ደረጃ ማረጋገጫን በማብራት ላይ…"
 msgid "Two columns"
 msgstr "ሁለት ዓምዶች"
 
-#: src/dialogs/resume/template/data.ts
-msgid "Two columns beneath a colored header band. Keep experience in the main column and supporting details in the sidebar."
-msgstr "ባለቀለም የራስጌ ባንድ ስር ሁለት ዓምዶች። በዋናው አምድ ውስጥ ልምድ እና ደጋፊ ዝርዝሮችን በጎን አሞሌ ውስጥ አቆይ።"
-
 #: src/features/homepage/check.tsx
 msgid "Two date formats found"
 msgstr "ሁለት የቀን ቅርጸቶች ተገኝተዋል"
@@ -14737,34 +14600,6 @@ msgstr "ሁለት የቀን ቅርጸቶች ተገኝተዋል"
 #: src/features/career/workspace/prepare.tsx
 msgid "Two stories"
 msgstr "ሁለት ታሪኮች"
-
-#: src/dialogs/resume/template/data.ts
-msgid "Two-column with a bold colored sidebar and skill bars; great for creative or tech roles where visual flair is welcome."
-msgstr "ሁለት-አምድ የሆነ ከደፈጣማ ከመለያ ጎን አሞሌ እና ከችሎታ መደርደሪያዎች ጋር፤ ለፈጣሪ ወይም የቴክ ሚናዎች የሚያስመች ማዕድ።"
-
-#: src/dialogs/resume/template/data.ts
-msgid "Two-column with a dark teal sidebar and skills grid; modern feel for developers, data scientists, or technical PMs."
-msgstr "ሁለት-አምድ የሆነ ጨለማ ያለው የቱርኮይዝ ጎን አሞሌና የችሎታ መደርደሪያ፤ ለዲቨሎፐሮች፣ የውሂብ ሳይንቲስቶች ወይም ቴክኒካል PM ዘመናዊ ስሜት አለው።"
-
-#: src/dialogs/resume/template/data.ts
-msgid "Two-column with a left margin color; simple and approachable for creative, editorial, or junior roles."
-msgstr "ሁለት-አምድ የሆነ ከግራ ጎን ያለው ያለቀለም ክልል፤ ቀላል እና ተደራሽ ለፈጣሪ፣ አርታኢ ወይም የጀማሪ ሚናዎች።"
-
-#: src/dialogs/resume/template/data.ts
-msgid "Two-column with a muted color sidebar; earthy and calm, suits sustainability, healthcare, or nonprofit sectors."
-msgstr "ሁለት-አምድ የሆነ ተዝቅተው ቀለማት ያሉትን ጎን አሞሌ፤ የመሬት ቀለም እና ዝምታ ያለው፣ ለተስፋፋ ኢንዱስትሪዎች፣ የህክምና ወይም ለማህበራዊ ጉዳይ ዘርፎች ተገቢ።"
-
-#: src/dialogs/resume/template/data.ts
-msgid "Two-column with a soft header accent and circular profile photo; ideal for marketing, HR, or client-facing roles."
-msgstr "ሁለት-አምድ የሆነ ከለስላሳ ራስጌ ማስታወቂያ እና ከመነሻ ክብ ፎቶ ጋር፤ ለመምሪያ፣ HR ወይም ከደንበኛ ጋር የሚገናኙ ሚናዎች ተስማሚ።"
-
-#: src/dialogs/resume/template/data.ts
-msgid "Two-column with accent colors and clean typography; balanced choice for business analysts or operations roles."
-msgstr "ሁለት-አምድ የሆነ ከመጠነ-አሰማማ ቀለም እና ንፁህ ታይፖግራፊ ጋር፤ ለቢዝነስ ተንታኞች ወይም ለኦፕሬሽን ሚናዎች የተመመነ ምርጫ።"
-
-#: src/dialogs/resume/template/data.ts
-msgid "Two-column, minimal with light gray sidebar and subtle icons; professional and understated for legal, finance, or executive roles."
-msgstr "ሁለት-አምድ፣ ቀላል እና የጽሁፍ ብዛት ያለው ከቀለል ግራጫ ጎን አሞሌና ቀላል አዶዎች ጋር፤ ለህግ፣ ፋይናንስ ወይም ለአስኪያጅ ሚናዎች ሙያዊ እና ዝቅተኛ።"
 
 #: src/routes/auth/verify-2fa.tsx
 msgid "Two-factor authentication"
@@ -14861,7 +14696,6 @@ msgid "Undo resume change"
 msgstr "የሥራ ልምድ ለውጥ ቀልብስ"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "University of Porto"
 msgstr "University of Porto"
@@ -15402,10 +15236,6 @@ msgstr "መልሶ ለመስማት በመጠበቅ ላይ"
 msgid "Warning"
 msgstr "ማስጠንቀቂያ"
 
-#: src/features/homepage/hero.tsx
-msgid "WCAG 2.1 AA"
-msgstr "WCAG 2.1 AA"
-
 #: src/features/applications/components/add-application-dialog.tsx
 msgid "We read the page and save the posting for Check, the assistant and your letter."
 msgstr "ገጹን እናነባለን እና የሥራ ማስታወቂያውን ለቼክ፣ ለረዳቱ እና ለደብዳቤዎ እናስቀምጣለን።"
@@ -15431,6 +15261,10 @@ msgstr "የድር መዳረሻ"
 #. placeholder {0}: access?.searxng ? t`your server's search service` : (access?.provider ?? t`built-in reader`)
 #: src/libs/orpc/ai-consent.ts
 msgid "Web destination: {0}."
+msgstr ""
+
+#: src/features/resume/share/share-panel.tsx
+msgid "Web Link"
 msgstr ""
 
 #: src/features/resume/share/share-panel.tsx
@@ -15754,8 +15588,6 @@ msgstr "መጠየቅ የሚገባው"
 msgid "Worth asking {0}"
 msgstr "{0}ን መጠየቅ የሚገባው"
 
-#: src/features/homepage/footer.tsx
-#: src/features/homepage/header.tsx
 #: src/features/homepage/write.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
 #: src/routes/builder/$resumeId/-components/editor-shell.tsx
@@ -15855,10 +15687,6 @@ msgstr "መልስ በመጻፍ ላይ…"
 msgid "Writing help, tailored suggestions and the assistant. The default provider is used wherever you don't pick one. Your keys stay encrypted."
 msgstr "የጽሑፍ እገዛ፣ የተበጁ ጥቆማዎች እና ረዳቱ። አንድ ባልመረጡበት ቦታ ሁሉ ነባሪው አቅራቢ ጥቅም ላይ ይውላል። ቁልፎችዎ ተመስጥረው ይቆያሉ።"
 
-#: src/features/homepage/sections.tsx
-msgid "writing, tailoring and sending"
-msgstr "መጻፍ, መላመድ እና መላክ"
-
 #: src/features/career/workspace/answer-library.tsx
 msgid "Written manually"
 msgstr ""
@@ -15877,20 +15705,12 @@ msgid "Yes"
 msgstr ""
 
 #: src/features/homepage/faq.tsx
-msgid "Yes. Every feature is free: all {templates} templates, PDF and Word downloads, the ATS checker, cover letters and the job tracker. There are no ads, no tracking and no paid tier. Donations pay for hosting and development."
-msgstr "አዎ። እያንዳንዱ ባህሪ ነፃ ነው፦ ሁሉም {templates} አብነቶች፣ የPDF እና Word ማውረዶች፣ የATS አረጋጋጭ፣ የሽፋን ደብዳቤዎች እና የማመልከቻ መከታተያ። ምንም ማስታወቂያ፣ ክትትል ወይም የሚከፈልበት ደረጃ የለም። መዋጮዎች የማስተናገጃ እና የልማት ወጪዎችን ይሸፍናሉ።"
-
-#: src/features/homepage/faq.tsx
 msgid "Yes. Every job you track gets its own workspace: check your fit against the posting, draft answers from stories you wrote once, get a short plan before the interview, practice out loud with feedback and debrief afterwards. When offers arrive, compare them side by side. The coaching uses your own AI key; the comparison doesn’t need one."
 msgstr "አዎ። የሚከታተሉት እያንዳንዱ ሥራ የራሱ የሥራ ቦታ ያገኛል፦ ተስማሚነትዎን ከሥራ ማስታወቂያው ጋር ያረጋግጡ፣ አንድ ጊዜ ከጻፏቸው ታሪኮች መልሶችን ያርቅቁ፣ ከቃለ መጠይቁ በፊት አጭር ዕቅድ ያግኙ፣ በግብረ መልስ ጮክ ብለው ይለማመዱ፣ በኋላም ድኅረ ግምገማ ያድርጉ። ቅናሾች ሲመጡ ጎን ለጎን ያነጻጽሯቸው። ስልጠናው የራስዎን AI ቁልፍ ይጠቀማል፤ ማነጻጸሩ ግን አያስፈልገውም።"
 
 #: src/features/homepage/faq.tsx
-msgid "Yes. Import a PDF, a LinkedIn data export, a JSON Resume file or a Reactive Resume export, then pick up where it left off. With an AI provider set up, Word documents work too."
-msgstr "አዎ። PDF፣ የLinkedIn ውሂብ ወደ ውጭ መላክ፣ JSON Resume ፋይል ወይም Reactive Resume ወደ ውጭ መላክ እና ካቆመበት ያንሱ። ከ AI አቅራቢ ጋር በማዋቀር፣ Word ሰነዶችም ይሰራሉ።"
-
-#: src/features/homepage/faq.tsx
-msgid "Yes. Reactive Resume is open source under the MIT License and ships as a Docker image, so it runs on your own server with your own database and storage."
-msgstr "አዎ። Reactive Resume በMIT License ስር ክፍት ምንጭ ነው እና እንደ Docker ምስል ይላካል፣ ስለዚህ በራስዎ አገልጋይ ላይ በራስዎ ዳታቤዝ እና ማከማቻ ይሰራል።"
+msgid "Yes. Import a PDF, a LinkedIn data export, a JSON Resume file or a Resume Builder export, then pick up where it left off. With an AI provider set up, Word documents work too."
+msgstr ""
 
 #: src/features/career/coach-thread.tsx
 msgid "Yesterday"
@@ -16327,10 +16147,6 @@ msgstr "ታሪኮችዎ"
 msgid "Your story couldn't be loaded."
 msgstr "ታሪክዎን መጫን አልተቻለም።"
 
-#: src/features/homepage/sections.tsx
-msgid "Your turn"
-msgstr "ተራህ"
-
 #: src/features/career/workspace/prepare.tsx
 msgid "Your two-minute introduction"
 msgstr "የሁለት ደቂቃ መግቢያዎ"
@@ -16350,10 +16166,6 @@ msgstr ""
 #: src/features/auth/components/guest-banner.tsx
 msgid "Your work is lost when you sign out or the session ends. Create an account or sign in to keep your resumes, cover letters and applications."
 msgstr "ሲወጡ ወይም ክፍለ ጊዜው ሲያበቃ ስራዎ ይጠፋል። የስራ ልምድ ማስረጃዎችዎን፣ የሽፋን ደብዳቤዎችዎን እና ማመልከቻዎችዎን ለማቆየት መለያ ይፍጠሩ ወይም ይግቡ።"
-
-#: src/features/homepage/sections.tsx
-msgid "Yours"
-msgstr "የእርስዎ"
 
 #. placeholder {0}: templateNames[step] ?? ""
 #: src/features/homepage/design.tsx

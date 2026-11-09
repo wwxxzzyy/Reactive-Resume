@@ -271,6 +271,19 @@ describe("createApp", () => {
 		for (const response of [rpc, mcp, vercelPage]) expect(response.headers.get("content-encoding")).toBeNull();
 		expect(vercelPage.headers.get("vary")).toBe("Cookie");
 	});
+
+	it("emits baseline security headers across requests", async () => {
+		const { createApp } = await import("./app");
+		mocks.handleHealth.mockReturnValueOnce(new Response(JSON.stringify({ status: "healthy" }), { status: 200 }));
+		const response = await createApp().request("http://localhost:3000/api/health");
+		expect(response.status).toBe(200);
+		expect(response.headers.get("x-content-type-options")).toBe("nosniff");
+		expect(response.headers.get("x-frame-options")).toBe("DENY");
+		expect(response.headers.get("referrer-policy")).toBe("strict-origin-when-cross-origin");
+		expect(response.headers.get("permissions-policy")).toContain("camera=()");
+		expect(response.headers.get("cross-origin-opener-policy")).toBe("same-origin-allow-popups");
+		expect(response.headers.get("x-permitted-cross-domain-policies")).toBe("none");
+	});
 });
 
 it.each(["/auth/consent", "/auth/consent/", "/auth/login"])("prevents framing or caching %s", async (path) => {

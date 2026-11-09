@@ -16,62 +16,62 @@ const capabilities = [
 	},
 	{
 		icon: "seal-check" as const,
-		badge: "Pre-Submission Audit",
-		title: "Real-Time ATS Parsing Diagnostics",
+		badge: "ATS Alignment",
+		title: "Targeted JD Matcher & ATS Dial",
 		description:
-			"Validate your resume against automated screening systems before applying. Check semantic headings, section order, and plain-text extraction fidelity.",
+			"Score your resume against real job descriptions in real time. Validate keyword density, categorize matching skills, and fill critical ATS gaps before applying.",
 		highlights: [
-			"Instant ATS readability & formatting compatibility score",
-			"Verifies Workday, Greenhouse, Taleo & Lever parsers",
-			"Plain-text extraction preview reveals how bots parse your data",
+			"Real-time 0–100% weighted ATS alignment score dial",
+			"Categorized skills, experience, and domain keyword parsing",
+			"Highlights critical and recommended missing terms with 1-click add",
 		],
 	},
 	{
-		icon: "envelope-simple" as const,
-		badge: "Unified Identity",
-		title: "Matching Cover Letter Studio",
-		description:
-			"Draft polished cover letters synchronized with your resume's typography, color accents, and margins for a cohesive application package.",
-		highlights: [
-			"Inherits resume fonts, margins, and design accents",
-			"Recruiter-approved header styles and letter layouts",
-			"Pair and export matching document packages in seconds",
-		],
-	},
-	{
-		icon: "kanban" as const,
-		badge: "Search Workflow",
-		title: "Job Application Kanban Tracker",
-		description:
-			"Manage your entire job hunt from lead discovery to final offer negotiations. Organize application statuses and keep follow-up deadlines on track.",
-		highlights: [
-			"Interactive Board, List, and Calendar views",
-			"Attach the exact resume & cover letter sent per application",
-			"Log interview stages, salary expectations, and company notes",
-		],
-	},
-	{
-		icon: "lock" as const,
-		badge: "Strict Privacy",
-		title: "Granular Privacy & Web Sharing",
-		description:
-			"Share live digital resumes on your terms with custom web URLs, or protect your private documents with password access controls.",
-		highlights: [
-			"Responsive web resume link with 1-click publish/unpublish",
-			"Optional password protection for confidential portfolios",
-			"Zero ad tracking, zero telemetry, and zero data sold to brokers",
-		],
-	},
-	{
-		icon: "sliders-horizontal" as const,
+		icon: "arrows-in-line-vertical" as const,
 		badge: "Design Precision",
-		title: "Dynamic Layout & Typography Engine",
+		title: "Smart Page Squeezer (Auto-Fit Overflow)",
 		description:
-			"Customize every visual element with precision. Switch layouts, adjust spacing, reorder sections, and control page breaks with live preview.",
+			"Never send a resume with an awkward 2-line spillover onto page 2. Our intelligent algorithm balances line-heights, margins, and gaps to lock your resume into 1 or 2 clean pages.",
 		highlights: [
-			"Curated recruiter-friendly typography pairs & color palettes",
-			"Flexible single-column and multi-column grid layouts",
-			"Real-time multi-page preview with manual page break controls",
+			"1-click Fit 1 Page, 2-Page Relaxed, and Micro-Tighten presets",
+			"Eliminates trailing overflow lines without ruining visual layout",
+			"Maintains strict 10mm print margins and WCAG typography contrast",
+		],
+	},
+	{
+		icon: "qr-code" as const,
+		badge: "Contact Identity",
+		title: "Vector SVG QR & Instant vCard 3.0",
+		description:
+			"Connect physical resumes to recruiters' smartphones. Generate zero-dependency vector QR codes with instant vCard 3.0 phone contact saving and web portfolio linking.",
+		highlights: [
+			"High-contrast vector SVG QR matrix generated purely in browser",
+			"vCard 3.0 contact card lets hiring managers save info in 1 camera scan",
+			"Zero third-party tracking, zero analytics telemetry, zero redirects",
+		],
+	},
+	{
+		icon: "chart-line-up" as const,
+		badge: "Negotiation Studio",
+		title: "Total Rewards & Offer Comparison Calculator",
+		description:
+			"Compare competing offers side-by-side beyond base salary. Evaluate Year 1 total comp, 4-year equity vesting, and generate ready-to-send counteroffer scripts.",
+		highlights: [
+			"Side-by-side Year 1 total comp, sign-on bonus & stock vesting",
+			"Cash vs equity split breakdown with dollar advantage callouts",
+			"1-click personalized counteroffer negotiation email script",
+		],
+	},
+	{
+		icon: "globe-simple" as const,
+		badge: "Global Reach",
+		title: "1-Click Multi-Language Section Translator",
+		description:
+			"Target multinational companies and international job markets effortlessly. Localize standard resume section headers across 11 languages with automatic typography adaptation.",
+		highlights: [
+			"1-click translation across 11 languages (DE, FR, ES, JA, ZH, AR...)",
+			"Keeps your personalized achievements and custom entries untouched",
+			"Automatic right-to-left (RTL) text direction and font adjustments",
 		],
 	},
 ];

@@ -11,9 +11,10 @@ import { authClient } from "@/libs/auth/client";
 
 const getNavItems = () => [
 	{ to: "#templates", label: "Resume Templates", badge: "12 ATS" },
-	{ to: "/ats-checker", label: "ATS Resume Checker", badge: "Free Scan", highlight: true },
+	{ to: "/ats-checker", label: "ATS Resume Checker", badge: "Free Scan" },
+	{ to: "#ai-credits", label: "AI Packs & Pricing", badge: "No Sub", highlight: true },
 	{ to: "#features", label: "Features" },
-	{ to: "#capabilities", label: "Export (PDF/DOCX)" },
+	{ to: "#capabilities", label: "Capabilities" },
 	{ to: "#reviews", label: "Reviews" },
 ];
 
@@ -46,15 +47,15 @@ export function LandingHeader() {
 				aria-label="DipperGo Resume Builder"
 			>
 				<img
-					src="/icon/light.svg"
-					alt=""
+					src="/icon/light.svg?v=4"
+					alt="DipperGo"
 					width={32}
 					height={32}
 					className={cn("size-[32px] dark:hidden", night && "hidden")}
 				/>
 				<img
-					src="/icon/dark.svg"
-					alt=""
+					src="/icon/dark.svg?v=4"
+					alt="DipperGo"
 					width={32}
 					height={32}
 					className={cn("hidden size-[32px] dark:block", night && "block")}

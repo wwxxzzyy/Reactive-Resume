@@ -15,6 +15,7 @@ import { Icon } from "@reactive-resume/ui/components/icon";
 import { toast } from "@reactive-resume/ui/components/toast";
 import { NotesSectionBuilder } from "../-sidebar/right/sections/notes";
 import { DocumentDetails } from "./document-details";
+import { TranslateSectionsDialog } from "./translate-dialog";
 import { useDialogStore } from "@/dialogs/store";
 import {
 	useCurrentBuilderResumeSelector,
@@ -29,7 +30,7 @@ import { useResumeExport } from "@/features/resume/export/use-resume-export";
 import { getResumeErrorMessage } from "@/libs/error-message";
 import { orpc } from "@/libs/orpc/client";
 
-type DocumentDialog = "notes" | "details" | null;
+type DocumentDialog = "notes" | "details" | "translate" | null;
 
 /**
  * The document name in the editor bar opens the document menu: rename, duplicate, lock, notes,
@@ -62,6 +63,12 @@ export function DocumentMenu() {
 			<Dialog open={dialog === "details"} onOpenChange={(open) => !open && setDialog(null)}>
 				<DialogContent className="sm:max-w-[440px]">
 					<DocumentDetails />
+				</DialogContent>
+			</Dialog>
+
+			<Dialog open={dialog === "translate"} onOpenChange={(open) => !open && setDialog(null)}>
+				<DialogContent className="sm:max-w-[480px]">
+					<TranslateSectionsDialog onClose={() => setDialog(null)} />
 				</DialogContent>
 			</Dialog>
 		</>
@@ -152,6 +159,10 @@ function DocumentMenuItems({ onOpenDialog }: DocumentMenuItemsProps) {
 			<DropdownMenuItem onClick={() => onOpenDialog("details")}>
 				<Icon name="info" />
 				<Trans>Details</Trans>
+			</DropdownMenuItem>
+			<DropdownMenuItem disabled={isLocked} onClick={() => onOpenDialog("translate")}>
+				<Icon name="translate" />
+				<Trans>Translate Sections…</Trans>
 			</DropdownMenuItem>
 			<DropdownMenuItem onClick={() => void onPrint()}>
 				<Icon name="printer" />

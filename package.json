@@ -1,7 +1,7 @@
 {
 	"name": "reactive-resume",
 	"description": "Reactive Resume is a free and open-source resume builder that makes it easy to create, update, and share your resume.",
-	"version": "6.0.10",
+	"version": "1.0.0",
 	"private": true,
 	"license": "MIT",
 	"author": {
@@ -27,6 +27,7 @@
 		"build:cloudflare": "pnpm pdf:translations && pnpm --filter web build && node tooling/cloudflare/build.mjs",
 		"dev:cloudflare": "CLOUDFLARE_LOAD_DEV_VARS_FROM_DOT_ENV=false wrangler dev",
 		"deploy:cloudflare": "pnpm build:cloudflare && wrangler deploy",
+		"deploy:host": "tooling/deployment/deploy-host.sh",
 		"check:cloudflare": "pnpm build:cloudflare && wrangler deploy --dry-run",
 		"check": "pnpm pdf:translations && pnpm lint:fix && pnpm format && pnpm lint",
 		"docs:gen": "pnpm --filter server docs:gen",

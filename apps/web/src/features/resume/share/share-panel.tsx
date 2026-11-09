@@ -3,8 +3,8 @@ import { useLingui } from "@lingui/react";
 import { Trans } from "@lingui/react/macro";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouteContext } from "@tanstack/react-router";
-import { QRCodeSVG } from "qrcode.react";
 import { useState } from "react";
+import { generateQrSvg } from "@reactive-resume/resume/qrcode";
 import {
 	formatTimeSince,
 	publicResumeUrl,
@@ -12,6 +12,7 @@ import {
 	shortLinkOpens,
 	summarizeViews,
 } from "@reactive-resume/resume/sharing";
+import { generateVCard } from "@reactive-resume/resume/vcard";
 import { Button, buttonVariants } from "@reactive-resume/ui/components/button";
 import { Icon } from "@reactive-resume/ui/components/icon";
 import { Popover, PopoverContent, PopoverTrigger } from "@reactive-resume/ui/components/popover";
@@ -401,6 +402,23 @@ function PasswordRow() {
 }
 
 function QrCodeButton({ url }: { url: string }) {
+	const resume = useCurrentResume();
+	const [mode, setMode] = useState<"url" | "vcard">("url");
+
+	const qrContent = mode === "url" ? url : generateVCard(resume.data);
+	const qrSvg = generateQrSvg(qrContent, { size: 180, margin: 2 });
+
+	const handleDownloadSvg = () => {
+		const blob = new Blob([qrSvg], { type: "image/svg+xml" });
+		const blobUrl = URL.createObjectURL(blob);
+		const a = document.createElement("a");
+		a.href = blobUrl;
+		a.download = `${resume.slug}-${mode}-qr.svg`;
+		a.click();
+		URL.revokeObjectURL(blobUrl);
+		toast.add({ description: t`QR code SVG downloaded!` });
+	};
+
 	return (
 		<Popover>
 			<PopoverTrigger
@@ -411,8 +429,47 @@ function QrCodeButton({ url }: { url: string }) {
 					</Button>
 				}
 			/>
-			<PopoverContent className="w-auto p-4">
-				<QRCodeSVG value={url} size={176} marginSize={2} title={t`QR code for ${url}`} />
+			<PopoverContent className="w-64 p-3.5">
+				<div className="grid gap-3">
+					<div className="flex rounded-lg bg-sunken p-0.5 text-xs font-medium">
+						<button
+							type="button"
+							onClick={() => setMode("url")}
+							className={cn(
+								"flex-1 rounded-md py-1 text-center transition-colors",
+								mode === "url" ? "text-ink-1 bg-raised font-semibold shadow-xs" : "hover:text-ink-1 text-ink-2",
+							)}
+						>
+							<Trans>Web Link</Trans>
+						</button>
+						<button
+							type="button"
+							onClick={() => setMode("vcard")}
+							className={cn(
+								"flex-1 rounded-md py-1 text-center transition-colors",
+								mode === "vcard" ? "text-ink-1 bg-raised font-semibold shadow-xs" : "hover:text-ink-1 text-ink-2",
+							)}
+						>
+							<Trans>Contact Card</Trans>
+						</button>
+					</div>
+
+					<div
+						className="flex justify-center rounded-xl bg-white p-2 shadow-xs [&>svg]:size-[160px]"
+						// oxlint-disable-next-line react/no-danger -- generated safe SVG for QR code
+						dangerouslySetInnerHTML={{ __html: qrSvg }}
+					/>
+
+					<div className="flex items-center justify-between text-xs text-ink-2">
+						<span className="truncate text-[11px] text-ink-3">
+							{mode === "url" ? t`Scans to web resume` : t`Scans to phone contacts`}
+						</span>
+						<Button variant="ghost" size="sm" className="h-7 gap-1 px-2 text-xs" onClick={handleDownloadSvg}>
+							<Icon name="download-simple" size={14} />
+							<Trans>SVG</Trans>
+						</Button>
+					</div>
+				</div>
 			</PopoverContent>
 		</Popover>
 	);

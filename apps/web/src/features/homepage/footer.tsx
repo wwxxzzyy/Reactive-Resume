@@ -26,6 +26,7 @@ const getColumns = (): { id: string; title: string; links: FooterLink[] }[] => [
 		links: [
 			{ label: "Resume Templates", to: "/resume-templates", badge: "12 ATS" },
 			{ label: "ATS Resume Scanner", to: "/ats-checker", badge: "Free Scan", highlight: true },
+			{ label: "AI Credit Packs", href: "#ai-credits", badge: "No Sub", highlight: true },
 			{ label: "Job Tracker Kanban", to: "/auth/register" },
 			{ label: "Platform Features", href: "#features" },
 			{ label: "Export Engine", href: "#capabilities" },
@@ -59,7 +60,7 @@ const getColumns = (): { id: string; title: string; links: FooterLink[] }[] => [
 		links: [
 			{ label: "Sign in", to: "/auth/login" },
 			{ label: "Get started", to: "/auth/register" },
-			{ label: "Contact Support", href: "mailto:support@dippergo.com" },
+			{ label: "Contact Support", href: "mailto:info@dippergo.com" },
 			{ label: "Privacy & Terms", to: "/auth/login" },
 		],
 	},
@@ -130,8 +131,14 @@ export function LandingFooter() {
 							className="flex items-center gap-3 transition-opacity hover:opacity-85"
 							aria-label="DipperGo Resume Builder"
 						>
-							<img src="/icon/light.svg" alt="" width={36} height={36} className="size-9 dark:hidden" />
-							<img src="/icon/dark.svg" alt="" width={36} height={36} className="hidden size-9 dark:block" />
+							<img src="/icon/light.svg?v=4" alt="DipperGo" width={36} height={36} className="size-9 dark:hidden" />
+							<img
+								src="/icon/dark.svg?v=4"
+								alt="DipperGo"
+								width={36}
+								height={36}
+								className="hidden size-9 dark:block"
+							/>
 							<div className="flex flex-col text-start">
 								<div className="flex items-center gap-2">
 									<span className="font-anybody text-xl leading-none font-bold tracking-tight text-ink">DipperGo</span>

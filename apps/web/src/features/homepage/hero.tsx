@@ -36,14 +36,21 @@ export function Hero() {
 
 				{/* Subheadline */}
 				<p className="mt-6 max-w-2xl font-display text-[clamp(17px,1.4vw,21px)] leading-relaxed text-pretty text-ink-2">
-					Build a professional resume that beats automated filters and impresses hiring managers. Engineered with
-					recruiter-approved typography, real-time keyword scoring, and a built-in application tracker. No hidden
-					paywalls, no watermark.
+					Build a recruiter-approved resume that beats automated ATS filters. Engineered with targeted JD keyword
+					matching, smart 1-page auto-fit, vector SVG QR codes, and a side-by-side offer comparison calculator. 100%
+					free forever, zero paywalls.
 				</p>
 
 				{/* CTAs */}
 				<div className="mt-9 flex flex-wrap items-center justify-center gap-4">
 					<CtaLink size="hero" />
+					<a
+						href="#ai-credits"
+						className="inline-flex h-[54px] items-center gap-2 rounded-sm border border-amber-500/30 bg-amber-500/10 px-5 font-ui text-base font-semibold text-amber-700 shadow-sm transition-all hover:border-amber-500/50 hover:bg-amber-500/15 dark:text-amber-300"
+					>
+						<Icon name="lightning" size={18} className="fill-amber-500 text-amber-500" />
+						<span>AI Credit Packs (No Sub)</span>
+					</a>
 					<a
 						href="#templates"
 						className="inline-flex h-[54px] items-center gap-2 rounded-sm border border-line-2 bg-raised px-6 font-ui text-base font-semibold text-ink shadow-sm transition-all hover:border-ink/20 hover:bg-hover"
@@ -75,12 +82,12 @@ export function Hero() {
 						<span>by 120,000+ job seekers</span>
 					</div>
 					<div className="flex items-center gap-1.5">
-						<Icon name="check-circle" size={16} className="text-accent" filled />
-						<span>98% ATS Pass Rate</span>
+						<Icon name="lightning" size={16} className="fill-amber-500 text-amber-500" />
+						<span>3 Free AI Credits on Signup</span>
 					</div>
 					<div className="flex items-center gap-1.5">
-						<Icon name="file-text" size={16} className="text-accent" />
-						<span>Vector PDF & Word DOCX</span>
+						<Icon name="check-circle" size={16} className="text-accent" filled />
+						<span>98% ATS Pass Rate</span>
 					</div>
 					<div className="flex items-center gap-1.5">
 						<Icon name="lock" size={16} className="text-accent" />
@@ -102,10 +109,13 @@ export function Hero() {
 							<div className="flex items-center gap-2">
 								<span className="font-martian inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent-text">
 									<Icon name="check-circle" size={14} filled />
-									ATS Score: 98/100 · High Pass Rate
+									JD Match: 96%
 								</span>
 								<span className="font-martian hidden rounded-md border border-line bg-surface px-2 py-0.5 text-[11px] text-ink-2 sm:inline-flex">
-									Single-Column
+									Auto-Fit 1 Page
+								</span>
+								<span className="font-martian hidden rounded-md border border-line bg-surface px-2 py-0.5 text-[11px] text-ink-2 sm:inline-flex">
+									vCard QR Ready
 								</span>
 							</div>
 						</div>
@@ -122,11 +132,36 @@ export function Hero() {
 										San Francisco, CA · alex.morgan@design.io · linkedin.com/in/alexmorgan · alexmorgan.design
 									</p>
 								</div>
-								<div className="flex items-center gap-2 sm:flex-col sm:items-end">
-									<span className="rounded border border-blue-200 bg-blue-50 px-2.5 py-1 text-[11px] font-bold text-blue-800">
-										✓ Recruiter Approved
-									</span>
-									<span className="text-[11px] text-zinc-500">Updated today</span>
+								<div className="flex items-center gap-3 sm:items-start">
+									<div className="hidden rounded-lg border border-zinc-200 bg-zinc-50 p-1.5 text-center sm:block">
+										<svg width="44" height="44" viewBox="0 0 25 25" className="mx-auto" fill="none">
+											<rect width="25" height="25" fill="white" />
+											<rect x="2" y="2" width="7" height="7" fill="black" />
+											<rect x="3" y="3" width="5" height="5" fill="white" />
+											<rect x="4" y="4" width="3" height="3" fill="black" />
+											<rect x="16" y="2" width="7" height="7" fill="black" />
+											<rect x="17" y="3" width="5" height="5" fill="white" />
+											<rect x="18" y="4" width="3" height="3" fill="black" />
+											<rect x="2" y="16" width="7" height="7" fill="black" />
+											<rect x="3" y="17" width="5" height="5" fill="white" />
+											<rect x="4" y="18" width="3" height="3" fill="black" />
+											<rect x="11" y="4" width="2" height="4" fill="black" />
+											<rect x="11" y="10" width="3" height="2" fill="black" />
+											<rect x="16" y="11" width="3" height="3" fill="black" />
+											<rect x="11" y="16" width="2" height="5" fill="black" />
+											<rect x="15" y="17" width="4" height="2" fill="black" />
+											<rect x="16" y="21" width="5" height="2" fill="black" />
+										</svg>
+										<span className="mt-0.5 block text-[8px] font-bold tracking-tight text-zinc-500 uppercase">
+											vCard QR
+										</span>
+									</div>
+									<div className="flex items-center gap-2 sm:flex-col sm:items-end">
+										<span className="rounded border border-blue-200 bg-blue-50 px-2.5 py-1 text-[11px] font-bold text-blue-800">
+											✓ Recruiter Approved
+										</span>
+										<span className="text-[11px] text-zinc-500">Auto-Fit: 1 Page Exact</span>
+									</div>
 								</div>
 							</div>
 
@@ -142,7 +177,15 @@ export function Hero() {
 												<span className="text-sm font-bold text-zinc-900">Lead Product Designer</span>
 												<span className="text-xs text-zinc-500">2021 – Present</span>
 											</div>
-											<p className="text-xs font-medium text-blue-700">Parcel & Co. · San Francisco, CA</p>
+											<div className="mt-1 flex flex-wrap items-center gap-2">
+												<p className="text-xs font-medium text-blue-700">Parcel & Co. · San Francisco, CA</p>
+												<span className="inline-flex items-center gap-1 rounded bg-zinc-100 px-1.5 py-0.5 text-[9.5px] font-semibold text-zinc-700">
+													<Icon name="code" size={10} /> GitHub: parcel/checkout
+												</span>
+												<span className="inline-flex items-center gap-1 rounded bg-purple-50 px-1.5 py-0.5 text-[9.5px] font-semibold text-purple-700">
+													<Icon name="sparkle" size={10} /> Figma: Core Design System
+												</span>
+											</div>
 											<ul className="mt-2 space-y-1.5 text-xs text-zinc-700">
 												<li className="flex items-start gap-1.5">
 													<span className="font-bold text-blue-600">•</span>

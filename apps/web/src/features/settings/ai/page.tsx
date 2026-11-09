@@ -5,6 +5,7 @@ import { McpSection } from "./mcp";
 import { ProvidersSection } from "./providers";
 import { WebAccessSection } from "./web-access";
 import { PageHeader } from "@/components/layout/page-header";
+import { CreditWalletSettingsSection } from "@/features/credits";
 
 /** Providers and API keys together: both connect outside tools. */
 export function AiDeveloperSettings() {
@@ -14,6 +15,7 @@ export function AiDeveloperSettings() {
 				title={<Trans>AI &amp; developer</Trans>}
 				description={<Trans>Connect the tools you use for writing, job search and working with your resumes.</Trans>}
 			/>
+			<CreditWalletSettingsSection />
 			<ProvidersSection />
 			<WebAccessSection />
 			<ApiKeysSection />

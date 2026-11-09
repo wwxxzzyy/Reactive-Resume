@@ -158,3 +158,9 @@ export const resumeUpdatesUserRateLimit = createRatelimitMiddleware<ContextWithH
 	limiter: productionLimiter(resumeUpdatesUserLimiter),
 	key: ({ context }) => `resume-updates-user:${getUserKey(context)}`,
 });
+
+const adminActionLimiter = createRateLimiter("adminActionLimiter", { maxRequests: 30, window: 60 * 1000 });
+export const adminActionRateLimit = createRatelimitMiddleware<ContextWithHeaders, unknown>({
+	limiter: productionLimiter(adminActionLimiter),
+	key: ({ context }) => `admin-action:${getUserKey(context)}`,
+});

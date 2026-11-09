@@ -1,5 +1,6 @@
 import { t } from "@lingui/core/macro";
 import { useRef } from "react";
+import { AiPricingSection } from "./ai-pricing";
 import { ApplicantFeatures } from "./applicant-features";
 import { LandingBackground } from "./background";
 import { ClosingCta } from "./closing-cta";
@@ -37,6 +38,7 @@ export function Homepage() {
 				<TemplatesShowcase />
 				<ApplicantFeatures />
 				<ComparisonSection />
+				<AiPricingSection />
 				<TestimonialsSection />
 				<ClosingCta />
 			</main>

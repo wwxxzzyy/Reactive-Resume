@@ -1,3 +1,4 @@
+import { adminRouter } from "../features/admin/router";
 import { agentRouter } from "../features/agent/router";
 import { aiProvidersRouter } from "../features/ai-providers/router";
 import { aiRouter } from "../features/ai/router";
@@ -6,6 +7,7 @@ import { applicationsRouter } from "../features/applications/router";
 import { authRouter } from "../features/auth/router";
 import { careerRouter } from "../features/career/router";
 import { coverLettersRouter } from "../features/cover-letters/router";
+import { creditsRouter } from "../features/credits/router";
 import { customDomainRouter } from "../features/custom-domain/router";
 import { documentsRouter } from "../features/documents/router";
 import { flagsRouter } from "../features/flags/router";
@@ -15,6 +17,7 @@ import { storageRouter } from "../features/storage/router";
 import { webAccessRouter } from "../features/web-access/router";
 
 export default {
+	admin: adminRouter,
 	applicationProfile: applicationProfileRouter,
 	ai: aiRouter,
 	aiProviders: aiProvidersRouter,
@@ -23,6 +26,7 @@ export default {
 	auth: authRouter,
 	career: careerRouter,
 	coverLetters: coverLettersRouter,
+	credits: creditsRouter,
 	customDomain: customDomainRouter,
 	documents: documentsRouter,
 	flags: flagsRouter,

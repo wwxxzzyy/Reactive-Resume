@@ -1,10 +1,13 @@
 import type { VersionSummary } from "./format";
 import type { Resume } from "@/features/resume/builder/draft";
+import type { ResumeDiffResult } from "@reactive-resume/resume/diff";
+import type { ResumeData } from "@reactive-resume/schema/resume/data";
 import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
-import { Trans } from "@lingui/react/macro";
+import { Plural, Trans } from "@lingui/react/macro";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { diffResume } from "@reactive-resume/resume/diff";
 import { Button } from "@reactive-resume/ui/components/button";
 import {
 	DropdownMenu,
@@ -29,6 +32,8 @@ type HistoryVersion = Pick<VersionSummary, "id" | "kind" | "name" | "createdAt">
 
 /** What History shows and does for one document: its versions, and saving, restoring, renaming and deleting them. */
 export type HistorySource = {
+	resumeId?: string;
+	currentResumeData?: ResumeData;
 	versions: HistoryVersion[] | undefined;
 	loading: boolean;
 	/** Locked documents can't be restored over. */
@@ -60,6 +65,8 @@ function useResumeHistory(): HistorySource {
 	const refresh = () => queryClient.invalidateQueries({ queryKey: listKey });
 
 	return {
+		resumeId: resume.id,
+		currentResumeData: resume.data,
 		versions,
 		loading,
 		locked: resume.isLocked,
@@ -106,6 +113,20 @@ export function HistoryTimeline({ source }: { source: HistorySource }) {
 
 	const selected = versions?.find((version) => version.id === selectedId) ?? null;
 	const when = (version: HistoryVersion) => formatVersionTime(version.createdAt, i18n.locale);
+
+	const versionQuery = useQuery({
+		...orpc.resume.getVersion.queryOptions({
+			input: { resumeId: source.resumeId ?? "", versionId: selectedId ?? "" },
+		}),
+		enabled: Boolean(source.resumeId && selectedId),
+	});
+
+	const versionData = versionQuery.data?.data;
+	const currentResumeData = source.currentResumeData;
+	const diff = useMemo(() => {
+		if (!currentResumeData || !versionData) return null;
+		return diffResume(versionData, currentResumeData);
+	}, [currentResumeData, versionData]);
 
 	const run = async (action: () => Promise<void>) => {
 		setBusy(true);
@@ -181,6 +202,8 @@ export function HistoryTimeline({ source }: { source: HistorySource }) {
 					</span>
 				</div>
 			)}
+
+			{selected && source.resumeId && <VersionDiffViewer diff={diff} />}
 
 			<ol className="grid" aria-label={t`Versions`}>
 				<TimelineItem
@@ -320,5 +343,68 @@ function NamedVersionMenu({ version, source }: { version: HistoryVersion; source
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
+	);
+}
+
+function VersionDiffViewer({ diff }: { diff: ResumeDiffResult | null }) {
+	const [expanded, setExpanded] = useState(true);
+	if (!diff) return null;
+
+	return (
+		<div className="grid gap-2 rounded-lg border border-line bg-surface p-3 text-xs">
+			<div className="flex items-center justify-between">
+				<button
+					type="button"
+					onClick={() => setExpanded((prev) => !prev)}
+					className="flex items-center gap-1.5 font-semibold text-ink hover:text-ink-2"
+				>
+					<Icon name={expanded ? "caret-down" : "caret-right"} size={14} />
+					<Trans>Changes vs Now ({diff.totalChanges})</Trans>
+				</button>
+				<span className="text-[11px] text-ink-3">
+					{diff.totalChanges === 0 ? (
+						<Trans>Identical to draft</Trans>
+					) : (
+						<Plural value={diff.totalChanges} one="# difference" other="# differences" />
+					)}
+				</span>
+			</div>
+
+			{expanded && diff.totalChanges > 0 && (
+				<div className="max-h-56 space-y-1.5 overflow-y-auto pr-1">
+					{diff.items.map((item, index) => (
+						<div key={index} className="flex items-start gap-2 rounded bg-sunken p-2">
+							<span
+								className={cn(
+									"flex h-4 items-center justify-center rounded px-1.5 text-[10px] font-bold uppercase",
+									item.kind === "added" && "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+									item.kind === "removed" && "bg-rose-500/10 text-rose-600 dark:text-rose-400",
+									item.kind === "changed" && "bg-amber-500/10 text-amber-600 dark:text-amber-400",
+								)}
+							>
+								{item.kind === "added" ? "+ Add" : item.kind === "removed" ? "- Del" : "~ Edit"}
+							</span>
+							<div className="min-w-0 flex-1">
+								<div className="flex items-baseline justify-between gap-1">
+									<span className="truncate font-medium text-ink">{item.label}</span>
+									<span className="shrink-0 text-[10px] text-ink-3">{item.section}</span>
+								</div>
+								{item.details && item.details.length > 0 && (
+									<p className="text-[11px] text-ink-3">
+										<Trans>Fields: {item.details.join(", ")}</Trans>
+									</p>
+								)}
+								{item.before && item.after && (
+									<div className="space-y-0.5 pt-0.5 text-[11px]">
+										<p className="text-rose-500/80 line-through">{item.before}</p>
+										<p className="text-emerald-600 dark:text-emerald-400">{item.after}</p>
+									</div>
+								)}
+							</div>
+						</div>
+					))}
+				</div>
+			)}
+		</div>
 	);
 }

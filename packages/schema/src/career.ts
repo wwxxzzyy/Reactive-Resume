@@ -344,3 +344,24 @@ export const roleSuggestionsOutputSchema = z.object({
 		)
 		.max(5),
 });
+
+export const generateStarFlashcardInputSchema = z.object({
+	providerId: z.string().min(1).optional(),
+	bullet: z.string().trim().min(5).max(2000),
+	role: z.string().trim().max(200).optional(),
+	company: z.string().trim().max(200).optional(),
+	locale: z.string().max(20).default("en-US"),
+});
+export type GenerateStarFlashcardInput = z.infer<typeof generateStarFlashcardInputSchema>;
+
+export const starFlashcardOutputSchema = z.object({
+	question: z.string().trim().min(1).max(500),
+	title: z.string().trim().min(1).max(200),
+	situation: z.string().trim().min(1).max(4000),
+	task: z.string().trim().min(1).max(4000),
+	action: z.string().trim().min(1).max(6000),
+	result: z.string().trim().max(4000).default(""),
+	reflection: z.string().trim().max(4000).default(""),
+	tags: z.array(z.string().trim().min(1).max(100)).max(10).default([]),
+});
+export type StarFlashcardOutput = z.infer<typeof starFlashcardOutputSchema>;

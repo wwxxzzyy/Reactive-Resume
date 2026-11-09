@@ -9,6 +9,7 @@ import { Input } from "@reactive-resume/ui/components/input";
 import { Skeleton } from "@reactive-resume/ui/components/skeleton";
 import { toast } from "@reactive-resume/ui/components/toast";
 import { cn } from "@reactive-resume/utils/style";
+import { buildAffiliateUrl } from "../affiliate";
 import { useInvalidateApplications } from "../use-application-actions";
 import { Combobox } from "@/components/ui/combobox";
 import { toastError } from "@/libs/error-message";
@@ -321,6 +322,66 @@ export function FindJobsView({ applications }: FindJobsViewProps) {
 							))}
 						</div>
 					)}
+				</div>
+			</div>
+
+			{/* Partner Fast-Track Sourcing */}
+			<div className="flex flex-col gap-2 rounded-xl border border-line bg-surface/80 p-3.5 sm:flex-row sm:items-center sm:justify-between">
+				<div className="flex items-center gap-2">
+					<span className="flex size-6 items-center justify-center rounded-full bg-accent/15 text-accent-text">
+						<Icon name="lightning" size={13} />
+					</span>
+					<span className="text-xs font-semibold text-ink">Partner Sourcing Fast-Track:</span>
+					<span className="hidden text-xs text-ink-3 md:inline">
+						Distribute your resume across top hiring platforms in 1 click
+					</span>
+				</div>
+
+				<div className="flex flex-wrap items-center gap-2">
+					<a
+						href={buildAffiliateUrl("https://www.ziprecruiter.com/jobs", "ziprecruiter")}
+						target="_blank"
+						rel="noopener noreferrer sponsored"
+						className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-sunken/40 px-2.5 py-1 text-xs font-medium text-ink transition-colors hover:border-line-2 hover:bg-hover hover:text-accent-text"
+					>
+						<span>ZipRecruiter</span>
+						<Badge variant="accent" className="px-1 py-0 text-[9px]">
+							1-Click
+						</Badge>
+					</a>
+					<a
+						href={buildAffiliateUrl("https://www.flexjobs.com/", "flexjobs")}
+						target="_blank"
+						rel="noopener noreferrer sponsored"
+						className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-sunken/40 px-2.5 py-1 text-xs font-medium text-ink transition-colors hover:border-line-2 hover:bg-hover hover:text-accent-text"
+					>
+						<span>FlexJobs</span>
+						<Badge variant="neutral" className="px-1 py-0 text-[9px]">
+							Remote
+						</Badge>
+					</a>
+					<a
+						href={buildAffiliateUrl("https://wellfound.com/jobs", "wellfound")}
+						target="_blank"
+						rel="noopener noreferrer sponsored"
+						className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-sunken/40 px-2.5 py-1 text-xs font-medium text-ink transition-colors hover:border-line-2 hover:bg-hover hover:text-accent-text"
+					>
+						<span>Wellfound</span>
+						<Badge variant="neutral" className="px-1 py-0 text-[9px]">
+							Startups
+						</Badge>
+					</a>
+					<a
+						href={buildAffiliateUrl("https://www.topresume.com/resume-review", "topresume")}
+						target="_blank"
+						rel="noopener noreferrer sponsored"
+						className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-sunken/40 px-2.5 py-1 text-xs font-medium text-ink transition-colors hover:border-line-2 hover:bg-hover hover:text-accent-text"
+					>
+						<span>TopResume</span>
+						<Badge variant="accent" className="px-1 py-0 text-[9px]">
+							Free Audit
+						</Badge>
+					</a>
 				</div>
 			</div>
 

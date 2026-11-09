@@ -94,7 +94,7 @@ export async function generateOpenApiSpec({ appUrl, version }: GenerateOpenApiSp
 			description:
 				"DipperGo Resume Builder API. Mutations do not support Idempotency-Key. Do not automatically retry POST, PUT, PATCH or DELETE requests after a timeout: first read the resource to determine whether the operation succeeded. Existing enum values and response shapes are retained for compatibility.",
 			license: { name: "MIT", url: "https://dippergo.com" },
-			contact: { name: "DipperGo Support", email: "support@dippergo.com", url: "https://dippergo.com" },
+			contact: { name: "DipperGo Support", email: "info@dippergo.com", url: "https://dippergo.com" },
 		},
 		servers: [{ url: `${appUrl}/api/openapi` }],
 		paths: {

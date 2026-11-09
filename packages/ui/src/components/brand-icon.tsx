@@ -8,14 +8,14 @@ export function BrandIcon({ variant = "logo", className, ...props }: Props) {
 	return (
 		<>
 			<img
-				src={`/${variant}/dark.svg`}
-				alt="Resume Builder"
+				src={`/${variant}/dark.svg?v=4`}
+				alt="DipperGo"
 				className={cn("hidden size-12 dark:block", className)}
 				{...props}
 			/>
 			<img
-				src={`/${variant}/light.svg`}
-				alt="Resume Builder"
+				src={`/${variant}/light.svg?v=4`}
+				alt="DipperGo"
 				className={cn("block size-12 dark:hidden", className)}
 				{...props}
 			/>

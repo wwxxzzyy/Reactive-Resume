@@ -10,6 +10,7 @@ import { Skeleton } from "@reactive-resume/ui/components/skeleton";
 import { toast } from "@reactive-resume/ui/components/toast";
 import { computeInsights, computeOutcomes, computeTimeline } from "../insights";
 import { getStageColor, getStageLabel } from "../stages";
+import { OfferCalculator } from "./offer-calculator";
 import { stagger } from "@/libs/motion";
 import { orpc } from "@/libs/orpc/client";
 
@@ -202,6 +203,8 @@ export function ApplicationInsights({ applications, onSaveJob }: ApplicationInsi
 					</div>
 				</div>
 			</div>
+
+			<OfferCalculator />
 		</div>
 	);
 }
@@ -408,18 +411,21 @@ function PipelineFlow({ insights }: { insights: ReturnType<typeof computeInsight
 					</g>
 				))}
 
-				{/* export-only watermark: the Reactive Resume mark, bottom-right, 8px from each edge.
+				{/* export-only watermark: the DipperGo mark, bottom-right, 8px from each edge.
 				    Paths are apps/web/public/icon/dark.svg verbatim (fill #FAFAFA). */}
 				<g
 					data-export-only
 					style={{ display: "none" }}
 					transform={`translate(${W - 8 - 256 * ICON_SCALE}, ${H - 8 - 220 * ICON_SCALE}) scale(${ICON_SCALE})`}
 					fill="#FAFAFA"
-					fillRule="evenodd"
-					clipRule="evenodd"
 				>
-					<path d="M173.611 166.311L132.877 219.804H173.524L193.973 191.813L213.183 219.804H256L215.673 165.707L215.15 165.046L207.461 155.332L195.329 140.004L195.258 139.915L193.813 138.089L193.923 138.001L176.286 112.861H134.061L173.611 166.311ZM199.89 133.554L214.959 112.861H254.619L219.874 158.8L199.89 133.554Z" />
-					<path d="M0 36.1959V174.314H39.0678V137.614H60.3938L60.4323 137.671C60.8436 137.653 61.2517 137.634 61.6567 137.614C75.0665 136.968 85.1471 135.549 96.385 131.385C96.7596 131.246 97.1355 131.104 97.5128 130.959L97.4591 130.881C105.816 126.86 112.331 121.344 117.006 114.331C122.005 106.702 124.504 97.6915 124.504 87.2997C124.504 76.7764 122.005 67.7 117.006 60.0706C112.007 52.3097 104.904 46.3903 95.6964 42.3125C86.62 38.2347 75.7679 36.1959 63.1399 36.1959H0ZM102.156 137.725L64.8705 144.175L85.4361 174.314H127.266L102.156 137.725ZM39.0678 107.426H60.7721C68.9277 107.426 74.9786 105.65 78.9248 102.098C83.0026 98.5465 85.0415 93.6137 85.0415 87.2997C85.0415 80.8542 83.0026 75.8556 78.9248 72.304C74.9786 68.7523 68.9277 66.9765 60.7721 66.9765H39.0678V107.426Z" />
+					<path
+						fillRule="evenodd"
+						clipRule="evenodd"
+						d="M32 36C32 27.1634 39.1634 20 48 20H132C190.54 20 238 67.4599 238 126C238 184.54 190.54 232 132 232H48C39.1634 232 32 224.837 32 216V36ZM76 62V190H128C163.346 190 192 161.346 192 126C192 90.6538 163.346 62 128 62H76Z"
+					/>
+					<path d="M134 76 Q134 126 184 126 Q134 126 134 176 Q134 126 84 126 Q134 126 134 76 Z" />
+					<circle cx="204" cy="52" r="9" />
 				</g>
 			</svg>
 		</div>

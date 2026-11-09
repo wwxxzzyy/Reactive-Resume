@@ -77,6 +77,11 @@ msgstr "Το \"{written}\" προστέθηκε στο Skills"
 msgid "“How did you measure the onboarding redesign?”"
 msgstr "\"Πώς μετρήσατε τον επανασχεδιασμό της αρχικής εμπειρίας χρήσης;\""
 
+#. placeholder {0}: currentStory.data.title
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "“Tell me about a time you worked on {0}. What challenge did you encounter, and how did you resolve it?”"
+msgstr ""
+
 #: src/features/applications/components/import-applications-sheet.tsx
 msgid "(no header)"
 msgstr "(χωρίς κεφαλίδα)"
@@ -187,6 +192,11 @@ msgstr "{0, plural, one {Απομένει # ημέρα} other {Απομένου�
 #: src/features/applications/components/insights-view.tsx
 msgid "{0, plural, one {# day} other {# days}}"
 msgstr "{0, plural, one {# ημέρα} other {# ημέρες}}"
+
+#. placeholder {0}: diff.totalChanges
+#: src/features/resume/share/history-tab.tsx
+msgid "{0, plural, one {# difference} other {# differences}}"
+msgstr ""
 
 #. placeholder {0}: result.deleted
 #: src/features/documents/document-actions.tsx
@@ -463,8 +473,8 @@ msgstr "Οι επεξεργασίες {0} του {1} έγιναν δεκτές"
 #. placeholder {0}: result.found.length
 #. placeholder {1}: result.total
 #: src/features/resume/editor/check/job-match.tsx
-msgid "{0} of {1} posting terms appear"
-msgstr "Εμφανίζονται οι όροι αγγελίας εργασίας {0} του {1}"
+msgid "{0} of {1} keywords identified"
+msgstr ""
 
 #. placeholder {0}: shown.length
 #. placeholder {1}: TEMPLATE_IDS.length
@@ -881,10 +891,6 @@ msgstr "{skipped, plural, one {# γραμμή δεν είχε εταιρεία �
 msgid "{starCount, plural, one {Star us on GitHub, currently # star (opens in new tab)} other {Star us on GitHub, currently # stars (opens in new tab)}}"
 msgstr "{starCount, plural, one {Δώστε μας αστέρι στο GitHub, αυτή τη στιγμή # αστέρι (ανοίγει σε νέα καρτέλα)} other {Δώστε μας αστέρι στο GitHub, αυτή τη στιγμή # αστέρια (ανοίγει σε νέα καρτέλα)}}"
 
-#: src/features/homepage/header.tsx
-msgid "{stars, plural, one {Star Reactive Resume on GitHub, # star} other {Star Reactive Resume on GitHub, # stars}}"
-msgstr "{stars, plural, one {Δώστε αστέρι στο Reactive Resume στο GitHub, # αστέρι} other {Δώστε αστέρι στο Reactive Resume στο GitHub, # αστέρια}}"
-
 #: src/features/documents/page-navigation.tsx
 msgid "{start}–{end} of {total}"
 msgstr ""
@@ -988,10 +994,6 @@ msgstr "/ έτος"
 msgid "+{extra} more"
 msgstr "+{extra} περισσότερα"
 
-#: src/features/homepage/hero.tsx
-msgid "+13 pts activation"
-msgstr "Ενεργοποίηση +13 πόντων"
-
 #: src/features/resume/editor/check/check-panel.tsx
 msgid "<0>Nothing to fix.</0> Every check passes."
 msgstr "<0>Τίποτα να διορθωθεί.</0> Κάθε έλεγχος περνάει."
@@ -1030,6 +1032,10 @@ msgstr "2 αρχεία"
 msgid "2 hours before"
 msgstr "2 ώρες πριν"
 
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "2-Page Relaxed"
+msgstr ""
+
 #: src/features/resume/editor/write/summary-editor.tsx
 msgid "2–3 sentences reads best"
 msgstr "2-3 προτάσεις διαβάζονται καλύτερα"
@@ -1064,9 +1070,9 @@ msgstr "3 τεκμηριωμένα · 1 μερικώς · 1 λείπει"
 msgid "30 days"
 msgstr "30 ημέρες"
 
-#: src/features/homepage/hero.tsx
-msgid "40% faster reviews"
-msgstr "40% πιο γρήγορες κριτικές"
+#: src/features/applications/components/offer-calculator.tsx
+msgid "4-Year Total Rewards:"
+msgstr ""
 
 #: src/features/homepage/faq.tsx
 msgid "9 short answers to what people ask before they start. Anything else, ask on <0>Discord</0>."
@@ -1085,8 +1091,8 @@ msgid "A accepts and R rejects the focused edit. ↑ and ↓ move between edits.
 msgstr "Ο A αποδέχεται και ο R απορρίπτει την εστιασμένη επεξεργασία. ↑ και ↓ μετακινηθείτε μεταξύ των επεξεργασιών."
 
 #: src/routes/builder/letter/-components/download-sheet.tsx
-msgid "A backup of this letter. Imports back into Reactive Resume as a letter."
-msgstr "Ένα αντίγραφο ασφαλείας αυτής της επιστολής. Εισάγει ξανά στο Reactive Resume ως γράμμα."
+msgid "A backup of this letter. Imports back into Resume Builder as a letter."
+msgstr ""
 
 #: src/features/resume/editor/check/issues.ts
 msgid "A city and country let roles be matched to where you are."
@@ -1139,15 +1145,6 @@ msgstr "Ένα εστιασμένο πλάνο για αυτόν τον γύρο
 #: src/features/ats-checker/messages.ts
 msgid "A font is referenced but not embedded."
 msgstr "Μια γραμματοσειρά αναφέρεται αλλά δεν είναι ενσωματωμένη."
-
-#: src/features/homepage/sections.tsx
-msgid "A free and open-source resume builder"
-msgstr "Ένα δωρεάν και ανοιχτού κώδικα δημιουργία βιογραφικών"
-
-#. Hero headline, line 1 of 4: A free, open-source / resume builder / and / career manager.
-#: src/features/homepage/hero.tsx
-msgid "A free, open-source"
-msgstr "Ένα δωρεάν εργαλείο ανοιχτού κώδικα"
 
 #: src/features/ats-checker/messages.ts
 msgid "A full-height gap splits this page into two columns."
@@ -1209,10 +1206,6 @@ msgstr "Μια αποθηκευμένη προσφορά"
 msgid "A second opinion on your wording"
 msgstr "Μια δεύτερη γνώμη για τη διατύπωσή σας"
 
-#: src/features/homepage/sections.tsx
-msgid "A second pair of eyes."
-msgstr "Ένα δεύτερο ζευγάρι μάτια."
-
 #: src/features/applications/next-step.ts
 msgid "A short follow-up is usually fine now"
 msgstr "Μια σύντομη παρακολούθηση είναι συνήθως μια χαρά τώρα"
@@ -1240,10 +1233,6 @@ msgstr "Μια διεύθυνση ιστού είναι γραμμένη χωρ�
 #: src/features/career/offer-entry.tsx
 msgid "a year"
 msgstr ""
-
-#: src/features/homepage/footer.tsx
-msgid "About"
-msgstr "Σχετικά με αυτήν την εφαρμογή"
 
 #: src/features/career/workspace/practise.tsx
 msgid "About 90 seconds when spoken"
@@ -1298,7 +1287,6 @@ msgid "Access your account through the API, including reading, changing and dele
 msgstr "Αποκτήστε πρόσβαση στον λογαριασμό σας μέσω του API, συμπεριλαμβανομένης της ανάγνωσης, της αλλαγής και της διαγραφής των εγγράφων σας και των αιτήσεων εργασίας."
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Accessibility"
 msgstr "Προσβασιμότητα"
@@ -1320,6 +1308,7 @@ msgstr "Λογαριασμός"
 msgid "Account details"
 msgstr ""
 
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/career/knowledge/stories.tsx
 #: src/features/homepage/remember.tsx
 msgid "Action"
@@ -1786,9 +1775,9 @@ msgstr "Προσθέτει υπενθύμιση στο Σήμερα, αν δεν
 msgid "Adjust fonts, colors, spacing and sections in the resume builder. Export your finished resume to PDF or Word, or share a link. The PDFs above are examples to help you compare designs."
 msgstr "Προσαρμόστε γραμματοσειρές, χρώματα, κενά και ενότητες στο πρόγραμμα δημιουργίας βιογραφικών. Εξαγάγετε το έτοιμο βιογραφικό σας σε PDF ή Microsoft Word ή μοιραστείτε έναν σύνδεσμο. Τα παραπάνω αρχεία PDF είναι παραδείγματα που θα σας βοηθήσουν να συγκρίνετε σχέδια."
 
-#: src/features/homepage/sections.tsx
-msgid "Ads"
-msgstr "Διαφημίσεις"
+#: src/features/user/dropdown-menu.tsx
+msgid "Admin Console"
+msgstr ""
 
 #: src/routes/builder/$resumeId/-components/design-panel.tsx
 msgid "Advanced"
@@ -2022,10 +2011,6 @@ msgstr "Κατεβάστε επίσης τη συνοδευτική επιστο
 msgid "Also email {0}"
 msgstr "Αποστολή email και στο {0}"
 
-#: src/features/homepage/sections.tsx
-msgid "Also on mobile"
-msgstr "Και στο κινητό"
-
 #: src/features/resume/editor/design/style-groups.tsx
 msgid "Also shows the icons on skills, profiles and interests."
 msgstr "Εμφανίζει επίσης τα εικονίδια για δεξιότητες, προφίλ και ενδιαφέροντα."
@@ -2058,20 +2043,18 @@ msgstr "ένα λάθος"
 msgid "an hour"
 msgstr ""
 
-#. Hero headline, line 3 of 4: A free, open-source / resume builder / and / career manager.
-#: src/features/homepage/hero.tsx
-msgctxt "hero headline"
-msgid "and"
-msgstr "και"
+#: src/features/resume/editor/check/job-match.tsx
+msgid "analyzing…"
+msgstr ""
 
 #. placeholder {0}: others.length
 #: src/features/applications/components/detail/contacts.tsx
 msgid "and {0} more"
 msgstr "και {0} περισσότερα"
 
-#: src/features/homepage/sections.tsx
-msgid "and counting"
-msgstr "και μετρώντας"
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Annual 4-Yr Average:"
+msgstr ""
 
 #: src/features/resume/share/address-field.tsx
 msgid "Another of your resumes uses this address."
@@ -2304,7 +2287,6 @@ msgstr "Αιτήσεις για εξαγωγή"
 #: src/features/applications/components/application-detail-sheet.tsx
 #: src/features/applications/stages.ts
 #: src/features/homepage/prepare.tsx
-#: src/features/homepage/sections.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Applied"
 msgstr "Υποβλήθηκε"
@@ -2457,10 +2439,6 @@ msgstr "Αναλογία διαστάσεων"
 msgid "Assistant"
 msgstr "Βοηθός"
 
-#: src/features/homepage/sections.tsx
-msgid "Assistant (your key)"
-msgstr "Βοηθός (το κλειδί σας)"
-
 #: src/features/command-palette/pages/resumes.tsx
 msgid "Assistant conversations"
 msgstr "Βοηθητικές συνομιλίες"
@@ -2478,14 +2456,20 @@ msgid "At Northwind Labs, most new teams stalled before they finished setup."
 msgstr "Στη Northwind Labs, οι περισσότερες νέες ομάδες κολλούσαν πριν ολοκληρώσουν τη ρύθμιση."
 
 #: src/features/command-palette/pages/navigation.tsx
-#: src/features/homepage/footer.tsx
-#: src/features/homepage/sections.tsx
 msgid "ATS checker"
 msgstr "ATS πούλι"
+
+#: src/features/resume/editor/check/job-match.tsx
+msgid "ATS Match Score"
+msgstr ""
 
 #: src/features/homepage/check.tsx
 msgid "ATS readability"
 msgstr "Αναγνωσιμότητα ATS"
+
+#: src/features/resume/editor/check/job-match.tsx
+msgid "ATS Recommendation:"
+msgstr ""
 
 #: src/features/resume/editor/design/template-group.tsx
 msgid "ATS-safe"
@@ -2530,6 +2514,14 @@ msgstr "Εξουσιοδότηση πρόσβασης"
 msgid "Authorized to work in {0}"
 msgstr ""
 
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Auto-Fit"
+msgstr ""
+
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Auto-fit to 1 page applied!"
+msgstr ""
+
 #: src/features/career/knowledge/facts.tsx
 msgid "Automatically"
 msgstr "Αυτόματα"
@@ -2563,7 +2555,6 @@ msgid "Azerbaijani"
 msgstr "Αζερικά"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "BA, Communication Design"
 msgstr "BA, Σχεδιασμός Επικοινωνίας"
@@ -2601,6 +2592,7 @@ msgstr "Επιστροφή στο τώρα"
 msgid "Back to sign in"
 msgstr "Επιστροφή στη σύνδεση"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/career/knowledge/stories.tsx
 msgid "Back to stories"
 msgstr "Πίσω στις ιστορίες"
@@ -2638,14 +2630,14 @@ msgctxt "Entry header accent: a bar beside the header"
 msgid "Bar"
 msgstr "Πλαϊνή γραμμή"
 
-#: src/features/homepage/hero.tsx
-msgid "Barista, 2012"
-msgstr "Μπαρίστα, 2012"
-
 #: src/features/career/offer-entry.tsx
 #: src/features/career/offers.tsx
 msgid "Base salary"
 msgstr "Βασικός μισθός"
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Base Salary ($)"
+msgstr ""
 
 #: src/features/assistant/provider-setup.tsx
 #: src/features/settings/ai/providers.tsx
@@ -2665,6 +2657,10 @@ msgstr "Πριν την επαναφορά"
 msgid "Behavioral"
 msgstr "Συμπεριφορική"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Behavioral Interview Question"
+msgstr ""
+
 #: src/libs/locale.ts
 msgid "Bengali"
 msgstr "Μπενγκάλι"
@@ -2680,10 +2676,6 @@ msgstr "Εμπόδιο"
 #: src/features/resume/editor/write/rich-text-editor-field.tsx
 msgid "Blue"
 msgstr "Μπλε"
-
-#: src/routes/dashboard/applications/index.tsx
-msgid "Board"
-msgstr "Πίνακας"
 
 #: src/routes/builder/$resumeId/-sidebar/right/sections/typography.tsx
 msgctxt "Body Text (paragraphs, lists, etc.)"
@@ -2706,6 +2698,10 @@ msgstr "Έντονα"
 #: src/features/career/offers.tsx
 msgid "Bonus"
 msgstr "Μπόνους"
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Bonus %"
+msgstr ""
 
 #: src/features/career/offer-entry.tsx
 msgid "Bonus conditions"
@@ -2761,10 +2757,6 @@ msgstr "Περιηγηθείτε σε δωρεάν πρότυπα βιογραφ
 msgid "Browser autofill is experimental: only verified native controls can be filled. Unknown authorization, sensitive questions, custom controls, account steps, captcha and additional pages need your explicit answers or manual completion."
 msgstr ""
 
-#: src/features/homepage/hero.tsx
-msgid "Build a professional resume, download it as PDF or Word, and manage your job search in one place. Free templates, no ads, no paywall."
-msgstr "Δημιουργήστε ένα επαγγελματικό βιογραφικό, κατεβάστε το ως PDF ή Microsoft Word και διαχειριστείτε την αναζήτηση εργασίας σας σε ένα μέρος. Δωρεάν πρότυπα, χωρίς διαφημίσεις, χωρίς paywall."
-
 #: src/features/homepage/ui.tsx
 msgid "Build your resume"
 msgstr "Φτιάξτε το βιογραφικό σας"
@@ -2812,18 +2804,6 @@ msgstr "Λίστα με κουκκίδες"
 msgid "By {0}"
 msgstr ""
 
-#: src/features/homepage/footer.tsx
-msgid "By the community, for the community."
-msgstr "Από την κοινότητα, για την κοινότητα."
-
-#: src/routes/dashboard/applications/index.tsx
-msgid "Calendar"
-msgstr "Ημερολόγιο"
-
-#: src/features/homepage/faq.tsx
-msgid "Can I host it myself?"
-msgstr "Μπορώ να το φιλοξενήσω μόνος μου;"
-
 #: src/features/homepage/faq.tsx
 msgid "Can I import a resume I already have?"
 msgstr "Μπορώ να εισάγω ένα βιογραφικό που έχω ήδη;"
@@ -2847,6 +2827,7 @@ msgstr "Μπορεί το λογισμικό να διαβάσει το βιογ
 #: src/features/applications/components/interview-dialog.tsx
 #: src/features/applications/components/manage-lanes-sheet.tsx
 #: src/features/career/knowledge/facts.tsx
+#: src/features/career/knowledge/generate-story-dialog.tsx
 #: src/features/career/knowledge/stories.tsx
 #: src/features/career/offer-entry.tsx
 #: src/features/career/schedule-sheet.tsx
@@ -2876,20 +2857,15 @@ msgstr ""
 msgid "Capture does not use AI. Review every field before saving."
 msgstr ""
 
-#: src/features/command-palette/pages/navigation.tsx
-#: src/routes/dashboard/-components/app-shell.tsx
-#: src/routes/dashboard/career/route.tsx
-msgid "Career"
-msgstr "Καριέρα"
+#. placeholder {0}: currentIndex + 1
+#. placeholder {1}: order.length
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Card {0} of {1}"
+msgstr ""
 
-#: src/features/homepage/sections.tsx
-msgid "Career coach (your key)"
-msgstr "Σύμβουλος καριέρας (το κλειδί σας)"
-
-#. Hero headline, line 4 of 4: A free, open-source / resume builder / and / career manager. Lines 2 and 4 are highlighted: keep each a complete phrase.
-#: src/features/homepage/hero.tsx
-msgid "career manager."
-msgstr "για διαχείριση σταδιοδρομίας."
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Cash / Equity Ratio:"
+msgstr ""
 
 #: src/libs/locale.ts
 msgid "Catalan"
@@ -2970,10 +2946,6 @@ msgstr "Άλλαξε απευθείας το βιογραφικό (μια προ
 msgid "Changed your mind? Rename your resume to something more descriptive."
 msgstr "Αλλάξατε γνώμη; Μετονομάστε το βιογραφικό σας σημείωμα σε κάτι πιο περιγραφικό."
 
-#: src/features/homepage/footer.tsx
-msgid "Changelog"
-msgstr "Αρχείο αλλαγών"
-
 #: src/features/resume/editor/design/style-groups.tsx
 msgid "Changes section titles and date words only, not your content."
 msgstr "Αλλάζει μόνο τους τίτλους των ενοτήτων και τις λέξεις ημερομηνίας, όχι το περιεχόμενό σας."
@@ -2981,6 +2953,11 @@ msgstr "Αλλάζει μόνο τους τίτλους των ενοτήτων 
 #. placeholder {0}: versionLabel(earlier)
 #: src/features/career/offers.tsx
 msgid "Changes since {0}"
+msgstr ""
+
+#. placeholder {0}: diff.totalChanges
+#: src/features/resume/share/history-tab.tsx
+msgid "Changes vs Now ({0})"
 msgstr ""
 
 #: src/features/settings/account/profile.tsx
@@ -2995,8 +2972,6 @@ msgstr ""
 msgid "Changing your password…"
 msgstr "Αλλαγή του κωδικού πρόσβασής σας…"
 
-#: src/features/homepage/footer.tsx
-#: src/features/homepage/header.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
 #: src/routes/builder/$resumeId/-components/editor-shell.tsx
 msgid "Check"
@@ -3308,6 +3283,14 @@ msgstr "Διαγράψτε την προσφώνηση ή τον αποχαιρ�
 msgid "Click anything on the page to style it. The rule you're in is outlined on the page."
 msgstr "Κάντε κλικ σε οτιδήποτε στη σελίδα για να το στυλ. Ο κανόνας στον οποίο βρίσκεστε περιγράφεται στη σελίδα."
 
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Click or press Space to reveal"
+msgstr ""
+
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Click to return to question"
+msgstr ""
+
 #: src/features/auth/pages/consent.tsx
 msgid "Client ID"
 msgstr "Αναγνωριστικό πελάτη"
@@ -3318,6 +3301,7 @@ msgstr "Αναγνωριστικό πελάτη"
 #: src/features/applications/components/application-detail-sheet.tsx
 #: src/features/applications/components/interview-dialog.tsx
 #: src/features/career/coach.tsx
+#: src/features/career/knowledge/generate-story-dialog.tsx
 #: src/features/career/schedule-sheet.tsx
 #: src/features/career/workspace/answer-library.tsx
 #: src/features/career/workspace/coach-sheet.tsx
@@ -3365,9 +3349,7 @@ msgstr ""
 
 #: src/features/career/coach.tsx
 #: src/features/career/workspace/coach-sheet.tsx
-#: src/features/command-palette/pages/navigation.tsx
 #: src/routes/dashboard/career/coach.{-$conversationId}.tsx
-#: src/routes/dashboard/career/route.tsx
 msgid "Coach"
 msgstr "Σύμβουλος"
 
@@ -3413,10 +3395,6 @@ msgstr "Παλέτα εντολών"
 msgid "Command palette: {currentPage}"
 msgstr "Παλέτα εντολών: {currentPage}"
 
-#: src/features/homepage/footer.tsx
-msgid "Community"
-msgstr "Κοινότητα"
-
 #: src/features/resume/editor/design/fit.ts
 #: src/features/resume/editor/design/style-groups.tsx
 msgid "Compact"
@@ -3430,6 +3408,7 @@ msgstr "Συμπαγές"
 #: src/features/applications/components/add-application-dialog.tsx
 #: src/features/applications/components/application-form-sheet.tsx
 #: src/features/applications/components/import-applications-sheet.tsx
+#: src/features/applications/components/offer-calculator.tsx
 #: src/features/documents/new-document-dialog.tsx
 #: src/features/resume/editor/check/job-match.tsx
 #: src/features/resume/editor/design/entries-group.tsx
@@ -3439,6 +3418,10 @@ msgstr "Συμπαγές"
 msgid "Company"
 msgstr "Εταιρεία"
 
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "Company (optional)"
+msgstr ""
+
 #: src/features/career/offer-entry.tsx
 msgid "Compare"
 msgstr ""
@@ -3447,6 +3430,10 @@ msgstr ""
 #: src/features/career/workspace/practise.tsx
 msgid "Compare attempts to see what improved. Practice questions are simulated, not from {0}."
 msgstr "Συγκρίνετε τις προσπάθειες για να δείτε τι βελτιώθηκε. Οι ερωτήσεις εξάσκησης είναι προσομοιωμένες και δεν προέρχονται από την εταιρεία {0}."
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Compare competing job offers across base salary, annual bonuses, sign-on cash, and 4-year equity vesting to see your true annualized total rewards."
+msgstr ""
 
 #: src/features/applications/next-step.ts
 msgid "Compare it with your other offers"
@@ -3473,14 +3460,22 @@ msgstr "Σε σύγκριση με τις ιστορίες σας και την 
 msgid "Compares your resume with the posting"
 msgstr "Συγκρίνει το βιογραφικό σας με την αγγελία εργασίας"
 
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Compensation & Total Rewards Calculator"
+msgstr ""
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Competing Offer"
+msgstr ""
+
 #. placeholder {0}: part.label
 #: src/features/career/knowledge/stories.tsx
 msgid "Complete {0} before saving."
 msgstr "Συμπληρώστε το πεδίο {0} πριν από την αποθήκευση."
 
 #: src/features/resume/share/download-tab.tsx
-msgid "Complete data backup. Imports back into Reactive Resume or JSON Resume tools."
-msgstr "Πλήρης δημιουργία αντιγράφων ασφαλείας δεδομένων. Εισάγει ξανά στα εργαλεία Reactive Resume ή JSON Resume."
+msgid "Complete data backup. Imports back into Resume Builder or JSON Resume tools."
+msgstr ""
 
 #: src/features/ats-checker/messages.ts
 msgid "Compress or remove large images to keep uploads quick."
@@ -3609,9 +3604,12 @@ msgid "Connections bill speech separately and may use tokens on your account. Yo
 msgstr "Οι συνδέσεις χρεώνουν την ομιλία ξεχωριστά και μπορεί να χρησιμοποιούν tokens στον λογαριασμό σας. Η αναγνώριση ομιλίας του προγράμματος περιήγησης είναι δωρεάν, αλλά ο κατασκευαστής του μπορεί να επεξεργαστεί τον ήχο. Ο διακομιστής κρατά απομαγνητοφωνήσεις, ποτέ ηχογραφήσεις."
 
 #: src/features/applications/components/application-detail-sheet.tsx
-#: src/features/homepage/footer.tsx
 msgid "Contact"
 msgstr "Επαφή"
+
+#: src/features/resume/share/share-panel.tsx
+msgid "Contact Card"
+msgstr ""
 
 #: src/features/ats-checker/messages.ts
 #: src/features/resume/editor/check/issues.ts
@@ -3678,10 +3676,6 @@ msgstr "Συνέχεια"
 #: src/features/auth/pages/login.tsx
 msgid "Continue as guest"
 msgstr "Συνέχεια ως επισκέπτης"
-
-#: src/features/homepage/sections.tsx
-msgid "Contribute code"
-msgstr "Συνεισφέρετε κώδικα"
 
 #: src/features/homepage/prepare.tsx
 msgid "Contribution clear"
@@ -3759,6 +3753,10 @@ msgstr "Αντιγραφή κωδικών"
 #: src/features/career/coach.tsx
 msgid "Copy conversation"
 msgstr "Αντιγραφή συνομιλίας"
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Copy Email to Clipboard"
+msgstr ""
 
 #. placeholder {0}: resume.application.company
 #: src/features/documents/new-document-dialog.tsx
@@ -4012,6 +4010,10 @@ msgstr "Δεν ήταν δυνατή η συμπλήρωση των πεδίων
 #: src/features/career/knowledge/facts.tsx
 msgid "Couldn't forget that fact. Try again."
 msgstr "Δεν ήταν δυνατό να ξεχαστεί το γεγονός. Προσπαθήστε ξανά."
+
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "Couldn't generate story from bullet. Try again."
+msgstr ""
 
 #: src/features/applications/use-document-download.ts
 #: src/features/resume/export/use-resume-export.ts
@@ -4514,6 +4516,10 @@ msgstr "Μέτρηση λέξεων"
 msgid "Counted separately from the parse score. Coverage does not predict anything."
 msgstr "Μετριέται ξεχωριστά από τη βαθμολογία ανάλυσης. Η κάλυψη δεν προβλέπει τίποτα."
 
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Counter Offer"
+msgstr ""
+
 #: src/features/career/knowledge/search-regions-field.tsx
 msgid "Countries"
 msgstr "χωρών"
@@ -4573,7 +4579,6 @@ msgid "Cover letter submitted (optional)"
 msgstr "Υποβλήθηκε συνοδευτική επιστολή (προαιρετικό)"
 
 #: src/features/command-palette/pages/navigation.tsx
-#: src/features/homepage/sections.tsx
 msgid "Cover letters"
 msgstr "Συνοδευτικές επιστολές"
 
@@ -4638,6 +4643,10 @@ msgstr "Δημιουργήθηκε το \"{finalName}\""
 #: src/features/documents/new-document-dialog.tsx
 msgid "Created and linked to {company}"
 msgstr "Δημιουργήθηκε και συνδέθηκε με το {company}"
+
+#: src/features/resume/editor/check/job-match.tsx
+msgid "Critical skill"
+msgstr ""
 
 #: src/features/resume/editor/write/picture-settings.tsx
 msgid "Crop and upload"
@@ -5017,7 +5026,6 @@ msgid "Description of role {0}"
 msgstr "Περιγραφή του ρόλου {0}"
 
 #: src/features/homepage/design.tsx
-#: src/features/homepage/header.tsx
 #: src/libs/resume/section.tsx
 #: src/routes/builder/$resumeId/-components/design-panel.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -5041,7 +5049,6 @@ msgid "Design system trade-offs"
 msgstr "Συμβιβασμοί στα συστήματα σχεδίασης"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Design systems"
 msgstr "Συστήματα σχεδιασμού"
@@ -5141,10 +5148,6 @@ msgstr ""
 msgid "Do not share a resume"
 msgstr ""
 
-#: src/routes/dashboard/settings/route.tsx
-msgid "Docs"
-msgstr "Τεκμηρίωση"
-
 #: src/features/resume/editor/chrome.tsx
 msgid "Document menu: {name}"
 msgstr "Μενού εγγράφων: {name}"
@@ -5152,10 +5155,6 @@ msgstr "Μενού εγγράφων: {name}"
 #: src/features/documents/documents-page.tsx
 msgid "Document type"
 msgstr "Τύπος εγγράφου"
-
-#: src/features/homepage/footer.tsx
-msgid "Documentation"
-msgstr "Τεκμηρίωση"
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/documents/documents-page.tsx
@@ -5200,7 +5199,6 @@ msgstr ""
 
 #: src/components/ui/donation-toast.tsx
 #: src/features/resume/share/download-tab.tsx
-#: src/routes/dashboard/settings/route.tsx
 msgid "Donate"
 msgstr "Προσφέρω"
 
@@ -5338,6 +5336,10 @@ msgstr "Σχεδιάστε ένα επόμενο email"
 msgid "Draft a summary"
 msgstr "Σχεδιάστε μια περίληψη"
 
+#: src/features/career/knowledge/stories.tsx
+msgid "Draft from bullet"
+msgstr ""
+
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Draft from the posting"
 msgstr "Σχέδιο από την ανάρτηση εργασίας"
@@ -5354,9 +5356,17 @@ msgstr "Σύνταξη ως"
 msgid "Draft kept. Edit anything you like."
 msgstr "Το προσχέδιο κρατήθηκε. Επεξεργαστείτε οτιδήποτε σας αρέσει."
 
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "Draft STAR Story from Resume Bullet"
+msgstr ""
+
 #: src/features/career/workspace/prepare.tsx
 msgid "Draft story"
 msgstr "Σύνταξη ιστορίας"
+
+#: src/features/career/knowledge/stories.tsx
+msgid "Draft with AI"
+msgstr ""
 
 #: src/features/career/shared.tsx
 msgid "Drafting"
@@ -5373,6 +5383,10 @@ msgstr "Η σύνταξη χρειάζεται πάροχο τεχνητής ν�
 #: src/features/career/shared.tsx
 msgid "Drafting questions"
 msgstr "Σύνταξη ερωτήσεων"
+
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "Drafting STARR…"
+msgstr ""
 
 #. placeholder {0}: draft.provider
 #: src/routes/builder/letter/-components/write-panel.tsx
@@ -5404,7 +5418,7 @@ msgid "Drag to reposition and use the slider to zoom before uploading."
 msgstr "Σύρετε για να αλλάξετε τη θέση και χρησιμοποιήστε το ρυθμιστικό για ζουμ πριν από τη μεταφόρτωση."
 
 #: src/features/documents/new-document-dialog.tsx
-msgid "Drop a file here or browse. PDF, Word (needs AI), Reactive Resume or JSON Resume. We fill in every section and flag anything we're unsure of."
+msgid "Drop a file here or browse. PDF, Word (needs AI), Resume Builder or JSON Resume. We fill in every section and flag anything we're unsure of."
 msgstr ""
 
 #: src/features/ats-checker/checker.tsx
@@ -5451,6 +5465,18 @@ msgstr "Δημιουργία αντιγράφου του βιογραφικού 
 #: src/libs/locale.ts
 msgid "Dutch"
 msgstr "Ολλανδικά"
+
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "e.g. Acme Cloud"
+msgstr ""
+
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "e.g. Led migration of microservices to Kubernetes, reducing downtime by 35% and cut cloud costs by $40k/yr."
+msgstr ""
+
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "e.g. Senior DevOps Engineer"
+msgstr ""
 
 #: src/features/career/workspace/practise.tsx
 msgid "Each answer you get feedback on is kept here, newest first."
@@ -5569,6 +5595,10 @@ msgstr ""
 msgid "Edit schedule"
 msgstr "Επεξεργασία προγράμματος"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Edit Story"
+msgstr ""
+
 #: src/features/resume/editor/check/issues.ts
 msgid "Edit the email"
 msgstr "Επεξεργαστείτε το email"
@@ -5632,6 +5662,10 @@ msgstr "Εκπαίδευση"
 #: src/features/resume/editor/design/entries-group.tsx
 msgid "Education swaps school and field of study the same way."
 msgstr "Στην Εκπαίδευση εναλλάσσονται με τον ίδιο τρόπο η σχολή και το αντικείμενο σπουδών."
+
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Eliminate awkward spillover lines and balance page density with one click."
+msgstr ""
 
 #: src/features/resume/editor/check/parser-view.tsx
 #: src/features/resume/editor/write/basics-card.tsx
@@ -5720,8 +5754,8 @@ msgid "Enhanced reading was unavailable. The built-in reader retrieved this post
 msgstr "Η βελτιωμένη ανάγνωση δεν ήταν διαθέσιμη. Ο ενσωματωμένος αναγνώστης ανέκτησε αυτήν την αγγελία εργασίας."
 
 #: src/components/ui/donation-toast.tsx
-msgid "Enjoying Reactive Resume?"
-msgstr "Σας αρέσει το Reactive Resume;"
+msgid "Enjoying Resume Builder?"
+msgstr ""
 
 #: src/features/auth/pages/verify-2fa.tsx
 msgid "Enter a backup code."
@@ -5882,9 +5916,9 @@ msgstr ""
 msgid "Exact form URL"
 msgstr ""
 
-#: src/features/homepage/sections.tsx
-msgid "Exchange resume feedback, ask questions, and help shape Reactive Resume with the community."
-msgstr "Ανταλλάξτε σχόλια για βιογραφικά, κάντε ερωτήσεις και βοηθήστε να διαμορφωθεί το Reactive Resume μαζί με την κοινότητα."
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Exit"
+msgstr ""
 
 #: src/features/resume/stylesheet/toolbar.tsx
 msgid "Exit focus mode"
@@ -6016,10 +6050,6 @@ msgstr "Αποτυχημένος"
 msgid "Family name"
 msgstr ""
 
-#: src/features/homepage/footer.tsx
-msgid "Features"
-msgstr "Δυνατότητες"
-
 #: src/features/career/workspace/practise.tsx
 msgid "Feedback"
 msgstr "Ανατροφοδότηση"
@@ -6038,7 +6068,6 @@ msgid "Field {0}"
 msgstr "Πεδίο {0}"
 
 #: src/features/homepage/prepare.tsx
-#: src/features/homepage/sections.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Fieldnote"
 msgstr "Fieldnote"
@@ -6047,9 +6076,10 @@ msgstr "Fieldnote"
 msgid "Fieldnote · Remote, EU"
 msgstr "Fieldnote · Τηλεχειριστήριο, Ε.Ε"
 
-#: src/features/homepage/hero.tsx
-msgid "Figma"
-msgstr "Figma"
+#. placeholder {0}: item.details.join(", ")
+#: src/features/resume/share/history-tab.tsx
+msgid "Fields: {0}"
+msgstr ""
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -6142,6 +6172,10 @@ msgctxt "Application workspace tab: how well a job fits your experience"
 msgid "Fit"
 msgstr "Καταλληλότητα"
 
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Fit 1 Page"
+msgstr ""
+
 #: src/features/career/workspace/saved.tsx
 msgid "Fit checks, briefings, practice feedback, debriefs, answers, replies and offers land here as you save them."
 msgstr "Έλεγχοι καταλληλότητας για τη θέση, ενημερωτικά προετοιμασίας, ανατροφοδότηση από εξάσκηση συνέντευξης, απολογισμοί συνεντεύξεων, απαντήσεις φορμών, απαντήσεις σε μηνύματα και προσφορές εργασίας εμφανίζονται εδώ καθώς τα αποθηκεύετε."
@@ -6177,6 +6211,14 @@ msgstr "Διορθώστε αυτές τις τιμές στο CSV ή αφαιρ
 #: src/features/homepage/remember.tsx
 msgid "Fixing onboarding drop-off at Northwind Labs"
 msgstr "Διόρθωση της εγκατάλειψης στην αρχική εμπειρία χρήσης στη Northwind Labs"
+
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Flashcard Drill"
+msgstr ""
+
+#: src/features/career/knowledge/stories.tsx
+msgid "Flashcards"
+msgstr ""
 
 #: src/features/ats-checker/messages.ts
 msgid "Flatten the form so the text is part of the page."
@@ -6319,6 +6361,10 @@ msgstr "Μορφοποίηση φύλλου στυλ"
 msgid "Formatting"
 msgstr "Μορφοποίηση"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Formulate your answer aloud using Situation, Task, Action, Result."
+msgstr ""
+
 #. placeholder {0}: step.sections
 #. placeholder {1}: step.entries
 #: src/features/documents/new-document-dialog.tsx
@@ -6338,16 +6384,16 @@ msgstr ""
 
 #: src/features/career/schedule-sheet.tsx
 #: src/libs/orpc/ai-consent.ts
-msgid "Found posting links are read by Reactive Resume and the sites being read."
+msgid "Found posting links are read by Resume Builder and the sites being read."
 msgstr ""
 
 #. placeholder {0}: webAccess.provider
 #: src/features/career/schedule-sheet.tsx
-msgid "Found posting links are read by Reactive Resume and, when needed, {0} and the sites being read. The reader may charge."
+msgid "Found posting links are read by Resume Builder and, when needed, {0} and the sites being read. The reader may charge."
 msgstr ""
 
 #: src/libs/orpc/ai-consent.ts
-msgid "Found posting links are read by Reactive Resume and, when needed, {reader} and the sites being read. The reader may charge."
+msgid "Found posting links are read by Resume Builder and, when needed, {reader} and the sites being read. The reader may charge."
 msgstr ""
 
 #: src/features/applications/components/add-application-dialog.tsx
@@ -6367,10 +6413,6 @@ msgid "Free ATS resume checker"
 msgstr "Δωρεάν έλεγχος βιογραφικού ATS"
 
 #: src/libs/seo.ts
-msgid "Free resume builder with PDF & Word downloads"
-msgstr "Δωρεάν πρόγραμμα δημιουργίας βιογραφικών με λήψεις PDF & Word"
-
-#: src/libs/seo.ts
 msgid "Free resume templates with PDF examples"
 msgstr "Δωρεάν πρότυπα βιογραφικών με παραδείγματα PDF"
 
@@ -6384,10 +6426,6 @@ msgstr "Ελεύθερη μορφή"
 #: src/features/auth/pages/register.tsx
 msgid "Free, no ads, no paywall."
 msgstr ""
-
-#: src/libs/seo.ts
-msgid "Free, open-source resume builder. Create, update, and share your resume, with PDF and Word downloads, no ads and no paywall."
-msgstr "Δωρεάν, ανοιχτού κώδικα δημιουργία βιογραφικών. Δημιουργήστε, ενημερώστε και μοιραστείτε το βιογραφικό σας, με λήψεις PDF και Word, χωρίς διαφημίσεις και χωρίς paywall."
 
 #: src/libs/locale.ts
 msgid "French"
@@ -6406,10 +6444,6 @@ msgstr "Από απολογισμό"
 #: src/features/career/knowledge/facts.tsx
 msgid "From a document you attached"
 msgstr "Από έγγραφο που επισυνάψατε"
-
-#: src/features/homepage/sections.tsx
-msgid "from developers who back it"
-msgstr "από προγραμματιστές που το στηρίζουν"
 
 #: src/features/career/workspace/fit.tsx
 msgid "From Fit"
@@ -6449,6 +6483,10 @@ msgstr "Ονοματεπώνυμο"
 msgid "Full width"
 msgstr "Πλήρες πλάτος"
 
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "Generate"
+msgstr ""
+
 #: src/dialogs/resume/index.tsx
 msgid "Generate a random name"
 msgstr "Δημιουργία τυχαίου ονόματος"
@@ -6485,10 +6523,6 @@ msgstr "Λήψη ανατροφοδότησης"
 msgid "Get feedback sends the question, your answer, this posting and your stories to {providerName}."
 msgstr "Η \"Λήψη ανατροφοδότησης\" στέλνει την ερώτηση, την απάντησή σας, αυτή την αγγελία και τις ιστορίες σας προς {providerName}."
 
-#: src/features/homepage/sections.tsx
-msgid "Get it on"
-msgstr "Αποκτήστε το στο"
-
 #: src/features/career/today.tsx
 msgid "Get new roles here every morning"
 msgstr "Λαμβάνετε νέες θέσεις εδώ κάθε πρωί"
@@ -6496,14 +6530,6 @@ msgstr "Λαμβάνετε νέες θέσεις εδώ κάθε πρωί"
 #: src/features/resume/share/download-tab.tsx
 msgid "Get resume feedback on Discord"
 msgstr "Λάβετε σχόλια για το βιογραφικό σας στο Discord"
-
-#: src/features/homepage/footer.tsx
-msgid "Get started"
-msgstr "Ξεκινήστε"
-
-#: src/features/homepage/sections.tsx
-msgid "Get the beta on"
-msgstr ""
 
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Getting long. Try “Shorter”, or cut the least specific paragraph."
@@ -6547,7 +6573,6 @@ msgstr "Πήγαινε σπίτι"
 
 #: src/components/layout/error-screen.tsx
 #: src/components/layout/not-found-screen.tsx
-#: src/routes/_home/-sections/header.tsx
 msgid "Go to dashboard"
 msgstr "Μετάβαση στον πίνακα ελέγχου"
 
@@ -6556,16 +6581,16 @@ msgid "Go to form answers"
 msgstr ""
 
 #: src/features/resume/share/web-page-text.ts
-msgid "Go to Reactive Resume"
-msgstr "Μετάβαση στο Reactive Resume"
+msgid "Go to Resume Builder"
+msgstr ""
 
 #: src/features/command-palette/pages/navigation.tsx
 msgid "Go to…"
 msgstr "Μεταβείτε στο…"
 
 #: src/features/resume/share/download-tab.tsx
-msgid "Good luck out there. Reactive Resume stays free because people chip in."
-msgstr "Καλή τύχη εκεί έξω. Το Reactive Resume παραμένει δωρεάν επειδή οι άνθρωποι κάνουν τσιπ."
+msgid "Good luck out there. Resume Builder stays free because people chip in."
+msgstr ""
 
 #. Authentication provider display name in account settings
 #. Brand name label for Google social sign-in button
@@ -6670,10 +6695,6 @@ msgstr "Βοήθησέ με να μετατρέψω ένα επίτευγμα σ
 msgid "Help translate"
 msgstr "Βοηθήστε στη μετάφραση"
 
-#: src/features/homepage/sections.tsx
-msgid "Help translate it into yours."
-msgstr "Βοηθήστε στη μετάφραση στη γλώσσα σας."
-
 #: src/features/homepage/prepare.tsx
 msgid "Hi Alex, great to confirm: you’ll meet our design team today at {time}, by video. Could you bring an example of your onboarding work?"
 msgstr "Γεια σας Alex, επιβεβαιώνουμε με χαρά: θα συναντήσετε την ομάδα σχεδίασής μας σήμερα στις {time}, μέσω βίντεο. Θα μπορούσατε να φέρετε ένα παράδειγμα της δουλειάς σας στην αρχική εμπειρία χρήσης;"
@@ -6711,6 +6732,10 @@ msgstr "Απόκρυψη {title} από τη σελίδα"
 #: src/features/resume/share/share-panel.tsx
 msgid "Hide contact details"
 msgstr "Απόκρυψη στοιχείων επικοινωνίας"
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Hide Email"
+msgstr ""
 
 #: src/features/resume/editor/write/entry-card.tsx
 msgid "Hide from page"
@@ -6781,10 +6806,6 @@ msgstr "Οριζόντιο περιθώριο"
 #: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
 msgid "Horizontal spacing"
 msgstr "Οριζόντιο κενό"
-
-#: src/features/homepage/sections.tsx
-msgid "Hosting and development are paid for by people like you. Optional tip:"
-msgstr "Η φιλοξενία και η ανάπτυξη πληρώνονται από ανθρώπους σαν εσάς. Προαιρετική συμβουλή:"
 
 #: src/features/settings/profile.tsx
 msgid "Hour"
@@ -6889,6 +6910,10 @@ msgstr "Εικόνισμα…"
 msgid "Icons in contact line"
 msgstr "Εικονίδια στη γραμμή επαφής"
 
+#: src/features/resume/share/history-tab.tsx
+msgid "Identical to draft"
+msgstr ""
+
 #: src/features/resume/share/share-panel.tsx
 msgid "If another resume holds Primary, turn it on for this one instead."
 msgstr ""
@@ -6946,7 +6971,6 @@ msgid "Import failed. Check the CSV and try again."
 msgstr "Η εισαγωγή απέτυχε. Ελέγξτε το CSV και δοκιμάστε ξανά."
 
 #: src/features/applications/components/import-applications-sheet.tsx
-#: src/routes/dashboard/applications/index.tsx
 msgid "Import from CSV"
 msgstr "Εισαγωγή από CSV"
 
@@ -6975,8 +6999,8 @@ msgid "Import the one you have, or start blank."
 msgstr ""
 
 #: src/features/ats-checker/checker.tsx
-msgid "Import this file into a free Reactive Resume. Every issue is waiting for you in Check."
-msgstr "Εισαγάγετε αυτό το αρχείο σε ένα δωρεάν Reactive Resume. Κάθε θέμα σας περιμένει στο Check."
+msgid "Import this file into a free Resume Builder. Every issue is waiting for you in Check."
+msgstr ""
 
 #: src/features/career/workspace/application-packet.tsx
 msgid "Import this file into the browser helper, review the destination and fill report. Unsupported forms use exact PDF downloads and copyable answers below. Native browser integration requires its own verified build."
@@ -7019,10 +7043,6 @@ msgstr "Βελτιώστε την επιλεγμένη γραμμή"
 msgid "Improving…"
 msgstr "Βελτίωση…"
 
-#: src/features/homepage/sections.tsx
-msgid "In good company"
-msgstr "Με καλή παρέα"
-
 #: src/features/career/offer-entry.tsx
 #: src/features/career/offers.tsx
 msgid "In progress"
@@ -7056,9 +7076,9 @@ msgstr "Συναγόμενη"
 msgid "Inline"
 msgstr "Ενσωματωμένη"
 
-#: src/routes/dashboard/applications/index.tsx
-msgid "Insights"
-msgstr "Πληροφορίες"
+#: src/routes/builder/$resumeId/-components/translate-dialog.tsx
+msgid "Instantly localize all standard section headers (Experience, Education, Skills, Projects, etc.) and date formats into your chosen target language."
+msgstr ""
 
 #: src/features/command-palette/pages/navigation.tsx
 msgid "Integrations"
@@ -7079,7 +7099,6 @@ msgstr "Μόνο διεπαφή. Κάθε βιογραφικό θέτει τη �
 #: src/features/applications/stages.ts
 #: src/features/career/schedule-sheet.tsx
 #: src/features/homepage/prepare.tsx
-#: src/features/homepage/sections.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Interview"
 msgstr "Συνέντευξη"
@@ -7093,7 +7112,6 @@ msgid "Interview deleted"
 msgstr "Η συνέντευξη διαγράφηκε"
 
 #: src/features/homepage/prepare.tsx
-#: src/features/homepage/sections.tsx
 msgid "Interview done"
 msgstr "Η συνέντευξη ολοκληρώθηκε"
 
@@ -7118,7 +7136,6 @@ msgid "Interview opening"
 msgstr "Εισαγωγή συνέντευξης"
 
 #: src/features/career/schedule-sheet.tsx
-#: src/features/homepage/sections.tsx
 msgid "Interview prep"
 msgstr "Προετοιμασία συνέντευξης"
 
@@ -7165,10 +7182,6 @@ msgstr "Συνεντεύξεις"
 #: src/features/career/offers.tsx
 msgid "Is equity part of the offer?"
 msgstr "Περιλαμβάνει η προσφορά μετοχές;"
-
-#: src/features/homepage/faq.tsx
-msgid "Is Reactive Resume really free?"
-msgstr "Είναι πραγματικά δωρεάν το Reactive Resume;"
 
 #: src/features/career/offers.tsx
 msgid "Is there a bonus, and what does it depend on?"
@@ -7336,10 +7349,6 @@ msgstr "Προτιμήσεις αναζήτησης εργασίας"
 msgid "Job title"
 msgstr ""
 
-#: src/features/homepage/sections.tsx
-msgid "Job tracker"
-msgstr "Παρακολούθηση αιτήσεων"
-
 #: src/features/command-palette/pages/navigation.tsx
 msgid "Jobs"
 msgstr "Θέσεις εργασίας"
@@ -7353,14 +7362,6 @@ msgstr "John Doe"
 #: src/features/auth/pages/register.tsx
 msgid "john.doe"
 msgstr "john.doe"
-
-#: src/features/homepage/footer.tsx
-msgid "Join Discord"
-msgstr "Συμμετοχή στο Discord"
-
-#: src/features/homepage/sections.tsx
-msgid "Join the Discord community"
-msgstr "Γίνετε μέλος της κοινότητας στο Discord"
 
 #: src/features/resume/import/read-file.ts
 msgid "JSON read"
@@ -7406,10 +7407,6 @@ msgstr "Συνέχεια επεξεργασίας"
 #: src/features/documents/trash-page.tsx
 msgid "Keep in Trash"
 msgstr "Διατήρηση στον Κάδο απορριμμάτων"
-
-#: src/features/homepage/sections.tsx
-msgid "Keep it <0>free.</0>"
-msgstr "Διατηρήστε το <0>δωρεάν.</0>"
 
 #: src/features/career/workspace/prepare.tsx
 msgid "Keep it honest"
@@ -7481,6 +7478,10 @@ msgstr "Διατηρήθηκε όπως είναι"
 msgid "Kept yours"
 msgstr "Κρατήθηκε η δική σας"
 
+#: src/features/resume/editor/check/job-match.tsx
+msgid "Key"
+msgstr ""
+
 #. placeholder {0}: keyEnding(provider.apiKeyPreview)
 #: src/features/settings/ai/providers.tsx
 msgid "Key ends in {0}"
@@ -7519,11 +7520,9 @@ msgstr "Χμερ"
 msgid "Kind regards,"
 msgstr "Με εκτίμηση,"
 
-#: src/features/command-palette/pages/navigation.tsx
 #: src/features/homepage/remember.tsx
 #: src/features/resume/editor/proposals/proposal-list.tsx
 #: src/routes/dashboard/career/knowledge/route.tsx
-#: src/routes/dashboard/career/route.tsx
 msgid "Knowledge"
 msgstr "Γνώση"
 
@@ -7636,7 +7635,6 @@ msgid "Lead across functions"
 msgstr "Ηγεσία σε διαλειτουργικές ομάδες"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 #: src/features/homepage/write.tsx
 msgid "Lead Product Designer"
@@ -7695,10 +7693,6 @@ msgstr "Αριστερά"
 #: src/features/resume/import/read-file.ts
 msgid "Legacy Word files aren't supported. Open the file in Word and save it as .docx first."
 msgstr "Τα αρχεία Word παλαιού τύπου δεν υποστηρίζονται. Ανοίξτε το αρχείο στο Word και αποθηκεύστε το πρώτα ως .docx."
-
-#: src/features/homepage/footer.tsx
-msgid "Legal"
-msgstr "Νομικά"
 
 #: src/routes/builder/$resumeId/-components/document-details.tsx
 #: src/routes/builder/letter/-components/write-panel.tsx
@@ -7797,10 +7791,6 @@ msgstr ""
 msgid "Library items for {company}, newest first."
 msgstr ""
 
-#: src/features/homepage/footer.tsx
-msgid "Licensed under <0>MIT</0>"
-msgstr "Με άδεια <0>MIT</0>"
-
 #: src/features/ats-checker/messages.ts
 msgid "Ligatures can drop letters out of words such as \"workflow\"."
 msgstr "Οι συνδέσεις γραμμάτων (ligatures) μπορούν να αφαιρέσουν γράμματα από λέξεις όπως «workflow»."
@@ -7852,12 +7842,12 @@ msgid "Link {0} URL"
 msgstr ""
 
 #: src/features/applications/components/application-form-sheet.tsx
-msgid "Link a Reactive Resume (recommended)"
-msgstr "Σύνδεση Reactive Resume (συνιστάται)"
+msgid "Link a Resume Builder resume (recommended)"
+msgstr ""
 
 #: src/features/applications/components/application-form-sheet.tsx
-msgid "Link a Reactive Resume to use AI match scoring and tailoring."
-msgstr "Συνδέστε ένα Reactive Resume για να χρησιμοποιήσετε τη βαθμολόγηση αντιστοίχισης και την προσαρμογή με AI."
+msgid "Link a Resume Builder resume to use AI match scoring and tailoring."
+msgstr ""
 
 #: src/features/resume/editor/write/basics-card.tsx
 #: src/features/resume/editor/write/rich-text-editor-field.tsx
@@ -7952,17 +7942,12 @@ msgstr "Εδαφος διά παιγνίδι γκολφ"
 msgid "Links you've already shared keep working for 30 days, then stop. Share the new ones before then."
 msgstr ""
 
-#: src/features/homepage/hero.tsx
-msgid "Lisbon"
-msgstr "Lisbon"
-
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Lisbon, Portugal"
 msgstr "Lisbon, Portugal"
 
 #: src/features/documents/documents-page.tsx
-#: src/routes/dashboard/applications/index.tsx
 msgid "List"
 msgstr "Λίστα"
 
@@ -7986,10 +7971,6 @@ msgstr "Ζωντανά · ενημερώσεις καθώς επεξεργάζε
 #: src/features/resume/share/address-field.tsx
 msgid "Live at {0}"
 msgstr "Ζωντανά στο {0}"
-
-#: src/features/homepage/sections.tsx
-msgid "Live totals, refreshed every 6 hours."
-msgstr "Ζωντανά σύνολα, ανανεώνονται κάθε 6 ώρες."
 
 #: src/features/applications/components/import-applications-sheet.tsx
 msgid "Load your stages before importing named stages. Your CSV data is kept."
@@ -8063,10 +8044,6 @@ msgstr "Φόρτωση αποθηκευμένης έκδοσης…"
 msgid "Loading stylesheet editor…"
 msgstr "Φόρτωση επεξεργαστή στυλ…"
 
-#: src/features/homepage/sections.tsx
-msgid "Loading the total"
-msgstr "Φόρτωση του συνόλου"
-
 #: src/features/career/workspace/shell.tsx
 msgid "Loading workspace…"
 msgstr "Φόρτωση χώρου εργασίας…"
@@ -8139,8 +8116,8 @@ msgid "Lower the design sheet"
 msgstr "Χαμηλώστε το φύλλο σχεδίασης"
 
 #: src/features/resume/share/web-page-text.ts
-msgid "Made with Reactive Resume, free and open source"
-msgstr "Κατασκευασμένο με Reactive Resume, δωρεάν και ανοιχτού κώδικα"
+msgid "Made with Resume Builder, free and open source"
+msgstr ""
 
 #. Layout editor column label for the primary content area
 #: src/routes/builder/$resumeId/-sidebar/right/sections/layout/pages.tsx
@@ -8385,6 +8362,10 @@ msgstr "Μηνύματα · Επικολλήθηκε από το email σας"
 msgid "Messages · Reply to Sam at Fieldnote"
 msgstr "Μηνύματα · Απάντηση στον Sam της Fieldnote"
 
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Micro-Tighten"
+msgstr ""
+
 #: src/features/career/workspace/practise.tsx
 msgid "Microphone blocked. Allow it in your browser settings, or type your answer."
 msgstr "Το μικρόφωνο είναι αποκλεισμένο. Επιτρέψτε το στις ρυθμίσεις του προγράμματος περιήγησης ή πληκτρολογήστε την απάντησή σας."
@@ -8396,10 +8377,6 @@ msgstr "Ελάχιστος βασικός μισθός"
 #: src/features/homepage/prepare.tsx
 msgid "Missing evidence means your notes don’t show it yet, not that you lack it."
 msgstr "Τα ελλιπή τεκμήρια σημαίνουν ότι οι σημειώσεις σας δεν το δείχνουν ακόμη, όχι ότι σας λείπει."
-
-#: src/features/homepage/footer.tsx
-msgid "MIT License"
-msgstr "Άδεια MIT"
 
 #: src/features/career/workspace/debrief.tsx
 #: src/features/homepage/prepare.tsx
@@ -8700,6 +8677,14 @@ msgstr ""
 msgid "Needs you"
 msgstr "Σας περιμένει"
 
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Negotiation email script copied to clipboard!"
+msgstr ""
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Negotiation Script"
+msgstr ""
+
 #: src/libs/locale.ts
 msgid "Nepali"
 msgstr "Νεπάλι"
@@ -8795,6 +8780,7 @@ msgstr "Χρώμα νέου σταδίου"
 msgid "New teams at Northwind were stalling in setup; most never got through."
 msgstr "Οι νέες ομάδες στη Northwind κολλούσαν στη ρύθμιση· οι περισσότερες δεν την ολοκλήρωναν ποτέ."
 
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/command-palette/pages/resumes.tsx
 #: src/features/documents/page-navigation.tsx
 msgid "Next"
@@ -9096,6 +9082,10 @@ msgstr "Δεν υπάρχουν ακόμη δεδομένα πηγής."
 msgid "No specific terms could be pulled out of that job description, so it may be mostly boilerplate. Paste the requirements section for a more useful comparison."
 msgstr "Δεν κατέστη δυνατή η εξαγωγή συγκεκριμένων όρων από αυτή την περιγραφή θέσης, οπότε ενδέχεται να είναι κυρίως τυποποιημένο κείμενο. Επικολλήστε την ενότητα απαιτήσεων για πιο χρήσιμη σύγκριση."
 
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "No stories available for flashcard rehearsal."
+msgstr ""
+
 #: src/features/career/knowledge/stories.tsx
 msgid "No stories yet"
 msgstr "Δεν υπάρχουν ακόμη ιστορίες"
@@ -9136,11 +9126,6 @@ msgstr "Δεν βρέθηκε ενότητα εργασιακής εμπειρί
 #: src/features/homepage/design.tsx
 msgid "No. {number} · {name}"
 msgstr "Αρ. {number} · {name}"
-
-#. Receipt line amount for something Reactive Resume doesn't have, e.g. ads.
-#: src/features/homepage/sections.tsx
-msgid "none"
-msgstr "κανένας"
 
 #: src/features/career/today.tsx
 msgid "None"
@@ -9261,10 +9246,6 @@ msgstr "Δεν αποθηκεύτηκε — αυτό το γεγονός είχ�
 #: src/features/settings/profile.tsx
 msgid "Not saved yet"
 msgstr ""
-
-#: src/features/resume/editor/check/job-match.tsx
-msgid "not scored"
-msgstr "δεν σκόραρε"
 
 #: src/features/ats-checker/report/report-view.tsx
 msgid "Not scored"
@@ -9424,10 +9405,17 @@ msgstr "Ανενεργό. Ενεργοποιήστε το για να σας β�
 #: src/features/career/offer-entry.tsx
 #: src/features/career/offers.tsx
 #: src/features/career/workspace/saved.tsx
-#: src/features/homepage/sections.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Offer"
 msgstr "Προσφορά"
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Offer A"
+msgstr ""
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Offer B"
+msgstr ""
 
 #: src/features/career/offer-entry.tsx
 msgid "Offer saved"
@@ -9442,9 +9430,7 @@ msgstr ""
 msgid "Offer type"
 msgstr "Τύπος προσφοράς"
 
-#: src/features/command-palette/pages/navigation.tsx
 #: src/routes/dashboard/career/offers.tsx
-#: src/routes/dashboard/career/route.tsx
 msgid "Offers"
 msgstr "Προσφορές"
 
@@ -9488,14 +9474,6 @@ msgstr "Μία στήλη"
 #: src/features/templates/gallery.tsx
 msgid "One column or two?"
 msgstr "Μία στήλη ή δύο;"
-
-#: src/dialogs/resume/template/data.ts
-msgid "One column with a photo beside the header and clear section headings. A simple top-to-bottom layout for your experience."
-msgstr "Μία στήλη με φωτογραφία δίπλα στην κεφαλίδα και καλά καθορισμένες επικεφαλίδες ενότητας. Μια απλή διάταξη από πάνω προς τα κάτω για την εργασιακή σας εμπειρία."
-
-#: src/dialogs/resume/template/data.ts
-msgid "One column with labeled section rows and subtle dividers. A compact layout for experience, education and supporting details."
-msgstr "Μία στήλη με επισημασμένες σειρές τομών και διακριτικά διαχωριστικά. Μια συμπαγής διάταξη για εμπειρία, εκπαίδευση και υποστηρικτικές λεπτομέρειες."
 
 #: src/features/homepage/check.tsx
 msgid "one format"
@@ -9639,8 +9617,8 @@ msgid "Open the exported file and confirm you can select and copy every part of 
 msgstr "Ανοίξτε το εξαγόμενο αρχείο και επιβεβαιώστε ότι μπορείτε να επιλέξετε και να αντιγράψετε κάθε τμήμα του."
 
 #: src/routes/auth/native-callback.tsx
-msgid "Open the Reactive Resume app"
-msgstr "Ανοίξτε την εφαρμογή Reactive Resume"
+msgid "Open the Resume Builder app"
+msgstr ""
 
 #: src/features/career/today.tsx
 msgid "Open the schedule"
@@ -9888,7 +9866,6 @@ msgid "paragraph {n}"
 msgstr "παράγραφος {n}"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 msgid "Parcel & Co."
 msgstr "Parcel & Co."
 
@@ -9954,6 +9931,10 @@ msgstr "Ορίστηκε ο κωδικός πρόσβασης"
 msgid "Past conversations"
 msgstr "Προηγούμενες συνομιλίες"
 
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "Paste a bullet point or accomplishment. AI will extract behavioral interview questions and format it into Situation, Task, Action, Result, and Reflection."
+msgstr ""
+
 #: src/features/documents/new-document-dialog.tsx
 msgid "Paste a job link or posting to track it in Applications."
 msgstr ""
@@ -9961,10 +9942,6 @@ msgstr ""
 #: src/features/applications/components/add-application-dialog.tsx
 msgid "Paste a job link or posting, then check the role and company."
 msgstr "Επικολλήστε έναν σύνδεσμο εργασίας ή μια ανάρτηση εργασίας και, στη συνέχεια, ελέγξτε τον ρόλο και την εταιρεία."
-
-#: src/routes/dashboard/applications/index.tsx
-msgid "Paste a job link. We'll save the posting so Check, the assistant and your letter can use it."
-msgstr "Επικολλήστε έναν σύνδεσμο εργασίας. Θα αποθηκεύσουμε την ανάρτηση εργασίας, ώστε ο Έλεγχος, ο βοηθός και η επιστολή σας να μπορούν να τη χρησιμοποιήσουν."
 
 #: src/features/homepage/tailor.tsx
 msgid "Paste a job posting once. It feeds a tailored copy of your resume, a match score, a cover letter draft and a place to track the role."
@@ -10024,10 +10001,6 @@ msgstr "Επικολλήθηκε η αγγελία εργασίας"
 msgid "Pasting fills the fields automatically."
 msgstr "Η επικόλληση συμπληρώνει τα πεδία αυτόματα."
 
-#: src/features/homepage/sections.tsx
-msgid "Pause the list of languages"
-msgstr "Παύση της λίστας γλωσσών"
-
 #: src/features/career/today.tsx
 msgid "Paused · {line}"
 msgstr "Σε παύση · {line}"
@@ -10051,16 +10024,12 @@ msgid "PDF styles support a subset of CSS. Rotation, dashed and dotted borders, 
 msgstr "Τα στυλ PDF υποστηρίζουν ένα υποσύνολο του CSS. Η περιστροφή, τα διακεκομμένα και διακεκομμένα περιγράμματα και ορισμένες ιδιότητες διάταξης αγνοούνται."
 
 #: src/features/homepage/faq.tsx
-msgid "PDF, Word (DOCX), Markdown and JSON. The JSON export imports back into any Reactive Resume, including one you host yourself, so your data is never locked in."
-msgstr "PDF, Word (DOCX), Markdown και JSON. Η εξαγωγή JSON εισάγει ξανά σε οποιοδήποτε Reactive Resume, συμπεριλαμβανομένου ενός που φιλοξενείτε μόνοι σας, ώστε τα δεδομένα σας να μην κλειδώνονται ποτέ."
+msgid "PDF, Word (DOCX), Markdown and JSON. The JSON export imports back into any Resume Builder, including one you host yourself, so your data is never locked in."
+msgstr ""
 
 #: src/features/documents/documents-page.tsx
 msgid "PDF, Word or JSON. We'll build a resume from it."
 msgstr "PDF, Word ή JSON. Θα φτιάξουμε ένα βιογραφικό από αυτό."
-
-#: src/features/homepage/sections.tsx
-msgid "People using it"
-msgstr "Άτομα που το χρησιμοποιούν"
 
 #: src/features/career/offer-entry.tsx
 msgid "Per hour"
@@ -10177,17 +10146,9 @@ msgstr "Σχεδιασμός της προετοιμασίας μου"
 msgid "Plan what to ask"
 msgstr "Σχεδιάστε τι θα ρωτήσετε"
 
-#: src/routes/dashboard/career/route.tsx
-msgid "Plan your search, keep your evidence in one place, and decide between offers."
-msgstr "Σχεδιάστε την αναζήτησή σας, κρατήστε τα τεκμήριά σας σε ένα σημείο και αποφασίστε ανάμεσα σε προσφορές."
-
 #: src/features/career/shared.tsx
 msgid "Planning your week"
 msgstr "Σχεδιασμός της εβδομάδας σας"
-
-#: src/features/homepage/sections.tsx
-msgid "Play the list of languages"
-msgstr "Αναπαραγωγή της λίστας γλωσσών"
 
 #: src/libs/locale.ts
 msgid "Polish"
@@ -10340,8 +10301,6 @@ msgctxt "Career preferences: the roles, places, pay and ways of working you want
 msgid "Preferences"
 msgstr "Προτιμήσεις"
 
-#: src/features/homepage/footer.tsx
-#: src/features/homepage/header.tsx
 #: src/features/homepage/prepare.tsx
 msgid "Prepare"
 msgstr "Προετοιμασία"
@@ -10409,6 +10368,7 @@ msgstr "Μέγεθος προεπισκόπησης"
 msgid "Previewing {0} · click to apply"
 msgstr "Προεπισκόπηση {0} · κάντε κλικ για εφαρμογή"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/command-palette/pages/resumes.tsx
 #: src/features/documents/page-navigation.tsx
 msgid "Previous"
@@ -10446,10 +10406,6 @@ msgstr "Εκτυπώστε ή εξαγάγετε τη φόρμα σε επίπε
 msgid "Privacy"
 msgstr "Απόρρητο"
 
-#: src/features/homepage/footer.tsx
-msgid "Privacy policy"
-msgstr "Πολιτική απορρήτου"
-
 #: src/features/homepage/share.tsx
 msgid "Private"
 msgstr "Ιδιωτικό"
@@ -10457,10 +10413,6 @@ msgstr "Ιδιωτικό"
 #: src/routes/builder/$resumeId/-components/document-details.tsx
 msgid "Private. Only you can see it."
 msgstr "Ιδιωτικός. Μόνο εσύ μπορείς να το δεις."
-
-#: src/features/homepage/footer.tsx
-msgid "Product"
-msgstr "Προϊόν"
 
 #: src/features/homepage/check.tsx
 #: src/features/homepage/sheet.tsx
@@ -10524,10 +10476,6 @@ msgstr "Γραμμή προόδου"
 msgid "Projects"
 msgstr "Έργα"
 
-#: src/features/homepage/hero.tsx
-msgid "Promoted to lead, 2021"
-msgstr "Προαγωγή σε επικεφαλής, 2021"
-
 #: src/features/career/workspace/messages.tsx
 msgid "Proposed changes"
 msgstr "Προτεινόμενες αλλαγές"
@@ -10541,7 +10489,6 @@ msgid "Protect your resume with a password"
 msgstr "Προστατέψτε το βιογραφικό σας με κωδικό"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "Prototyping"
 msgstr "Δημιουργία πρωτοτύπων"
@@ -10615,10 +10562,6 @@ msgstr "Μωβ"
 msgid "Put a plain email address near the top of the first page. It is what most systems file you under."
 msgstr "Τοποθετήστε μια απλή διεύθυνση email κοντά στην κορυφή της πρώτης σελίδας. Είναι αυτό με βάση το οποίο σας καταχωρούν τα περισσότερα συστήματα."
 
-#: src/features/homepage/sections.tsx
-msgid "Put it all on <0>one page.</0>"
-msgstr "Βάλτε τα όλα σε <0>μία σελίδα.</0>"
-
 #: src/features/resume/editor/write/rich-text-editor-field.tsx
 msgid "Put the caret in a line to improve it"
 msgstr "Βάλτε το καρέ σε μια γραμμή για να το βελτιώσετε"
@@ -10627,14 +10570,14 @@ msgstr "Βάλτε το καρέ σε μια γραμμή για να το βε�
 msgid "QR code"
 msgstr "Κωδικός QR"
 
-#: src/features/resume/share/share-panel.tsx
-msgid "QR code for {url}"
-msgstr "Κωδικός QR για {url}"
-
 #. Accessible title for QR code image shown during two-factor setup
 #: src/dialogs/auth/enable-two-factor.tsx
 msgid "QR code for two-step verification"
 msgstr "Κωδικός QR για επαλήθευση δύο βημάτων"
+
+#: src/features/resume/share/share-panel.tsx
+msgid "QR code SVG downloaded!"
+msgstr ""
 
 #: src/features/career/workspace/answer-library.tsx
 msgid "Question"
@@ -10709,18 +10652,6 @@ msgstr "Επανεξαγάγετε με ενσωματωμένες γραμμα�
 msgid "Re: Senior Product Designer"
 msgstr "ΑΠ: Senior Product Designer"
 
-#: src/routes/_home/-sections/header.tsx
-msgid "Reactive Resume - Go to homepage"
-msgstr "Reactive Resume - Μετάβαση στην αρχική σελίδα"
-
-#: src/routes/dashboard/settings/route.tsx
-msgid "Reactive Resume {__APP_VERSION__} · MIT"
-msgstr "Reactive Resume {__APP_VERSION__} · MIT"
-
-#: src/features/homepage/sections.tsx
-msgid "Reactive Resume is open source under the MIT License. Amruth Pillai and a community of contributors keep it running, and donations pay for hosting and development. There’s no paid tier."
-msgstr "Το Reactive Resume είναι ανοιχτού κώδικα με την άδεια MIT. Ο Amruth Pillai και μια κοινότητα συνεισφερόντων το διατηρούν σε λειτουργία, και οι δωρεές καλύπτουν τη φιλοξενία και την ανάπτυξη. Δεν υπάρχει έκδοση επί πληρωμή."
-
 #. placeholder {0}: reader.label
 #: src/features/career/workspace/practise.tsx
 msgid "Read aloud by {0}, which may use tokens on that account."
@@ -10779,10 +10710,6 @@ msgstr "Διαβάστε τη σελίδα"
 #: src/features/assistant/conversation.tsx
 msgid "Read the resume"
 msgstr "Ανάγνωση του βιογραφικού"
-
-#: src/features/homepage/faq.tsx
-msgid "Read the self-hosting guide"
-msgstr "Διαβάστε τον οδηγό αυτο-φιλοξενίας"
 
 #: src/features/applications/components/add-application-dialog.tsx
 #: src/features/documents/new-document-dialog.tsx
@@ -11018,6 +10945,7 @@ msgstr "Παραπομπή"
 msgid "Referred by…, things to emphasize, etc."
 msgstr "Σύσταση από…, σημεία προς έμφαση κ.λπ."
 
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/career/knowledge/stories.tsx
 #: src/features/homepage/remember.tsx
 msgid "Reflection"
@@ -11063,6 +10991,10 @@ msgstr "Απορρίφθηκε"
 msgid "Relationship"
 msgstr ""
 
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Relaxed two-page layout applied!"
+msgstr ""
+
 #: src/components/layout/error-screen.tsx
 #: src/features/resume/editor/save-status.tsx
 #: src/routes/builder/letter/-components/letter-bar.tsx
@@ -11087,8 +11019,6 @@ msgid "Relocation"
 msgstr ""
 
 #: src/features/career/shared.tsx
-#: src/features/homepage/footer.tsx
-#: src/features/homepage/header.tsx
 #: src/features/homepage/remember.tsx
 msgid "Remember"
 msgstr "Απομνημόνευση"
@@ -11325,12 +11255,6 @@ msgstr "Η απάντηση αντιγράφηκε"
 msgid "Reply to the offer"
 msgstr ""
 
-#: src/features/homepage/footer.tsx
-#: src/features/homepage/sections.tsx
-#: src/routes/dashboard/settings/route.tsx
-msgid "Report a bug"
-msgstr "Αναφέρετε ένα σφάλμα"
-
 #: src/features/settings/profile.tsx
 msgid "Requested amount"
 msgstr ""
@@ -11377,10 +11301,6 @@ msgstr "Επαναφορά κωδικού πρόσβασης"
 #: src/features/auth/pages/reset-password.tsx
 msgid "Resetting your password..."
 msgstr "Επαναφορά κωδικού πρόσβασης..."
-
-#: src/features/homepage/footer.tsx
-msgid "Resources"
-msgstr "Πόροι"
 
 #: src/features/career/offer-entry.tsx
 #: src/features/career/offers.tsx
@@ -11436,6 +11356,7 @@ msgstr "Έγινε επαναφορά της έκδοσης από το {0}. Η 
 msgid "Restricted to its employer or application."
 msgstr ""
 
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/career/knowledge/stories.tsx
 #: src/features/homepage/remember.tsx
 msgid "Result"
@@ -11478,14 +11399,13 @@ msgstr "βιογραφικό + επιστολή"
 msgid "Resume attached"
 msgstr "Συνημμένο βιογραφικό"
 
-#. Hero headline, line 2 of 4: A free, open-source / resume builder / and / career manager. Lines 2 and 4 are highlighted: keep each a complete phrase.
-#: src/features/homepage/hero.tsx
-msgid "resume builder"
-msgstr "για δημιουργία βιογραφικού"
+#: src/routes/dashboard/settings/route.tsx
+msgid "Resume Builder {__APP_VERSION__} · MIT"
+msgstr ""
 
-#: src/features/homepage/sections.tsx
-msgid "Resume builder"
-msgstr "δημιουργός βιογραφικών"
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "Resume bullet or accomplishment"
+msgstr ""
 
 #: src/features/resume/editor/check/writing-tab.tsx
 msgid "Resume changed since this review. Review these suggestions as out of date or run again."
@@ -11514,6 +11434,10 @@ msgstr ""
 msgid "Resume page"
 msgstr "σελίδα βιογραφικού"
 
+#: src/routes/builder/$resumeId/-components/translate-dialog.tsx
+msgid "Resume section headers translated to {name}!"
+msgstr ""
+
 #: src/features/applications/components/add-application-dialog.tsx
 #: src/features/applications/components/application-detail-sheet.tsx
 msgid "Resume submitted (optional)"
@@ -11536,10 +11460,6 @@ msgstr "Βιογραφικά σημειώματα"
 #: src/features/settings/preferences.tsx
 msgid "Resumes always render on white paper, whatever the theme."
 msgstr "τα βιογραφικά αποδίδονται πάντα σε λευκό χαρτί, ανεξάρτητα από το θέμα."
-
-#: src/features/homepage/sections.tsx
-msgid "Resumes created"
-msgstr "δημιουργήθηκαν βιογραφικά"
 
 #. placeholder {0}: application.postingSource.retrievedAt
 #. placeholder {1}: application.postingSource.method
@@ -11597,6 +11517,10 @@ msgstr "Επιστροφή στην εφαρμογή"
 
 #: src/features/career/workspace/answer-library.tsx
 msgid "Reuse scope"
+msgstr ""
+
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Reveal STAR"
 msgstr ""
 
 #: src/features/career/today.tsx
@@ -11726,6 +11650,7 @@ msgid "Role"
 msgstr "Θέση εργασίας"
 
 #: src/features/applications/components/detail/contacts.tsx
+#: src/features/career/knowledge/generate-story-dialog.tsx
 msgid "Role (optional)"
 msgstr "Ρόλος (προαιρετικό)"
 
@@ -11997,7 +11922,6 @@ msgstr "σώθηκε"
 #: src/features/applications/components/add-application-dialog.tsx
 #: src/features/applications/stages.ts
 #: src/features/career/knowledge/preferences.tsx
-#: src/features/homepage/sections.tsx
 #: src/features/homepage/tailor.tsx
 #: src/features/resume/editor/save-status.tsx
 #: src/routes/builder/letter/-components/letter-bar.tsx
@@ -12101,6 +12025,14 @@ msgstr "Πείτε το φωναχτά"
 msgid "Scan the QR code with your authenticator app, or copy the secret and paste it into the app."
 msgstr "Σαρώστε τον κωδικό QR με την εφαρμογή ελέγχου ταυτότητας ή αντιγράψτε το μυστικό κλειδί και επικολλήστε το στην εφαρμογή."
 
+#: src/features/resume/share/share-panel.tsx
+msgid "Scans to phone contacts"
+msgstr ""
+
+#: src/features/resume/share/share-panel.tsx
+msgid "Scans to web resume"
+msgstr ""
+
 #: src/features/applications/components/interview-dialog.tsx
 msgid "Schedule an interview"
 msgstr "Προγραμματίστε μια συνέντευξη"
@@ -12148,7 +12080,6 @@ msgstr "Προκαταρκτική αξιολόγηση"
 
 #: src/features/applications/components/add-application-dialog.tsx
 #: src/features/documents/documents-page.tsx
-#: src/routes/dashboard/-components/app-shell.tsx
 msgid "Search"
 msgstr "Ερευνα"
 
@@ -12210,10 +12141,6 @@ msgstr "Αναζητήστε από τις Αιτήσεις και τον βοη
 #: src/features/applications/components/add-application-dialog.tsx
 msgid "Search job postings"
 msgstr "Αναζήτηση αγγελιών εργασίας"
-
-#: src/routes/dashboard/-components/app-shell.tsx
-msgid "Search or run a command…"
-msgstr "Αναζήτηση ή εκτέλεση εντολής…"
 
 #: src/routes/dashboard/applications/index.tsx
 msgid "Search role, company or contact"
@@ -12359,10 +12286,6 @@ msgstr ""
 #: src/features/career/role-suggestions.tsx
 msgid "Selected resume:"
 msgstr ""
-
-#: src/features/homepage/footer.tsx
-msgid "Self-hosting"
-msgstr "Αυτο-φιλοξενία"
 
 #: src/features/resume/stylesheet/editor.tsx
 msgid "Semantic CSS stylesheet"
@@ -12548,8 +12471,6 @@ msgstr "Χρώμα σκιάς"
 msgid "Shadow width"
 msgstr "Πλάτος σκιάς"
 
-#: src/features/homepage/footer.tsx
-#: src/features/homepage/header.tsx
 #: src/features/homepage/share.tsx
 #: src/features/resume/share/web-page-text.ts
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
@@ -12600,10 +12521,6 @@ msgstr "Υλοποίησα <0>προσβάσιμες</0> ροές πληρωμή
 msgid "Shipped checkout flows that meet WCAG 2.1 AA."
 msgstr "Παρέδωσα ροές ολοκλήρωσης αγοράς που πληρούν το WCAG 2.1 AA."
 
-#: src/features/homepage/hero.tsx
-msgid "Shipped checkout for iOS"
-msgstr "Αποστολή ολοκλήρωσης αγοράς για iOS"
-
 #: src/routes/builder/letter/-components/write-panel.tsx
 msgid "Short and direct. Fine if the posting asks for brevity."
 msgstr "Σύντομο και άμεσο. Ωραία εάν η αγγελία εργασίας ζητά συντομία."
@@ -12630,8 +12547,8 @@ msgid "Show"
 msgstr "Εμφάνιση"
 
 #: src/features/resume/share/share-panel.tsx
-msgid "Show “Made with Reactive Resume”"
-msgstr "Εμφάνιση «Δημιουργήθηκε με το Reactive Resume»"
+msgid "Show “Made with Resume Builder”"
+msgstr ""
 
 #. placeholder {0}: Math.min(remaining, COLUMN_PAGE_SIZE)
 #. placeholder {0}: visible.length - shown.length
@@ -12721,6 +12638,10 @@ msgstr "Εμφάνιση κωδικού πρόσβασης"
 msgid "Show photo"
 msgstr "Εμφάνιση φωτογραφίας"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Show Question"
+msgstr ""
+
 #: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
 msgid "Show section icons"
 msgstr "Εμφάνιση εικονιδίων ενότητας"
@@ -12740,6 +12661,18 @@ msgstr "Εμφανίζεται στη ζώνη ώρας σας."
 #: src/features/documents/document-actions.tsx
 msgid "Shows the tags they all share. Tags you add go on every document; tags you remove come off every one. Locked documents are left as they are."
 msgstr "Εμφανίζει τις ετικέτες που έχουν όλα κοινές. Οι ετικέτες που προσθέτετε μπαίνουν σε κάθε έγγραφο· όσες αφαιρείτε αφαιρούνται από όλα. Τα κλειδωμένα έγγραφα μένουν ως έχουν."
+
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Shuffle"
+msgstr ""
+
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "Shuffle cards"
+msgstr ""
+
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Side-by-Side Comparison"
+msgstr ""
 
 #. Layout editor column label for the secondary sidebar area
 #: src/features/homepage/sheet.tsx
@@ -12769,7 +12702,6 @@ msgstr "Οι πλευρικές γραμμές συχνά διαβάζονται
 #: src/features/auth/components/guest-banner.tsx
 #: src/features/auth/pages/consent.tsx
 #: src/features/auth/pages/login.tsx
-#: src/features/homepage/footer.tsx
 #: src/routes/auth/login.tsx
 msgid "Sign in"
 msgstr "Σύνδεση"
@@ -12818,6 +12750,10 @@ msgstr "Η σύνδεση δεν ολοκληρώθηκε"
 msgid "Sign-off"
 msgstr "Αποχαιρετισμός"
 
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Sign-On ($)"
+msgstr ""
+
 #: src/features/auth/pages/consent.tsx
 msgid "Signed in as {email}"
 msgstr "Συνδεθήκατε ως {email}"
@@ -12839,38 +12775,7 @@ msgstr "Εγγραφή..."
 msgid "since last view"
 msgstr "από την τελευταία προβολή"
 
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column ruled form inspired by the Japanese rirekisho: a bordered header of field cells and every section as a table with a solid title bar; dense and fast to scan for engineering, operations, or applications in Japan."
-msgstr "Μια μονόστηλη φόρμα εμπνευσμένη από το ιαπωνικό βιογραφικό rirekisho: μια κεφαλίδα από πεδία με περίγραμμα και κάθε τμήμα παρουσιάζεται ως πίνακας με μια σταθερή γραμμή τίτλου. Συμπαγές και εύκολο στη σάρωση, κατάλληλο για εργασίες μηχανικής, εργασίες λειτουργίας ή αιτήσεις εργασίας στην Ιαπωνία."
-
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column set like a magazine feature: a large display name under an uppercase kicker and the summary as a larger standfirst; refined for writers, designers, and communications roles."
-msgstr "Μονόστηλη σελιδοποίηση σαν άρθρο περιοδικού: μεγάλο όνομα σε γραμματοσειρά τίτλων κάτω από έναν επίτιτλο με κεφαλαία και η περίληψη ως μεγαλύτερο εισαγωγικό κείμενο· εκλεπτυσμένο για συγγραφείς, σχεδιαστές και ρόλους επικοινωνίας."
-
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column Wall Street style with a centered header and ruled section headings."
-msgstr "Στυλ Wall Street μίας στήλης με κεντραρισμένη κεφαλίδα και τίτλους ενοτήτων με διαχωριστικές γραμμές."
-
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column with a magenta left border accent; compact and efficient for entry-level or internship applications."
-msgstr "Μονή στήλη με ματζέντα αριστερό περίγραμμα· συμπαγές και αποδοτικό για αιτήσεις αρχικού επιπέδου ή πρακτικής άσκησης."
-
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column with a minimal top header and lots of whitespace; clean and modern for designers or content creators."
-msgstr "Μονή στήλη με μίνιμαλ επάνω κεφαλίδα και πολύ κενό χώρο· καθαρό και μοντέρνο για σχεδιαστές ή δημιουργούς περιεχομένου."
-
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column with uppercase section headings and a primary-color top rule on every page; polished for executive, consulting, or startup resumes."
-msgstr "Μονόστηλο με κεφαλαία γράμματα στις επικεφαλίδες και κύριο χρώμα στο πάνω μέρος σε κάθε σελίδα. Βελτιωμένο για βιογραφικά στελεχών, συμβούλων ή νεοσύστατων επιχειρήσεων."
-
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column with uppercase section headings over a rule and the photo beside the name; compact and ATS-friendly, well-suited for Asian resume conventions (CN/JP/KR)."
-msgstr "Μία στήλη με τίτλους ενοτήτων με κεφαλαία πάνω από μια γραμμή και τη φωτογραφία δίπλα στο όνομα· συμπαγές και φιλικό προς ATS, κατάλληλο για τις ασιατικές συμβάσεις βιογραφικών (CN/JP/KR)."
-
-#: src/dialogs/resume/template/data.ts
-msgid "Single-column; polished and serious for senior or enterprise-level positions."
-msgstr "Μονή στήλη· προσεγμένο και σοβαρό για ανώτερες ή θέσεις εταιρικού επιπέδου."
-
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/career/knowledge/stories.tsx
 #: src/features/homepage/remember.tsx
 msgid "Situation"
@@ -12887,10 +12792,6 @@ msgstr "Τα πεδία «Κατάσταση», «Εργασία» και «Δρ
 #: src/features/career/knowledge/stories.tsx
 msgid "Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank."
 msgstr "Κατάσταση, Εργασία, Δράση, Αποτέλεσμα, Αναστοχασμός. Συνδέστε κάθε ιστορία με γεγονότα που μπορείτε να τεκμηριώσετε· αφήστε κενά τα άγνωστα αποτελέσματα."
-
-#: src/features/homepage/hero.tsx
-msgid "Six product teams"
-msgstr "Έξι ομάδες προϊόντων"
 
 #: src/features/resume/editor/write/picture-settings.tsx
 msgid "Size"
@@ -12944,6 +12845,10 @@ msgstr "Σλοβενικά"
 #: src/features/applications/components/insights-view.tsx
 msgid "Small numbers, but worth noticing."
 msgstr "Μικροί αριθμοί, αλλά αξίζει να προσέξετε."
+
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Smart Page Squeezer"
+msgstr ""
 
 #: src/features/homepage/remember.tsx
 msgid "So I talked to 14 customers, found the three places people dropped off, and we prototyped a shorter setup."
@@ -13009,13 +12914,8 @@ msgstr "Ταξινόμηση κατά ημερομηνία"
 #: src/features/applications/components/application-form-sheet.tsx
 #: src/features/applications/components/import-applications-sheet.tsx
 #: src/features/career/knowledge/facts.tsx
-#: src/routes/dashboard/settings/route.tsx
 msgid "Source"
 msgstr "Πηγή"
-
-#: src/features/homepage/footer.tsx
-msgid "Source code"
-msgstr "Πηγαίος κώδικας"
 
 #: src/features/career/workspace/answer-library.tsx
 msgid "Source employer"
@@ -13039,6 +12939,10 @@ msgstr ""
 msgid "Sources"
 msgstr "Πηγές"
 
+#: src/routes/builder/$resumeId/-sidebar/right/sections/page.tsx
+msgid "Spacing micro-tightened."
+msgstr ""
+
 #: src/libs/locale.ts
 msgid "Spanish"
 msgstr "Ισπανικά"
@@ -13048,17 +12952,9 @@ msgstr "Ισπανικά"
 msgid "Spanish (B2)"
 msgstr "Ισπανικά (B2)"
 
-#: src/features/homepage/hero.tsx
-msgid "Spanish, B2"
-msgstr "Ισπανικά, Β2"
-
 #: src/features/career/workspace/practise.tsx
 msgid "Speak"
 msgstr "Ομιλία"
-
-#: src/features/homepage/sections.tsx
-msgid "Speaks your language"
-msgstr "Μιλάει τη γλώσσα σας"
 
 #: src/features/ats-checker/messages.ts
 msgid "Spell the month, as in \"Mar 2022\"."
@@ -13131,17 +13027,17 @@ msgstr "Στάδια"
 msgid "Standard section headings"
 msgstr "Τυπικές επικεφαλίδες ενοτήτων"
 
-#: src/features/homepage/header.tsx
-msgid "Star Reactive Resume on GitHub"
-msgstr "Star Reactive Resume σε GitHub"
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "STAR Breakdown"
+msgstr ""
+
+#: src/features/career/knowledge/generate-story-dialog.tsx
+msgid "STAR story drafted from bullet point!"
+msgstr ""
 
 #: src/components/input/github-stars-button.tsx
 msgid "Star us on GitHub (opens in new tab)"
 msgstr "Κάντε μας star στο GitHub (ανοίγει σε νέα καρτέλα)"
-
-#: src/features/homepage/sections.tsx
-msgid "Stars on GitHub"
-msgstr "Αστέρια στο GitHub"
 
 #: src/features/resume/editor/write/dates-field.tsx
 msgid "Start"
@@ -13175,10 +13071,6 @@ msgstr "Ξεκινήστε από"
 #: src/features/documents/new-document-dialog.tsx
 msgid "Start from one you have and link the application."
 msgstr "Ξεκινήστε από ένα που έχετε και συνδέστε την αίτηση εργασίας."
-
-#: src/features/homepage/sections.tsx
-msgid "Start from scratch or import what you have. It takes a few minutes, and you can come back to it anytime."
-msgstr "Ξεκινήστε από το μηδέν ή εισαγάγετε ό,τι έχετε. Χρειάζονται λίγα λεπτά και μπορείτε να επιστρέψετε οποιαδήποτε στιγμή."
 
 #: src/features/resume/editor/write/section-row.tsx
 msgid "Start on a new page"
@@ -13304,10 +13196,6 @@ msgstr "Ιστορίες"
 msgid "Stories to bring"
 msgstr "Ιστορίες που θα φέρετε"
 
-#: src/features/homepage/header.tsx
-msgid "Story"
-msgstr "Ιστορία"
-
 #: src/features/homepage/remember.tsx
 msgid "Story · 5 of 5 parts"
 msgstr "Ιστορία · 5 από 5 μέρη"
@@ -13315,6 +13203,10 @@ msgstr "Ιστορία · 5 από 5 μέρη"
 #: src/features/career/knowledge/stories.tsx
 msgid "Story deleted"
 msgstr "Η ιστορία διαγράφηκε"
+
+#: src/features/career/knowledge/stories.tsx
+msgid "Story Details"
+msgstr ""
 
 #: src/features/career/knowledge/stories.tsx
 msgid "Story not found"
@@ -13362,10 +13254,6 @@ msgstr "Υποβλήθηκε συνημμένη συνοδευτική επισ�
 msgid "Submitted attached resume: {0}"
 msgstr "Υποβλήθηκε συνημμένο βιογραφικό: {0}"
 
-#: src/features/homepage/footer.tsx
-msgid "Subreddit"
-msgstr "Subreddit"
-
 #: src/features/career/workspace/prepare.tsx
 msgid "Success at 90 days · next step"
 msgstr "Επιτυχία στις 90 ημέρες · επόμενο βήμα"
@@ -13399,10 +13287,6 @@ msgstr "Περιλήψεις των ανοιχτών αιτήσεών σας"
 msgid "Summary"
 msgstr "Σύνοψη"
 
-#: src/features/homepage/sections.tsx
-msgid "Support"
-msgstr "Υποστήριξη"
-
 #: src/features/career/shared.tsx
 #: src/features/career/workspace/debrief.tsx
 #: src/features/homepage/prepare.tsx
@@ -13411,6 +13295,10 @@ msgstr "Τεκμηριωμένο"
 
 #: src/features/career/workspace/answer-library.tsx
 msgid "Supporting Knowledge facts and stories"
+msgstr ""
+
+#: src/features/resume/share/share-panel.tsx
+msgid "SVG"
 msgstr ""
 
 #: src/features/career/offers.tsx
@@ -13445,7 +13333,6 @@ msgstr "Απενεργοποιήστε το"
 msgid "Switch model"
 msgstr "Μοντέλο διακόπτη"
 
-#: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 msgid "Switch to dark mode"
 msgstr "Μετάβαση σε σκοτεινή λειτουργία"
@@ -13454,7 +13341,6 @@ msgstr "Μετάβαση σε σκοτεινή λειτουργία"
 msgid "Switch to dark theme"
 msgstr "Εναλλαγή σε σκοτεινό θέμα"
 
-#: src/features/homepage/footer.tsx
 #: src/features/homepage/header.tsx
 msgid "Switch to light mode"
 msgstr "Μετάβαση σε λειτουργία φωτός"
@@ -13527,7 +13413,6 @@ msgstr "Ετικέτες, χωρισμένες με κόμματα"
 msgid "Tags…"
 msgstr "Ετικέτες…"
 
-#: src/features/homepage/header.tsx
 #: src/features/homepage/tailor.tsx
 msgid "Tailor"
 msgstr "Προσαρμογή στην περιγραφή της θέσης εργασίας"
@@ -13550,6 +13435,10 @@ msgstr ""
 msgid "Tailor to the {0} posting"
 msgstr "προσαρμοστείτε στην ανάρτηση εργασίας {0}"
 
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Tailored Negotiation Script"
+msgstr ""
+
 #: src/features/applications/components/insights-view.tsx
 msgid "Tailored vs. base resume"
 msgstr "προσαρμοσμένο έναντι βασικού βιογραφικού"
@@ -13566,6 +13455,7 @@ msgstr "Ταμίλ"
 msgid "Target roles"
 msgstr "Θέσεις-στόχοι"
 
+#: src/features/career/knowledge/flashcard-deck.tsx
 #: src/features/career/knowledge/stories.tsx
 #: src/features/homepage/remember.tsx
 msgid "Task"
@@ -13617,13 +13507,8 @@ msgid "Template, type and colors follow the resume, so the pair always matches."
 msgstr "Το πρότυπο, ο τύπος και τα χρώματα ακολουθούν το βιογραφικό, έτσι ώστε το ζευγάρι να ταιριάζει πάντα."
 
 #: src/features/homepage/design.tsx
-#: src/features/homepage/footer.tsx
 msgid "Templates"
 msgstr "Πρότυπα"
-
-#: src/features/homepage/sections.tsx
-msgid "Templates × {templates}"
-msgstr "Πρότυπα × {templates}"
 
 #: src/features/ats-checker/checker.tsx
 msgid "Terms from the posting"
@@ -13726,10 +13611,6 @@ msgstr "Το κείμενο κάτω από το {minimum} pt μπορεί να 
 #: src/libs/locale.ts
 msgid "Thai"
 msgstr "Ταϊλανδικά"
-
-#: src/features/homepage/sections.tsx
-msgid "Thank you for keeping it free."
-msgstr "Σας ευχαριστούμε που το κρατήσατε δωρεάν."
 
 #: src/features/homepage/remember.tsx
 msgid "Thanks, Sam. Here’s one: at Northwind Labs I led the onboarding redesign, from 14 customer interviews to a shorter setup."
@@ -14265,8 +14146,8 @@ msgid "This file isn't a readable image. Choose a PNG, JPEG, WebP or GIF photo."
 msgstr ""
 
 #: src/features/documents/new-document-dialog.tsx
-msgid "This file type can't be imported. Use a PDF, Word, Reactive Resume or JSON Resume file, or a LinkedIn export (.zip)."
-msgstr "Δεν είναι δυνατή η εισαγωγή αυτού του τύπου αρχείου. Χρησιμοποιήστε ένα αρχείο PDF, Word, Reactive Resume ή JSON Resume ή μια εξαγωγή LinkedIn (.zip)."
+msgid "This file type can't be imported. Use a PDF, Word, Resume Builder or JSON Resume file, or a LinkedIn export (.zip)."
+msgstr ""
 
 #: src/features/ats-checker/messages.ts
 msgid "This file uses a lot of different fonts."
@@ -14518,15 +14399,17 @@ msgstr "Να"
 msgid "To {recipient}"
 msgstr ""
 
+#: src/features/career/knowledge/flashcard-deck.tsx
+msgid "to flip"
+msgstr ""
+
 #: src/libs/dnd.ts
 msgid "To pick it up, press Space or Enter. Use the arrow keys to move it, Space or Enter to drop it, or Escape to cancel."
 msgstr "Για να το επιλέξετε, πατήστε Διάστημα ή Enter. Χρησιμοποιήστε τα βέλη για να το μετακινήσετε, Διάστημα ή Enter για να το αφήσετε ή Escape για ακύρωση."
 
 #: src/features/applications/components/calendar-view.tsx
-#: src/features/command-palette/pages/navigation.tsx
 #: src/features/resume/share/share-panel.tsx
 #: src/routes/dashboard/career/index.tsx
-#: src/routes/dashboard/career/route.tsx
 msgid "Today"
 msgstr "Σήμερα"
 
@@ -14550,9 +14433,9 @@ msgstr "Πολύ ελαφρύ για επικεφαλίδες σε λευκό. �
 msgid "Too many requests. Try again later."
 msgstr "Πάρα πολλά αιτήματα. Δοκιμάστε ξανά αργότερα."
 
-#: src/features/homepage/sections.tsx
-msgid "Total"
-msgstr "Σύνολο"
+#: src/features/applications/components/offer-calculator.tsx
+msgid "Total 4-Yr Equity ($)"
+msgstr ""
 
 #: src/features/applications/components/application-form-sheet.tsx
 msgid "Track a job you're applying to and link the resume you sent."
@@ -14565,14 +14448,6 @@ msgstr "Παρακολούθηση στις Αιτήσεις"
 #: src/features/career/today.tsx
 msgid "Track selected"
 msgstr ""
-
-#: src/routes/dashboard/applications/index.tsx
-msgid "Track your first job"
-msgstr "Παρακολουθήστε την πρώτη σας δουλειά"
-
-#: src/features/homepage/sections.tsx
-msgid "Tracking"
-msgstr "Παρακολούθηση"
 
 #: src/features/career/workspace/practise.tsx
 msgid "Transcribe answers with"
@@ -14590,21 +14465,13 @@ msgstr "Απομαγνητοφώνηση με {model}…"
 msgid "Transcript copied"
 msgstr "Η μεταγραφή αντιγράφηκε"
 
-#: src/routes/dashboard/settings/route.tsx
-msgid "Translate"
-msgstr "Μεταφράζω"
+#: src/routes/builder/$resumeId/-components/translate-dialog.tsx
+msgid "Translate Resume Sections"
+msgstr ""
 
-#: src/features/homepage/sections.tsx
-msgid "Translate the app"
-msgstr "Μεταφράστε την εφαρμογή"
-
-#: src/features/homepage/sections.tsx
-msgid "Translated into {languageCount} languages."
-msgstr "Έχει μεταφραστεί σε {languageCount} γλώσσες."
-
-#: src/features/homepage/footer.tsx
-msgid "Translations"
-msgstr "Μεταφράσεις"
+#: src/routes/builder/$resumeId/-components/document-menu.tsx
+msgid "Translate Sections…"
+msgstr ""
 
 #: src/features/command-palette/pages/navigation.tsx
 #: src/features/documents/documents-page.tsx
@@ -14726,10 +14593,6 @@ msgstr "Ενεργοποίηση επαλήθευσης δύο βημάτων…
 msgid "Two columns"
 msgstr "Δύο στήλες"
 
-#: src/dialogs/resume/template/data.ts
-msgid "Two columns beneath a colored header band. Keep experience in the main column and supporting details in the sidebar."
-msgstr "Δύο στήλες κάτω από μια έγχρωμη ταινία κεφαλίδας. Διατηρήστε την εμπειρία στην κύρια στήλη και τις υποστηρικτικές λεπτομέρειες στην πλαϊνή γραμμή."
-
 #: src/features/homepage/check.tsx
 msgid "Two date formats found"
 msgstr "Βρέθηκαν δύο μορφές ημερομηνίας"
@@ -14737,34 +14600,6 @@ msgstr "Βρέθηκαν δύο μορφές ημερομηνίας"
 #: src/features/career/workspace/prepare.tsx
 msgid "Two stories"
 msgstr "Δύο ιστορίες"
-
-#: src/dialogs/resume/template/data.ts
-msgid "Two-column with a bold colored sidebar and skill bars; great for creative or tech roles where visual flair is welcome."
-msgstr "Διπλή στήλη με έντονη, χρωματιστή πλαϊνή μπάρα και μπάρες δεξιοτήτων· ιδανικό για δημιουργικούς ή τεχνολογικούς ρόλους όπου το οπτικό στυλ είναι ευπρόσδεκτο."
-
-#: src/dialogs/resume/template/data.ts
-msgid "Two-column with a dark teal sidebar and skills grid; modern feel for developers, data scientists, or technical PMs."
-msgstr "Διπλή στήλη με σκούρα τιρκουάζ πλαϊνή μπάρα και πλέγμα δεξιοτήτων· μοντέρνα αίσθηση για προγραμματιστές, επιστήμονες δεδομένων ή τεχνικούς PM."
-
-#: src/dialogs/resume/template/data.ts
-msgid "Two-column with a left margin color; simple and approachable for creative, editorial, or junior roles."
-msgstr "Διπλή στήλη με χρώμα στο αριστερό περιθώριο· απλό και φιλικό για δημιουργικούς, συντακτικούς ή ρόλους αρχικού επιπέδου."
-
-#: src/dialogs/resume/template/data.ts
-msgid "Two-column with a muted color sidebar; earthy and calm, suits sustainability, healthcare, or nonprofit sectors."
-msgstr "Διπλή στήλη με απαλή, χρωματιστή πλαϊνή μπάρα· γήινο και ήρεμο, ταιριάζει σε τομείς βιωσιμότητας, υγειονομικής περίθαλψης ή μη κερδοσκοπικών οργανισμών."
-
-#: src/dialogs/resume/template/data.ts
-msgid "Two-column with a soft header accent and circular profile photo; ideal for marketing, HR, or client-facing roles."
-msgstr "Διπλή στήλη με απαλή έμφαση στην κεφαλίδα και κυκλική φωτογραφία προφίλ· ιδανικό για μάρκετινγκ, HR ή ρόλους με άμεση επαφή με πελάτες."
-
-#: src/dialogs/resume/template/data.ts
-msgid "Two-column with accent colors and clean typography; balanced choice for business analysts or operations roles."
-msgstr "Διπλή στήλη με χρωματικές πινελιές και καθαρή τυπογραφία· ισορροπημένη επιλογή για business analysts ή ρόλους λειτουργιών."
-
-#: src/dialogs/resume/template/data.ts
-msgid "Two-column, minimal with light gray sidebar and subtle icons; professional and understated for legal, finance, or executive roles."
-msgstr "Διπλή στήλη, μίνιμαλ με ανοιχτό γκρι πλαϊνή μπάρα και διακριτικά εικονίδια· επαγγελματικό και λιτό για νομικούς, χρηματοοικονομικούς ή διευθυντικούς ρόλους."
 
 #: src/routes/auth/verify-2fa.tsx
 msgid "Two-factor authentication"
@@ -14861,7 +14696,6 @@ msgid "Undo resume change"
 msgstr "Αναίρεση αλλαγής βιογραφικού"
 
 #: src/features/homepage/check.tsx
-#: src/features/homepage/hero.tsx
 #: src/features/homepage/sheet.tsx
 msgid "University of Porto"
 msgstr "University of Porto"
@@ -15402,10 +15236,6 @@ msgstr "Περιμένοντας να ακούσω πίσω"
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
-#: src/features/homepage/hero.tsx
-msgid "WCAG 2.1 AA"
-msgstr "WCAG 2.1 AA"
-
 #: src/features/applications/components/add-application-dialog.tsx
 msgid "We read the page and save the posting for Check, the assistant and your letter."
 msgstr "Διαβάζουμε τη σελίδα και αποθηκεύουμε την ανάρτηση εργασίας για τον Έλεγχο, τον βοηθό και την επιστολή σας."
@@ -15431,6 +15261,10 @@ msgstr "Πρόσβαση στον Ιστό"
 #. placeholder {0}: access?.searxng ? t`your server's search service` : (access?.provider ?? t`built-in reader`)
 #: src/libs/orpc/ai-consent.ts
 msgid "Web destination: {0}."
+msgstr ""
+
+#: src/features/resume/share/share-panel.tsx
+msgid "Web Link"
 msgstr ""
 
 #: src/features/resume/share/share-panel.tsx
@@ -15754,8 +15588,6 @@ msgstr "Αξίζει να ρωτήσετε"
 msgid "Worth asking {0}"
 msgstr "Αξίζει να ρωτήσετε: {0}"
 
-#: src/features/homepage/footer.tsx
-#: src/features/homepage/header.tsx
 #: src/features/homepage/write.tsx
 #: src/routes/builder/$resumeId/-components/editor-bar.tsx
 #: src/routes/builder/$resumeId/-components/editor-shell.tsx
@@ -15855,10 +15687,6 @@ msgstr "Σύνταξη απάντησης…"
 msgid "Writing help, tailored suggestions and the assistant. The default provider is used wherever you don't pick one. Your keys stay encrypted."
 msgstr "Βοήθεια γραφής, προσαρμοσμένες προτάσεις και ο βοηθός. Ο προεπιλεγμένος πάροχος χρησιμοποιείται όπου δεν επιλέγετε κάποιον. Τα κλειδιά σας παραμένουν κρυπτογραφημένα."
 
-#: src/features/homepage/sections.tsx
-msgid "writing, tailoring and sending"
-msgstr "γραφή, προσαρμογή και αποστολή"
-
 #: src/features/career/workspace/answer-library.tsx
 msgid "Written manually"
 msgstr ""
@@ -15877,20 +15705,12 @@ msgid "Yes"
 msgstr ""
 
 #: src/features/homepage/faq.tsx
-msgid "Yes. Every feature is free: all {templates} templates, PDF and Word downloads, the ATS checker, cover letters and the job tracker. There are no ads, no tracking and no paid tier. Donations pay for hosting and development."
-msgstr "Ναι. Κάθε δυνατότητα είναι δωρεάν: όλα τα {templates} πρότυπα, λήψεις PDF και Word, ο έλεγχος ATS, συνοδευτικές επιστολές και η παρακολούθηση αιτήσεων. Δεν υπάρχουν διαφημίσεις, καμία παρακολούθηση και κανένα επίπεδο επί πληρωμή. Οι δωρεές πληρώνουν για φιλοξενία και ανάπτυξη."
-
-#: src/features/homepage/faq.tsx
 msgid "Yes. Every job you track gets its own workspace: check your fit against the posting, draft answers from stories you wrote once, get a short plan before the interview, practice out loud with feedback and debrief afterwards. When offers arrive, compare them side by side. The coaching uses your own AI key; the comparison doesn’t need one."
 msgstr "Ναι. Κάθε θέση εργασίας που παρακολουθείτε αποκτά τον δικό της χώρο εργασίας: ελέγξτε πόσο ταιριάζετε με την ανάρτηση, συντάξτε απαντήσεις από ιστορίες που γράψατε μία φορά, λάβετε ένα σύντομο πλάνο πριν από τη συνέντευξη, εξασκηθείτε φωναχτά με σχόλια και κάντε απολογισμό μετά. Όταν έρθουν προσφορές, συγκρίνετέ τες δίπλα-δίπλα. Η καθοδήγηση χρησιμοποιεί το δικό σας κλειδί AI· η σύγκριση δεν χρειάζεται κλειδί."
 
 #: src/features/homepage/faq.tsx
-msgid "Yes. Import a PDF, a LinkedIn data export, a JSON Resume file or a Reactive Resume export, then pick up where it left off. With an AI provider set up, Word documents work too."
-msgstr "Ναί. Εισαγάγετε μια εξαγωγή PDF, μια εξαγωγή δεδομένων LinkedIn, ένα αρχείο JSON Resume ή μια εξαγωγή Reactive Resume και, στη συνέχεια, συνεχίστε από εκεί που σταμάτησε. Με τη ρύθμιση ενός παρόχου AI, τα έγγραφα Word λειτουργούν επίσης."
-
-#: src/features/homepage/faq.tsx
-msgid "Yes. Reactive Resume is open source under the MIT License and ships as a Docker image, so it runs on your own server with your own database and storage."
-msgstr "Ναί. Το Reactive Resume είναι ανοιχτού κώδικα κάτω από το MIT License και αποστέλλεται ως εικόνα Docker, επομένως εκτελείται στον δικό σας διακομιστή με τη δική σας βάση δεδομένων και χώρο αποθήκευσης."
+msgid "Yes. Import a PDF, a LinkedIn data export, a JSON Resume file or a Resume Builder export, then pick up where it left off. With an AI provider set up, Word documents work too."
+msgstr ""
 
 #: src/features/career/coach-thread.tsx
 msgid "Yesterday"
@@ -16327,10 +16147,6 @@ msgstr "οι ιστορίες σας"
 msgid "Your story couldn't be loaded."
 msgstr "Δεν ήταν δυνατή η φόρτωση της ιστορίας σας."
 
-#: src/features/homepage/sections.tsx
-msgid "Your turn"
-msgstr "Σειρά σου"
-
 #: src/features/career/workspace/prepare.tsx
 msgid "Your two-minute introduction"
 msgstr "Η δίλεπτη παρουσίασή σας"
@@ -16350,10 +16166,6 @@ msgstr ""
 #: src/features/auth/components/guest-banner.tsx
 msgid "Your work is lost when you sign out or the session ends. Create an account or sign in to keep your resumes, cover letters and applications."
 msgstr "Η εργασία σας θα χαθεί όταν αποσυνδεθείτε ή λήξει η συνεδρία. Δημιουργήστε λογαριασμό ή συνδεθείτε για να κρατήσετε τα βιογραφικά, τις συνοδευτικές επιστολές και τις αιτήσεις σας."
-
-#: src/features/homepage/sections.tsx
-msgid "Yours"
-msgstr "Δικό σας"
 
 #. placeholder {0}: templateNames[step] ?? ""
 #: src/features/homepage/design.tsx

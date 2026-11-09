@@ -19,6 +19,7 @@ import { cn } from "@reactive-resume/utils/style";
 import { MobileTabIndicator } from "@/components/layout/mobile-tab-indicator";
 import { useDialogStore } from "@/dialogs/store";
 import { GuestBanner } from "@/features/auth/components/guest-banner";
+import { CreditWalletTrigger } from "@/features/credits";
 import { isEditableElementFocused } from "@/features/resume/builder/draft";
 import { UserDropdownMenu } from "@/features/user/dropdown-menu";
 import { orpc } from "@/libs/orpc/client";
@@ -195,6 +196,7 @@ function Sidebar() {
 
 			<div className="mt-auto grid gap-2">
 				{trash && <NavLink item={trash} current={isCurrent(trash.to)} />}
+				<CreditWalletTrigger />
 				<Button aria-label={t`New`} aria-keyshortcuts="N" className="h-9 justify-between" onClick={openNew}>
 					<span className="flex items-center gap-1.5">
 						<Icon name="plus" />
@@ -282,6 +284,7 @@ function Rail() {
 						/>
 					</RailTip>
 				)}
+				<CreditWalletTrigger compact />
 				<RailTip label={t`New`} icon="plus">
 					<Button size="icon" aria-label={t`New`} onClick={openNew} />
 				</RailTip>

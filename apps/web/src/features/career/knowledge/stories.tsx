@@ -1,10 +1,11 @@
 import type { Fact, Story } from "../hooks";
+import type { StarFlashcardOutput } from "@reactive-resume/schema/career";
 import { plural, t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { AnimatePresence } from "motion/react";
-import { memo, useId, useState } from "react";
+import { memo, useEffect, useId, useState } from "react";
 import * as z from "zod";
 import { Button } from "@reactive-resume/ui/components/button";
 import { Checkbox } from "@reactive-resume/ui/components/checkbox";
@@ -17,6 +18,8 @@ import { cn } from "@reactive-resume/utils/style";
 import { useSessionDraft } from "../hooks";
 import { CareerLoadError, CareerLoading } from "../load-state";
 import { CollapseRow, Eyebrow, Swap, useNow, withUndo } from "../shared";
+import { FlashcardDeck } from "./flashcard-deck";
+import { GenerateStoryDialog } from "./generate-story-dialog";
 import { collectInterviews, upcomingInterviews } from "@/features/applications/interviews";
 import { applicationsListQueryOptions } from "@/features/applications/queries";
 import { toastError } from "@/libs/error-message";
@@ -58,6 +61,9 @@ export function StoriesPage({ storyId, edit }: StoriesPageProps) {
 	const stories = storyQuery.data;
 	const facts = factQuery.data;
 	const [hidden, setHidden] = useState<string[]>([]);
+	const [flashcardsOpen, setFlashcardsOpen] = useState(false);
+	const [generatorOpen, setGeneratorOpen] = useState(false);
+	const [generatedStory, setGeneratedStory] = useState<StarFlashcardOutput | null>(null);
 
 	if ((!stories && storyQuery.isError) || (!facts && factQuery.isError))
 		return (
@@ -102,8 +108,30 @@ export function StoriesPage({ storyId, edit }: StoriesPageProps) {
 		});
 	};
 
+	if (flashcardsOpen) {
+		return (
+			<FlashcardDeck
+				stories={list}
+				onExit={() => setFlashcardsOpen(false)}
+				onEditStory={(id) => {
+					setFlashcardsOpen(false);
+					open(id, true);
+				}}
+			/>
+		);
+	}
+
 	return (
 		<div className="grid items-start gap-5 lg:grid-cols-[300px_minmax(0,1fr)]">
+			<GenerateStoryDialog
+				open={generatorOpen}
+				onOpenChange={setGeneratorOpen}
+				onGenerated={(output) => {
+					setGeneratedStory(output);
+					open(undefined, true);
+				}}
+			/>
+
 			<div className="grid content-start gap-2">
 				<AnimatePresence initial={false}>
 					{list.map((story) => (
@@ -127,6 +155,29 @@ export function StoriesPage({ storyId, edit }: StoriesPageProps) {
 					<Icon name="plus" size={18} />
 					<Trans>Add a story</Trans>
 				</Link>
+
+				<div className="flex items-center gap-1.5">
+					<Button
+						variant="secondary"
+						size="sm"
+						disabled={list.length === 0}
+						onClick={() => setFlashcardsOpen(true)}
+						className="flex-1 gap-1.5 text-xs"
+					>
+						<Icon name="graduation-cap" size={16} />
+						<Trans>Flashcards</Trans>
+					</Button>
+					<Button
+						variant="ghost"
+						size="sm"
+						onClick={() => setGeneratorOpen(true)}
+						className="gap-1.5 text-xs text-accent-text hover:bg-accent-soft"
+					>
+						<Icon name="sparkle" size={15} />
+						<Trans>Draft with AI</Trans>
+					</Button>
+				</div>
+
 				<p className="px-0.5 py-1 text-xs leading-[17px] text-ink-3">
 					<Trans>
 						Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown
@@ -155,8 +206,15 @@ export function StoriesPage({ storyId, edit }: StoriesPageProps) {
 								key={selected?.id ?? "new"}
 								story={selected}
 								facts={facts ?? []}
-								onSaved={(id) => open(id)}
-								onCancel={() => open(selected?.id)}
+								initialGenerated={generatedStory}
+								onSaved={(id) => {
+									setGeneratedStory(null);
+									open(id);
+								}}
+								onCancel={() => {
+									setGeneratedStory(null);
+									open(selected?.id);
+								}}
 								onDelete={selected ? () => remove(selected) : undefined}
 							/>
 						) : (
@@ -396,13 +454,15 @@ const storyDraftSchema = z.object({
 type StoryEditorProps = {
 	story: Story | undefined;
 	facts: Fact[];
+	initialGenerated?: StarFlashcardOutput | null;
 	onSaved: (id: string) => void;
 	onCancel: () => void;
 	onDelete: (() => void) | undefined;
 };
 
-function StoryEditor({ story, facts, onSaved, onCancel, onDelete }: StoryEditorProps) {
+function StoryEditor({ story, facts, initialGenerated, onSaved, onCancel, onDelete }: StoryEditorProps) {
 	const queryClient = useQueryClient();
+	const [editorGenOpen, setEditorGenOpen] = useState(false);
 	const {
 		value: draft,
 		setValue: setDraft,
@@ -424,6 +484,22 @@ function StoryEditor({ story, facts, onSaved, onCancel, onDelete }: StoryEditorP
 			return result.success ? result.data : undefined;
 		},
 	);
+
+	useEffect(() => {
+		if (initialGenerated) {
+			setDraft((current) => ({
+				...current,
+				title: initialGenerated.title,
+				situation: initialGenerated.situation,
+				task: initialGenerated.task,
+				action: initialGenerated.action,
+				result: initialGenerated.result,
+				reflection: initialGenerated.reflection,
+				tags: initialGenerated.tags.join(", "),
+			}));
+		}
+	}, [initialGenerated, setDraft]);
+
 	const [tried, setTried] = useState(false);
 	const errorId = useId();
 	// A shared story can only rest on shared facts; switched-off ones are listed but can't be ticked.
@@ -483,7 +559,39 @@ function StoryEditor({ story, facts, onSaved, onCancel, onDelete }: StoryEditorP
 				submit(event.currentTarget);
 			}}
 		>
+			<GenerateStoryDialog
+				open={editorGenOpen}
+				onOpenChange={setEditorGenOpen}
+				onGenerated={(output) => {
+					setDraft((current) => ({
+						...current,
+						title: output.title,
+						situation: output.situation,
+						task: output.task,
+						action: output.action,
+						result: output.result,
+						reflection: output.reflection,
+						tags: output.tags.join(", "),
+					}));
+				}}
+			/>
+
 			<div className="grid gap-2">
+				<div className="flex items-center justify-between">
+					<span className="text-xs font-semibold tracking-wider text-ink-3 uppercase">
+						<Trans>Story Details</Trans>
+					</span>
+					<Button
+						type="button"
+						variant="ghost"
+						size="sm"
+						onClick={() => setEditorGenOpen(true)}
+						className="h-7 gap-1 px-2 text-xs text-accent-text hover:bg-accent-soft"
+					>
+						<Icon name="sparkle" size={14} />
+						<Trans>Draft from bullet</Trans>
+					</Button>
+				</div>
 				{/* A textarea so a long title wraps as it does in the reader; Enter doesn't add a line. */}
 				<Textarea
 					rows={1}

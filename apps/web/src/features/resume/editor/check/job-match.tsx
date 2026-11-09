@@ -1,13 +1,13 @@
 import type { RouterInput } from "@/libs/orpc/client";
 import type { JdTermMatch } from "@reactive-resume/resume/ats-pdf";
 import type { ResumeData, SkillItem } from "@reactive-resume/schema/resume/data";
-import type { CSSProperties } from "react";
 import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
 import { Plural, Trans } from "@lingui/react/macro";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import { useId, useMemo, useState } from "react";
+import { matchResumeWithJob } from "@reactive-resume/resume/ats-match";
 import { buildMarkdown } from "@reactive-resume/resume/markdown";
 import { Button } from "@reactive-resume/ui/components/button";
 import { Icon } from "@reactive-resume/ui/components/icon";
@@ -118,13 +118,26 @@ function termAsWritten(forms: readonly string[], posting: string): string | unde
 
 type JobMatchTabProps = { match: JobMatch; data: ResumeData };
 
-export function JobMatchTab({ match }: JobMatchTabProps) {
+export function JobMatchTab({ match, data }: JobMatchTabProps) {
 	const { application, posting, result, hiddenTerms } = match;
 	const [openTerm, setOpenTerm] = useState<string | null>(null);
 	const highlightTerm = useEditorStore((state) => state.highlightTerm);
 	const locked = useIsResumeLocked();
 	const { i18n } = useLingui();
 	const hiddenList = formatList(i18n.locale, hiddenTerms);
+
+	const atsAnalysis = useMemo(() => {
+		if (!posting || !data) return null;
+		return matchResumeWithJob(data, posting);
+	}, [posting, data]);
+
+	const missingImportance = useMemo(() => {
+		const map = new Map<string, "critical" | "recommended" | "optional">();
+		for (const m of atsAnalysis?.missingKeywords ?? []) {
+			map.set(m.keyword.toLowerCase(), m.importance);
+		}
+		return map;
+	}, [atsAnalysis]);
 
 	if (!posting) return <NoPosting application={application} />;
 
@@ -167,30 +180,65 @@ export function JobMatchTab({ match }: JobMatchTabProps) {
 				</p>
 			) : (
 				<>
-					<div className="grid gap-1.5">
-						<div className="flex items-baseline justify-between gap-2">
-							<strong className="text-sm font-semibold">
-								<Trans>
-									{result.found.length} of {result.total} posting terms appear
-								</Trans>
-							</strong>
-							<span className="text-xs text-ink-3">
-								<Trans>not scored</Trans>
-							</span>
+					<div className="grid gap-2.5 rounded-xl border border-line bg-raised p-3.5 shadow-xs">
+						<div className="flex items-center justify-between gap-3">
+							<div className="grid gap-0.5">
+								<span className="text-xs font-semibold tracking-wider text-ink-3 uppercase">
+									<Trans>ATS Match Score</Trans>
+								</span>
+								<strong className="text-sm font-semibold">
+									<Trans>
+										{result.found.length} of {result.total} keywords identified
+									</Trans>
+								</strong>
+							</div>
+							{atsAnalysis ? (
+								<div
+									className={cn(
+										"flex items-center gap-1 rounded-full px-3 py-1 font-display text-base font-bold",
+										atsAnalysis.score >= 80
+											? "border border-emerald-500/20 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
+											: atsAnalysis.score >= 60
+												? "border border-amber-500/20 bg-amber-500/15 text-amber-600 dark:text-amber-400"
+												: "border border-rose-500/20 bg-rose-500/15 text-rose-600 dark:text-rose-400",
+									)}
+								>
+									<span>{atsAnalysis.score}%</span>
+								</div>
+							) : (
+								<span className="text-xs text-ink-3">
+									<Trans>analyzing…</Trans>
+								</span>
+							)}
 						</div>
 						<div
 							role="progressbar"
 							aria-label={t`Posting terms in your resume`}
 							aria-valuemin={0}
-							aria-valuemax={result.total}
-							aria-valuenow={result.found.length}
-							className="h-1.5 overflow-hidden rounded-sm bg-sunken"
+							aria-valuemax={100}
+							aria-valuenow={atsAnalysis?.score ?? Math.round((result.found.length / result.total) * 100)}
+							className="h-2 overflow-hidden rounded-full bg-sunken"
 						>
 							<div
-								className="h-full translate-x-(--fill) rounded-sm bg-accent transition-[translate] duration-standard ease-enter rtl:-translate-x-(--fill)"
-								style={{ "--fill": `${(result.found.length / result.total) * 100 - 100}%` } as CSSProperties}
+								className={cn(
+									"h-full rounded-full transition-all duration-emphasized ease-enter",
+									(atsAnalysis?.score ?? 0) >= 80
+										? "bg-emerald-500"
+										: (atsAnalysis?.score ?? 0) >= 60
+											? "bg-amber-500"
+											: "bg-rose-500",
+								)}
+								style={{ width: `${atsAnalysis?.score ?? Math.round((result.found.length / result.total) * 100)}%` }}
 							/>
 						</div>
+						{atsAnalysis && atsAnalysis.recommendations.length > 0 && (
+							<div className="rounded-lg bg-surface/80 p-2.5 text-xs leading-relaxed text-ink-2">
+								<span className="text-ink-1 font-semibold">
+									<Trans>ATS Recommendation:</Trans>{" "}
+								</span>
+								{atsAnalysis.recommendations[0]}
+							</div>
+						)}
 					</div>
 
 					{result.missing.length > 0 && (
@@ -199,21 +247,34 @@ export function JobMatchTab({ match }: JobMatchTabProps) {
 								<Trans>Not in your resume · add only if true</Trans>
 							</h3>
 							<div className="flex flex-wrap gap-1.5">
-								{result.missing.map((term) => (
-									<button
-										key={term.term}
-										type="button"
-										aria-expanded={openTerm === term.term}
-										onClick={() => setOpenTerm(openTerm === term.term ? null : term.term)}
-										className={cn(
-											"flex h-[30px] items-center gap-1 rounded-lg border border-dashed px-2.5 text-[13px] font-medium transition-colors duration-quick",
-											openTerm === term.term ? "border-accent bg-accent-soft" : "border-line-2 hover:bg-hover",
-										)}
-									>
-										<Icon name="plus" size={15} className="text-ink-3" />
-										{term.label}
-									</button>
-								))}
+								{result.missing.map((term) => {
+									const imp =
+										missingImportance.get(term.term.toLowerCase()) ?? missingImportance.get(term.label.toLowerCase());
+									return (
+										<button
+											key={term.term}
+											type="button"
+											aria-expanded={openTerm === term.term}
+											onClick={() => setOpenTerm(openTerm === term.term ? null : term.term)}
+											className={cn(
+												"flex h-[30px] items-center gap-1.5 rounded-lg border border-dashed px-2.5 text-[13px] font-medium transition-colors duration-quick",
+												openTerm === term.term ? "border-accent bg-accent-soft" : "border-line-2 hover:bg-hover",
+											)}
+										>
+											{imp === "critical" ? (
+												<span className="size-1.5 rounded-full bg-rose-500" title={t`Critical skill`} />
+											) : (
+												<Icon name="plus" size={14} className="text-ink-3" />
+											)}
+											{term.label}
+											{imp === "critical" && (
+												<span className="rounded bg-rose-500/10 px-1 py-0.5 text-[10px] font-bold text-rose-600 dark:text-rose-400">
+													<Trans>Key</Trans>
+												</span>
+											)}
+										</button>
+									);
+								})}
 							</div>
 
 							{open && (
@@ -275,6 +336,22 @@ export function JobMatchTab({ match }: JobMatchTabProps) {
 							</div>
 						</section>
 					)}
+
+					{/* Partner Expert Review Recommendation */}
+					<div className="mt-1 flex flex-col gap-1.5 rounded-lg border border-accent/25 bg-accent/5 p-2.5 sm:flex-row sm:items-center sm:justify-between">
+						<div className="flex items-center gap-2">
+							<Icon name="check-circle" className="shrink-0 text-accent-text" size={16} />
+							<span className="text-xs text-ink-2">Want a professional recruiter to audit your keywords?</span>
+						</div>
+						<a
+							href="https://www.topresume.com/resume-review?ref=dippergo&utm_source=dippergo&utm_medium=ats_check"
+							target="_blank"
+							rel="noopener noreferrer sponsored"
+							className="shrink-0 text-xs font-semibold text-accent-text hover:underline"
+						>
+							Free 48h TopResume Audit →
+						</a>
+					</div>
 				</>
 			)}
 

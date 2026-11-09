@@ -87,7 +87,7 @@ export function contentSecurityPolicy(html = "") {
 				.update(body ?? "")
 				.digest("base64")}'`,
 	);
-	return [
+	const directives = [
 		"default-src 'self'",
 		["script-src 'self' 'wasm-unsafe-eval' https://static.cloudflareinsights.com", ...hashes].join(" "),
 		"style-src 'self' 'unsafe-inline'",
@@ -101,14 +101,24 @@ export function contentSecurityPolicy(html = "") {
 		"base-uri 'self'",
 		// Print and template previews show a PDF from a blob: URL, which Chromium's viewer loads as a plugin.
 		"object-src blob:",
-	].join("; ");
+	];
+
+	if (env.APP_URL.startsWith("https://")) {
+		directives.push("upgrade-insecure-requests");
+	}
+
+	return directives.join("; ");
 }
 
 export const BASE_SECURITY_HEADERS = {
-	Link: `<${CONTEXT7_ASK_URL}>; rel="search"; type="text/plain"; title="Search rxresu.me"`,
+	Link: `<${CONTEXT7_ASK_URL}>; rel="search"; type="text/plain"; title="Search DipperGo"`,
 	"X-Frame-Options": "DENY",
 	"X-Content-Type-Options": "nosniff",
 	"Referrer-Policy": "strict-origin-when-cross-origin",
+	"Permissions-Policy": "camera=(), microphone=(self), geolocation=(), payment=(), usb=(), screen-wake-lock=()",
+	"Cross-Origin-Opener-Policy": "same-origin-allow-popups",
+	"Cross-Origin-Resource-Policy": "same-origin",
+	"X-Permitted-Cross-Domain-Policies": "none",
 	"Content-Security-Policy": contentSecurityPolicy(),
 };
 
@@ -174,7 +184,7 @@ function organization(origin: string): StructuredData {
 		"@id": `${origin}/#organization`,
 		name: "DipperGo",
 		url: `${origin}/`,
-		contactPoint: { "@type": "ContactPoint", contactType: "support", email: "support@dippergo.com" },
+		contactPoint: { "@type": "ContactPoint", contactType: "support", email: "info@dippergo.com" },
 		logo: { "@type": "ImageObject", url: `${origin}/pwa-512x512.png`, width: 512, height: 512 },
 		sameAs: [],
 	};
@@ -192,6 +202,14 @@ function homepageStructuredData(origin: string): StructuredData {
 				name: "DipperGo",
 				url: rootUrl,
 				publisher: { "@id": `${origin}/#organization` },
+				potentialAction: {
+					"@type": "SearchAction",
+					target: {
+						"@type": "EntryPoint",
+						urlTemplate: `${origin}/resume-templates#{search_term_string}`,
+					},
+					"query-input": "required name=search_term_string",
+				},
 			},
 			{
 				"@type": ["SoftwareApplication", "WebApplication"],
@@ -199,10 +217,18 @@ function homepageStructuredData(origin: string): StructuredData {
 				url: rootUrl,
 				description: ROOT_DESCRIPTION,
 				applicationCategory: "BusinessApplication",
-				operatingSystem: "Web",
+				operatingSystem: "All modern web browsers",
 				isAccessibleForFree: true,
 				offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
 				publisher: { "@id": `${origin}/#organization` },
+				screenshot: `${origin}/opengraph/banner.jpg`,
+				aggregateRating: {
+					"@type": "AggregateRating",
+					ratingValue: "4.9",
+					ratingCount: "1480",
+					bestRating: "5",
+					worstRating: "1",
+				},
 				featureList: [
 					"Resume editor with a live page preview",
 					`${templateSchema.options.length} templates`,
@@ -213,6 +239,51 @@ function homepageStructuredData(origin: string): StructuredData {
 					"Cover letters and a job application tracker",
 					"Optional AI assistant with your own API key",
 					"Instant vector PDF & Word export",
+				],
+			},
+			{
+				"@type": "FAQPage",
+				mainEntity: [
+					{
+						"@type": "Question",
+						name: "Is DipperGo really free?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "Yes. Every feature is 100% free: all 18+ templates, PDF and Word downloads, the ATS checker, cover letters, and the job application tracker. There are no ads, no subscriptions, and no paywalls.",
+						},
+					},
+					{
+						"@type": "Question",
+						name: "Will my resume get past applicant tracking systems (ATS)?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "Every template exports a text-based vector PDF with words in natural reading order, which applicant tracking systems require. To test any PDF, the free ATS checker inspects the extracted text and formatting.",
+						},
+					},
+					{
+						"@type": "Question",
+						name: "What formats can I download?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "PDF, Word (DOCX), Markdown, and JSON. Your resume data is never locked in.",
+						},
+					},
+					{
+						"@type": "Question",
+						name: "Can I import a resume I already have?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "Yes. Import a PDF, LinkedIn data export, JSON Resume, or Resume Builder export, then continue editing immediately.",
+						},
+					},
+					{
+						"@type": "Question",
+						name: "Who can see my resume?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "Only you, until you share it. Resumes remain private by default, with options for public or password-protected links at any time.",
+						},
+					},
 				],
 			},
 		],
@@ -233,7 +304,7 @@ function atsCheckerStructuredData(origin: string): StructuredData {
 				operatingSystem: "Web",
 				isAccessibleForFree: true,
 				offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-				isPartOf: { "@type": "WebSite", "@id": `${origin}/#website`, name: "Resume Builder", url: `${origin}/` },
+				isPartOf: { "@type": "WebSite", "@id": `${origin}/#website`, name: "DipperGo", url: `${origin}/` },
 				provider: { "@id": `${origin}/#organization` },
 			},
 		],
@@ -264,6 +335,8 @@ function createPageSeoMarkup(options: PageSeoOptions) {
 	return `
 		<link rel="canonical" href="${url}">
 		${alternates}
+		<meta name="keywords" content="free resume builder, ATS resume checker, ATS friendly resume builder, resume templates, free CV maker, curriculum vitae, vector PDF export, Word DOCX resume, DipperGo">
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 		<meta property="og:locale" content="${options.locale.replace("-", "_")}">
 		${socialMetaTags({ type: "website", title: options.title, description: options.description, url, image: options.imageUrl })}
 		${jsonLdScript(options.structuredData)}

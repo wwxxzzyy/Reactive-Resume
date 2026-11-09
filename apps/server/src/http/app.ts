@@ -6,6 +6,7 @@ import { getConnInfo } from "@hono/node-server/conninfo";
 import { Hono } from "hono";
 import { bodyLimit } from "hono/body-limit";
 import { compress } from "hono/compress";
+import { trafficService } from "@reactive-resume/api/features/admin/traffic";
 import { prepareStagedBody, withStagedBody } from "@reactive-resume/api/features/storage/transport";
 import { env } from "@reactive-resume/env/server";
 import { prepareMcpDiscovery } from "@reactive-resume/mcp";
@@ -86,6 +87,38 @@ export function createApp(options: AppOptions = {}) {
 	app.use("*", async (c, next) => handleAlias(c.req.raw) ?? (await next()));
 	// A verified custom domain shows its primary resume; other hosts fall through.
 	app.use("*", async (c, next) => (await handleCustomDomain(c.req.raw, client(c))) ?? next());
+
+	// Global baseline HTTP security headers for defense-in-depth across all endpoints
+	app.use("*", async (c, next) => {
+		await next();
+		// Set baseline security headers only if not already explicitly set by route handlers
+		if (!c.res.headers.has("X-Content-Type-Options")) {
+			c.header("X-Content-Type-Options", "nosniff");
+		}
+		// Deny framing everywhere except explicit preview cards
+		if (!c.res.headers.has("X-Frame-Options") && !c.req.path.startsWith("/cards/")) {
+			c.header("X-Frame-Options", "DENY");
+		}
+		if (!c.res.headers.has("Referrer-Policy")) {
+			c.header("Referrer-Policy", "strict-origin-when-cross-origin");
+		}
+		if (!c.res.headers.has("Permissions-Policy")) {
+			c.header(
+				"Permissions-Policy",
+				"camera=(), microphone=(self), geolocation=(), payment=(), usb=(), screen-wake-lock=()",
+			);
+		}
+		if (!c.res.headers.has("Cross-Origin-Opener-Policy")) {
+			c.header("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+		}
+		if (!c.res.headers.has("X-Permitted-Cross-Domain-Policies")) {
+			c.header("X-Permitted-Cross-Domain-Policies", "none");
+		}
+		const isHttps = c.req.url.startsWith("https://") || c.req.header("x-forwarded-proto") === "https";
+		if (isHttps && !c.res.headers.has("Strict-Transport-Security")) {
+			c.header("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
+		}
+	});
 
 	app.use("/auth/*", async (c, next) => {
 		await next();
@@ -169,6 +202,37 @@ export function createApp(options: AppOptions = {}) {
 	// it, so API, MCP, and upload streams are never buffered or re-encoded. Where a CDN serves the static files
 	// (Vercel), it also compresses at its edge.
 	if (options.serveStatic !== false) app.use("/*", compress());
+
+	// Telemetry: record page views and traffic distribution for admin dashboard
+	app.use("/*", async (c, next) => {
+		await next();
+		if (c.req.method === "GET" && c.res.status < 400) {
+			const path = c.req.path;
+			// Filter out internal APIs, healthchecks, and raw asset files
+			if (
+				!path.startsWith("/api/") &&
+				!path.startsWith("/assets/") &&
+				!path.startsWith("/sitemaps/") &&
+				!path.endsWith(".ico") &&
+				!path.endsWith(".svg") &&
+				!path.endsWith(".png") &&
+				!path.endsWith(".jpg") &&
+				!path.endsWith(".xml") &&
+				!path.endsWith(".txt") &&
+				!path.endsWith(".webmanifest")
+			) {
+				const referer = c.req.header("referer") || null;
+				const userAgent = c.req.header("user-agent") || null;
+				const ip =
+					c.req.header("cf-connecting-ip") ||
+					c.req.header("x-forwarded-for")?.split(",")[0]?.trim() ||
+					c.req.header("x-real-ip") ||
+					"127.0.0.1";
+				const country = c.req.header("cf-ipcountry") || null;
+				trafficService.recordHit({ path, referer, userAgent, ip, country }).catch(() => {});
+			}
+		}
+	});
 
 	// Must precede the static middleware: serveStatic resolves "/" to dist/index.html and would
 	// return it verbatim, skipping the OpenGraph/Twitter/canonical/JSON-LD injection in handleWebApp.

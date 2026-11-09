@@ -54,7 +54,7 @@ export default function SettingsScreen() {
 					title={t`Contact support`}
 					leading="envelope"
 					external
-					onPress={() => openLink("mailto:support@dippergo.com")}
+					onPress={() => openLink("mailto:info@dippergo.com")}
 				/>
 			</SettingsGroup>
 			<SettingsGroup title={t`Legal`}>

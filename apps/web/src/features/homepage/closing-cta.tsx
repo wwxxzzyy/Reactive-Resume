@@ -38,8 +38,8 @@ export function ClosingCta() {
 					</h2>
 
 					<p className="mt-5 max-w-2xl font-display text-lg leading-relaxed text-pretty text-ink-2 sm:text-xl">
-						Choose from 21 recruiter-approved templates, run unlimited ATS diagnostic checks, and organize your
-						applications with our built-in tracker. No credit card required.
+						Choose from 21 recruiter-approved templates, run real-time JD keyword scoring, auto-fit your layout, and
+						compare job offers side-by-side. 100% free forever, no credit card required.
 					</p>
 
 					{/* Action Buttons */}

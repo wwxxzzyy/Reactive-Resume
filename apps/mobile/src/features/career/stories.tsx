@@ -42,13 +42,25 @@ export function Stories() {
 	const { space } = useTheme();
 	const { stories, facts } = useCareerQueries();
 	const [editor, setEditor] = useState<{ story: Story | null } | null>(null);
+	const [flashcardMode, setFlashcardMode] = useState(false);
 	const undo = useUndoRows();
 	const rows = (stories.data ?? []).filter((row) => !undo.hidden.includes(row.id));
 	const firstAppearance = useFirstAppearance(!stories.isPending);
 	return (
 		<View style={{ gap: space.s4 }}>
 			<Text color="ink3">{t`Situation, Task, Action, Result, Reflection. Link each story to facts you can support; leave unknown outcomes blank.`}</Text>
-			<Button label={t`Add a story`} onPress={() => setEditor({ story: null })} />
+			<View style={{ flexDirection: "row", gap: space.s2 }}>
+				<View style={{ flex: 1 }}>
+					<Button label={t`Add a story`} onPress={() => setEditor({ story: null })} />
+				</View>
+				{rows.length > 0 && (
+					<Button
+						label={flashcardMode ? t`List view` : t`Flashcards`}
+						variant="secondary"
+						onPress={() => setFlashcardMode((prev) => !prev)}
+					/>
+				)}
+			</View>
 			<LoadState query={stories} />
 			<LoadState query={facts} />
 			{!stories.isError && !stories.isPending && !rows.length ? (
@@ -58,44 +70,48 @@ export function Stories() {
 					message={t`Write one about something you did, in five parts. Leave Result and Reflection blank until you can support them.`}
 				/>
 			) : null}
-			{rows.map((story, index) => {
-				const changed = story.data.factIds.some((id) => {
-					const fact = facts.data?.find((row) => row.id === id);
-					const revision = fact?.revisions.at(-1);
-					return !fact || fact.status !== "active" || (revision && new Date(revision.at) > new Date(story.updatedAt));
-				});
-				return (
-					<Animated.View key={story.id} {...listItemMotion(index, firstAppearance)} layout={listLayout}>
-						<Card style={{ gap: space.s3 }}>
-							<Text variant="title">{story.data.title}</Text>
-							{changed ? <Banner tone="warn" message={t`A fact changed. Review this story.`} /> : null}
-							{parts().map((part) => (
-								<View key={part.key}>
-									<Text variant="label">{part.label}</Text>
-									<Text>{story.data[part.key] || t`Not recorded yet. Leave blank until you can support it.`}</Text>
-								</View>
-							))}
-							<Text variant="label">{t`Backed by`}</Text>
-							{story.data.factIds.map((id) => (
-								<Text key={id} color="ink2">
-									{facts.data?.find((row) => row.id === id)?.text ?? t`Fact no longer available`}
-								</Text>
-							))}
-							<Text color="ink3">{story.data.tags.join(" · ")}</Text>
-							<Actions>
-								<Button label={t`Edit`} variant="secondary" onPress={() => setEditor({ story })} />
-								<Button
-									label={t`Delete story`}
-									variant="ghost"
-									onPress={() =>
-										undo.remove(story.id, t`Story deleted`, () => client.career.deleteStory({ id: story.id }))
-									}
-								/>
-							</Actions>
-						</Card>
-					</Animated.View>
-				);
-			})}
+			{flashcardMode && rows.length > 0 ? (
+				<MobileFlashcards stories={rows} onClose={() => setFlashcardMode(false)} />
+			) : (
+				rows.map((story, index) => {
+					const changed = story.data.factIds.some((id) => {
+						const fact = facts.data?.find((row) => row.id === id);
+						const revision = fact?.revisions.at(-1);
+						return !fact || fact.status !== "active" || (revision && new Date(revision.at) > new Date(story.updatedAt));
+					});
+					return (
+						<Animated.View key={story.id} {...listItemMotion(index, firstAppearance)} layout={listLayout}>
+							<Card style={{ gap: space.s3 }}>
+								<Text variant="title">{story.data.title}</Text>
+								{changed ? <Banner tone="warn" message={t`A fact changed. Review this story.`} /> : null}
+								{parts().map((part) => (
+									<View key={part.key}>
+										<Text variant="label">{part.label}</Text>
+										<Text>{story.data[part.key] || t`Not recorded yet. Leave blank until you can support it.`}</Text>
+									</View>
+								))}
+								<Text variant="label">{t`Backed by`}</Text>
+								{story.data.factIds.map((id) => (
+									<Text key={id} color="ink2">
+										{facts.data?.find((row) => row.id === id)?.text ?? t`Fact no longer available`}
+									</Text>
+								))}
+								<Text color="ink3">{story.data.tags.join(" · ")}</Text>
+								<Actions>
+									<Button label={t`Edit`} variant="secondary" onPress={() => setEditor({ story })} />
+									<Button
+										label={t`Delete story`}
+										variant="ghost"
+										onPress={() =>
+											undo.remove(story.id, t`Story deleted`, () => client.career.deleteStory({ id: story.id }))
+										}
+									/>
+								</Actions>
+							</Card>
+						</Animated.View>
+					);
+				})
+			)}
 			{editor && facts.data ? (
 				<StoryEditor
 					key={editor.story?.id ?? "new"}
@@ -105,6 +121,77 @@ export function Stories() {
 				/>
 			) : null}
 		</View>
+	);
+}
+
+type MobileFlashcardsProps = {
+	stories: Story[];
+	onClose: () => void;
+};
+
+function MobileFlashcards({ stories, onClose }: MobileFlashcardsProps) {
+	const { t } = useLingui();
+	const { space } = useTheme();
+	const [index, setIndex] = useState(0);
+	const [flipped, setFlipped] = useState(false);
+
+	const story = stories[index];
+	if (!story) return null;
+
+	return (
+		<Card style={{ gap: space.s4 }}>
+			<View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+				<Text variant="label">{t`Flashcard · ${index + 1} of ${stories.length}`}</Text>
+				<Button label={t`Exit`} variant="ghost" onPress={onClose} />
+			</View>
+
+			{!flipped ? (
+				<View style={{ gap: space.s3 }}>
+					<Text variant="title">{story.data.title}</Text>
+					<Text color="ink2">
+						{t`“Tell me about a time you worked on ${story.data.title}. What challenge did you face and how did you resolve it?”`}
+					</Text>
+					{story.data.tags.length > 0 && <Text color="ink3">{story.data.tags.join(" · ")}</Text>}
+					<Button label={t`Reveal STAR breakdown`} variant="secondary" onPress={() => setFlipped(true)} />
+				</View>
+			) : (
+				<View style={{ gap: space.s3 }}>
+					<Text variant="title">{story.data.title}</Text>
+					{parts().map((part) => {
+						const val = story.data[part.key];
+						if (!val) return null;
+						return (
+							<View key={part.key} style={{ gap: space.s1 }}>
+								<Text variant="label">{part.label}</Text>
+								<Text>{val}</Text>
+							</View>
+						);
+					})}
+					<Button label={t`Show Question`} variant="secondary" onPress={() => setFlipped(false)} />
+				</View>
+			)}
+
+			<View style={{ flexDirection: "row", justifyContent: "space-between", gap: space.s2 }}>
+				<Button
+					label={t`Previous`}
+					variant="ghost"
+					disabled={index === 0}
+					onPress={() => {
+						setFlipped(false);
+						setIndex((i) => i - 1);
+					}}
+				/>
+				<Button
+					label={t`Next`}
+					variant="ghost"
+					disabled={index === stories.length - 1}
+					onPress={() => {
+						setFlipped(false);
+						setIndex((i) => i + 1);
+					}}
+				/>
+			</View>
+		</Card>
 	);
 }
 

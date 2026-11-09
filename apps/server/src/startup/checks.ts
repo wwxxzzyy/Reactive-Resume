@@ -105,4 +105,6 @@ export async function runStartupChecks() {
 	await runDatabaseMigrations();
 	await validateLocalStoragePath();
 	await reapStaleAgentRuns();
+	const { ensureAdminUser } = await import("./admin-seed");
+	await ensureAdminUser();
 }

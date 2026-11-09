@@ -146,15 +146,75 @@ async function pauseProviderSchedules(tx: DbOrTx, input: { id: string; userId: s
  */
 const automaticOrder = [desc(schema.aiProvider.isDefault), asc(schema.aiProvider.createdAt), asc(schema.aiProvider.id)];
 
-function assertPersonalProvidersAllowed() {
+async function assertPersonalProvidersAllowed() {
 	if (env.AI_PROVIDER)
 		throw new ORPCError("FORBIDDEN", {
 			message: "AI is set up by the server administrator and can't be changed here.",
 		});
+	const [dbRow] = await db
+		.select({ enabled: schema.serverAiConfig.enabled })
+		.from(schema.serverAiConfig)
+		.where(eq(schema.serverAiConfig.id, "default"))
+		.limit(1);
+	if (dbRow?.enabled) {
+		throw new ORPCError("FORBIDDEN", {
+			message: "AI is set up by the server administrator and can't be changed here.",
+		});
+	}
 }
 
 /** A persisted reference keeps Assistant thread foreign keys valid; server credentials stay in the environment. */
 async function serverProvider(userId: string, reader: DbOrTx = db) {
+	// 1. Check database serverAiConfig first
+	const [dbRow] = await reader
+		.select()
+		.from(schema.serverAiConfig)
+		.where(eq(schema.serverAiConfig.id, "default"))
+		.limit(1);
+
+	if (dbRow && dbRow.enabled) {
+		let apiKey = "";
+		if (dbRow.encryptedApiKey) {
+			try {
+				apiKey = decryptCredential(dbRow.encryptedApiKey);
+			} catch {
+				apiKey = "";
+			}
+		}
+
+		const parsedProvider = aiProviderSchema.parse(dbRow.provider);
+		const values = {
+			userId,
+			label: "Server AI",
+			provider: parsedProvider,
+			model: dbRow.model,
+			baseUrl: dbRow.baseUrl ?? null,
+			enabled: true,
+			isDefault: true,
+			testStatus: "success",
+			encryptedApiKey: dbRow.encryptedApiKey,
+			apiKeySalt: dbRow.apiKeySalt,
+			apiKeyHash: dbRow.apiKeyHash,
+			apiKeyPreview: dbRow.apiKeyPreview,
+		};
+
+		const [row] = await reader
+			.insert(schema.aiProvider)
+			.values({ id: serverProviderId(userId), ...values })
+			.onConflictDoUpdate({ target: schema.aiProvider.id, set: values })
+			.returning();
+
+		if (!row) throw new Error("SERVER_AI_PROVIDER_UNAVAILABLE");
+
+		return {
+			...toResponse(row),
+			recipientVersion: recipientVersion(row, apiKey),
+			apiKey,
+			baseURL: values.baseUrl ?? "",
+		};
+	}
+
+	// 2. Fallback to environment variables
 	if (!env.AI_PROVIDER || !env.AI_MODEL) return null;
 	const apiKey = env.AI_API_KEY ?? "";
 	const values = {
@@ -215,6 +275,13 @@ export const aiProvidersService = {
 	/** Checks availability of an already captured recipient without resolving new settings or credentials. */
 	assertAvailable: async (input: { id: string; userId: string }, reader: DbOrTx) => {
 		if (input.id === serverProviderId(input.userId)) {
+			const [dbRow] = await reader
+				.select({ enabled: schema.serverAiConfig.enabled })
+				.from(schema.serverAiConfig)
+				.where(eq(schema.serverAiConfig.id, "default"))
+				.limit(1);
+
+			if (dbRow?.enabled) return;
 			if (!env.AI_PROVIDER || !env.AI_MODEL)
 				throw new ORPCError("BAD_REQUEST", { message: "AI is no longer configured on this server." });
 			return;
@@ -286,7 +353,7 @@ export const aiProvidersService = {
 	},
 
 	create: async (input: CreateAiProviderInput) => {
-		assertPersonalProvidersAllowed();
+		await assertPersonalProvidersAllowed();
 		assertCredentialEncryptionConfigured();
 
 		const encrypted = encryptCredential(input.apiKey.trim());
@@ -308,7 +375,7 @@ export const aiProvidersService = {
 	},
 
 	update: async (input: UpdateAiProviderInput) => {
-		assertPersonalProvidersAllowed();
+		await assertPersonalProvidersAllowed();
 		assertCredentialEncryptionConfigured();
 
 		const existing = await getOwnedProvider(input);
@@ -379,7 +446,7 @@ export const aiProvidersService = {
 	},
 
 	delete: async (input: { id: string; userId: string }) => {
-		assertPersonalProvidersAllowed();
+		await assertPersonalProvidersAllowed();
 		assertCredentialEncryptionConfigured();
 
 		await db.transaction(async (tx) => {
@@ -397,7 +464,7 @@ export const aiProvidersService = {
 	},
 
 	test: async (input: { id: string; userId: string; signal?: AbortSignal | undefined }) => {
-		assertPersonalProvidersAllowed();
+		await assertPersonalProvidersAllowed();
 		assertCredentialEncryptionConfigured();
 
 		const provider = await getOwnedProvider(input);
@@ -485,7 +552,7 @@ export const aiProvidersService = {
 
 	/** Makes one tested, switched-on connection the default; the previous default stops being one. */
 	setDefault: async (input: { id: string; userId: string }) => {
-		assertPersonalProvidersAllowed();
+		await assertPersonalProvidersAllowed();
 		const provider = await getOwnedProvider(input);
 		if (!provider.enabled || provider.testStatus !== "success")
 			throw new ORPCError("BAD_REQUEST", {

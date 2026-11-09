@@ -7,9 +7,11 @@ import {
 	careerScopeSchema,
 	careerStoryInputSchema,
 	careerWorkspaceSchema,
+	generateStarFlashcardInputSchema,
 	generateTaskSchema,
 	roleSuggestionsInputSchema,
 	roleSuggestionsOutputSchema,
+	starFlashcardOutputSchema,
 } from "@reactive-resume/schema/career";
 import { protectedProcedure } from "../../context";
 import { savedStagesSchema } from "../../dto/application";
@@ -28,6 +30,7 @@ import { generateCareer } from "./generate";
 import { careerJobs } from "./jobs";
 import { suggestTargetRoles } from "./role-suggestions";
 import { careerService, hasFitEvidence } from "./service";
+import { generateStarFlashcard } from "./star-flashcards";
 import { careerVoiceRouter } from "./voice";
 
 const id = z.object({ id: z.string().min(1) });
@@ -270,6 +273,20 @@ export const careerRouter = {
 		.input(id)
 		.output(z.void())
 		.handler(({ context, input }) => careerService.deleteStory(context.user.id, input.id)),
+	generateStarFlashcard: protectedProcedure
+		.use(aiRequestRateLimit)
+		.route({
+			method: "POST",
+			path: "/career/stories/generate-from-bullet",
+			tags: ["Career"],
+			operationId: "generateCareerStarFlashcard",
+			summary: "Generate STAR interview flashcard from resume bullet",
+			description:
+				"Uses AI to extract a behavioral interview question and structured Situation, Task, Action, Result, and Reflection (STARR) from a resume bullet point.",
+		})
+		.input(generateStarFlashcardInputSchema)
+		.output(starFlashcardOutputSchema)
+		.handler(({ context, input, signal }) => generateStarFlashcard(context.user.id, input, signal)),
 	savedItems: protectedProcedure
 		.route({
 			method: "GET",

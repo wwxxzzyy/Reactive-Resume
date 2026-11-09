@@ -1083,6 +1083,9 @@ export const accountAuth = {
 	deleteApiKey: (user: User, keyId: string) => accountUser.run(user, () => auth.api.deleteApiKey({ body: { keyId } })),
 };
 
+export const hashPassword = (password: string): Promise<string> => hash(password, 10);
+export const verifyPassword = (password: string, hashStr: string): Promise<boolean> => compare(password, hashStr);
+
 export async function initializeAuth(): Promise<void> {
 	await auth.$context;
 }

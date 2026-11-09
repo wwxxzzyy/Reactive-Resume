@@ -21,7 +21,15 @@
 		"./stylesheet/registry": "./src/stylesheet/registry/index.ts",
 		"./stylesheet/types": "./src/stylesheet/semantic-types.ts",
 		"./entries": "./src/entries.ts",
-		"./structural-proposals": "./src/structural-proposals.ts"
+		"./diff": "./src/diff.ts",
+		"./vcard": "./src/vcard.ts",
+		"./structural-proposals": "./src/structural-proposals.ts",
+		"./ats-match": "./src/ats-match.ts",
+		"./page-fit": "./src/page-fit.ts",
+		"./qrcode": "./src/qrcode.ts",
+		"./compensation": "./src/compensation.ts",
+		"./translator": "./src/translator.ts",
+		"./project-media": "./src/project-media.ts"
 	},
 	"scripts": {
 		"typecheck": "tsrs --noEmit",

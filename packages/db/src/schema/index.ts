@@ -10,3 +10,5 @@ export * from "./web-access";
 export * from "./ai-content-report";
 export * from "./application-profile";
 export * from "./create-request";
+export * from "./credits";
+export * from "./server-ai";

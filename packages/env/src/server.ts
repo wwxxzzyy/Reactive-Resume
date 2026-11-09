@@ -127,6 +127,8 @@ export const env = createEnv({
 				message: "AUTH_SECRET must be at least 32 characters in production. Generate one with openssl rand -hex 32.",
 			}),
 		BETTER_AUTH_API_KEY: z.string().min(1).optional(),
+		ADMIN_USERNAME: z.string().trim().optional(),
+		ADMIN_PASSWORD: z.string().min(6).optional(),
 		// Domain verification token from the OpenAI plugin portal, served at /.well-known/openai-apps-challenge.
 		OPENAI_APPS_CHALLENGE_TOKEN: z.string().trim().min(1).optional(),
 		// Native app association files (empty lists leave the endpoints disabled).

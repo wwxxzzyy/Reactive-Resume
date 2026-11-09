@@ -18,11 +18,19 @@ function textResponse(body: string) {
 
 export function handleRobots() {
 	const baseUrl = appUrl();
+	const host = new URL(baseUrl).host;
 	const body = [
 		"User-agent: *",
 		"Allow: /",
 		"Disallow: /api/rpc",
 		"Disallow: /api/auth",
+		"Disallow: /api/",
+		"Disallow: /admin",
+		"Disallow: /admin/",
+		"Disallow: /dashboard",
+		"Disallow: /dashboard/",
+		"Disallow: /builder/",
+		"Disallow: /auth/",
 		"Disallow: /mcp",
 		"Disallow: /.well-known",
 		// A resume's PDF duplicates its web page, and each crawl would render one.
@@ -34,6 +42,7 @@ export function handleRobots() {
 		"Allow: /.well-known/agent-skills/",
 		"",
 		`Sitemap: ${baseUrl}/sitemap.xml`,
+		`Host: ${host}`,
 		"",
 	].join("\n");
 
@@ -78,9 +87,18 @@ export function handlePagesSitemap() {
 		const alternates = languages.map(
 			({ hreflang, href }) => `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${escapeXml(href)}"/>`,
 		);
+		const priority = path === "/" ? "1.0" : "0.9";
+		const changefreq = "weekly";
 		// x-default shares the English URL; each canonical URL appears once with the same alternate set.
 		return [...new Set(languages.map(({ href }) => href))].map((href) =>
-			["  <url>", `    <loc>${escapeXml(href)}</loc>`, ...alternates, "  </url>"].join("\n"),
+			[
+				"  <url>",
+				`    <loc>${escapeXml(href)}</loc>`,
+				`    <changefreq>${changefreq}</changefreq>`,
+				`    <priority>${priority}</priority>`,
+				...alternates,
+				"  </url>",
+			].join("\n"),
 		);
 	});
 	return xmlResponse(

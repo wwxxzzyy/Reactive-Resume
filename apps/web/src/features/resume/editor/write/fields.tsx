@@ -4,6 +4,7 @@ import type { ComponentProps, ReactNode } from "react";
 import { t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
 import { useCallback, useState } from "react";
+import { detectProjectMedia } from "@reactive-resume/resume/project-media";
 import { Checkbox } from "@reactive-resume/ui/components/checkbox";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@reactive-resume/ui/components/collapsible";
 import { FormControl, FormDescription, FormItem, FormLabel, FormMessage } from "@reactive-resume/ui/components/form";
@@ -131,11 +132,19 @@ export function WebsiteField({ label, value, onChange, allowInlineLink = true }:
 	const [touched, setTouched] = useState(false);
 	const error = touched ? validateUrl(value.url) : undefined;
 	const inline = value.inlineLink ?? false;
+	const mediaBadge = value.url ? detectProjectMedia(value.url) : null;
 
 	return (
 		<div className="col-span-full grid gap-2">
 			<FormItem hasError={Boolean(error)}>
-				<FormLabel>{label ?? <Trans>Link</Trans>}</FormLabel>
+				<div className="flex items-center justify-between">
+					<FormLabel>{label ?? <Trans>Link</Trans>}</FormLabel>
+					{mediaBadge && value.url.trim() && (
+						<span className="inline-flex items-center gap-1 rounded-md bg-accent-soft px-1.5 py-0.5 text-[11px] font-semibold text-accent-text">
+							{mediaBadge.label}
+						</span>
+					)}
+				</div>
 				<FormControl
 					render={
 						<URLInput value={value} onChange={onChange} hideLabelButton={inline} onBlur={() => setTouched(true)} />
