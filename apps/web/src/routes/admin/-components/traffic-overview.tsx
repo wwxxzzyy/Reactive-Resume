@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Badge } from "@reactive-resume/ui/components/badge";
 import { Button } from "@reactive-resume/ui/components/button";
 import { Icon } from "@reactive-resume/ui/components/icon";
@@ -37,14 +37,17 @@ export type TrafficStatsData = {
 type TrafficOverviewProps = {
 	traffic: TrafficStatsData | undefined;
 	isLoading: boolean;
+	isFetching?: boolean | undefined;
+	lastUpdated?: Date | undefined;
+	autoRefreshInterval?: number | undefined;
+	onIntervalChange?: ((interval: number) => void) | undefined;
 	onRefresh: () => void;
 };
 
-function formatRelativeTime(isoString: string): string {
-	const now = Date.now();
+function formatRelativeTime(isoString: string, currentTimestamp: number = Date.now()): string {
 	const then = new Date(isoString).getTime();
-	const diffSec = Math.max(0, Math.floor((now - then) / 1000));
-	if (diffSec < 5) return "Just now";
+	const diffSec = Math.max(0, Math.floor((currentTimestamp - then) / 1000));
+	if (diffSec < 4) return "just now";
 	if (diffSec < 60) return `${diffSec}s ago`;
 	const diffMin = Math.floor(diffSec / 60);
 	if (diffMin < 60) return `${diffMin}m ago`;
@@ -67,20 +70,46 @@ function formatDayLabel(dateStr: string): string {
 	}
 }
 
-export function TrafficOverview({ traffic, isLoading, onRefresh }: TrafficOverviewProps) {
+export function TrafficOverview({
+	traffic,
+	isLoading,
+	isFetching = false,
+	lastUpdated,
+	autoRefreshInterval = 5000,
+	onIntervalChange,
+	onRefresh,
+}: TrafficOverviewProps) {
+	const [now, setNow] = useState(() => Date.now());
+
+	// 1-second ticker for live relative time and countdown
+	useEffect(() => {
+		const timer = setInterval(() => {
+			setNow(Date.now());
+		}, 1000);
+		return () => clearInterval(timer);
+	}, []);
+
+	const secondsLeft = useMemo(() => {
+		if (autoRefreshInterval <= 0) return 0;
+		if (!lastUpdated) return Math.ceil(autoRefreshInterval / 1000);
+		const elapsedMs = Math.max(0, now - lastUpdated.getTime());
+		const remainingMs = Math.max(0, autoRefreshInterval - (elapsedMs % autoRefreshInterval));
+		return Math.ceil(remainingMs / 1000);
+	}, [autoRefreshInterval, lastUpdated, now]);
+
 	const last7DaysTotal = useMemo(() => {
 		return (traffic?.last7Days || []).reduce((acc, point) => acc + point.views, 0);
-	}, [traffic?.last7Days]);
+	}, [traffic]);
 
 	const maxDailyViews = useMemo(() => {
 		const max = Math.max(...(traffic?.last7Days || []).map((p) => p.views), 1);
 		return Math.max(max, 10);
-	}, [traffic?.last7Days]);
+	}, [traffic]);
 
 	const totalDeviceHits = useMemo(() => {
 		if (!traffic?.devices) return 0;
 		return traffic.devices.desktop + traffic.devices.mobile + traffic.devices.tablet + traffic.devices.bot;
-	}, [traffic?.devices]);
+	}, [traffic]);
 
 	return (
 		<div className="space-y-6">
@@ -91,12 +120,23 @@ export function TrafficOverview({ traffic, isLoading, onRefresh }: TrafficOvervi
 						<Icon name="chart-line-up" size={20} />
 					</div>
 					<div>
-						<div className="flex items-center gap-2">
+						<div className="flex flex-wrap items-center gap-2">
 							<h3 className="text-base font-bold text-ink">Website Traffic &amp; Telemetry</h3>
-							<span className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-400">
-								<span className="size-1.5 animate-pulse rounded-full bg-emerald-400" />
-								Live
-							</span>
+							{autoRefreshInterval > 0 ? (
+								<span className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-400">
+									<span className="relative flex size-2">
+										<span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+										<span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+									</span>
+									<span>Auto-refresh ({autoRefreshInterval / 1000}s)</span>
+									<span className="font-mono text-[9px] text-emerald-300">({secondsLeft}s)</span>
+								</span>
+							) : (
+								<span className="flex items-center gap-1.5 rounded-full border border-line bg-surface px-2 py-0.5 text-[10px] font-medium text-ink-3">
+									<span className="bg-ink-4 size-1.5 rounded-full" />
+									<span>Auto-refresh: Off</span>
+								</span>
+							)}
 						</div>
 						<p className="text-xs text-ink-3">
 							Real-time visitor counts, daily pageview velocity, and page distribution.
@@ -104,16 +144,39 @@ export function TrafficOverview({ traffic, isLoading, onRefresh }: TrafficOvervi
 					</div>
 				</div>
 
-				<div className="flex items-center gap-2">
+				<div className="flex flex-wrap items-center gap-2.5">
+					{/* Auto-refresh interval dropdown */}
+					<div className="flex items-center gap-1.5 text-xs text-ink-3">
+						<span className="font-martian text-[10px] uppercase">Auto-refresh:</span>
+						<select
+							value={autoRefreshInterval}
+							aria-label="Auto-refresh interval"
+							onChange={(e) => onIntervalChange?.(Number(e.target.value))}
+							className="h-8 cursor-pointer rounded-md border border-line bg-surface px-2 text-xs font-medium text-ink focus:ring-1 focus:ring-accent focus:outline-hidden"
+						>
+							<option value={3000}>Every 3s (Live)</option>
+							<option value={5000}>Every 5s (Default)</option>
+							<option value={10000}>Every 10s</option>
+							<option value={30000}>Every 30s</option>
+							<option value={60000}>Every 1 min</option>
+							<option value={0}>Disabled</option>
+						</select>
+					</div>
+
+					{/* Last Updated Timestamp */}
+					{lastUpdated && (
+						<span className="text-[11px] text-ink-3">Updated {formatRelativeTime(lastUpdated.toISOString(), now)}</span>
+					)}
+
 					<Button
 						variant="secondary"
 						size="sm"
 						onClick={onRefresh}
 						disabled={isLoading}
-						className="gap-1.5 text-xs font-medium"
+						className="h-8 gap-1.5 text-xs font-medium"
 					>
-						<Icon name="arrows-clockwise" className={cn("size-3.5", isLoading && "animate-spin")} />
-						<span>Refresh Telemetry</span>
+						<Icon name="arrows-clockwise" className={cn("size-3.5", (isLoading || isFetching) && "animate-spin")} />
+						<span>Refresh Now</span>
 					</Button>
 				</div>
 			</div>

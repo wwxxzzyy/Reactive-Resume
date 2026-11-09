@@ -280,15 +280,21 @@ function AdminDashboard({
 	const [grantAmount, setGrantAmount] = useState<number>(25);
 	const [grantReason, setGrantReason] = useState<string>("Admin Reward");
 
+	// Auto-refresh interval for telemetry (in ms, defaults to 5s)
+	const [autoRefreshInterval, setAutoRefreshInterval] = useState<number>(5_000);
+
 	// Queries
 	const { data: stats, refetch: refetchStats } = useQuery(orpc.admin.getStats.queryOptions({}));
 	const {
 		data: trafficData,
 		isPending: isTrafficLoading,
+		isFetching: isTrafficFetching,
+		dataUpdatedAt: trafficUpdatedAt,
 		refetch: refetchTraffic,
 	} = useQuery({
 		...orpc.admin.getTrafficStats.queryOptions({}),
-		refetchInterval: activeSection === "traffic" ? 15_000 : false,
+		refetchInterval: activeSection === "traffic" && autoRefreshInterval > 0 ? autoRefreshInterval : false,
+		refetchIntervalInBackground: true,
 	});
 	const {
 		data: usersData,
@@ -541,7 +547,15 @@ function AdminDashboard({
 				</div>
 
 				{activeSection === "traffic" ? (
-					<TrafficOverview traffic={trafficData} isLoading={isTrafficLoading} onRefresh={() => void refetchTraffic()} />
+					<TrafficOverview
+						traffic={trafficData}
+						isLoading={isTrafficLoading}
+						isFetching={isTrafficFetching}
+						lastUpdated={trafficUpdatedAt ? new Date(trafficUpdatedAt) : undefined}
+						autoRefreshInterval={autoRefreshInterval}
+						onIntervalChange={setAutoRefreshInterval}
+						onRefresh={() => void refetchTraffic()}
+					/>
 				) : activeSection === "server-ai" ? (
 					<ServerAiOverview onRefreshAll={handleRefresh} />
 				) : activeSection === "payments" ? (
