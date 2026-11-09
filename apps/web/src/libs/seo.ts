@@ -24,21 +24,20 @@ export const serializeJsonLd = (data: Record<string, unknown>) =>
 
 /** The homepage's title and description in the active locale. The prerendered page and the route share them. */
 export const getHomepageMeta = () => ({
-	title: `Free ATS-Friendly Resume Builder with PDF & Word Exports | ${appName}`,
+	title: `Free ATS Resume Builder & AI Resume Maker (PDF & Word) | ${appName}`,
 	description:
-		"Create professional, recruiter-approved resumes that beat ATS screeners. 18+ free templates, job application tracker, and instant vector PDF & DOCX downloads. No paywall, 100% free.",
+		"Create professional, recruiter-approved resumes that beat ATS screeners. 12 free ATS templates, live keyword scoring, AI tailoring, and instant vector PDF & DOCX downloads.",
 });
 
 /** The ATS checker's title and description in the active locale. The prerendered page and the route share them. */
 export const getAtsCheckerMeta = () => ({
-	title: `${t`Free ATS resume checker`} | ${appName}`,
-	// Keep under ~120 characters so Google's mobile SERP snippet is not truncated at 3 lines.
-	description: t`Check whether software can read your resume PDF. Runs entirely in your browser, so your file is never uploaded.`,
+	title: `${t`Free ATS Resume Checker & Scanner (Online Score)`} | ${appName}`,
+	description: t`Scan your resume PDF against ATS algorithms for free. Test readability, keyword match & formatting instantly in your browser with zero data uploads.`,
 });
 
 export const getTemplatesMeta = () => ({
-	title: `${t`Free resume templates with PDF examples`} | ${appName}`,
-	description: t`Browse free resume templates, compare one-column and two-column layouts, and download sample PDFs. Customize your resume and export to PDF or Word.`,
+	title: `${t`12 Best Free ATS Resume Templates (Word & PDF Download)`} | ${appName}`,
+	description: t`Browse 12 recruiter-approved ATS resume templates. Download free vector PDF & Word DOCX examples, compare layouts, and customize in the builder.`,
 });
 
 /** Shared app and saved-document tab title. Marketing pages keep their own search titles. */

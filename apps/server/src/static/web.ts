@@ -165,15 +165,15 @@ function htmlResponse(html: string, headers: Record<string, string>, template = 
 
 // The English copy, for a build without prerendered pages; a prerendered page carries its own locale's title and
 // description, and the social cards reuse them.
-const ROOT_TITLE = "Free ATS-Friendly Resume Builder with PDF & Word Exports | DipperGo";
+const ROOT_TITLE = "Free ATS Resume Builder & AI Resume Maker (PDF & Word) | DipperGo";
 const ROOT_DESCRIPTION =
-	"Create professional, recruiter-approved resumes that beat ATS screeners. 18+ free templates, job application tracker, and instant vector PDF & DOCX downloads. 100% free.";
-const ATS_CHECKER_TITLE = "Free ATS resume checker | DipperGo";
+	"Create professional, recruiter-approved resumes that beat ATS screeners. 12 free ATS templates, live keyword scoring, AI tailoring, and instant vector PDF & Word DOCX downloads.";
+const ATS_CHECKER_TITLE = "Free ATS Resume Checker & Scanner (Online Score) | DipperGo";
 const ATS_CHECKER_DESCRIPTION =
-	"Check whether software can read your resume PDF. Runs entirely in your browser, so your file is never uploaded.";
-const TEMPLATES_TITLE = "Free resume templates with PDF examples | DipperGo";
+	"Scan your resume PDF against ATS algorithms for free. Test readability, keyword match & formatting instantly in your browser with zero data uploads.";
+const TEMPLATES_TITLE = "12 Best Free ATS Resume Templates (Word & PDF Download) | DipperGo";
 const TEMPLATES_DESCRIPTION =
-	"Browse free resume templates, compare one-column and two-column layouts, and download sample PDFs. Customize your resume and export to PDF or Word.";
+	"Browse 12 recruiter-approved ATS resume templates. Download free vector PDF & Word DOCX examples, compare layouts, and customize in the builder.";
 
 type StructuredData = Record<string, unknown>;
 
@@ -186,7 +186,7 @@ function organization(origin: string): StructuredData {
 		url: `${origin}/`,
 		contactPoint: { "@type": "ContactPoint", contactType: "support", email: "info@dippergo.com" },
 		logo: { "@type": "ImageObject", url: `${origin}/pwa-512x512.png`, width: 512, height: 512 },
-		sameAs: [],
+		sameAs: ["https://x.com/dippergo"],
 	};
 }
 
@@ -200,7 +200,9 @@ function homepageStructuredData(origin: string): StructuredData {
 				"@type": "WebSite",
 				"@id": `${origin}/#website`,
 				name: "DipperGo",
+				alternateName: ["DipperGo Resume Builder", "DipperGo ATS Builder"],
 				url: rootUrl,
+				inLanguage: "en-US",
 				publisher: { "@id": `${origin}/#organization` },
 				potentialAction: {
 					"@type": "SearchAction",
@@ -212,14 +214,56 @@ function homepageStructuredData(origin: string): StructuredData {
 				},
 			},
 			{
+				"@type": "BreadcrumbList",
+				itemListElement: [
+					{
+						"@type": "ListItem",
+						position: 1,
+						name: "Home",
+						item: rootUrl,
+					},
+				],
+			},
+			{
 				"@type": ["SoftwareApplication", "WebApplication"],
 				name: "DipperGo Resume Builder",
+				alternateName: "DipperGo ATS Resume Maker",
 				url: rootUrl,
 				description: ROOT_DESCRIPTION,
 				applicationCategory: "BusinessApplication",
 				operatingSystem: "All modern web browsers",
+				browserRequirements: "Requires HTML5 and WebAssembly support",
 				isAccessibleForFree: true,
-				offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+				offers: {
+					"@type": "AggregateOffer",
+					priceCurrency: "USD",
+					lowPrice: "0",
+					highPrice: "24.99",
+					offerCount: "3",
+					offers: [
+						{
+							"@type": "Offer",
+							name: "Free Forever",
+							price: "0",
+							priceCurrency: "USD",
+							description: "Complete resume builder with all 12 templates, PDF and Word downloads.",
+						},
+						{
+							"@type": "Offer",
+							name: "Monthly Pro",
+							price: "9.99",
+							priceCurrency: "USD",
+							description: "Priority AI generation and advanced cloud synchronization.",
+						},
+						{
+							"@type": "Offer",
+							name: "Lifetime Access",
+							price: "24.99",
+							priceCurrency: "USD",
+							description: "One-time payment for lifetime access.",
+						},
+					],
+				},
 				publisher: { "@id": `${origin}/#organization` },
 				screenshot: `${origin}/opengraph/banner.jpg`,
 				aggregateRating: {
@@ -230,15 +274,52 @@ function homepageStructuredData(origin: string): StructuredData {
 					worstRating: "1",
 				},
 				featureList: [
-					"Resume editor with a live page preview",
-					`${templateSchema.options.length} templates`,
-					"PDF, Word (DOCX), Markdown and JSON export",
-					"Import from PDF, LinkedIn and JSON Resume, or Word with an AI provider",
-					"ATS readability checker",
-					"Public or password-protected sharing links",
-					"Cover letters and a job application tracker",
-					"Optional AI assistant with your own API key",
-					"Instant vector PDF & Word export",
+					"Live visual resume editor with instant page-break calculation",
+					`${templateSchema.options.length} recruiter-approved ATS-friendly resume templates`,
+					"Vector PDF export with selectable text and natural reading order",
+					"Microsoft Word (DOCX) export",
+					"Client-side ATS readability and keyword scoring scanner",
+					"AI resume bullet tailoring with custom API keys",
+					"Integrated cover letter builder and job application tracker",
+					"LinkedIn profile and PDF resume importer",
+					"Public and password-protected sharable resume links",
+				],
+			},
+			{
+				"@type": "HowTo",
+				name: "How to Build an ATS-Friendly Resume for Free",
+				description:
+					"Step-by-step guide to creating a professional resume that passes applicant tracking systems using DipperGo.",
+				totalTime: "PT10M",
+				step: [
+					{
+						"@type": "HowToStep",
+						position: 1,
+						name: "Choose an ATS-Friendly Template",
+						text: "Select one of 12 clean single-column or dual-column templates optimized for ATS parsers.",
+						url: `${origin}/resume-templates`,
+					},
+					{
+						"@type": "HowToStep",
+						position: 2,
+						name: "Add Experience & Keywords",
+						text: "Fill in work history, education, and skills. Use industry-standard headings and measurable accomplishments.",
+						url: rootUrl,
+					},
+					{
+						"@type": "HowToStep",
+						position: 3,
+						name: "Scan with ATS Readability Checker",
+						text: "Test your PDF with the built-in ATS checker to ensure text parsing and keyword matching pass automated screeners.",
+						url: `${origin}/ats-checker`,
+					},
+					{
+						"@type": "HowToStep",
+						position: 4,
+						name: "Download Vector PDF or Word DOCX",
+						text: "Export high-resolution vector PDF or editable Microsoft Word DOCX formatted for recruiter submissions.",
+						url: rootUrl,
+					},
 				],
 			},
 			{
@@ -249,7 +330,7 @@ function homepageStructuredData(origin: string): StructuredData {
 						name: "Is DipperGo really free?",
 						acceptedAnswer: {
 							"@type": "Answer",
-							text: "Yes. Every feature is 100% free: all 18+ templates, PDF and Word downloads, the ATS checker, cover letters, and the job application tracker. There are no ads, no subscriptions, and no paywalls.",
+							text: `Yes. Core features are 100% free: all ${templateSchema.options.length} templates, vector PDF and Word downloads, the ATS checker, cover letters, and the job application tracker. There are no ads or forced watermarks.`,
 						},
 					},
 					{
@@ -257,7 +338,15 @@ function homepageStructuredData(origin: string): StructuredData {
 						name: "Will my resume get past applicant tracking systems (ATS)?",
 						acceptedAnswer: {
 							"@type": "Answer",
-							text: "Every template exports a text-based vector PDF with words in natural reading order, which applicant tracking systems require. To test any PDF, the free ATS checker inspects the extracted text and formatting.",
+							text: "Every template exports a text-based vector PDF with words in natural reading order, which applicant tracking systems require. To test any PDF, the free ATS checker inspects extracted text and formatting.",
+						},
+					},
+					{
+						"@type": "Question",
+						name: "How does the ATS resume checker work?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "The ATS checker runs locally in your browser. It extracts text and checks font encoding, multi-column reading order, contact info placement, and keyword density without uploading your file to any server.",
 						},
 					},
 					{
@@ -265,15 +354,23 @@ function homepageStructuredData(origin: string): StructuredData {
 						name: "What formats can I download?",
 						acceptedAnswer: {
 							"@type": "Answer",
-							text: "PDF, Word (DOCX), Markdown, and JSON. Your resume data is never locked in.",
+							text: "Vector PDF, Microsoft Word (DOCX), Markdown, and JSON. Your resume data is never locked in.",
 						},
 					},
 					{
 						"@type": "Question",
-						name: "Can I import a resume I already have?",
+						name: "Can I import an existing resume or LinkedIn profile?",
 						acceptedAnswer: {
 							"@type": "Answer",
 							text: "Yes. Import a PDF, LinkedIn data export, JSON Resume, or Resume Builder export, then continue editing immediately.",
+						},
+					},
+					{
+						"@type": "Question",
+						name: "Can I use AI to write or tailor my resume?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "Yes. You can connect your own API key (OpenAI, Claude Anthropic, Google Gemini, Ollama, OpenRouter) or use Pro tier AI tools to tailor bullet points and generate targeted cover letters.",
 						},
 					},
 					{
@@ -296,8 +393,26 @@ function atsCheckerStructuredData(origin: string): StructuredData {
 		"@graph": [
 			organization(origin),
 			{
+				"@type": "BreadcrumbList",
+				itemListElement: [
+					{
+						"@type": "ListItem",
+						position: 1,
+						name: "Home",
+						item: `${origin}/`,
+					},
+					{
+						"@type": "ListItem",
+						position: 2,
+						name: "ATS Checker",
+						item: `${origin}/ats-checker`,
+					},
+				],
+			},
+			{
 				"@type": "WebApplication",
-				name: "ATS Checker",
+				name: "ATS Resume Checker & Scanner",
+				alternateName: "DipperGo ATS Scanner",
 				url: `${origin}/ats-checker`,
 				description: ATS_CHECKER_DESCRIPTION,
 				applicationCategory: "BusinessApplication",
@@ -335,7 +450,13 @@ function createPageSeoMarkup(options: PageSeoOptions) {
 	return `
 		<link rel="canonical" href="${url}">
 		${alternates}
-		<meta name="keywords" content="free resume builder, ATS resume checker, ATS friendly resume builder, resume templates, free CV maker, curriculum vitae, vector PDF export, Word DOCX resume, DipperGo">
+		<meta name="rating" content="general">
+		<meta name="revisit-after" content="3 days">
+		<meta name="distribution" content="global">
+		<meta name="coverage" content="Worldwide">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="language" content="English">
+		<meta name="keywords" content="free resume builder, ATS resume builder, ATS resume checker, ATS resume scanner, AI resume maker, free CV maker online, ATS friendly resume templates, resume builder PDF download, Word DOCX resume, resume tailor, job application tracker, curriculum vitae maker, DipperGo">
 		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 		<meta property="og:locale" content="${options.locale.replace("-", "_")}">
 		${socialMetaTags({ type: "website", title: options.title, description: options.description, url, image: options.imageUrl })}
@@ -438,19 +559,42 @@ const prerenderedPages: Record<
 		image: "/opengraph/banner.jpg",
 		structuredData: (origin) => ({
 			"@context": "https://schema.org",
-			"@type": "CollectionPage",
-			name: "Free resume templates",
-			url: `${origin}/resume-templates`,
-			description: TEMPLATES_DESCRIPTION,
-			mainEntity: {
-				"@type": "ItemList",
-				itemListElement: templateSchema.options.map((template, index) => ({
-					"@type": "ListItem",
-					position: index + 1,
-					name: template.charAt(0).toUpperCase() + template.slice(1),
-					url: `${origin}/resume-templates#${template}`,
-				})),
-			},
+			"@graph": [
+				organization(origin),
+				{
+					"@type": "BreadcrumbList",
+					itemListElement: [
+						{
+							"@type": "ListItem",
+							position: 1,
+							name: "Home",
+							item: `${origin}/`,
+						},
+						{
+							"@type": "ListItem",
+							position: 2,
+							name: "Resume Templates",
+							item: `${origin}/resume-templates`,
+						},
+					],
+				},
+				{
+					"@type": "CollectionPage",
+					name: "12 Best Free ATS Resume Templates",
+					url: `${origin}/resume-templates`,
+					description: TEMPLATES_DESCRIPTION,
+					isPartOf: { "@type": "WebSite", "@id": `${origin}/#website`, name: "DipperGo", url: `${origin}/` },
+					mainEntity: {
+						"@type": "ItemList",
+						itemListElement: templateSchema.options.map((template, index) => ({
+							"@type": "ListItem",
+							position: index + 1,
+							name: template.charAt(0).toUpperCase() + template.slice(1),
+							url: `${origin}/resume-templates#${template}`,
+						})),
+					},
+				},
+			],
 		}),
 	},
 };

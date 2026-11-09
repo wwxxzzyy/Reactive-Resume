@@ -25,6 +25,14 @@ vi.mock("@reactive-resume/env/server", () => ({
 	env: mocks.env,
 }));
 
+vi.mock("@reactive-resume/utils/locale", async (importOriginal) => {
+	const actual = await importOriginal<typeof import("@reactive-resume/utils/locale")>();
+	return {
+		...actual,
+		supportedLocales: ["en-US", "de-DE", "ar-SA"],
+	};
+});
+
 const { handleWebApp } = await import("./web");
 
 const searchLink =

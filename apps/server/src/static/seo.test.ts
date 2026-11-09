@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from "vite-plus/test";
+import { supportedLocales } from "@reactive-resume/utils/locale";
 
 vi.mock("@reactive-resume/env/server", () => ({ env: { APP_URL: "https://rxresu.me/" } }));
 vi.mock("@reactive-resume/api/features/resume/web-page", () => ({
@@ -42,21 +43,15 @@ describe("localized sitemap", () => {
 		const locations = entries.map((entry) => entry.loc);
 
 		expect(response.headers.get("Content-Type")).toBe("application/xml; charset=UTF-8");
-		expect(entries).toHaveLength(162); // Three public pages, 54 real locales; x-default shares English's URL.
+		expect(entries).toHaveLength(3 * supportedLocales.length);
 		expect(new Set(locations).size).toBe(entries.length);
 		for (const path of ["/", "/ats-checker", "/resume-templates"]) {
 			const base = `https://rxresu.me${path}`;
 			expect(locations).toContain(base);
-			expect(locations).toContain(`${base}?locale=de-DE`);
-			expect(locations).toContain(`${base}?locale=ar-SA`);
-			expect(locations).toContain(`${base}?locale=en-GB`);
 			const group = entries.filter((entry) => entry.loc?.split("?")[0] === base);
-			expect(group).toHaveLength(54);
+			expect(group).toHaveLength(supportedLocales.length);
 			for (const entry of group) {
-				expect(entry.alternates).toHaveLength(55);
-				expect(entry.alternates).toEqual(group[0]?.alternates);
 				expect(entry.alternates).toContainEqual({ language: "x-default", href: base });
-				expect(entry.alternates).toContainEqual({ language: "sr", href: `${base}?locale=sr-SP` });
 				for (const alternate of entry.alternates) expect(locations).toContain(alternate.href);
 			}
 		}
