@@ -59,6 +59,7 @@ const getColumns = (): { id: string; title: string; links: FooterLink[] }[] => [
 		links: [
 			{ label: "Sign in", to: "/auth/login" },
 			{ label: "Get started", to: "/auth/register" },
+			{ label: "ATS & Resume FAQ", href: "#faq" },
 			{ label: "Contact Support", href: "mailto:info@dippergo.com" },
 			{ label: "Privacy & Terms", to: "/auth/login" },
 		],

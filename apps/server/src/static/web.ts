@@ -208,7 +208,7 @@ function homepageStructuredData(origin: string): StructuredData {
 					"@type": "SearchAction",
 					target: {
 						"@type": "EntryPoint",
-						urlTemplate: `${origin}/resume-templates#{search_term_string}`,
+						urlTemplate: `${origin}/resume-templates?q={search_term_string}`,
 					},
 					"query-input": "required name=search_term_string",
 				},
@@ -446,10 +446,18 @@ function createPageSeoMarkup(options: PageSeoOptions) {
 		.join("");
 
 	const url = escapeHtml(pageUrl);
+	const googleVerification = process.env.GOOGLE_SITE_VERIFICATION
+		? `<meta name="google-site-verification" content="${escapeHtml(process.env.GOOGLE_SITE_VERIFICATION)}">`
+		: "";
+	const bingVerification = process.env.BING_SITE_VERIFICATION
+		? `<meta name="msvalidate.01" content="${escapeHtml(process.env.BING_SITE_VERIFICATION)}">`
+		: "";
 
 	return `
 		<link rel="canonical" href="${url}">
 		${alternates}
+		${googleVerification}
+		${bingVerification}
 		<meta name="rating" content="general">
 		<meta name="revisit-after" content="3 days">
 		<meta name="distribution" content="global">

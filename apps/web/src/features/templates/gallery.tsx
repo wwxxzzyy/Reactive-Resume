@@ -36,10 +36,7 @@ export function TemplateGallery() {
 
 						<div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
 							<CtaLink size="hero" />
-							<a
-								href="https://docs.rxresu.me/guides/choosing-a-template"
-								className={cn(linkClass, "inline-flex min-h-11 items-center")}
-							>
+							<a href="#layout-advice" className={cn(linkClass, "inline-flex min-h-11 items-center")}>
 								{t`How to choose a template`}
 							</a>
 						</div>

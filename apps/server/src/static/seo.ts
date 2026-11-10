@@ -1,6 +1,6 @@
 import { env } from "@reactive-resume/env/server";
 import { publicResumeUrl } from "@reactive-resume/resume/sharing";
-import { templateSchema } from "@reactive-resume/schema/templates";
+import { primaryTemplates, templateSchema } from "@reactive-resume/schema/templates";
 import { getLocaleAlternates } from "@reactive-resume/utils/locale";
 
 export const CONTEXT7_ASK_URL = "https://context7.com/api/v2/ask?siteKey=ask_b3fd9335a63f1b21b1a814ac";
@@ -14,6 +14,13 @@ function textResponse(body: string) {
 	return new Response(body, {
 		headers: { "Content-Type": "text/plain; charset=UTF-8" },
 	});
+}
+
+function formatTemplateTitle(id: string): string {
+	return id
+		.split("-")
+		.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+		.join(" ");
 }
 
 export function handleRobots() {
@@ -52,6 +59,18 @@ export function handleRobots() {
 // The marketing pages; resumes whose owners opted in are listed on the sitemap's other pages.
 const sitemapPaths = ["/", "/ats-checker", "/resume-templates"];
 
+const pageImages: Record<string, { loc: string; title: string }[]> = {
+	"/": [{ loc: "/opengraph/banner.jpg", title: "DipperGo - Free ATS Resume Builder & AI Resume Maker" }],
+	"/ats-checker": [{ loc: "/opengraph/ats-checker.png", title: "Free ATS Resume Checker & Scanner" }],
+	"/resume-templates": [
+		{ loc: "/opengraph/banner.jpg", title: "12 Best Free ATS Resume Templates" },
+		...primaryTemplates.map((id) => ({
+			loc: `/templates/thumb/${id}.webp`,
+			title: `${formatTemplateTitle(id)} ATS Resume Template (Word & PDF Download)`,
+		})),
+	],
+};
+
 const escapeXml = (value: string) =>
 	value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
 
@@ -81,6 +100,7 @@ export async function handleSitemap() {
 
 export function handlePagesSitemap() {
 	const baseUrl = appUrl();
+	const today = new Date().toISOString().split("T")[0] ?? "2026-11-10";
 	const urls = sitemapPaths.flatMap((path) => {
 		const pageUrl = `${baseUrl}${path}`;
 		const languages = getLocaleAlternates(pageUrl);
@@ -88,21 +108,30 @@ export function handlePagesSitemap() {
 			({ hreflang, href }) => `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${escapeXml(href)}"/>`,
 		);
 		const priority = path === "/" ? "1.0" : "0.9";
-		const changefreq = "weekly";
+		const changefreq = "daily";
+		const images = pageImages[path] ?? [];
+		const imageXml = images.flatMap((image) => [
+			"    <image:image>",
+			`      <image:loc>${escapeXml(`${baseUrl}${image.loc}`)}</image:loc>`,
+			`      <image:title>${escapeXml(image.title)}</image:title>`,
+			"    </image:image>",
+		]);
 		// x-default shares the English URL; each canonical URL appears once with the same alternate set.
 		return [...new Set(languages.map(({ href }) => href))].map((href) =>
 			[
 				"  <url>",
 				`    <loc>${escapeXml(href)}</loc>`,
+				`    <lastmod>${today}</lastmod>`,
 				`    <changefreq>${changefreq}</changefreq>`,
 				`    <priority>${priority}</priority>`,
+				...imageXml,
 				...alternates,
 				"  </url>",
 			].join("\n"),
 		);
 	});
 	return xmlResponse(
-		'urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"',
+		'urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"',
 		urls,
 	);
 }
@@ -128,7 +157,7 @@ export function handleLlms() {
 	const body = [
 		"# DipperGo",
 		"",
-		`> DipperGo is a free resume builder. Write a resume in an editor beside a live page, pick one of ${templateSchema.options.length} templates, check that applicant tracking systems can read it, tailor it to a job posting, and share it at a public link or download it. No ads, no tracking, no paywalls.`,
+		`> DipperGo is a free ATS-friendly resume builder and career platform. Write a resume in an editor beside a live page preview, pick one of ${templateSchema.options.length} recruiter-approved templates, scan your resume with a browser-based ATS checker, tailor bullet points to job descriptions with AI, and download instant vector PDF & Word DOCX files. 100% free with no watermarks or paywalled downloads.`,
 		"",
 		"## Search",
 		"",
@@ -136,21 +165,31 @@ export function handleLlms() {
 		"",
 		"## Product",
 		"",
-		`- [Homepage](${baseUrl}/): what DipperGo does, with answers to common questions.`,
-		`- [Resume templates](${baseUrl}/resume-templates): browse all ${templateSchema.options.length} free templates, compare layouts and download sample PDFs.`,
-		`- [ATS checker](${baseUrl}/ats-checker): a free tool that shows the text applicant tracking systems extract from a resume PDF and what to fix. It runs in the browser; the file is never uploaded.`,
-		`- [Get started](${baseUrl}/dashboard): create an account and a first resume.`,
+		`- [Homepage](${baseUrl}/): what DipperGo does, feature highlights, and answers to common questions.`,
+		`- [Resume templates](${baseUrl}/resume-templates): browse all ${templateSchema.options.length} recruiter-approved ATS templates, compare single and dual-column layouts, and download sample PDFs.`,
+		`- [ATS checker](${baseUrl}/ats-checker): a free, private browser-based tool that scans resume PDFs against ATS extraction algorithms. Zero uploads; your file never leaves your computer.`,
+		`- [Get started](${baseUrl}/dashboard): create an account and build your first resume in minutes.`,
 		"",
 		"## Facts",
 		"",
-		"- Price: 100% free, every feature. No ads, no subscriptions, no paywalls.",
-		"- Export: PDF, Word (DOCX), Markdown and JSON.",
-		"- Import: PDF, LinkedIn data export, JSON Resume, Resume Builder JSON; Word files with an AI provider.",
-		"- Sharing: private by default; a public link or a password-protected link, changeable at any time.",
-		"- AI: optional, with the user's own API key (OpenAI, Anthropic, Google Gemini, OpenRouter, Ollama and others). Nothing is sent to an AI service without one.",
-		"- Also includes: cover letters, a job application tracker, version history, passkeys and two-factor authentication.",
-		"- Languages: the interface is translated into more than 50 languages.",
-		"- Templates: 18+ recruiter-approved, ATS-optimized layouts.",
+		"- Price: 100% free core features. All 12 templates, vector PDF downloads, Word DOCX exports, ATS scanner, cover letters, and job application tracker have zero paywalls.",
+		"- Export formats: High-resolution Vector PDF (natural reading order), Microsoft Word (DOCX), Markdown, and JSON Resume.",
+		"- Import sources: Existing PDF, LinkedIn data export, JSON Resume, or Reactive Resume JSON.",
+		"- Privacy: Resumes remain private by default. Shareable public links or password-protected links can be toggled on or off at any time.",
+		"- AI assistant: Built-in server DeepSeek AI integration, plus optional BYOK support for OpenAI, Anthropic Claude, Google Gemini, Ollama, and OpenRouter.",
+		"- ATS compliance: Text-based vector rendering with semantic section headings, standard font metrics, and natural flow required by Workday, Taleo, Greenhouse, and Lever.",
+		"- Career platform tools: Integrated job application tracker, cover letter builder, interview preparation notes, and offer calculator.",
+		"",
+		"## Comparison: DipperGo vs. Paid Resume Builders",
+		"",
+		"| Feature | DipperGo | Zety | Resume.io | Novoresume |",
+		"|---|---|---|---|---|",
+		"| Free PDF Download | Unlimited Vector PDF | Requires subscription ($2.70 - $24.99) | 1 plain text download only | 1-page only |",
+		"| Word (DOCX) Export | Included Free | Paid tier only | Paid tier only | Not available |",
+		"| ATS Readability Checker | Included Free (client-side) | Paywalled | Not available | Paywalled |",
+		"| Recruiter ATS Templates | 12 Included | Included (Paid) | Included (Paid) | Included (Limited) |",
+		"| Forced Watermarks | Never | None on paid | None on paid | Yes on free |",
+		"| Job Application Tracker | Included Free | Not included | Basic | Not included |",
 		"",
 	].join("\n");
 

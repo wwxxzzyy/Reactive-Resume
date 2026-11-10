@@ -57,5 +57,8 @@ describe("localized sitemap", () => {
 		}
 		expect(xml).not.toContain("zu-ZA");
 		expect(xml).not.toContain("/dashboard");
+		expect(xml).toContain("<lastmod>");
+		expect(xml).toContain("<image:image>");
+		expect(xml).toContain("https://rxresu.me/opengraph/banner.jpg");
 	});
 });

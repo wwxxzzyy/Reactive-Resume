@@ -6,6 +6,7 @@ import { LandingBackground } from "./background";
 import { ClosingCta } from "./closing-cta";
 import { CompanyLogos } from "./company-logos";
 import { ComparisonSection } from "./comparison";
+import { FaqSection } from "./faq";
 import { LandingFooter } from "./footer";
 import { LandingHeader, ThemeCord } from "./header";
 import { Hero } from "./hero";
@@ -38,6 +39,7 @@ export function Homepage() {
 				<ApplicantFeatures />
 				<ComparisonSection />
 				<AiPricingSection />
+				<FaqSection />
 				<ClosingCta />
 			</main>
 			<LandingFooter />

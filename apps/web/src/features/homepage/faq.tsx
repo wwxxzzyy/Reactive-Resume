@@ -1,213 +1,81 @@
-import type { CSSProperties } from "react";
-import { t } from "@lingui/core/macro";
-import { useLingui } from "@lingui/react";
-import { Trans } from "@lingui/react/macro";
-import { Link } from "@tanstack/react-router";
-import { templateSchema } from "@reactive-resume/schema/templates";
-import { supportedLocales } from "@reactive-resume/utils/locale";
-import { cn } from "@reactive-resume/utils/style";
-import { SCENE } from "./scroll";
-import { Doodle, labelClass } from "./ui";
-import { serializeJsonLd } from "@/libs/seo";
+import { Icon } from "@reactive-resume/ui/components/icon";
 
-type Question = {
-	id: string;
-	question: string;
-	/** Plain text: it is also the structured data's answer, which has to match what the page shows. */
-	answer: string;
-	link?: { label: string } & ({ href: string } | { to: "/ats-checker" });
-};
+const FAQS = [
+	{
+		question: "Is DipperGo really free with no paywall?",
+		answer:
+			"Yes. Core resume creation, editing, all 12 recruiter-approved templates, vector PDF downloads, Microsoft Word (DOCX) exports, the ATS checker, and the job application tracker are 100% free forever. There are no forced watermarks, no trial expirations, and no credit card required.",
+	},
+	{
+		question: "Will my resume get past Applicant Tracking Systems (ATS)?",
+		answer:
+			"Yes. Every template generates a clean text-based vector document with natural reading order, Unicode font encoding, and standard semantic headings (Experience, Education, Skills) required by Workday, Taleo, Greenhouse, and Lever. You can also scan your PDF anytime using our free in-browser ATS Checker.",
+	},
+	{
+		question: "Which format is better for job applications: PDF or Word (DOCX)?",
+		answer:
+			"Most modern companies and tech firms prefer PDF because it locks fonts, layout geometry, and line breaks identically across all devices and operating systems. However, some staffing agencies and enterprise recruiters request editable Word DOCX files. DipperGo gives you 1-click instant downloads for both.",
+	},
+	{
+		question: "How does the ATS Resume Checker work?",
+		answer:
+			"Our ATS checker runs 100% locally in your web browser. It extracts text and inspects character encoding, column order, contact placement, and keyword density using the same parsing logic as corporate ATS engines. Your file is never uploaded to any remote server or stored in a database.",
+	},
+	{
+		question: "Can I import an existing resume or LinkedIn profile?",
+		answer:
+			"Yes. You can import any existing resume PDF, a LinkedIn data export, JSON Resume, or Reactive Resume backup. All your experience, education, and skills are parsed into structured fields so you can switch templates or edit immediately.",
+	},
+	{
+		question: "Can I use AI to tailor my resume for each job posting?",
+		answer:
+			"Yes. DipperGo includes AI tools to score job description alignment, rewrite bullet points with quantifiable action verbs, and generate targeted cover letters. You can use free starter credits, top up pay-as-you-go credit packs, or connect your own API key (OpenAI, Anthropic Claude, Google Gemini, Ollama, DeepSeek) for unlimited free AI.",
+	},
+	{
+		question: "Who can see my resume and personal data?",
+		answer:
+			"Only you. All documents and job tracking data remain private to your account by default. If you choose to share your resume with a recruiter or colleague, you can generate a public or password-protected sharing link and revoke it at any time.",
+	},
+];
 
-function useQuestions(): Question[] {
-	const { i18n } = useLingui();
-	const templates = i18n.number(templateSchema.options.length);
-	const languages = i18n.number(supportedLocales.length);
-
-	return [
-		{
-			id: "free",
-			question: "Is DipperGo really free?",
-			answer: `Yes. Every feature is 100% free: all ${templates} templates, PDF and Word downloads, the ATS checker, cover letters, and the job application tracker. There are no ads, no subscriptions, and no paywalls.`,
-		},
-		{
-			id: "ats",
-			question: t`Will my resume get past applicant tracking systems?`,
-			answer: t`Every template exports a text-based PDF with the words in reading order, which is what applicant tracking systems (ATS) need to parse a resume. To test any PDF, including one made elsewhere, the free ATS checker shows the text software extracts and what to fix.`,
-			link: { label: t`Try the ATS checker`, to: "/ats-checker" },
-		},
-		{
-			id: "privacy",
-			question: t`Who can see my resume?`,
-			answer: t`Only you, until you share it. A resume can stay private, go live at a public link, or be protected with a password, and you can change that at any time. Deleting your account deletes your resumes with it.`,
-		},
-		{
-			id: "import",
-			question: t`Can I import a resume I already have?`,
-			answer: t`Yes. Import a PDF, a LinkedIn data export, a JSON Resume file or a Resume Builder export, then pick up where it left off. With an AI provider set up, Word documents work too.`,
-		},
-		{
-			id: "export",
-			question: t`What formats can I download?`,
-			answer: t`PDF, Word (DOCX), Markdown and JSON. The JSON export imports back into any Resume Builder, including one you host yourself, so your data is never locked in.`,
-		},
-		{
-			id: "ai",
-			question: t`Does it use AI?`,
-			answer: t`Only if you want it to. Add your own key from OpenAI, Anthropic, Google Gemini, OpenRouter, Ollama or another provider for sharper lines, tailoring to a job posting, coaching for applications and interviews, and reading Word files. Without a key, nothing is sent to an AI service.`,
-		},
-		{
-			id: "interviews",
-			question: t`Can it help me prepare for interviews?`,
-			answer: t`Yes. Every job you track gets its own workspace: check your fit against the posting, draft answers from stories you wrote once, get a short plan before the interview, practice out loud with feedback and debrief afterwards. When offers arrive, compare them side by side. The coaching uses your own AI key; the comparison doesn’t need one.`,
-		},
-		{
-			id: "customize",
-			question: "Can I customize the resume templates?",
-			answer:
-				"Yes. You can customize fonts, colors, spacing, page margins, and section ordering in real-time, then export pixel-perfect PDFs or editable Word DOCX files with zero watermark.",
-			link: { label: "Explore Templates", href: "#templates" },
-		},
-		{
-			id: "languages",
-			question: t`Which languages does it speak?`,
-			answer: t`The app is translated into ${languages} languages by volunteers, and a resume can be written in any language, including right-to-left scripts like Arabic and Hebrew.`,
-		},
-	];
-}
-
-// A pencil circling the question's number: it overshoots its start, the way a hand-drawn loop does.
-const circlePath = "M18 44C6 38 3 24 14 14C28 3 66 2 84 10C99 17 99 33 86 41C70 50 32 51 14 42C6 37 7 27 16 20";
-// The pencil underline under the question, a little uneven.
-const underlinePath = "M2 7C30 4 58 9 96 6S160 3 196 7S262 9 298 5";
-
-type FaqItemProps = { item: Question; index: number };
-
-function FaqItem({ item, index }: FaqItemProps) {
-	const number = String(index + 1).padStart(2, "0");
-	const linkClass =
-		"mt-3 inline-flex items-center gap-1 font-medium font-ui text-[14px] text-[oklch(0.42_0.1_150)] underline underline-offset-[3px] transition-colors hover:text-[oklch(0.32_0.1_150)]";
-
-	return (
-		<details name="faq" className="faq-item border-b border-line">
-			<summary className="flex cursor-pointer list-none items-start gap-5 rounded-sm py-6 outline-offset-4 focus-visible:outline-2 focus-visible:outline-accent [&::-webkit-details-marker]:hidden">
-				<span className={cn(labelClass, "relative mt-[.7em] w-8 shrink-0 text-center text-ink-3")}>
-					{number}
-					<svg
-						aria-hidden="true"
-						viewBox="0 0 100 52"
-						preserveAspectRatio="none"
-						className="pointer-events-none absolute -inset-x-2.5 -inset-y-2.5 size-[calc(100%+20px)] overflow-visible text-accent"
-					>
-						<path data-stroke="circle" pathLength={1} d={circlePath} strokeWidth={2.6} />
-					</svg>
-				</span>
-				<h3 className="font-anybody flex-1 text-[clamp(21px,2vw,30px)] leading-[1.2] font-light tracking-[-.015em] text-pretty text-ink">
-					{/* Shrink-wrapped, so the underline runs under the words rather than the whole row. */}
-					<span className="relative inline-block pb-1.5">
-						{item.question}
-						<svg
-							aria-hidden="true"
-							viewBox="0 0 300 12"
-							preserveAspectRatio="none"
-							className="pointer-events-none absolute inset-x-0 -bottom-1 h-2.5 w-full overflow-visible text-ink-3"
-						>
-							<path data-stroke="underline" pathLength={1} d={underlinePath} strokeWidth={1.6} />
-						</svg>
-					</span>
-				</h3>
-				<span aria-hidden="true" data-plus className="relative mt-[.55em] size-5 shrink-0 text-ink-2">
-					<span className="absolute inset-x-0 top-1/2 h-[1.5px] -translate-y-1/2 rounded-full bg-current" />
-					<span className="absolute inset-y-0 left-1/2 w-[1.5px] -translate-x-1/2 rounded-full bg-current" />
-				</span>
-			</summary>
-
-			<div className="ps-13 pe-2 pb-8">
-				<div
-					data-note
-					className="relative rounded-md bg-paper px-6 py-5 text-[oklch(0.28_0.01_95)] shadow-[0_1px_2px_oklch(0.2_0.01_95/.12),0_18px_36px_-18px_oklch(0.2_0.01_95/.4)]"
-					style={{ "--tilt": `${index % 2 === 0 ? -0.5 : 0.4}deg` } as CSSProperties}
-				>
-					<p className="font-display text-[clamp(17px,1.3vw,20px)] leading-normal text-pretty">{item.answer}</p>
-					{item.link &&
-						("to" in item.link ? (
-							<Link to={item.link.to} className={linkClass}>
-								{item.link.label} <span aria-hidden="true">→</span>
-							</Link>
-						) : (
-							<a href={item.link.href} className={linkClass}>
-								{item.link.label} <span aria-hidden="true">→</span>
-							</a>
-						))}
-				</div>
-			</div>
-		</details>
-	);
-}
-
-/**
- * 11 Questions: the answers people look for before they start, as folded notes. Opening a question circles its number
- * in pencil, underlines it and unfolds the answer; only one stays open. The same answers go out as FAQPage structured
- * data, so search engines and assistants can quote them.
- */
-export function Faq() {
-	const questions = useQuestions();
-	const structuredData = {
-		"@context": "https://schema.org",
-		"@type": "FAQPage",
-		mainEntity: questions.map((item) => ({
-			"@type": "Question",
-			name: item.question,
-			acceptedAnswer: { "@type": "Answer", text: item.answer },
-		})),
-	};
-
+export function FaqSection() {
 	return (
 		<section
 			id="faq"
-			data-scene={SCENE.faq}
 			aria-labelledby="faq-title"
-			className="relative mx-auto grid max-w-[1440px] items-start gap-x-16 gap-y-10 border-t border-line px-(--gutter) pt-[12vh] pb-[14vh] min-[900px]:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]"
+			className="relative z-10 mx-auto max-w-5xl px-6 py-20 sm:px-8 sm:py-28"
 		>
-			<div className="flex flex-col gap-[22px] min-[900px]:sticky min-[900px]:top-[14vh]">
-				<span className={cn(labelClass, "text-ink-3")}>{t`Questions`}</span>
-				<h2
-					id="faq-title"
-					className="font-anybody text-[clamp(48px,5.6vw,100px)] leading-[.98] font-light tracking-[-.03em] text-ink"
-				>
-					<Trans>
-						Asked and <em className="font-display font-normal text-accent-text italic">answered.</em>
-					</Trans>
+			<div className="mx-auto max-w-2xl text-center">
+				<span className="font-martian text-xs font-semibold tracking-wider text-accent-text uppercase">
+					Frequently Asked Questions
+				</span>
+				<h2 id="faq-title" className="font-anybody mt-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+					Everything you need to know about beating the ATS
 				</h2>
-				<p className="max-w-[24em] font-display text-[clamp(17px,1.4vw,21px)] leading-normal text-pretty text-ink-2">
-					<Trans>
-						9 short answers to what people ask before they start. Anything else, ask on{" "}
-						<a
-							href="https://discord.gg/jSVSJyWd2k"
-							className="text-accent-text italic underline underline-offset-[3px] transition-colors hover:text-accent-hover"
-						>
-							Discord
-						</a>
-						.
-					</Trans>
+				<p className="mt-3 text-sm text-ink-3 sm:text-base">
+					Clear answers on templates, ATS parsing, formatting, downloads, and privacy.
 				</p>
-				{/* In the sticky column, so it travels with the heading instead of crossing it. */}
-				<div aria-hidden="true" className="relative mt-4 aspect-[800/746] w-[11vw] max-[900px]:hidden">
-					<Doodle
-						name="note"
-						wipe="clamp(0, (var(--p) - .1) / .2, 1)"
-						className="start-0 top-0 w-full rotate-[-6deg]"
-					/>
-				</div>
 			</div>
 
-			<div className="border-t border-line">
-				{questions.map((item, index) => (
-					<FaqItem key={item.id} item={item} index={index} />
+			<div className="mt-12 space-y-3.5">
+				{FAQS.map((faq, index) => (
+					<details
+						key={faq.question}
+						open={index === 0}
+						className="group rounded-xl border border-line bg-surface p-5 transition-colors focus-within:ring-1 focus-within:ring-accent hover:border-line-2"
+					>
+						<summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-ink select-none">
+							<span className="text-sm sm:text-base">{faq.question}</span>
+							<span className="grid size-7 shrink-0 place-items-center rounded-lg border border-line bg-sunken text-ink-3 transition-transform duration-200 group-open:rotate-180 group-open:text-ink">
+								<Icon name="caret-down" className="size-4" />
+							</span>
+						</summary>
+						<div className="mt-3.5 border-t border-line/60 pt-3.5 text-sm leading-relaxed text-ink-2">
+							<p>{faq.answer}</p>
+						</div>
+					</details>
 				))}
 			</div>
-
-			{/* oxlint-disable-next-line react/no-danger -- structured data, serialized so no answer can close the script. */}
-			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData) }} />
 		</section>
 	);
 }
