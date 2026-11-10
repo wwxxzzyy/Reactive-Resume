@@ -33,7 +33,6 @@ import { ApplicationInsights, InsightsSkeleton } from "@/features/applications/c
 import { JobBoardsDialog } from "@/features/applications/components/job-boards-dialog";
 import { ApplicationList } from "@/features/applications/components/list-view";
 import { ManageLanesSheet } from "@/features/applications/components/manage-lanes-sheet";
-import { PartnerDealsView } from "@/features/applications/components/partner-deals-view";
 import { getNextStep, needsFollowUp } from "@/features/applications/next-step";
 import {
 	applicationDetailQueryOptions,
@@ -47,7 +46,7 @@ import { toastError } from "@/libs/error-message";
 import { ENTER_CLASS } from "@/libs/motion";
 import { getPageTitle } from "@/libs/seo";
 
-const VIEWS = ["list", "board", "jobs", "insights", "calendar", "partners"] as const;
+const VIEWS = ["list", "board", "jobs", "insights", "calendar"] as const;
 type View = (typeof VIEWS)[number];
 
 const searchSchema = z.object({
@@ -296,14 +295,10 @@ function RouteComponent() {
 									<Icon name="calendar-dots" size={18} />
 									Calendar
 								</TabsTrigger>
-								<TabsTrigger value="partners">
-									<Icon name="sparkle" size={18} />
-									Career Deals
-								</TabsTrigger>
 							</TabsList>
 						</Tabs>
 
-						{shown !== "jobs" && shown !== "partners" && (
+						{shown !== "jobs" && (
 							<div className="relative max-w-72 min-w-40 flex-1">
 								<Icon
 									name="magnifying-glass"
@@ -321,7 +316,7 @@ function RouteComponent() {
 							</div>
 						)}
 
-						{shown !== "insights" && shown !== "jobs" && shown !== "partners" && (
+						{shown !== "insights" && shown !== "jobs" && (
 							<Button
 								variant="secondary"
 								aria-pressed={closed}
@@ -463,7 +458,6 @@ function RouteComponent() {
 									onOpen={openApplication}
 								/>
 							)}
-							{shown === "partners" && <PartnerDealsView />}
 						</div>
 					)}
 				</>

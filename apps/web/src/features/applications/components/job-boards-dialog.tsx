@@ -12,7 +12,6 @@ import {
 import { Icon, type IconName } from "@reactive-resume/ui/components/icon";
 import { Label } from "@reactive-resume/ui/components/label";
 import { toast } from "@reactive-resume/ui/components/toast";
-import { buildAffiliateUrl } from "../affiliate";
 import { useDocumentDownload } from "../use-document-download";
 import { Combobox } from "@/components/ui/combobox";
 import { orpc } from "@/libs/orpc/client";
@@ -24,33 +23,30 @@ type JobBoard = {
 	tag: string;
 	description: string;
 	icon: IconName;
-	sponsored?: boolean;
 };
 
 const JOB_BOARDS: JobBoard[] = [
 	{
 		id: "ziprecruiter",
 		name: "ZipRecruiter",
-		url: buildAffiliateUrl("https://www.ziprecruiter.com/jobs", "ziprecruiter"),
+		url: "https://www.ziprecruiter.com/jobs",
 		tag: "1-Click Apply",
 		description:
 			"Smart matching technology distributes your resume directly to verified employers looking to hire fast.",
 		icon: "lightning",
-		sponsored: true,
 	},
 	{
 		id: "flexjobs",
 		name: "FlexJobs",
-		url: buildAffiliateUrl("https://www.flexjobs.com/", "flexjobs"),
+		url: "https://www.flexjobs.com/",
 		tag: "Vetted Remote",
 		description: "Hand-screened, verified scam-free remote and flexible opportunities across 50+ career fields.",
 		icon: "globe",
-		sponsored: true,
 	},
 	{
 		id: "linkedin",
 		name: "LinkedIn Jobs",
-		url: buildAffiliateUrl("https://www.linkedin.com/jobs/", "linkedin"),
+		url: "https://www.linkedin.com/jobs/",
 		tag: "Easy Apply",
 		description: "Browse millions of active postings and apply directly with 1-click Easy Apply or recruiter reach.",
 		icon: "briefcase",
@@ -58,7 +54,7 @@ const JOB_BOARDS: JobBoard[] = [
 	{
 		id: "indeed",
 		name: "Indeed Resume & Jobs",
-		url: buildAffiliateUrl("https://resumes.indeed.com/", "indeed"),
+		url: "https://resumes.indeed.com/",
 		tag: "Direct Upload",
 		description: "Upload your resume directly into Indeed's candidate database or apply across listings nationwide.",
 		icon: "globe",
@@ -66,7 +62,7 @@ const JOB_BOARDS: JobBoard[] = [
 	{
 		id: "wellfound",
 		name: "Wellfound (AngelList)",
-		url: buildAffiliateUrl("https://wellfound.com/jobs", "wellfound"),
+		url: "https://wellfound.com/jobs",
 		tag: "Startups & Tech",
 		description: "Direct access to high-growth tech startups and founder hiring teams with upfront salary and equity.",
 		icon: "sparkle",
@@ -74,7 +70,7 @@ const JOB_BOARDS: JobBoard[] = [
 	{
 		id: "dice",
 		name: "Dice Tech Careers",
-		url: buildAffiliateUrl("https://www.dice.com/jobs", "dice"),
+		url: "https://www.dice.com/jobs",
 		tag: "Engineering & Cloud",
 		description: "Specialized tech portal for software engineers, cloud architects, DevOps and security experts.",
 		icon: "desktop",
@@ -82,7 +78,7 @@ const JOB_BOARDS: JobBoard[] = [
 	{
 		id: "glassdoor",
 		name: "Glassdoor Jobs",
-		url: buildAffiliateUrl("https://www.glassdoor.com/Job/index.htm", "glassdoor"),
+		url: "https://www.glassdoor.com/Job/index.htm",
 		tag: "Salaries & Reviews",
 		description:
 			"Search open positions paired with verified employee salaries, company reviews, and interview questions.",
@@ -91,7 +87,7 @@ const JOB_BOARDS: JobBoard[] = [
 	{
 		id: "remoteok",
 		name: "RemoteOK",
-		url: buildAffiliateUrl("https://remoteok.com/", "remoteok"),
+		url: "https://remoteok.com/",
 		tag: "Remote Only",
 		description: "Curated worldwide remote positions in software engineering, design, marketing, and operations.",
 		icon: "desktop",
@@ -99,7 +95,7 @@ const JOB_BOARDS: JobBoard[] = [
 	{
 		id: "google-jobs",
 		name: "Google Jobs",
-		url: buildAffiliateUrl("https://www.google.com/search?ibp=htl;jobs", "google-jobs"),
+		url: "https://www.google.com/search?ibp=htl;jobs",
 		tag: "Aggregator",
 		description: "Search across hundreds of job boards, company career portals, and staffing agencies in one view.",
 		icon: "magnifying-glass",
@@ -238,11 +234,6 @@ export function JobBoardsDialog({ open, onOpenChange, defaultResumeId }: JobBoar
 							Download browser helper
 						</a>
 					</div>
-
-					<p className="text-[11px] leading-relaxed text-ink-3/80">
-						DipperGo partners with verified job boards and career services. We may receive affiliate compensation when
-						you submit through select partner platforms, which helps keep DipperGo free for job seekers.
-					</p>
 				</div>
 			</DialogContent>
 		</Dialog>
