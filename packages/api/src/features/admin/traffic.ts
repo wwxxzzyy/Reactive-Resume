@@ -9,6 +9,7 @@ export type LiveVisit = {
 	referrer: string;
 	device: DeviceType;
 	country: string;
+	ip: string;
 	timestamp: string;
 };
 
@@ -116,6 +117,7 @@ export const trafficService = {
 			referrer,
 			device,
 			country,
+			ip: params.ip,
 			timestamp: now.toISOString(),
 		};
 
@@ -278,7 +280,9 @@ export const trafficService = {
 				const recentVisits: LiveVisit[] = [];
 				for (const item of rawRecent) {
 					try {
-						recentVisits.push(JSON.parse(item));
+						const parsed = JSON.parse(item);
+						if (!parsed.ip) parsed.ip = "—";
+						recentVisits.push(parsed);
 					} catch {
 						// Ignore parse error
 					}

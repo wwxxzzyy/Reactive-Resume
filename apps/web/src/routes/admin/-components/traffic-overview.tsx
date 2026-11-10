@@ -30,6 +30,7 @@ export type TrafficStatsData = {
 		referrer: string;
 		device: "desktop" | "mobile" | "tablet" | "bot";
 		country: string;
+		ip?: string;
 		timestamp: string;
 	}[];
 };
@@ -460,10 +461,11 @@ export function TrafficOverview({
 							<thead>
 								<tr className="border-b border-line bg-raised/40 text-start font-semibold text-ink-3">
 									<th className="p-3 text-start">Time</th>
+									<th className="p-3 text-start">IP Address</th>
+									<th className="p-3 text-start">Location</th>
 									<th className="p-3 text-start">Path</th>
 									<th className="p-3 text-start">Referrer</th>
 									<th className="p-3 text-start">Device</th>
-									<th className="p-3 text-start">Location</th>
 									<th className="p-3 text-end">Status</th>
 								</tr>
 							</thead>
@@ -472,6 +474,14 @@ export function TrafficOverview({
 									<tr key={visit.id} className="transition-colors hover:bg-sunken/40">
 										<td className="p-3 font-mono text-[11px] whitespace-nowrap text-ink-3">
 											{formatRelativeTime(visit.timestamp)}
+										</td>
+										<td className="p-3 font-mono text-[11px] font-medium whitespace-nowrap text-ink">
+											{visit.ip || "—"}
+										</td>
+										<td className="p-3 whitespace-nowrap">
+											<Badge variant="neutral" className="text-[10px]">
+												{visit.country}
+											</Badge>
 										</td>
 										<td className="max-w-[200px] truncate p-3 font-mono font-medium text-ink" title={visit.path}>
 											{visit.path}
@@ -482,11 +492,6 @@ export function TrafficOverview({
 												<Icon name={visit.device === "mobile" ? "device-mobile" : "desktop"} size={14} />
 												<span className="capitalize">{visit.device}</span>
 											</div>
-										</td>
-										<td className="p-3 whitespace-nowrap">
-											<Badge variant="neutral" className="text-[10px]">
-												{visit.country}
-											</Badge>
 										</td>
 										<td className="p-3 text-end whitespace-nowrap">
 											<span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-emerald-400">

@@ -263,6 +263,7 @@ export const adminRouter = {
 						referrer: z.string(),
 						device: z.enum(["desktop", "mobile", "tablet", "bot"]),
 						country: z.string(),
+						ip: z.string().default("—"),
 						timestamp: z.string(),
 					}),
 				),
