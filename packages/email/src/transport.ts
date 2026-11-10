@@ -53,6 +53,7 @@ export const sendEmail = async ({ to, subject, react }: SendEmailOptions) => {
 
 	try {
 		await transport.sendMail(payload);
+		console.info(`[Email] Sent "${subject}" to ${to}`);
 	} catch {
 		// SMTP errors can contain credentials or authentication links.
 		console.error("There was an error sending mail.");
