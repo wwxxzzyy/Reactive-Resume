@@ -452,12 +452,15 @@ function createPageSeoMarkup(options: PageSeoOptions) {
 	const bingVerification = process.env.BING_SITE_VERIFICATION
 		? `<meta name="msvalidate.01" content="${escapeHtml(process.env.BING_SITE_VERIFICATION)}">`
 		: "";
+	const impactVerification =
+		'<meta name="impact-site-verification" value="ecca7ce8-6f46-4bf2-b4eb-7f989e111523" content="ecca7ce8-6f46-4bf2-b4eb-7f989e111523">';
 
 	return `
 		<link rel="canonical" href="${url}">
 		${alternates}
 		${googleVerification}
 		${bingVerification}
+		${impactVerification}
 		<meta name="rating" content="general">
 		<meta name="revisit-after" content="3 days">
 		<meta name="distribution" content="global">

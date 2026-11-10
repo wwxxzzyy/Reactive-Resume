@@ -16,12 +16,36 @@ export type CareerPartner = {
 	accentColor?: string;
 };
 
+/**
+ * Custom affiliate destination URLs or tracking links (Impact, CJ, ShareASale, direct).
+ * When populated, buildAffiliateUrl routes directly to this tracking URL.
+ * When empty, it falls back to the canonical partner URL with DipperGo UTM tags.
+ */
+export const AFFILIATE_CUSTOM_LINKS: Record<string, string> = {
+	ziprecruiter: "",
+	flexjobs: "",
+	wellfound: "",
+	dice: "",
+	topresume: "",
+	zipjob: "",
+	exponent: "",
+	"interviewing-io": "",
+	leetcode: "",
+	coursera: "",
+	datacamp: "",
+};
+
 /** Default DipperGo referral tracking parameters */
 export function buildAffiliateUrl(
 	baseUrl: string,
 	partnerId: string,
 	options: { campaign?: string; customParams?: Record<string, string> } = {},
 ): string {
+	const customUrl = AFFILIATE_CUSTOM_LINKS[partnerId];
+	if (customUrl && customUrl.trim().length > 0) {
+		return customUrl.trim();
+	}
+
 	try {
 		const parsed = new URL(baseUrl);
 		parsed.searchParams.set("ref", "dippergo");
