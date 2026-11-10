@@ -139,15 +139,17 @@ echo "✓ Source files synchronized"
 
 echo ""
 echo "=== [5/6] Preparing remote environment and Docker configuration ==="
-run_ssh "
+run_ssh "bash -s -- '${APP_URL}' '${REMOTE_DIR}'" << 'REMOTE_SCRIPT'
 set -e
-cd '${REMOTE_DIR}'
+APP_URL="$1"
+REMOTE_DIR="$2"
+cd "${REMOTE_DIR}"
 
 # Generate production .env if not already present
 if [ ! -f .env ]; then
   echo 'Generating initial production .env...'
-  AUTH_SECRET=\$(openssl rand -hex 32)
-  ENCRYPTION_SECRET=\$(openssl rand -hex 32)
+  AUTH_SECRET=$(openssl rand -hex 32)
+  ENCRYPTION_SECRET=$(openssl rand -hex 32)
   cat <<ENV_EOF > .env
 # Application URLs
 APP_URL=${APP_URL}
@@ -168,8 +170,8 @@ S3_SECRET_ACCESS_KEY=seaweedfs
 REDIS_URL=redis://redis:6379
 
 # Authentication & Security
-AUTH_SECRET=\${AUTH_SECRET}
-ENCRYPTION_SECRET=\${ENCRYPTION_SECRET}
+AUTH_SECRET=${AUTH_SECRET}
+ENCRYPTION_SECRET=${ENCRYPTION_SECRET}
 STRICT_SCHEMA_CHECK=false
 
 # Platform Administrator Credentials
@@ -188,9 +190,9 @@ ENV_EOF
 else
   # Ensure APP_URL is correctly set in existing .env
   if grep -q '^APP_URL=' .env; then
-    sed -i 's|^APP_URL=.*|APP_URL=${APP_URL}|' .env
+    sed -i "s|^APP_URL=.*|APP_URL=${APP_URL}|" .env
   else
-    echo 'APP_URL=${APP_URL}' >> .env
+    echo "APP_URL=${APP_URL}" >> .env
   fi
   if grep -q '^APP_ALIAS_URL=' .env; then
     sed -i 's|^APP_ALIAS_URL=.*|APP_ALIAS_URL=https://www.dippergo.com|' .env
@@ -200,12 +202,12 @@ else
 
   # Ensure SMTP settings are configured in existing .env
   set_env() {
-    local k="\$1"
-    local v="\$2"
-    if grep -q "^\${k}=" .env; then
-      sed -i "s|^\${k}=.*|\${k}=\${v}|" .env
+    local k="$1"
+    local v="$2"
+    if grep -q "^${k}=" .env; then
+      sed -i "s|^${k}=.*|${k}=${v}|" .env
     else
-      echo "\${k}=\${v}" >> .env
+      echo "${k}=${v}" >> .env
     fi
   }
 
@@ -225,11 +227,11 @@ services:
   reactive_resume:
     image: reactive_resume-reactive_resume:latest
     ports:
-      - \"80:3000\"
-      - \"3000:3000\"
+      - "80:3000"
+      - "3000:3000"
 COMPOSE_OVERRIDE
 echo '✓ Configured compose.override.yml (ports 80 & 3000 mapped)'
-"
+REMOTE_SCRIPT
 
 if [ "${SYNC_ONLY}" = true ]; then
   echo "=== Sync complete (--sync-only). Skipping container deployment. ==="
