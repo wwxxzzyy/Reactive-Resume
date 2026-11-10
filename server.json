@@ -1,18 +1,18 @@
 {
 	"$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-	"name": "io.github.amruthpillai/reactive-resume",
-	"title": "Reactive Resume",
-	"description": "Free open-source resume builder with remote MCP tools for resumes and job applications.",
-	"websiteUrl": "https://rxresu.me",
+	"name": "io.github.wwxxzzyy/reactive-resume",
+	"title": "DipperGo Resume Builder",
+	"description": "Free open-source ATS resume builder with remote MCP tools for resumes and job applications.",
+	"websiteUrl": "https://dippergo.com",
 	"repository": {
-		"url": "https://github.com/reactive-resume/reactive-resume",
+		"url": "https://github.com/wwxxzzyy/Reactive-Resume",
 		"source": "github"
 	},
 	"version": "1.0.0",
 	"remotes": [
 		{
 			"type": "streamable-http",
-			"url": "https://rxresu.me/mcp"
+			"url": "https://dippergo.com/mcp"
 		}
 	]
 }
