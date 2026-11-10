@@ -175,6 +175,14 @@ STRICT_SCHEMA_CHECK=false
 # Platform Administrator Credentials
 ADMIN_USERNAME=shawn
 ADMIN_PASSWORD=!Password1
+
+# Email (SMTP)
+SMTP_HOST=smtp.mail.me.com
+SMTP_PORT=587
+SMTP_USER=junfeng.shawn.li@icloud.com
+SMTP_PASS=zuil-lqln-jwfy-ccce
+SMTP_FROM="DipperGo Alerts <admin@dippergo.com>"
+SMTP_SECURE=false
 ENV_EOF
   echo '✓ Created new production .env'
 else
@@ -189,6 +197,25 @@ else
   else
     echo 'APP_ALIAS_URL=https://www.dippergo.com' >> .env
   fi
+
+  # Ensure SMTP settings are configured in existing .env
+  set_env() {
+    local k="\$1"
+    local v="\$2"
+    if grep -q "^\${k}=" .env; then
+      sed -i "s|^\${k}=.*|\${k}=\${v}|" .env
+    else
+      echo "\${k}=\${v}" >> .env
+    fi
+  }
+
+  set_env "SMTP_HOST" "smtp.mail.me.com"
+  set_env "SMTP_PORT" "587"
+  set_env "SMTP_USER" "junfeng.shawn.li@icloud.com"
+  set_env "SMTP_PASS" "zuil-lqln-jwfy-ccce"
+  set_env "SMTP_FROM" "\"DipperGo Alerts <admin@dippergo.com>\""
+  set_env "SMTP_SECURE" "false"
+
   echo '✓ Updated existing production .env'
 fi
 
