@@ -29,7 +29,14 @@ import { handleAgentSkillArchive, handleAgentSkillsIndex } from "../static/agent
 import { handleResumeCard } from "../static/resume-card";
 import { serveResumePage } from "../static/resume-page";
 import { handleSchemaJson } from "../static/schema";
-import { handleLlms, handlePagesSitemap, handleResumesSitemap, handleRobots, handleSitemap } from "../static/seo";
+import {
+	handleLlms,
+	handleLlmsFull,
+	handlePagesSitemap,
+	handleResumesSitemap,
+	handleRobots,
+	handleSitemap,
+} from "../static/seo";
 import { handleUpload } from "../static/uploads";
 import { handleWebApp, isProfilePath, isPublicResumePath, serveWebDistStatic } from "../static/web";
 import { handleAlias } from "./alias";
@@ -201,6 +208,7 @@ export function createApp(options: AppOptions = {}) {
 		handleResumesSitemap(Number(c.req.param("page").slice("resumes-".length, -".xml".length))),
 	);
 	app.get("/llms.txt", () => handleLlms());
+	app.get("/llms-full.txt", () => handleLlmsFull());
 
 	// Compresses only the web app's files and HTML shells: every route registered above answers before reaching
 	// it, so API, MCP, and upload streams are never buffered or re-encoded. Where a CDN serves the static files

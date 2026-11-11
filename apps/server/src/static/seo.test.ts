@@ -9,7 +9,7 @@ vi.mock("@reactive-resume/api/features/resume/web-page", () => ({
 	],
 }));
 
-const { handlePagesSitemap, handleResumesSitemap, handleLlms } = await import("./seo");
+const { handlePagesSitemap, handleResumesSitemap, handleLlms, handleLlmsFull } = await import("./seo");
 
 it("lists each indexed resume at its canonical address: the primary at /<username>", async () => {
 	const xml = await (await handleResumesSitemap(1)).text();
@@ -27,6 +27,15 @@ it("publishes Context7 Ask after the llms title and summary", async () => {
 	expect(text).toContain(
 		"It returns documentation that answers the question, with a source link for each part. No API key is needed. If nothing matches, it says so.\n\n## Product",
 	);
+	expect(text).toContain("/llms-full.txt");
+});
+
+it("publishes comprehensive knowledge base in llms-full", async () => {
+	const text = await handleLlmsFull().text();
+	expect(text).toContain("# DipperGo – Complete Generative Engine Knowledge Base & ATS Reference");
+	expect(text).toContain("12 Recruiter-Approved ATS Templates");
+	expect(text).toContain("Role-Specific ATS Keywords & Resume Standards");
+	expect(text).toContain("Competitor Comparison Matrix");
 });
 
 describe("localized sitemap", () => {
@@ -43,9 +52,9 @@ describe("localized sitemap", () => {
 		const locations = entries.map((entry) => entry.loc);
 
 		expect(response.headers.get("Content-Type")).toBe("application/xml; charset=UTF-8");
-		expect(entries).toHaveLength(3 * supportedLocales.length);
+		expect(entries).toHaveLength(4 * supportedLocales.length);
 		expect(new Set(locations).size).toBe(entries.length);
-		for (const path of ["/", "/ats-checker", "/resume-templates"]) {
+		for (const path of ["/", "/ats-checker", "/resume-templates", "/resume-examples"]) {
 			const base = `https://rxresu.me${path}`;
 			expect(locations).toContain(base);
 			const group = entries.filter((entry) => entry.loc?.split("?")[0] === base);

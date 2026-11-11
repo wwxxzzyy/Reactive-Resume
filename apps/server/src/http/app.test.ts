@@ -24,6 +24,7 @@ const mocks = vi.hoisted(() => ({
 	handleRobots: vi.fn(),
 	handleSitemap: vi.fn(),
 	handleLlms: vi.fn(),
+	handleLlmsFull: vi.fn(),
 	serveWebDistStatic: vi.fn(),
 	handleWebApp: vi.fn(),
 	isProfilePath: vi.fn((_path: string) => false),
@@ -72,6 +73,7 @@ vi.mock("../static/seo", () => ({
 	handleRobots: mocks.handleRobots,
 	handleSitemap: mocks.handleSitemap,
 	handleLlms: mocks.handleLlms,
+	handleLlmsFull: mocks.handleLlmsFull,
 }));
 
 vi.mock("../static/web", () => ({
@@ -126,6 +128,7 @@ beforeEach(() => {
 	mocks.handleRobots.mockReturnValue(new Response("robots"));
 	mocks.handleSitemap.mockReturnValue(new Response("sitemap"));
 	mocks.handleLlms.mockReturnValue(new Response("llms"));
+	mocks.handleLlmsFull.mockReturnValue(new Response("llms-full"));
 	mocks.serveWebDistStatic.mockResolvedValue(undefined);
 	mocks.handleWebApp.mockResolvedValue(new Response("web"));
 });

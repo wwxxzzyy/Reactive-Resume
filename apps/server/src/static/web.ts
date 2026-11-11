@@ -189,7 +189,11 @@ function organization(origin: string): StructuredData {
 		url: `${origin}/`,
 		contactPoint: { "@type": "ContactPoint", contactType: "support", email: "info@dippergo.com" },
 		logo: { "@type": "ImageObject", url: `${origin}/pwa-512x512.png`, width: 512, height: 512 },
-		sameAs: ["https://x.com/dippergo"],
+		sameAs: [
+			"https://x.com/dippergo",
+			"https://github.com/wwxxzzyy/Reactive-Resume",
+			"https://github.com/Reactive-Resume/Reactive-Resume",
+		],
 	};
 }
 
@@ -207,6 +211,23 @@ function homepageStructuredData(origin: string): StructuredData {
 				url: rootUrl,
 				inLanguage: "en-US",
 				publisher: { "@id": `${origin}/#organization` },
+				about: [
+					{
+						"@type": "Thing",
+						name: "Resume",
+						sameAs: "https://en.wikipedia.org/wiki/R%C3%A9sum%C3%A9",
+					},
+					{
+						"@type": "Thing",
+						name: "Applicant Tracking System",
+						sameAs: "https://en.wikipedia.org/wiki/Applicant_tracking_system",
+					},
+					{
+						"@type": "Thing",
+						name: "Curriculum Vitae",
+						sameAs: "https://en.wikipedia.org/wiki/Curriculum_vitae",
+					},
+				],
 				potentialAction: {
 					"@type": "SearchAction",
 					target: {
@@ -234,38 +255,17 @@ function homepageStructuredData(origin: string): StructuredData {
 				url: rootUrl,
 				description: ROOT_DESCRIPTION,
 				applicationCategory: "BusinessApplication",
+				applicationSubCategory: "Resume & Career Platform",
 				operatingSystem: "All modern web browsers",
 				browserRequirements: "Requires HTML5 and WebAssembly support",
 				isAccessibleForFree: true,
 				offers: {
-					"@type": "AggregateOffer",
+					"@type": "Offer",
+					name: "100% Free Forever",
+					price: "0",
 					priceCurrency: "USD",
-					lowPrice: "0",
-					highPrice: "24.99",
-					offerCount: "3",
-					offers: [
-						{
-							"@type": "Offer",
-							name: "Free Forever",
-							price: "0",
-							priceCurrency: "USD",
-							description: "Complete resume builder with all 12 templates, PDF and Word downloads.",
-						},
-						{
-							"@type": "Offer",
-							name: "Monthly Pro",
-							price: "9.99",
-							priceCurrency: "USD",
-							description: "Priority AI generation and advanced cloud synchronization.",
-						},
-						{
-							"@type": "Offer",
-							name: "Lifetime Access",
-							price: "24.99",
-							priceCurrency: "USD",
-							description: "One-time payment for lifetime access.",
-						},
-					],
+					description:
+						"Free open-source ATS resume builder. All 12 templates, unlimited vector PDF and Word DOCX downloads with zero paywalls, no subscriptions, and no credit card required.",
 				},
 				publisher: { "@id": `${origin}/#organization` },
 				screenshot: `${origin}/opengraph/banner.jpg`,
@@ -565,8 +565,13 @@ function createPageSeoMarkup(options: PageSeoOptions) {
 	return `
 		<link rel="canonical" href="${url}">
 		${alternates}
+		<link rel="alternate" type="text/markdown" title="LLM Knowledge Base (llms.txt)" href="${new URL("/llms.txt", env.APP_URL).toString()}">
+		<link rel="alternate" type="text/markdown" title="Complete LLM Knowledge Base (llms-full.txt)" href="${new URL("/llms-full.txt", env.APP_URL).toString()}">
 		${googleVerification}
 		${bingVerification}
+		<meta name="ai-content-declaration" content="human-authored">
+		<meta name="author" content="DipperGo">
+		<meta name="application-name" content="DipperGo">
 		<meta name="rating" content="general">
 		<meta name="revisit-after" content="3 days">
 		<meta name="distribution" content="global">
