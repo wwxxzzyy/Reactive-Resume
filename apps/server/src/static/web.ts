@@ -42,7 +42,7 @@ const prerenderRoot = `${staticRoot}-prerender`;
  * Without an entry here the fallback below returns 404 for the path in production — the dev Vite
  * server serves the shell for anything, so this failure only ever shows up once deployed.
  */
-const indexableAppPaths = new Set(["/ats-checker", "/resume-templates"]);
+const indexableAppPaths = new Set(["/ats-checker", "/resume-templates", "/resume-examples"]);
 const reservedPublicResumeSegments = new Set<string>(RESERVED_SEGMENTS);
 
 function isAssetPath(pathname: string): boolean {
@@ -165,15 +165,18 @@ function htmlResponse(html: string, headers: Record<string, string>, template = 
 
 // The English copy, for a build without prerendered pages; a prerendered page carries its own locale's title and
 // description, and the social cards reuse them.
-const ROOT_TITLE = "Free ATS Resume Builder & AI Resume Maker (PDF & Word) | DipperGo";
+const ROOT_TITLE = "Free ATS Resume Builder (No Paywall, No Credit Card) | DipperGo";
 const ROOT_DESCRIPTION =
-	"Create professional, recruiter-approved resumes that beat ATS screeners. 12 free ATS templates, live keyword scoring, AI tailoring, and instant vector PDF & Word DOCX downloads.";
-const ATS_CHECKER_TITLE = "Free ATS Resume Checker & Scanner (Online Score) | DipperGo";
+	"100% free open-source ATS resume builder. No paywalls, subscriptions, or credit card required. 12 ATS templates, live keyword score, AI tailoring, and free vector PDF & Word DOCX downloads.";
+const ATS_CHECKER_TITLE = "Free ATS Resume Checker & Scanner (No Paywall, Online Score) | DipperGo";
 const ATS_CHECKER_DESCRIPTION =
-	"Scan your resume PDF against ATS algorithms for free. Test readability, keyword match & formatting instantly in your browser with zero data uploads.";
-const TEMPLATES_TITLE = "12 Best Free ATS Resume Templates (Word & PDF Download) | DipperGo";
+	"100% free ATS resume checker. Scan your resume PDF against recruiter algorithms directly in your browser. Zero uploads, no account or credit card needed.";
+const TEMPLATES_TITLE = "12 Best Free ATS Resume Templates (Word & PDF, No Paywall) | DipperGo";
 const TEMPLATES_DESCRIPTION =
-	"Browse 12 recruiter-approved ATS resume templates. Download free vector PDF & Word DOCX examples, compare layouts, and customize in the builder.";
+	"Recruiter-approved ATS resume templates. 100% free vector PDF & Word DOCX downloads with no subscription, hidden paywalls, or forced watermarks.";
+const EXAMPLES_TITLE = "Free ATS Resume Examples & Templates by Role (2026) | DipperGo";
+const EXAMPLES_DESCRIPTION =
+	"Recruiter-approved ATS resume examples for software engineers, product managers, data analysts, nurses, and more. Free ATS keywords, bullet points, and PDF downloads.";
 
 type StructuredData = Record<string, unknown>;
 
@@ -327,10 +330,18 @@ function homepageStructuredData(origin: string): StructuredData {
 				mainEntity: [
 					{
 						"@type": "Question",
-						name: "Is DipperGo really free?",
+						name: "Is DipperGo really 100% free with no paywall?",
 						acceptedAnswer: {
 							"@type": "Answer",
-							text: `Yes. Core features are 100% free: all ${templateSchema.options.length} templates, vector PDF and Word downloads, the ATS checker, cover letters, and the job application tracker. There are no ads or forced watermarks.`,
+							text: `Yes. DipperGo is 100% free and open-source. All ${templateSchema.options.length} templates, vector PDF and Word DOCX downloads, the ATS checker, cover letters, and job application tracker have zero paywalls, subscriptions, or credit card requirements.`,
+						},
+					},
+					{
+						"@type": "Question",
+						name: "Can I download my resume as PDF or Word (DOCX) without paying?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "Yes. Unlimited high-resolution vector PDF downloads and fully editable Microsoft Word (DOCX) files are included free with no watermarks or hidden upgrade fees.",
 						},
 					},
 					{
@@ -338,7 +349,7 @@ function homepageStructuredData(origin: string): StructuredData {
 						name: "Will my resume get past applicant tracking systems (ATS)?",
 						acceptedAnswer: {
 							"@type": "Answer",
-							text: "Every template exports a text-based vector PDF with words in natural reading order, which applicant tracking systems require. To test any PDF, the free ATS checker inspects extracted text and formatting.",
+							text: "Every template exports a text-based vector PDF with words in natural linear reading order, which applicant tracking systems like Workday, Taleo, Greenhouse, and Lever require. Test your file anytime with the built-in free ATS checker.",
 						},
 					},
 					{
@@ -351,10 +362,10 @@ function homepageStructuredData(origin: string): StructuredData {
 					},
 					{
 						"@type": "Question",
-						name: "What formats can I download?",
+						name: "Do I need a credit card to use DipperGo?",
 						acceptedAnswer: {
 							"@type": "Answer",
-							text: "Vector PDF, Microsoft Word (DOCX), Markdown, and JSON. Your resume data is never locked in.",
+							text: "No. You never need to enter a credit card or payment information to create, edit, score, or download resumes.",
 						},
 					},
 					{
@@ -362,15 +373,7 @@ function homepageStructuredData(origin: string): StructuredData {
 						name: "Can I import an existing resume or LinkedIn profile?",
 						acceptedAnswer: {
 							"@type": "Answer",
-							text: "Yes. Import a PDF, LinkedIn data export, JSON Resume, or Resume Builder export, then continue editing immediately.",
-						},
-					},
-					{
-						"@type": "Question",
-						name: "Can I use AI to write or tailor my resume?",
-						acceptedAnswer: {
-							"@type": "Answer",
-							text: "Yes. You can connect your own API key (OpenAI, Claude Anthropic, Google Gemini, Ollama, OpenRouter) or use Pro tier AI tools to tailor bullet points and generate targeted cover letters.",
+							text: "Yes. Import a PDF, LinkedIn data export, JSON Resume, or Reactive Resume export, then continue editing immediately.",
 						},
 					},
 					{
@@ -422,6 +425,113 @@ function atsCheckerStructuredData(origin: string): StructuredData {
 				isPartOf: { "@type": "WebSite", "@id": `${origin}/#website`, name: "DipperGo", url: `${origin}/` },
 				provider: { "@id": `${origin}/#organization` },
 			},
+			{
+				"@type": "FAQPage",
+				mainEntity: [
+					{
+						"@type": "Question",
+						name: "Is this ATS resume checker free with no paywall?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "Yes. The ATS resume checker is 100% free. No account, subscription, or credit card is required to upload and test your resume.",
+						},
+					},
+					{
+						"@type": "Question",
+						name: "Does my resume PDF get uploaded to a remote server?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "No. The scanner runs entirely in your browser using client-side WebAssembly and PDF.js. Your resume text and personal information never leave your device.",
+						},
+					},
+					{
+						"@type": "Question",
+						name: "What ATS algorithms does this scanner test against?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "It tests text parsing, font encoding, heading hierarchy, and keyword density against the requirements of leading Applicant Tracking Systems including Workday, Taleo, Greenhouse, Lever, and iCIMS.",
+						},
+					},
+					{
+						"@type": "Question",
+						name: "How can I improve a low ATS resume score?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "Use a clean single-column or tested dual-column template, replace embedded graphic skill bars with text, format dates consistently, and naturally incorporate target keywords from the job description.",
+						},
+					},
+				],
+			},
+		],
+	};
+}
+
+function resumeExamplesStructuredData(origin: string): StructuredData {
+	return {
+		"@context": "https://schema.org",
+		"@graph": [
+			organization(origin),
+			{
+				"@type": "BreadcrumbList",
+				itemListElement: [
+					{
+						"@type": "ListItem",
+						position: 1,
+						name: "Home",
+						item: `${origin}/`,
+					},
+					{
+						"@type": "ListItem",
+						position: 2,
+						name: "Resume Examples",
+						item: `${origin}/resume-examples`,
+					},
+				],
+			},
+			{
+				"@type": "CollectionPage",
+				name: "Free ATS Resume Examples by Job Role",
+				url: `${origin}/resume-examples`,
+				description: EXAMPLES_DESCRIPTION,
+				isPartOf: { "@type": "WebSite", "@id": `${origin}/#website`, name: "DipperGo", url: `${origin}/` },
+			},
+			{
+				"@type": "FAQPage",
+				mainEntity: [
+					{
+						"@type": "Question",
+						name: "How do applicant tracking systems (ATS) screen resumes?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "ATS software scans resume documents to parse candidate contact info, employment history, education, and role skills, matching your bullet points against job posting requirements.",
+						},
+					},
+					{
+						"@type": "Question",
+						name: "How many keywords should I include in my resume?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "Aim for 8 to 15 relevant technical and role-specific keywords naturally embedded in your work experience bullet points and skills section.",
+						},
+					},
+					{
+						"@type": "Question",
+						name: "Are these role resume examples free to use and download?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "Yes. All resume examples and templates on DipperGo are 100% free with unlimited PDF and Word DOCX downloads. No credit card or subscription required.",
+						},
+					},
+					{
+						"@type": "Question",
+						name: "Should I download my resume as PDF or Word (DOCX)?",
+						acceptedAnswer: {
+							"@type": "Answer",
+							text: "High-resolution vector PDF is recommended for 95% of job applications because it preserves exact visual formatting across all platforms. Word DOCX is also provided if an employer specifically requests it.",
+						},
+					},
+				],
+			},
 		],
 	};
 }
@@ -463,7 +573,7 @@ function createPageSeoMarkup(options: PageSeoOptions) {
 		<meta name="coverage" content="Worldwide">
 		<meta name="format-detection" content="telephone=no">
 		<meta name="language" content="English">
-		<meta name="keywords" content="free resume builder, ATS resume builder, ATS resume checker, ATS resume scanner, AI resume maker, free CV maker online, ATS friendly resume templates, resume builder PDF download, Word DOCX resume, resume tailor, job application tracker, curriculum vitae maker, DipperGo">
+		<meta name="keywords" content="free resume builder no paywall, free resume builder without paying, free resume builder no credit card, truly free resume builder, free ATS resume checker, free resume examples by role, free CV maker online, ATS friendly resume templates, resume builder PDF download, Word DOCX resume, resume tailor, job application tracker, curriculum vitae maker, DipperGo">
 		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 		<meta property="og:locale" content="${options.locale.replace("-", "_")}">
 		${socialMetaTags({ type: "website", title: options.title, description: options.description, url, image: options.imageUrl })}
@@ -601,8 +711,43 @@ const prerenderedPages: Record<
 						})),
 					},
 				},
+				{
+					"@type": "FAQPage",
+					mainEntity: [
+						{
+							"@type": "Question",
+							name: "Are all 12 resume templates free to download?",
+							acceptedAnswer: {
+								"@type": "Answer",
+								text: "Yes. All 12 recruiter-approved templates include unlimited vector PDF and Microsoft Word (DOCX) downloads with no paywalls or watermarks.",
+							},
+						},
+						{
+							"@type": "Question",
+							name: "What makes a resume template ATS-friendly?",
+							acceptedAnswer: {
+								"@type": "Answer",
+								text: "ATS-friendly templates use linear reading flow, standard heading tags (Experience, Education, Skills), machine-readable vector fonts, and avoid complex nested tables or graphics that confuse parsing software.",
+							},
+						},
+						{
+							"@type": "Question",
+							name: "Can I switch templates without retyping my resume?",
+							acceptedAnswer: {
+								"@type": "Answer",
+								text: "Yes. DipperGo decouples your resume content from its design layout. You can switch between any of the 12 templates instantly with one click.",
+							},
+						},
+					],
+				},
 			],
 		}),
+	},
+	"/resume-examples": {
+		name: "resume-examples",
+		meta: { title: EXAMPLES_TITLE, description: EXAMPLES_DESCRIPTION },
+		image: "/opengraph/banner.jpg",
+		structuredData: resumeExamplesStructuredData,
 	},
 };
 

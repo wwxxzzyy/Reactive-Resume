@@ -57,11 +57,12 @@ export function handleRobots() {
 }
 
 // The marketing pages; resumes whose owners opted in are listed on the sitemap's other pages.
-const sitemapPaths = ["/", "/ats-checker", "/resume-templates"];
+const sitemapPaths = ["/", "/ats-checker", "/resume-templates", "/resume-examples"];
 
 const pageImages: Record<string, { loc: string; title: string }[]> = {
 	"/": [{ loc: "/opengraph/banner.jpg", title: "DipperGo - Free ATS Resume Builder & AI Resume Maker" }],
 	"/ats-checker": [{ loc: "/opengraph/ats-checker.png", title: "Free ATS Resume Checker & Scanner" }],
+	"/resume-examples": [{ loc: "/opengraph/banner.jpg", title: "Free ATS Resume Examples by Job Role" }],
 	"/resume-templates": [
 		{ loc: "/opengraph/banner.jpg", title: "12 Best Free ATS Resume Templates" },
 		...primaryTemplates.map((id) => ({
@@ -167,6 +168,7 @@ export function handleLlms() {
 		"",
 		`- [Homepage](${baseUrl}/): what DipperGo does, feature highlights, and answers to common questions.`,
 		`- [Resume templates](${baseUrl}/resume-templates): browse all ${templateSchema.options.length} recruiter-approved ATS templates, compare single and dual-column layouts, and download sample PDFs.`,
+		`- [Resume examples](${baseUrl}/resume-examples): recruiter-approved resume examples and ATS keyword guides for software engineers, product managers, data analysts, nurses, and more.`,
 		`- [ATS checker](${baseUrl}/ats-checker): a free, private browser-based tool that scans resume PDFs against ATS extraction algorithms. Zero uploads; your file never leaves your computer.`,
 		`- [Get started](${baseUrl}/dashboard): create an account and build your first resume in minutes.`,
 		"",

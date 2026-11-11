@@ -16,6 +16,7 @@ import { Route as DashboardRouteRouteImport } from "./routes/dashboard/route";
 import { Route as HomeIndexRouteImport } from "./routes/_home/index";
 import { Route as HomeAtsCheckerRouteImport } from "./routes/_home/ats-checker";
 import { Route as HomeResumeTemplatesRouteImport } from "./routes/_home/resume-templates";
+import { Route as HomeResumeExamplesRouteImport } from "./routes/_home/resume-examples";
 import { Route as AdminIndexRouteImport } from "./routes/admin/index";
 import { Route as AgentIndexRouteImport } from "./routes/agent/index";
 import { Route as AgentThreadIdRouteImport } from "./routes/agent/$threadId";
@@ -90,6 +91,12 @@ const HomeAtsCheckerRoute = HomeAtsCheckerRouteImport.update({
 const HomeResumeTemplatesRoute = HomeResumeTemplatesRouteImport.update({
   id: "/resume-templates",
   path: "/resume-templates",
+  getParentRoute: () => HomeRouteRoute,
+} as any);
+
+const HomeResumeExamplesRoute = HomeResumeExamplesRouteImport.update({
+  id: "/resume-examples",
+  path: "/resume-examples",
   getParentRoute: () => HomeRouteRoute,
 } as any);
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -323,6 +330,7 @@ export interface FileRoutesByFullPath {
   "/dashboard/settings": typeof DashboardSettingsRouteRouteWithChildren;
   "/ats-checker": typeof HomeAtsCheckerRoute;
   "/resume-templates": typeof HomeResumeTemplatesRoute;
+  "/resume-examples": typeof HomeResumeExamplesRoute;
   "/agent/$threadId": typeof AgentThreadIdRoute;
   "/agent/new": typeof AgentNewRoute;
   "/auth/consent": typeof AuthConsentRoute;
@@ -365,6 +373,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   "/ats-checker": typeof HomeAtsCheckerRoute;
   "/resume-templates": typeof HomeResumeTemplatesRoute;
+  "/resume-examples": typeof HomeResumeExamplesRoute;
   "/agent/$threadId": typeof AgentThreadIdRoute;
   "/agent/new": typeof AgentNewRoute;
   "/auth/consent": typeof AuthConsentRoute;
@@ -416,6 +425,7 @@ export interface FileRoutesById {
   "/dashboard/settings": typeof DashboardSettingsRouteRouteWithChildren;
   "/_home/ats-checker": typeof HomeAtsCheckerRoute;
   "/_home/resume-templates": typeof HomeResumeTemplatesRoute;
+  "/_home/resume-examples": typeof HomeResumeExamplesRoute;
   "/agent/$threadId": typeof AgentThreadIdRoute;
   "/agent/new": typeof AgentNewRoute;
   "/auth/consent": typeof AuthConsentRoute;
@@ -660,6 +670,13 @@ declare module "@tanstack/react-router" {
       path: "/resume-templates";
       fullPath: "/resume-templates";
       preLoaderRoute: typeof HomeResumeTemplatesRouteImport;
+      parentRoute: typeof HomeRouteRoute;
+    };
+    "/_home/resume-examples": {
+      id: "/_home/resume-examples";
+      path: "/resume-examples";
+      fullPath: "/resume-examples";
+      preLoaderRoute: typeof HomeResumeExamplesRouteImport;
       parentRoute: typeof HomeRouteRoute;
     };
     "/admin/": {
@@ -955,12 +972,14 @@ declare module "@tanstack/react-router" {
 interface HomeRouteRouteChildren {
   HomeAtsCheckerRoute: typeof HomeAtsCheckerRoute;
   HomeResumeTemplatesRoute: typeof HomeResumeTemplatesRoute;
+  HomeResumeExamplesRoute: typeof HomeResumeExamplesRoute;
   HomeIndexRoute: typeof HomeIndexRoute;
 }
 
 const HomeRouteRouteChildren: HomeRouteRouteChildren = {
   HomeAtsCheckerRoute: HomeAtsCheckerRoute,
   HomeResumeTemplatesRoute: HomeResumeTemplatesRoute,
+  HomeResumeExamplesRoute: HomeResumeExamplesRoute,
   HomeIndexRoute: HomeIndexRoute,
 };
 

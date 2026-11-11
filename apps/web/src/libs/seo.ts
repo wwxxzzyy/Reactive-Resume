@@ -24,20 +24,25 @@ export const serializeJsonLd = (data: Record<string, unknown>) =>
 
 /** The homepage's title and description in the active locale. The prerendered page and the route share them. */
 export const getHomepageMeta = () => ({
-	title: `Free ATS Resume Builder & AI Resume Maker (PDF & Word) | ${appName}`,
+	title: `Free ATS Resume Builder (No Paywall, No Credit Card) | ${appName}`,
 	description:
-		"Create professional, recruiter-approved resumes that beat ATS screeners. 12 free ATS templates, live keyword scoring, AI tailoring, and instant vector PDF & DOCX downloads.",
+		"100% free open-source ATS resume builder. No paywalls, subscriptions, or credit card required. 12 ATS templates, live keyword score, AI tailoring, and free vector PDF & Word DOCX downloads.",
 });
 
 /** The ATS checker's title and description in the active locale. The prerendered page and the route share them. */
 export const getAtsCheckerMeta = () => ({
-	title: `${t`Free ATS Resume Checker & Scanner (Online Score)`} | ${appName}`,
-	description: t`Scan your resume PDF against ATS algorithms for free. Test readability, keyword match & formatting instantly in your browser with zero data uploads.`,
+	title: `${t`Free ATS Resume Checker & Scanner (No Paywall, Online Score)`} | ${appName}`,
+	description: t`100% free ATS resume checker. Scan your resume PDF against recruiter algorithms directly in your browser. Zero uploads, no account or credit card needed.`,
 });
 
 export const getTemplatesMeta = () => ({
-	title: `${t`12 Best Free ATS Resume Templates (Word & PDF Download)`} | ${appName}`,
-	description: t`Browse 12 recruiter-approved ATS resume templates. Download free vector PDF & Word DOCX examples, compare layouts, and customize in the builder.`,
+	title: `${t`12 Best Free ATS Resume Templates (Word & PDF, No Paywall)`} | ${appName}`,
+	description: t`Recruiter-approved ATS resume templates. 100% free vector PDF & Word DOCX downloads with no subscription, hidden paywalls, or forced watermarks.`,
+});
+
+export const getResumeExamplesMeta = () => ({
+	title: `${t`Free ATS Resume Examples & Templates by Role (2026)`} | ${appName}`,
+	description: t`Recruiter-approved ATS resume examples for software engineers, product managers, data analysts, nurses, and more. Free ATS keywords, bullet points, and PDF downloads.`,
 });
 
 /** Shared app and saved-document tab title. Marketing pages keep their own search titles. */

@@ -71,6 +71,17 @@ export function Header() {
 					</Link>
 
 					<Link
+						to="/resume-examples"
+						className="flex h-[36px] items-center gap-2 rounded-md px-3 font-ui text-xs font-medium text-ink-2 transition-colors hover:bg-hover hover:text-ink xl:text-sm [&.active]:bg-hover [&.active]:text-ink"
+					>
+						<SparkleIcon className="size-4 text-accent-text" />
+						<span>Resume Examples</span>
+						<span className="font-martian rounded border border-line bg-raised px-1.5 py-0.5 text-[10px] font-semibold text-ink-3">
+							Roles
+						</span>
+					</Link>
+
+					<Link
 						to="/ats-checker"
 						className="flex h-[36px] items-center gap-2 rounded-md px-3 font-ui text-xs font-medium text-ink-2 transition-colors hover:bg-hover hover:text-ink xl:text-sm [&.active]:bg-hover [&.active]:text-ink"
 					>
@@ -172,6 +183,20 @@ export function Header() {
 								</div>
 								<span className="font-martian rounded border border-line bg-raised px-2 py-0.5 text-[10px] text-ink-3">
 									21 ATS Layouts
+								</span>
+							</Link>
+
+							<Link
+								to="/resume-examples"
+								onClick={() => setMobileMenuOpen(false)}
+								className="flex items-center justify-between rounded-md p-2.5 font-ui text-sm font-medium text-ink transition-colors hover:bg-hover"
+							>
+								<div className="flex items-center gap-2.5">
+									<SparkleIcon className="size-4 text-accent-text" />
+									<span>Resume Examples</span>
+								</div>
+								<span className="font-martian rounded border border-line bg-raised px-2 py-0.5 text-[10px] text-ink-3">
+									By Job Role
 								</span>
 							</Link>
 

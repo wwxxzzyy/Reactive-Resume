@@ -17,10 +17,11 @@ import { renderToString } from "react-dom/server";
 import { isRTL, supportedLocales } from "@reactive-resume/utils/locale";
 import { Homepage } from "./page";
 import { AtsCheckerPage } from "@/features/ats-checker/page";
+import { ResumeExamplesPage } from "@/features/examples/page";
 import { TemplateGallery } from "@/features/templates/gallery";
 import { ThemeProvider } from "@/features/theme/provider";
 import { getLocaleMessages } from "@/libs/locale";
-import { getAtsCheckerMeta, getHomepageMeta, getTemplatesMeta } from "@/libs/seo";
+import { getAtsCheckerMeta, getHomepageMeta, getResumeExamplesMeta, getTemplatesMeta } from "@/libs/seo";
 import { Header } from "@/routes/_home/-sections/header";
 
 export const locales = supportedLocales;
@@ -37,6 +38,16 @@ const pages = {
 			<>
 				<Header />
 				<TemplateGallery />
+			</>
+		),
+	},
+	"resume-examples": {
+		path: "/resume-examples",
+		meta: getResumeExamplesMeta,
+		render: () => (
+			<>
+				<Header />
+				<ResumeExamplesPage />
 			</>
 		),
 	},

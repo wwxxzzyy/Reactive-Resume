@@ -44,26 +44,31 @@ describe("web app fallback classification", () => {
 		vi.mocked(fs.readFile).mockResolvedValue("<html>app</html>");
 	});
 
-	it.each(["/", "/?locale=de-DE", "/ats-checker", "/resume-templates", "/dashboard", "/index.html"])(
-		"advertises Context7 Ask in server-rendered %s and its HEAD response",
-		async (path) => {
-			vi.mocked(fs.readFile).mockResolvedValue('<html><head></head><body><div id="app"></div></body></html>');
-			const response = await handleWebApp(new Request(`https://rxresu.me${path}`));
-			const html = await response.text();
-			expect(html).toContain('<meta name="context7-site-verification" content="ask_b3fd9335a63f1b21b1a814ac"></head>');
-			expect(html).toContain('<body><blockquote data-context7-ask="true" aria-hidden="true" class="sr-only">');
-			expect(html).toContain("<h2>Search</h2><p>Page index: https://rxresu.me/llms.txt.</p>");
-			expect(html).toContain(
-				"https://context7.com/api/v2/ask?siteKey=ask_b3fd9335a63f1b21b1a814ac&amp;query=&lt;URL-encoded question&gt;",
-			);
-			expect(html).toContain('</blockquote><div id="app"></div>');
-			expect(html).not.toContain("Add .md");
-			expect(response.headers.get("Link")).toBe(searchLink);
-			const head = await handleWebApp(new Request(`https://rxresu.me${path}`, { method: "HEAD" }));
-			expect(head.headers.get("Link")).toBe(searchLink);
-			expect(await head.text()).toBe("");
-		},
-	);
+	it.each([
+		"/",
+		"/?locale=de-DE",
+		"/ats-checker",
+		"/resume-templates",
+		"/resume-examples",
+		"/dashboard",
+		"/index.html",
+	])("advertises Context7 Ask in server-rendered %s and its HEAD response", async (path) => {
+		vi.mocked(fs.readFile).mockResolvedValue('<html><head></head><body><div id="app"></div></body></html>');
+		const response = await handleWebApp(new Request(`https://rxresu.me${path}`));
+		const html = await response.text();
+		expect(html).toContain('<meta name="context7-site-verification" content="ask_b3fd9335a63f1b21b1a814ac"></head>');
+		expect(html).toContain('<body><blockquote data-context7-ask="true" aria-hidden="true" class="sr-only">');
+		expect(html).toContain("<h2>Search</h2><p>Page index: https://rxresu.me/llms.txt.</p>");
+		expect(html).toContain(
+			"https://context7.com/api/v2/ask?siteKey=ask_b3fd9335a63f1b21b1a814ac&amp;query=&lt;URL-encoded question&gt;",
+		);
+		expect(html).toContain('</blockquote><div id="app"></div>');
+		expect(html).not.toContain("Add .md");
+		expect(response.headers.get("Link")).toBe(searchLink);
+		const head = await handleWebApp(new Request(`https://rxresu.me${path}`, { method: "HEAD" }));
+		expect(head.headers.get("Link")).toBe(searchLink);
+		expect(await head.text()).toBe("");
+	});
 
 	it("injects canonical metadata and structured data into tracking-parameter root requests only", async () => {
 		vi.mocked(fs.readFile).mockResolvedValue(`
@@ -172,7 +177,7 @@ describe("web app fallback classification", () => {
 		);
 	});
 
-	describe.each(["ats-checker", "resume-templates"])("the %s page", (path) => {
+	describe.each(["ats-checker", "resume-templates", "resume-examples"])("the %s page", (path) => {
 		const shell = `<html><head><title>Reactive Resume — A free and open-source resume builder</title><meta name="description" content="Marketing copy."></head><body></body></html>`;
 
 		it("serves an indexable shell rather than a 404", async () => {
@@ -187,7 +192,9 @@ describe("web app fallback classification", () => {
 
 		it("serves the prerendered page in the requested locale, with its own title on the social cards", async () => {
 			vi.mocked(fs.readFile).mockImplementation((path) => {
-				const match = String(path).match(/dist-prerender\/(?:ats-checker|resume-templates)\/(.+)\.html$/);
+				const match = String(path).match(
+					/dist-prerender\/(?:ats-checker|resume-templates|resume-examples)\/(.+)\.html$/,
+				);
 				if (!match) return Promise.resolve(shell);
 				return Promise.resolve(
 					`<html><head><title>ATS-Prüfung &amp; mehr</title><meta name="description" content="Lesbar?"></head><body><div id="app">${match[1]}</div></body></html>`,
